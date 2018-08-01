@@ -1,0 +1,23 @@
+.ipynb_checkpoints
+manuscript/output
+code/__pycache__
+code/gmt.conf
+.gmt*
+
+# Tex files
+*.synctex.gz
+*.fls
+*.bbl
+*.blg
+*.fff
+*.log
+*.lof
+*.aux
+*.pyc
+*.out
+*.lot
+*.toc
+*.ttt
+*~
+*-eps-converted-to.pdf
+*.fdb_latexmk

@@ -1,0 +1,261 @@
+%\documentclass[paper,twocolumn,twoside]{geophysics}
+%\documentclass[manuscript,revised]{geophysics}
+\documentclass[manuscript]{geophysics}
+
+% An example of defining macros
+\newcommand{\rs}[1]{\mathstrut\mbox{\scriptsize\rm #1}}
+\newcommand{\rr}[1]{\mbox{\rm #1}}
+
+% Extra packages
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage[pdftex,colorlinks=true]{hyperref}
+\hypersetup{
+	allcolors=black,
+}
+\usepackage{lipsum}
+
+\renewcommand{\figdir}{figures} % figure directory
+
+\begin{document}
+
+\title{2D gravity inversion with isostatic constraint applied to passive rifted margins}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}} 
+
+\ms{GEO-XXXX} % manuscript number
+
+\address{
+\footnotemark[1]Observat\'{o}rio Nacional, \\
+Department of Geophysics, \\
+Rio de Janeiro, Brazil}
+\author{B. Marcela S. Bastos\footnotemark[1] and Vanderlei C. Oliveira Jr\footnotemark[1]}
+
+\footer{vanderlei@on.br}
+\lefthead{Bastos and Oliveira Jr.}
+\righthead{2D gravity inversion for passive rifted margins}
+
+\maketitle
+
+\begin{abstract}
+
+\lipsum[1]
+
+\end{abstract}
+
+\section{Introduction}
+
+\lipsum[1-5]
+
+\section{Methodology}
+
+
+\subsection{Forward problem}
+
+Let $\mathbf{d}^{o}$ be the observed data vector, whose $i$-th element $d^{o}_{i}$, 
+$i = 1, \dots, N$, represent the observed gravity disturbance at the point 
+$(x_{i}, y_{i}, z_{i})$, on a profile located over a rifted passive margin. The
+coordinates are referred to a topocentric Cartesian system, with $z$ axis pointing
+down, $y$-axis along the profile and $x$-axis perpendicular to the profile. Consider
+that Figures \ref{fig:mass-distribution} and \ref{fig:reference-mass-distribution} 
+show, respectively, the actual mass distribution and the reference mass 
+distribution in the subsurface. In this case, we implicitly assume that the 
+observed gravity disturbance is produced by an anomalous mass distribution defined 
+as the difference between the mass distributions shown in Figures 
+\ref{fig:mass-distribution} and \ref{fig:reference-mass-distribution}. We 
+approximate this anomalous mass distribution by an interpretation model 
+(Figure  \ref{fig:interpretation-model}) formed by $N$ columns of horizontally 
+adjacent prisms having an infinite length along the $x$-axis, which is 
+perpendicular to the profile. For convenience, we presume that 
+the observed data a regularly spaced along the profile, so that there is one 
+observation at the top of each column.
+
+The $i$-th column of the interpretation model 
+(Figure \ref{fig:interpretation-model}) is formed by four vertically adjacent 
+layers. The first one is the shallowest, represents the water layer, is formed by 
+a single prism, has thickness $t^{w}_{i}$ and a constant density contrast 
+$\Delta \rho^{w} = \rho^{w} - \rho^{r}$, where $\rho^{w}$ and $\rho^{r}$ 
+represents, respectively, the densities of water and the reference mass 
+distribution (Figure \ref{fig:reference-mass-distribution}) at the same point. 
+
+PAREI AQUI
+
+A terceira camada representa a crosta, também é formada por apenas um prisma, possui espessura $t^{c}_{i}$ e contraste de densidade $\Delta \rho^{c}_{i} = \rho^{c} - \rho^{r}$, sendo $\rho^{c}$ a densidade da crosta. Por simplicidade, consideramos que a densidade nesta camada pode assumir dois valores, sendo um representativo da crosta continental, $\rho^{c}_{i} = \rho^{cc}$, $y_{i} <= y_{COT}$, e o outro da crosta oceânica, $\rho^{c}_{i} = \rho^{oc}$, $y_{i} > y_{COT}$, em que $y_{COT}$ representa a posição de uma superfície vertical que define a transição entre a crosta continental e oceânica ($COT$, do inglês “Continental-Ocean Transition”). Consequentemente, o contraste de densidade nesta camada pode assumir dois valores: $\Delta \rho^{c}_{i} = \rho^{cc} - \rho_{r}$ ou $\Delta \rho^{c}_{i} = \rho^{oc} - \rho_{r}$, a depender da posição em relação a $COT$. O topo desta terceira camada define a profundidade do embasamento e a base define a profundidade da Moho. A quarta camada representa o manto, é subdividida em duas partes, sendo cada uma formada por um prisma com a mesma densidade $\rho^{m}$ e, consequentemente, com o mesmo contraste de densidade $\Delta \rho^{m} = \rho^{m} - \rho {r}$. A porção mais rasa da quarta camada possui espessura $t^{m}_{i}$. Seu topo e base definem, respectivamente, as profundidades da Moho e da superfície de compensação isostática $S_{0}$. A parte mais profunda da quarta camada possui espessura $\Delta S_{0}$, topo na superfície de compensação isostática $S_{0}$ e a base na superfície $S_{0} + \Delta S_{0}$, que define a Moho no modelo de distribuição de densidades de referência (Figura 2.5). Por último, a segunda camada da $i$-ésima coluna do modelo interpretativo, $i = 1, …, N$, é definida pelo intérprete, de acordo com o ambiente geológico a ser caracterizado e a disponibilidade de informações a priori. De maneira geral, a segunda camada da $i$-ésima coluna do modelo interpretativo pode ser representada por um conjunto de $Q$ prismas verticalmente adjacentes, cada um com uma espessura $t^{q}_{i}$, densidade $\rho^{q}$ e um contraste de densidade  $\Delta \rho^{q} = \rho^{q} - \rho^{r}$, $q = 1, …, Q$.
+
+Dessa forma, dados os valores de contraste de densidade, posição $y_{COT}$ da COT, a superfície de compensação isostática $S_{0}$, as espessuras dos prismas que formam a camada de água e as espessuras dos $Q – 1$ prismas que formam as porções mais rasas da segunda camada de prismas, é possível descrever o modelo interpretativo em termos de um vetor de parâmetros $M \times 1$, $M = 2N + 1$, dado por:
+
+# Esta deve ser a Equação 3.1
+\begin{equation}
+\mathbf{p} = \begin{bmatrix}
+\mathbf{t}^{Q} \\
+\mathbf{t}^{m} \\
+\Delta S_{0}
+\end{bmatrix} \: ,
+\end{equation}
+
+em que $\mathbf{t}^{Q}$ é um vetor $N \times 1$, cujo $i$-ésimo elemento $t^{Q}_{i}$ representa a espessura do prisma que forma a porção mais profunda da segunda camada da $i$-ésima coluna do modelo interpretativo, e $\mathbf{t}^{m}$ é um vetor $N \times 1$, cujo $i$-ésimo elemento $t^{m}_{i}$ representa a espessura do prisma que forma a porção mais rasa da quarta camada da $i$-ésima coluna do modelo interpretativo.
+
+Nesse caso, o distúrbio de gravidade predito pelo modelo interpretativo na posição $(x_{i}, y_{i}, z_{i})$ pode ser escrito a partir da Equação 2.2 da seguinte forma:
+
+# Esta deve ser a Equação 3.2
+\begin{equation}
+d_{i}(\mathbf{p}) = k_{g} \, G \, \sum_{j = 1}^{L} f_{ij}(\mathbf{p}) \: ,
+\end{equation}
+
+em que $f_{ij}(\mathbf{p})$ representa a integral tripla da Equação 2.2 avaliada no volume do $j$-ésimo prisma do modelo interpretativo e $L$ representa o total de prismas que formam todas as camadas do modelo interpretativo. Neste trabalho, as integrais $f_{ij}(\mathbf{p})$ foram calculadas pelas expressões propostas por NAGY et al. (2000), usando o pacote Fatiando a Terra (UIEDA et al., 2013).
+
+
+\subsection{Inverse problem}
+
+
+Seja $\mathbf{d}(\mathbf{p})$ o vetor de dados preditos, cujo $i$-ésimo elemento $d_{i}(\mathbf{p})$ representa o dado predito pelo modelo interpretativo na posição $(x_{i}, y_{i}, z_{i})$ (Equação 3.2) em função do vetor de parâmetros $\mathbf{p}$ (Equação 3.1).
+
+O problema de estimar o vetor de parâmetros $\hat{\mathbf{p}}$ que produz os dados preditos $\mathbf{d}(\mathbf{p})$ mais próximos aos dados observados $\mathbf{d}^{o}$ pode ser formulado como um problema inverso vinculado, não-linear, que consiste em minimizar a função
+
+# Esta deve ser a Equação 4.1
+\begin{equation}
+\Gamma (\mathbf{p}) = \Phi(\mathbf{p}) + \mu \sum_{k = 0}^{3} \alpha_{k} \Psi(\mathbf{p}) \: ,
+\end{equation}
+
+sujeita a condição de que todos os elementos do vetor de parâmetros sejam positivos. Na Equação 4.1, $\mu$ representa o parâmetro de regularização, $\Phi(\mathbf{p})$ representa a função do ajuste dada por
+
+# Esta deve ser a Equação 4.2
+\begin{equation}
+\Phi(\mathbf{p}) = \frac{1}{N} \| \mathbf{d}^{o} - \mathbf{d}(\mathbf{p}) \|_{2}^{2} \: , 
+\end{equation}
+
+em que $\| \cdot \|_{2}^{2}$ representa o quadrado da norma Euclidiana, $\alpha_{k}$ representam os pesos atribuídos às funções $\Psi(\mathbf{p})$, que definem os vínculos, $k = 0, 1, 2, 3$.
+
+\subsection{Airy constraint}
+
+Considere que o modelo de distribuição de massas anômalas (Figura 2.2) e, consequentemente, o modelo interpretativo (Figura 3.1) estejam em equilíbrio isostático, de acordo com o modelo de Airy. Neste caso, a pressão exercida por estes modelos deve ser constante sobre a superfície de compensação isostática $S_{0}$. Esta condição sobre a pressão também é válida para qualquer interface paralela a $S_{0}$ e que esteja localizada no manto em uma profundidade maior.
+
+A pressão exercida pela $i$-ésima coluna do modelo interpretativo em um ponto sobre a superfície $S_{0}$ é dada por:
+
+# Esta deve ser a Equação 4.3
+\begin{equation}
+t^{w}_{i} \rho^{w} + t^{1}_{i} \rho^{1}_{i} + \dots + t^{Q}_{i} \rho^{Q}_{i} + t^{c}_{i} \rho^{c}_{i} + t^{m}_{i} \rho^{m} = \sigma_{0} \: ,
+\end{equation}
+
+em que $\sigma_{0}$ é uma constante positiva e arbitrária,  $\rho^{w}$ é a densidade da camada de água, $\rho^{q}_{i}$, $q = 1, \dots, Q$, são as densidades das porções que formam a segunda camada do modelo interpretativo, $\rho^{c}_{i}$ é a densidade da terceira camada, que pode assumir valor de crosta continental $\rho^{cc}$ ou oceânica $\rho^{oc}$ a depender da posição em relação a COT, e  $\rho^{m}$ é a densidade do manto. Rearranjando os termos da Equação 4.3 e utilizando a relação 
+
+# Esta deve ser a Equação 4.4
+\begin{equation}
+S_{0} = t^{w}_{i} + t^{1}_{i} + \dots + t^{Q}_{i} + t^{c}_{i} + t^{m}_{i} \: ,
+\end{equation}
+
+é possível mostrar que:
+
+# Esta deve ser a Equação 4.5
+\begin{equation}
+(\rho^{Q}_{i} - \rho^{c}_{i}) \, t^{Q}_{i} + (\rho^{m} - \rho^{c}_{i}) \, t^{m}_{i} + (\rho^{w} - \rho^{c}_{i}) \, t^{w}_{i} + (\rho^{1}_{i} - \rho^{c}_{i}) \, t^{1}_{i} + \dots + (\rho^{Q-1}_{i} - \rho^{c}_{i}) \, t^{Q-1}_{i} + \rho^{c}_{i} \, S_{0} = \sigma_{0} \: .
+\end{equation}
+
+Com o intuito de descrever a pressão exercida por todas as $N$ colunas do modelo interpretativo sobre a superfície $S_{0}$, a Equação 4.5 pode ser reescrita, em notação matricial, da seguinte forma:
+
+# Equação 4.6
+\begin{equation}
+\mathbf{M}^{Q} \mathbf{t}^{Q} + \mathbf{M}^{m} \mathbf{t}^{m} + \mathbf{M}^{w} \mathbf{t}^{w} + \mathbf{M}^{1} \mathbf{t}^{1} + \dots + \mathbf{M}^{Q-1} \mathbf{t}^{Q-1} + \boldsymbol{\rho}^{c} S_{0} = \sigma_{0} \mathbf{1} \: ,
+\end{equation}
+
+em que $\mathbf{1}$ é um vetor $N \times 1$ com todos os elementos iguais a 1, $\mathbf{t}^{\alpha}$ são vetores $N \times 1$ com $i$-ésimo elemento definido pela espessura $t^{\alpha}_{i}$ da coluna $i$, $\alpha = w, 1, \dots, Q-1, Q, m$, e $\mathbf{M}^{Q}$, $\mathbf{M}^{m}$, $\mathbf{M}^{w}$, $\mathbf{M}^{1}$, \dots, $\mathbf{M}^{Q-1}$ são matrizes diagonais $N \times N$ com o $i$-ésimo elemento da diagonal dado por, respectivamente, $(\rho^{Q}_{i} - \rho^{c}_{i})$, $(\rho^{m} - \rho^{c}_{i})$, $(\rho^{w} - \rho^{c}_{i})$, $(\rho^{1}_{i} - \rho^{c}_{i})$, $\dots$, $(\rho^{Q-1}_{i} - \rho^{c}_{i})$ e $\boldsymbol{\rho}^{c}$ é um vetor $N \times 1$ que contém a densidade dos prismas que representam a crosta. Aplicando o regularizador de Tikhonov de primeira ordem (ASTER et al., 2013) no vetor de pressões $\sigma_{0} \mathbf{1}$ exercidas pelo modelo interpretativo sobre a superfície $S_{0}$, obtemos a seguinte equação:
+
+# Equação 4.7
+\begin{equation}
+\mathbf{R} \left( \mathbf{C} \mathbf{p} + \mathbf{D} \mathbf{t} \right) = \mathbf{0} \: ,
+\end{equation}
+
+em que $\mathbf{0}$ é um vetor $N \times 1$ com todos os elementos iguais a zero e os demais termos são dados por:
+
+# Equação 4.8
+\begin{equation}
+\mathbf{C} = \begin{bmatrix}
+\mathbf{M}^{Q} & \mathbf{M}^{m} & \mathbf{0}
+\end{bmatrix}_{N \times \left( 2N + 1 \right)} \: ,
+\end{equation}
+
+# Equação 4.9
+\begin{equation}
+\mathbf{D} = \begin{bmatrix}
+\mathbf{M}^{w} & \mathbf{M}^{1} & \cdots & \mathbf{M}^{Q-1} & \boldsymbol{\rho}^{c}
+\end{bmatrix}_{N \times \left( QN + 1 \right)} \: ,
+\end{equation
+
+
+# Equação 4.10
+\begin{equation}
+\mathbf{t} = \begin{bmatrix}
+\mathbf{t}^{w} \\ \mathbf{t}^{1} \\ \vdots \\ \mathbf{t}^{Q-1} \\ S_{0}
+\end{bmatrix}_{\left( QN + 1 \right) \times 1}\: ,
+\end{equation}
+
+$\mathbf{p}$ é o vetor de parâmetros (Equação 3.1) e $\mathbf{R}$ é uma matriz $\left( N-1 \right) \times N$, cujo elemento $ij$ é definido da seguinte forma:
+
+#Equation 4.11
+\begin{equation}
+\left[ \mathbf{R} \right]_{ij} = \begin{cases}
+1 &, \quad j = i \\
+-1 &, \quad j = i + 1 \\
+0 &, \quad \text{otherwise}
+\end{cases} \quad .
+\end{equation}
+
+Por fim, a partir da Equação 4.7, é possível definir o “Vínculo de Airy” da seguinte forma:
+
+# Equation 4.12
+\begin{equation}
+\Psi_{0}(\mathbf{p}) = \| \mathbf{R} \left( \mathbf{C} \mathbf{p} + \mathbf{D} \mathbf{t} \right) \|_{2}^{2} \: .
+\end{equation}
+
+(sem pular linha) Note que este vínculo impõe a informação a priori de que a pressão exercida pelo modelo interpretativo sobre a superfície $S_{0}$ deve variar de forma suave.
+
+\subsection{Smoothness constraint}
+
+Este vínculo é conhecido como vínculo de Tikhonov de primeira ordem (ASTER et al., 2013) e impõe uma variação suave entre parâmetros adjacentes nos vetores $\mathbf{t}^{Q}$ e $\mathbf{t}^{m}$ (Equação 3.1). Ou seja, estabelece uma igualdade aproximada entre os pares de espessuras adjacentes na parte mais profunda da segunda camada e na parte mais rasa da quarta camada do modelo interpretativo (Figura 3.1). Matematicamente, este vínculo é representado pela seguinte expressão:
+
+#Equation 4.13
+\begin{equation}
+\Psi_{1}(\mathbf{p}) = \| \mathbf{S}\mathbf{p} \|_{2}^{2} \: ,
+\end{equation}
+
+em que $\mathbf{S}$ é uma matriz $\left( 2N-2 \right) \times M$, cujo elemento $ij$ é definido da seguinte forma:
+
+#Equation 4.14
+\begin{equation}
+\left[ \mathbf{S} \right]_{ij} = \begin{cases}
+1 &, \quad j = i \\
+-1 &, \quad j = i + 1 \\
+0 &, \quad \text{otherwise}
+\end{cases} \quad .
+\end{equation}
+
+
+\section{Conclusions}
+
+\lipsum[1-3]
+
+
+%%%%%%%%%%%%%%%%%% Figures %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\plot{fig1}{width=0.6\textwidth}{
+%%\plot{fig1}{width=\columnwidth}{
+%	{caption \lipsum}
+%	\label{fig:fig1}
+%}
+
+%%%%%%%%%%%%%%%%%% Figures %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{ACKNOWLEDGMENTS}
+
+\lipsum[0-1]
+
+
+%\newpage
+
+\bibliographystyle{seg}  % style file is seg.bst
+
+\bibliography{bib-file.bib} 
+
+\end{document}
+
