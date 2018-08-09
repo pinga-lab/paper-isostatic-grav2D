@@ -60,74 +60,94 @@ or Moho oscillates around a known reference depth.
 
 These methods can be divided into two groups.
 
-The first one consists of methods estimating the geometry of a single interface
+The first group consists of methods estimating the geometry of a single interface
 separating two layers.
+
+The list of methods forming this group is significantly large.
+
+There are methods applied at local scale (to characterize a single sedimentary basin,
+for example)
 
 % scale: local | data: gravity | domain: space
 \citep{bott1960, tanner1967, cordell-henderson1968, dyrelius-vogel1972, pedersen1977,
-richardson-macinnes1989, barbosa-etal1997, barbosa-etal1999, barbosa-etal1999b,
-silva-etal2006, chakravarthi-sundararajan2007, martins-etal2010, silva-etal2010,
-camacho-etal2011, lima-etal2011, martins-etal2011, barnes-barraud2012, silva-etal2014,
-santos-etal2015, silva-santos2017} 
+pilkington-crossley1986, 
+richardson-macinnes1989, barbosa-etal1997, barbosa-etal1999, barbosa-etal1999b, 
+pilkington2006, silva-etal2010, lima-etal2011, martins-etal2011, barnes-barraud2012,
+silva-etal2014, silva-santos2017} 
 
 % scale: local | data: gravity | domain: Fourier
-\citep{oldenburg1974, granser1987, reamer-ferguson1989, guspi1993, 
-braitenberg-etal1997, braitenberg-zadro1999}.
+\citep{oldenburg1974, granser1987, reamer-ferguson1989, guspi1993}.
+
+at regional scale (to characterize a single sedimentary basin and/or the Moho
+under a country or continent)
+
+% scale: regional | data: gravity | domain: Fourier
+\citep{braitenberg-etal1997, braitenberg-zadro1999}
 
 % scale: regional | data: gravity | domain: space
 Uses tesseroids \citep{uieda-barbosa2017}.
 
 % scale: regional | data: gravity | domain: space
 Uses the Vening Meinesz-Moritz approach 
-\citep{bagherbandi-eshagh2012} 
+\citep{bagherbandi-eshagh2012}
+
+% scale: regional | data: gravity | domain: Fourier
+\citep{vandermeijde-etal2013}
+
+% scale: regional | data: gravity | domain: unknown
+\citep{sampietro2015}
+
+and global scale
 
 % scale: global | data: gravity | domain: space
 \citep{sjoberg2009}
 
+There are methods formulated in space and Fourier domains.
 
-It is well known that, by using different
-combinations of reference depths and
+Methods in Fourier domain generally use Parker's formula \citep{parker1973} to compute
+the potential field produced by an interface.
+
+Methods in space domain generally use an ensemble of vertically stacked prisms to
+compute the potential field produced by the interface. Some methods, however, use 
+a polygonal prism or a polyhedral.
+
+All these methods suffer from the inherent ambiguity \citep{roy1962, skeels1962} in
+determining the true physical property distribution from a discrete set of
+observed potential-field data. 
+
+It is well known that, by using different combinations of reference depths and
 physical property values, it is possible to find different interfaces producing the
 same potential-field data. 
 
-To deal with this inherent ambiguity 
-\citep{roy1962, skeels1962} and obtain 
-meaningful solutions, the interpreter must commonly use a priori information 
-obtained from seismic data and/or boreholes in order to constrain
-the range of possible models.
+To partially overcome this problem and obtain meaningful solutions, the interpreter
+must commonly use priori information obtained from seismic data and/or boreholes in
+order to constrain the range of possible models.
 
-The methods can be divided, according to their scale, into three groups.
+The second group of methods is formed by those estimating multiple interfaces
+separating layers with constant physical properties.
 
-Group 1: local scale, basement or Moho?, grav, mag or joint? space or Fourier domain?
+\citep{pilkington-crossley1986b, gallardo-etal2005, camacho-etal2011, salem-etal2014}
 
+All these methods have been applied at local scale, to characterize a single 
+sedimentary basin, for example.
 
+The number of methods forming this group is significantly lower than that
+of the other one.
 
-Methods in Fourier domain use Parker's formula \citep{parker1973}.
+They suffer from a greater ambiguity if compared to those of the first group. 
+Consequently, the methods forming the second group require more priori information to
+decrease the number of possible solutions.
 
+Few methods using gravity data have imposed isostatic equilibrium to
+the estimated interface(s).
 
+Most of them estimate a single interface representing the Moho \citep[e.g.,][]{bagherbandi-eshagh2012, sampietro2015, sjoberg2009}.
 
-Satellite data \citep{reguzzoni-etal2013}.
+These methods are applied at regional and global scales.
 
-
-
-\citep{sampietro2015} - pegar as refs citadas no trabalho "GOCE data to in-
-fer the Moho depth or the density contrast between crust and upper
-mantle at a regional/continental scale with extremely high accu-
-racy (Braitenberg et al. 2010, 2011; Mariani et al. 2013; Van der Meijde et al. 2013; Sampietro et al.
-2014; Bouman et al. 2015; Van der Meijde et al. 2015)"
-
-
-
-
-
-\citep{salem-etal2014}
-
-Magnetic data \citep{pilkington-crossley1986, pilkington-crossley1986b}
-
-Joint inversion of gravity and magnetic data \citep{gallardo-etal2003, gallardo-etal2005, pilkington2006}
-
-Two interfaces separating three layers with constant physical property
-(density and/or magnetization).
+\citet{salem-etal2014} presented one of the few methods that impose isostatic
+equilibrium to a set of two interfaces representing the basement and Moho 
+geometries under a sedimentary basin, at local scale.
 
 
 
@@ -155,9 +175,11 @@ The anomalous mass distribution producing the observed data
 is approximated by an interpretation model (Figure \ref{fig:interpretation-model}) 
 formed by $N$ adjacent columns. For convenience, we presume that the observed data are
 regularly spaced, so that there is one observation at the centre of the top of each
-column forming the interpretation model.The $i$-th column is formed by four vertically
-adjacent 
-layers, , which in turn are composed of vertically adjacent prisms having infinite 
+column forming the interpretation model. We also consider that the prisms in the edges
+of the extremities of the interpretation model extend to infinity along the $y$ axis 
+in order to prevent edge effects in the forward calculations. 
+The $i$-th column is formed by four vertically adjacent 
+layers, which in turn are composed of vertically adjacent prisms having infinite 
 length along the $x$-axis. The first and shallowest layer represents the water layer, 
 is formed by a single prism, has thickness $t^{w}_{i}$ and a constant density contrast 
 $\Delta \rho^{w} = \rho^{w} - \rho^{r}$, where $\rho^{w}$ and $\rho^{r}$ 
