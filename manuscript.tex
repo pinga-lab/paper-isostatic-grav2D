@@ -46,82 +46,70 @@ Rio de Janeiro, Brazil}
 \section{Introduction}
 
 Several methods have been proposed for using gravity and/or magnetic data to estimate
-the relief of basement under sedimentary basins and/or the Moho.
-
-Here, we consider methods that represent the basement and/or Moho by
-interfaces separating layers with constant physical properties (density and/or
-magnetization).
-
-In the case of basement, the interface separates a sedimentary package from the upper
-crust. In the case of Moho, these two layers are the lower crust and upper mantle.
-
-These methods usually presume that an interface representing the basement 
-or Moho oscillates around a known reference depth.
-
-These methods can be divided into two groups.
-
-The first group consists of methods estimating the geometry of a single interface
-separating two layers.
-
-The list of methods forming this group is significantly large.
-
-There are methods applied at local scale (to characterize a single sedimentary basin,
-for example)
-
-% scale: local | data: gravity | domain: space
-\citep{bott1960, tanner1967, cordell-henderson1968, dyrelius-vogel1972, pedersen1977,
-pilkington-crossley1986, 
-richardson-macinnes1989, barbosa-etal1997, barbosa-etal1999, barbosa-etal1999b, 
-pilkington2006, silva-etal2010, lima-etal2011, martins-etal2011, barnes-barraud2012,
-silva-etal2014, silva-santos2017} 
-
-% scale: local | data: gravity | domain: Fourier
-\citep{oldenburg1974, granser1987, reamer-ferguson1989, guspi1993}.
-
-at regional scale (to characterize a single sedimentary basin and/or the Moho
-under a country or continent)
-
-% scale: regional | data: gravity | domain: Fourier
-\citep{braitenberg-etal1997, braitenberg-zadro1999}
-
-% scale: regional | data: gravity | domain: space
-Uses tesseroids \citep{uieda-barbosa2017}.
-
-% scale: regional | data: gravity | domain: space
-Uses the Vening Meinesz-Moritz approach 
-\citep{bagherbandi-eshagh2012}
-
-% scale: regional | data: gravity | domain: Fourier
-\citep{vandermeijde-etal2013}
-
-% scale: regional | data: gravity | domain: unknown
-\citep{sampietro2015}
-
-and global scale
-
-% scale: global | data: gravity | domain: space
-\citep{sjoberg2009}
-
-There are methods formulated in space and Fourier domains.
-
-Methods in Fourier domain generally use Parker's formula \citep{parker1973} to compute
-the potential field produced by an interface.
-
-Methods in space domain generally use an ensemble of vertically stacked prisms to
-compute the potential field produced by the interface. Some methods, however, use 
-a polygonal prism or a polyhedral.
-
+the boundaries of adjacent sedimentary layers, the relief of basement under sedimentary 
+basins and/or the Mohorovicic discontinuity (or simply Moho), which separates crust and 
+mantle.
+These geophysical discontinuities represent, for such particular methods, 
+density and/or magnetization contrasts in subsurface.
 All these methods suffer from the inherent ambiguity \citep{roy1962, skeels1962} in
 determining the true physical property distribution from a discrete set of
 observed potential-field data. 
-
-It is well known that, by using different combinations of reference depths and
-physical property values, it is possible to find different interfaces producing the
-same potential-field data. 
-
+It is well known that, by using different physical property values, it is possible to
+find different interfaces producing the same potential-field data. 
 To partially overcome this problem and obtain meaningful solutions, the interpreter
 must commonly use priori information obtained from seismic data and/or boreholes in
 order to constrain the range of possible models.
+
+There are methods that approximate the subsurface by a grid of
+juxtaposed cells with constant physical property. 
+Then they estimate the physical property value of each cell and finally 
+use the estimated values to estimate the geometry of the geophysical discontinuities.
+Notice that, in this case, the geometry of the geophysical discontinuities are
+estimated in an indirect way. Although very useful in geophysics, such methods are
+outside the scope of the present work.
+Here, we consider methods that represent discontinuities by interfaces 
+separating layers with constant or depth-dependent physical property distribution 
+(density and/or magnetization).
+In this case, the geometry of the geophysical discontinuities are directly determined
+by estimating the geometrical parameters describing the interfaces.
+
+Different criteria can be used to classify these methods.
+Those applied over a sedimentary basin, for example, are considered local scale methods,
+whereas those applied over a continent or country are considered regional scale methods
+and those applied over the whole globe are considered global scale methods.
+Examples of local scale methods estimating the geometry of a single
+interface separating two layers were presented by
+% scale: local | data: gravity | domain: space
+\citet{bott1960, tanner1967, cordell-henderson1968, dyrelius-vogel1972, pedersen1977,
+pilkington-crossley1986, richardson-macinnes1989, barbosa-etal1997, 
+barbosa-etal1999, barbosa-etal1999b, silva-etal2006, pilkington2006, 
+chakravarthi-sundararajan2007, martins-etal2010, silva-etal2010, lima-etal2011, 
+martins-etal2011, barnes-barraud2012, silva-etal2014, silva-santos2017},
+in the space domain, and 
+% scale: local | data: gravity | domain: Fourier
+\citet{oldenburg1974, granser1987, reamer-ferguson1989, guspi1993},
+in the Fourier domain.
+Most of these methods were applied to estimate the relief of basement under
+a sedimentary basin.
+Methods estimating a single interface representing the Moho, at regional
+scale, were presented by 
+% scale: regional | data: gravity | domain: space
+\citet{shin-etal2009, bagherbandi-eshagh2012, barzaghi-biagi2014, sampietro2015, uieda-barbosa2017},
+in space domain, and by 
+% scale: regional | data: gravity | domain: Fourier
+\citet{braitenberg-etal1997, braitenberg-zadro1999, vandermeijde-etal2013}
+in Fourier domain.
+There are also some global scale methods 
+% scale: global | data: gravity | domain: space
+\citep[e.g.,][]{sunkel1985, sjoberg2009}.
+
+The regional and global scale methods usually presume that the interface representing
+the Moho oscillates around a reference depth.
+
+The regional and global scale methods usually presume that the crust and mantle are
+at isostatic equilibrium.
+
+MULTILAYER METHODS
 
 The second group of methods is formed by those estimating multiple interfaces
 separating layers with constant physical properties.
