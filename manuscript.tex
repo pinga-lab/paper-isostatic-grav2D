@@ -45,7 +45,100 @@ Rio de Janeiro, Brazil}
 
 \section{Introduction}
 
-\lipsum[1-5]
+Several methods have been proposed for using gravity and/or magnetic data to estimate
+the boundaries of adjacent sedimentary layers, the relief of basement under sedimentary 
+basins and/or the Mohorovicic discontinuity (or simply Moho), which separates crust and 
+mantle.
+These geophysical discontinuities represent, for such particular methods, 
+density and/or magnetization contrasts in subsurface.
+All these methods suffer from the inherent ambiguity \citep{roy1962, skeels1962} in
+determining the true physical property distribution from a discrete set of
+observed potential-field data. 
+It is well known that, by using different physical property values, it is possible to
+find different interfaces producing the same potential-field data. 
+To partially overcome this problem and obtain meaningful solutions, the interpreter
+must commonly use priori information obtained from seismic data and/or boreholes in
+order to constrain the range of possible models.
+
+There are methods that approximate the subsurface by a grid of
+juxtaposed cells with constant physical property. 
+Then they estimate the physical property value of each cell and finally 
+use the estimated values to estimate the geometry of the geophysical discontinuities.
+Notice that, in this case, the geometry of the geophysical discontinuities are
+estimated in an indirect way. Although very useful in geophysics, such methods are
+outside the scope of the present work.
+Here, we consider methods that represent discontinuities by interfaces 
+separating layers with constant or depth-dependent physical property distribution 
+(density and/or magnetization).
+In this case, the geometry of the geophysical discontinuities are directly determined
+by estimating the geometrical parameters describing the interfaces.
+
+Different criteria can be used to classify these methods.
+Those applied over a sedimentary basin, for example, are considered local scale methods,
+whereas those applied over a continent or country are considered regional scale methods
+and those applied over the whole globe are considered global scale methods.
+Examples of local scale methods estimating the geometry of a single
+interface separating two layers were presented by
+% scale: local | data: gravity | domain: space
+\citet{bott1960, tanner1967, cordell-henderson1968, dyrelius-vogel1972, pedersen1977,
+pilkington-crossley1986, richardson-macinnes1989, barbosa-etal1997, 
+barbosa-etal1999, barbosa-etal1999b, silva-etal2006, pilkington2006, 
+chakravarthi-sundararajan2007, martins-etal2010, silva-etal2010, lima-etal2011, 
+martins-etal2011, barnes-barraud2012, silva-etal2014, silva-santos2017},
+in the space domain, and 
+% scale: local | data: gravity | domain: Fourier
+\citet{oldenburg1974, granser1987, reamer-ferguson1989, guspi1993},
+in the Fourier domain.
+Most of these methods were applied to estimate the relief of basement under
+a sedimentary basin.
+Methods estimating a single interface representing the Moho, at regional
+scale, were presented by 
+% scale: regional | data: gravity | domain: space
+\citet{shin-etal2009, bagherbandi-eshagh2012, barzaghi-biagi2014, sampietro2015, uieda-barbosa2017},
+in space domain, and by 
+% scale: regional | data: gravity | domain: Fourier
+\citet{braitenberg-etal1997, braitenberg-zadro1999, vandermeijde-etal2013}
+in Fourier domain.
+There are also some global scale methods 
+% scale: global | data: gravity | domain: space
+\citep[e.g.,][]{sunkel1985, sjoberg2009}.
+
+The regional and global scale methods usually presume that the interface representing
+the Moho oscillates around a reference depth.
+
+The regional and global scale methods usually presume that the crust and mantle are
+at isostatic equilibrium.
+
+MULTILAYER METHODS
+
+The second group of methods is formed by those estimating multiple interfaces
+separating layers with constant physical properties.
+
+\citep{pilkington-crossley1986b, gallardo-etal2005, camacho-etal2011, salem-etal2014}
+
+All these methods have been applied at local scale, to characterize a single 
+sedimentary basin, for example.
+
+The number of methods forming this group is significantly lower than that
+of the other one.
+
+They suffer from a greater ambiguity if compared to those of the first group. 
+Consequently, the methods forming the second group require more priori information to
+decrease the number of possible solutions.
+
+Few methods using gravity data have imposed isostatic equilibrium to
+the estimated interface(s).
+
+Most of them estimate a single interface representing the Moho \citep[e.g.,][]{bagherbandi-eshagh2012, sampietro2015, sjoberg2009}.
+
+These methods are applied at regional and global scales.
+
+\citet{salem-etal2014} presented one of the few methods that impose isostatic
+equilibrium to a set of two interfaces representing the basement and Moho 
+geometries under a sedimentary basin, at local scale.
+
+
+
 
 \section{Methodology}
 
@@ -57,23 +150,46 @@ Let $\mathbf{d}^{o}$ be the observed data vector, whose $i$-th element $d^{o}_{i
 $i = 1, \dots, N$, represent the observed gravity disturbance at the point 
 $(x_{i}, y_{i}, z_{i})$, on a profile located over a rifted passive margin. The
 coordinates are referred to a topocentric Cartesian system, with $z$ axis pointing
-down, $y$-axis along the profile and $x$-axis perpendicular to the profile. 
-We assume that the observed gravity disturbance is produced by an anomalous 
-mass distribution defined as the difference between the actual mass distribution
-in the subsurface, which is schematically represented in Figure \ref{fig:mass-distribution},
-and a reference mass distribution (Figure \ref{fig:reference-mass-distribution}).
-In doing it, we implicitly assume that Figure \ref{fig:reference-mass-distribution}
-represents the outer layers of a global mass distribution producing the
-normal gravity field. 
+downward, $y$-axis along the profile and $x$-axis perpendicular to the profile. 
+We assume that actual mass distribution in a rifted passive margin can be schematically
+represented according to Figure \ref{fig:rifted-margin-model}. 
+In this model, the subsurface is formed by four layers. 
+The first and shallowest one represents a water layer with constant density
+$\rho^{(w)}$. 
+The second layer is formed by $Q$ vertically adjacent parts representing sediments,
+salt or volcanic rocks.
+In our example, this layer is formed by two parts with constant densities
+$\rho^{(q)}$, $q = 1, 2$. 
+The third layer of our model represents the crust. For simplicity, we presume that the
+crust density may be equal to $\rho^{(cc)}$, for $y_{i} \le y_{COT}$, which
+represents the continental crust, or equal to $\rho^{(oc)}$, for $y_{i} > y_{COT}$,
+which represents the oceanic crust.
+The deepest layer represents a homogeneous mantle with constant density
+$\rho^{(m)}$. 
+The interface separating the second and third layers defines the basement relief whereas
+that separating the third and fourth layers defines the Moho. these interfaces are represented as white-dashed lines in Figure \ref{fig:rifted-margin-model}. 
+In order to define the anomalous mass distribution producing the observed gravity
+disturbance data, we presume a reference mass distribution formed by two homogeneous
+layers (Figure \ref{fig:reference-mass-distribution}). The shallowest layer represents 
+the crust, the deepest layer represents the mantle and the interface separating them
+is conveniently called reference Moho.
+The reference mass distribution can be thought of as the outer layers of a concentric
+mass distribution producing the normal gravity field.
 
-The anomalous mass distribution producing the observed data
-is approximated by an interpretation model (Figure \ref{fig:interpretation-model}) 
-formed by $N$ adjacent columns. For convenience, we presume that the observed data are
-regularly spaced, so that there is one observation at the centre of the top of each
-column forming the interpretation model.The $i$-th column is formed by four vertically
-adjacent 
-layers, , which in turn are composed of vertically adjacent prisms having infinite 
-length along the $x$-axis. The first and shallowest layer represents the water layer, 
+We consider that the anomalous mass distribution producing the observed data
+is defined as the difference between the rifted margin model (Figure
+\ref{fig:rifted-margin-model}) and the reference mass distribution (Figure
+\ref{fig:reference-mass-distribution}).
+This anomalous mass distribution is approximated by an interpretation model 
+formed by $N$ adjacent columns (Figure \ref{fig:interpretation-model}). 
+We consider that the prisms in the 
+extremities of the interpretation model extend to infinity along the $y$ axis 
+in order to prevent edge effects in the forward calculations. 
+The $i$-th column is formed by four vertically adjacent 
+layers, which in turn are composed of vertically adjacent prisms having infinite 
+length along the $x$-axis. 
+
+The first and shallowest layer represents the water layer, 
 is formed by a single prism, has thickness $t^{w}_{i}$ and a constant density contrast 
 $\Delta \rho^{w} = \rho^{w} - \rho^{r}$, where $\rho^{w}$ and $\rho^{r}$ 
 represents, respectively, the densities of water and the reference mass 
@@ -332,11 +448,33 @@ in the same way as matrix $\mathbf{A}$ (Equation \ref{eq:equality-constraint-bas
 
 %%%%%%%%%%%%%%%%%% Figures %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\plot{fig1}{width=0.6\textwidth}{
-%%\plot{fig1}{width=\columnwidth}{
-%	{caption \lipsum}
-%	\label{fig:fig1}
-%}
+%\plot{rifted-margin-model}{width=0.6\textwidth}{
+\plot{rifted-margin-model}{width=\columnwidth}{
+	{Rifted margin model formed by four layers. The first one 
+	represents a water layer with constant density $\rho^{(w)}$. The second layer
+	is formed by $Q = 2$ vertically adjacent parts. They represent sediments, salt or
+	volcanic rocks and
+	have constant densities $\rho^{(q)}$, $q = 1, \dots, Q$. The third layer represents
+	the crust, which is divided into the continental crust, with a constant density
+	$\rho^{(cc)}$, and the oceanic crust, with a constant density $\rho^{(oc)}$. We
+	presume an abrupt Crust-Ocean Transition (COT). Finally, the fourth layer of our
+	model represents a homogeneous mantle with constant density $\rho{(m)}$. 
+	The dashed-white lines represent the interfaces defining the basement and the Moho.}
+	\label{fig:rifted-margin-model}
+}
+
+%\plot{reference-density-distribution}{width=0.6\textwidth}{
+\plot{reference-density-distribution}{width=\columnwidth}{
+	{Reference density distribution formed by two homogeneous layers. These layers 
+	represent a crust and a mantle with constant densities $\rho^{(r)}$ and
+	$\rho^{(m)}$, respectively. We presume that the constant density value 
+	$\rho^{(m)}$ representing the mantle in the reference mass distribution is the same
+	as that representing the mantle in the rifted margin model (Figure
+	\ref{fig:rifted-margin-model}).
+	The planar interface separating these two layers is conveniently called reference
+	Moho (white-dashed line).}
+	\label{fig:reference-density-distribution}
+}
 
 %%%%%%%%%%%%%%%%%% Figures %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -348,7 +486,7 @@ in the same way as matrix $\mathbf{A}$ (Equation \ref{eq:equality-constraint-bas
 
 \newpage
 
-\bibliographystyle{seg}  % style file is seg.bst
+\bibliographystyle{seg.bst}  % style file is seg.bst
 \bibliography{bib-file.bib}
 
 
