@@ -151,37 +151,45 @@ $i = 1, \dots, N$, represent the observed gravity disturbance at the point
 $(x_{i}, y_{i}, z_{i})$, on a profile located over a rifted passive margin. The
 coordinates are referred to a topocentric Cartesian system, with $z$ axis pointing
 downward, $y$-axis along the profile and $x$-axis perpendicular to the profile. 
-We assume that actual mass distribution in a rifted passive margin can be schematically
-represented according to Figure \ref{fig:rifted-margin-model}. 
+We assume that the actual mass distribution in a rifted passive margin can be 
+schematically represented according to Figure \ref{fig:rifted-margin-model}. 
 In this model, the subsurface is formed by four layers. 
 The first and shallowest one represents a water layer with constant density
 $\rho^{(w)}$. 
 The second layer is formed by $Q$ vertically adjacent parts representing sediments,
 salt or volcanic rocks.
 In our example, this layer is formed by two parts with constant densities
-$\rho^{(q)}$, $q = 1, 2$. 
+$\rho^{(q)}$, $q = 1, 2$. Different models can be created by changing $Q$.
 The third layer of our model represents the crust. For simplicity, we presume that the
-crust density may be equal to $\rho^{(cc)}$, for $y_{i} \le y_{COT}$, which
-represents the continental crust, or equal to $\rho^{(oc)}$, for $y_{i} > y_{COT}$,
-which represents the oceanic crust.
+crust density may be equal to $\rho^{(cc)}$, which
+represents the continental crust, or equal to $\rho^{(oc)}$, which represents the
+oceanic crust.
 The deepest layer represents a homogeneous mantle with constant density
 $\rho^{(m)}$. 
 The interface separating the second and third layers defines the basement relief whereas
-that separating the third and fourth layers defines the Moho. these interfaces are represented as white-dashed lines in Figure \ref{fig:rifted-margin-model}. 
+that separating the third and fourth layers defines the Moho (represented by
+dashed-white line in Figure \ref{fig:rifted-margin-model}). 
 In order to define the anomalous mass distribution producing the observed gravity
 disturbance data, we presume a reference mass distribution formed by two homogeneous
-layers (Figure \ref{fig:reference-mass-distribution}). The shallowest layer represents 
+layers (not shown). The shallowest layer represents 
 the crust, the deepest layer represents the mantle and the interface separating them
-is conveniently called reference Moho.
+is conveniently called reference Moho (represented as a continuous white line in Figure
+\ref{fig:rifted-margin-model}).
 The reference mass distribution can be thought of as the outer layers of a concentric
 mass distribution producing the normal gravity field.
+We also presume the existence of an isostatic compensation depth at $S_{0}$ 
+(represented as a continuous white line in Figure \ref{fig:rifted-margin-model}).
 
 We consider that the anomalous mass distribution producing the observed data
 is defined as the difference between the rifted margin model (Figure
-\ref{fig:rifted-margin-model}) and the reference mass distribution (Figure
-\ref{fig:reference-mass-distribution}).
+\ref{fig:rifted-margin-model}) and the reference mass distribution (not shown).
 This anomalous mass distribution is approximated by an interpretation model 
-formed by $N$ adjacent columns (Figure \ref{fig:interpretation-model}). 
+formed by $N$ columns of vertically stacked prisms (Figure \ref{fig:interpretation-model}).
+For convenience, we presume that there is an observed gravity disturbance ...
+
+
+PAREI AQUI
+
 We consider that the prisms in the 
 extremities of the interpretation model extend to infinity along the $y$ axis 
 in order to prevent edge effects in the forward calculations. 
@@ -453,27 +461,31 @@ in the same way as matrix $\mathbf{A}$ (Equation \ref{eq:equality-constraint-bas
 	{Rifted margin model formed by four layers. The first one 
 	represents a water layer with constant density $\rho^{(w)}$. The second layer
 	is formed by $Q = 2$ vertically adjacent parts. They represent sediments, salt or
-	volcanic rocks and
-	have constant densities $\rho^{(q)}$, $q = 1, \dots, Q$. The third layer represents
-	the crust, which is divided into the continental crust, with a constant density
-	$\rho^{(cc)}$, and the oceanic crust, with a constant density $\rho^{(oc)}$. We
-	presume an abrupt Crust-Ocean Transition (COT). Finally, the fourth layer of our
-	model represents a homogeneous mantle with constant density $\rho{(m)}$. 
-	The dashed-white lines represent the interfaces defining the basement and the Moho.}
+	volcanic rocks and have constant densities $\rho^{(q)}$, $q = 1, \dots, Q$. The
+	third layer represents the crust, which is divided into the continental crust, with
+	a constant density $\rho^{(cc)}$, and the oceanic crust, with a constant density
+	$\rho^{(oc)}$. We presume an abrupt Crust-Ocean Transition (COT). Finally, the
+	fourth layer of our model represents a homogeneous mantle with constant density
+	$\rho^{(m)}$. Basement and Moho are represented by the dashed-white lines. 
+	The continuous white lines represent the isostatic compensation depth
+	at $S_{0}$ and the reference Moho at $S_{0} + \Delta S$.}
 	\label{fig:rifted-margin-model}
 }
 
-%\plot{reference-density-distribution}{width=0.6\textwidth}{
-\plot{reference-density-distribution}{width=\columnwidth}{
-	{Reference density distribution formed by two homogeneous layers. These layers 
-	represent a crust and a mantle with constant densities $\rho^{(r)}$ and
-	$\rho^{(m)}$, respectively. We presume that the constant density value 
-	$\rho^{(m)}$ representing the mantle in the reference mass distribution is the same
-	as that representing the mantle in the rifted margin model (Figure
-	\ref{fig:rifted-margin-model}).
-	The planar interface separating these two layers is conveniently called reference
-	Moho (white-dashed line).}
-	\label{fig:reference-density-distribution}
+%\plot{interpretation-model}{width=0.6\textwidth}{
+\plot{interpretation-model}{width=\columnwidth}{
+	{Interpretation model formed by $N$ columns of vertically stacked prisms. 
+	Each column is formed by four layers of prisms and locally approximates the four
+	layers of the rifted margin model (Figure \ref{fig:rifted-margin-model}).
+	Each prism has a constant density contrast defined as the difference between
+	its corresponding density at the rifted margin model (Figure \ref{fig:rifted-margin-model})
+	and the constant density $\rho^{(r)}$ of the shallowest layer forming
+	the reference density distribution (see text).
+	Basement and Moho are represented by the dashed-white lines. 
+	The continuous white line represents the isostatic compensation depth
+	at $S_{0}$. The base of the interpretation model coincides with the
+	reference Moho located at $S_{0} + \Delta S$.}
+	\label{fig:interpretation-model}
 }
 
 %%%%%%%%%%%%%%%%%% Figures %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
