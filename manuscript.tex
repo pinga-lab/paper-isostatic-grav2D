@@ -159,79 +159,83 @@ $\rho^{(w)}$.
 The second layer is formed by $Q$ vertically adjacent parts representing sediments,
 salt or volcanic rocks.
 In our example, this layer is formed by two parts with constant densities
-$\rho^{(q)}$, $q = 1, 2$. Different models can be created by changing $Q$.
+$\rho^{(q)}$, $q = 1, 2$. Different models can be created by changing the number $Q$.
 The third layer of our model represents the crust. For simplicity, we presume that the
 crust density may be equal to $\rho^{(cc)}$, which
 represents the continental crust, or equal to $\rho^{(oc)}$, which represents the
 oceanic crust.
-The deepest layer represents a homogeneous mantle with constant density
-$\rho^{(m)}$. 
+The deepest layer represents a homogeneous mantle with constant density $\rho^{(m)}$. 
 The interface separating the second and third layers defines the basement relief whereas
-that separating the third and fourth layers defines the Moho (represented by
-dashed-white line in Figure \ref{fig:rifted-margin-model}). 
-In order to define the anomalous mass distribution producing the observed gravity
-disturbance data, we presume a reference mass distribution formed by two homogeneous
-layers (not shown). The shallowest layer represents 
-the crust, the deepest layer represents the mantle and the interface separating them
-is conveniently called reference Moho (represented as a continuous white line in Figure
-\ref{fig:rifted-margin-model}).
-The reference mass distribution can be thought of as the outer layers of a concentric
-mass distribution producing the normal gravity field.
+that separating the third and fourth layers defines the Moho. These interfaces are
+represented by dashed-white lines in Figure \ref{fig:rifted-margin-model}.
 We also presume the existence of an isostatic compensation depth at $S_{0}$ 
-(represented as a continuous white line in Figure \ref{fig:rifted-margin-model}).
+(represented as a continuous white line in Figure \ref{fig:rifted-margin-model}),
+below which there is no lateral variations in the mass distribution.
+
+In order to define the anomalous mass distribution producing the observed gravity
+disturbance, we presume a reference mass distribution formed by two 
+layers (not shown). The shallowest layer represents a homogeneous crust with constant
+density $\rho^{(r)}$.
+The deepest layer in the reference mass distribution represents a homogeneous mantle
+with constant density $\rho^{(m)}$. Notice that the mantle in the reference mass 
+distribution has the same density as the mantle in our rifted margin model
+(Figure \ref{fig:rifted-margin-model}).
+The interface separating the crust and mantle in the reference mass distribution 
+is conveniently called \textit{reference Moho} (represented as a continuous white line
+in Figure \ref{fig:rifted-margin-model}).
+The reference model can be thought of as the outer layers of a concentric
+mass distribution producing the normal gravity field.
 
 We consider that the anomalous mass distribution producing the observed data
 is defined as the difference between the rifted margin model (Figure
 \ref{fig:rifted-margin-model}) and the reference mass distribution (not shown).
-This anomalous mass distribution is approximated by an interpretation model 
-formed by $N$ columns of vertically stacked prisms (Figure \ref{fig:interpretation-model}).
-For convenience, we presume that there is an observed gravity disturbance ...
+As a consequence, the anomalous mass distribution is characterized by regions
+with constant density contrast.
+This anomalous distribution is approximated by an interpretation model 
+formed by $N$ columns of vertically stacked prisms (Figure 
+\ref{fig:interpretation-model}).
+For convenience, we presume that there is an observed gravity disturbance over the
+center of each column.
+We consider that the prisms in the extremities of the interpretation model extend to
+infinity along the $y$ axis in order to prevent edge effects in the forward 
+calculations. 
+The $i$-th column is formed by four vertically adjacent layers, which in turn are
+composed of vertically adjacent prisms having infinite length along the $x$-axis.
 
-
-PAREI AQUI
-
-We consider that the prisms in the 
-extremities of the interpretation model extend to infinity along the $y$ axis 
-in order to prevent edge effects in the forward calculations. 
-The $i$-th column is formed by four vertically adjacent 
-layers, which in turn are composed of vertically adjacent prisms having infinite 
-length along the $x$-axis. 
-
-The first and shallowest layer represents the water layer, 
-is formed by a single prism, has thickness $t^{w}_{i}$ and a constant density contrast 
-$\Delta \rho^{w} = \rho^{w} - \rho^{r}$, where $\rho^{w}$ and $\rho^{r}$ 
-represents, respectively, the densities of water and the reference mass 
-distribution (Figure \ref{fig:reference-mass-distribution}) at the same point.
+The first and shallowest layer represents water, 
+is formed by a single prism, has thickness $t^{(w)}_{i}$ and a constant density
+contrast $\Delta \rho^{(w)} = \rho^{(w)} - \rho^{(r)}$.
+The second layer forming the $i$-th column of the interpretation model is defined by
+the interpreter, according to the geological environment to be studied and the a priori
+information availability. 
+As a general rule, this layer can be defined by a set of $Q$ vertically adjacent
+prisms, each one with thickness $t^{(q)}_{i}$ and constant density contrast
+$\Delta \rho^{(q)} = \rho^{(q)} - \rho^{(r)}$, $q = 1, \dots Q$.
 The third layer represents the crust, it is also formed by a single prism,
-has thickness $t^{c}_{i}$ and density contrast 
-$\Delta \rho^{c}_{i} = \rho^{c} - \rho^{r}$, 
-with $\rho^{c}$ being the crust density. For simplicity, we presume that the crust
-density $\rho^{c}_{i}$ may be equal to $\rho^{cc}$, for $y_{i} \le y_{COT}$, which
-represents continental crust,
-or equal to $\rho^{oc}$, for $y_{i} > y_{COT}$, which represents oceanic crust.
-The crust density depends on the position of the $i$-th column with respect to
-$y_{COT}$, which defines an abrupt Crust-Ocean Transition (COT). Consequently, the
-crust may have two possible density contrasts: 
-$\Delta \rho^{c}_{i} = \rho^{cc} - \rho{r}$ or 
-$\Delta \rho^{c}_{i} = \rho^{oc} - \rho^{r}$. The top of this layer defines the 
-basement relief and its bottom the relief of the Moho. The fourth layer represents the
-mantle, it is divided into two parts, each one formed by a single prism having the same
-density $\rho^{m}$ and, consequently, the same density contrast 
-$\Delta \rho^{m} = \rho^{m} - \rho^{r}$. The shallowest
-portion of this layer has thickness $t^{m}_{i}$. Its top and bottom define,
+has thickness $t^{(c)}_{i}$ and density contrast 
+$\Delta \rho^{(c)}_{i} = \rho^{(c)} - \rho^{(r)}$, 
+with $\rho^{c}$ being the crust density. 
+According to our rifted margin model (Figure \ref{fig:rifted-margin-model}), the crust
+density $\rho^{(c)}_{i}$ may assume two possible values, depending on its position
+with respect to the $y_{COT}$ (Figure \ref{fig:interpretation-model}).
+As a consequence, the prisms forming the third layer of the interpretation model may
+have two possible density contrasts: $\Delta \rho^{(c)}_{i} = \rho^{(cc)} - \rho^{(r)}$,
+for $y_{i} \le y_{COT}$, or $\Delta \rho^{(c)}_{i} = \rho^{(oc)} - \rho^{(r)}$,
+for $y_{i} > y_{COT}$. 
+The top of this layer defines the basement relief and its bottom the relief of the
+Moho. 
+The fourth layer represents the mantle, it is divided into two parts, each one formed
+by a single prism having a constant density contrast 
+$\Delta \rho^{(m)} = \rho^{(m)} - \rho^{(r)}$. The shallowest
+portion of this layer has thickness $t^{(m)}_{i}$. Its top and bottom define,
 respectively, the depths of Moho and the planar isostatic compensation layer $S_{0}$.
 The deepest portion of the fourth layer has thickness $\Delta S_{0}$, top at the
 surface $S_{0}$ and bottom at the planar surface 
-$S_{0} + \Delta S_{0}$, which defines the Moho in the reference mass distribution model 
-(Figure \ref{fig:reference-mass-distribution}). Finally, the second layer forming the
-$t$-th column of the interpretation model is defined by the interpreter, according to
-the geological environment to be studied and the a priori information availability. 
-As a general rule, this layer can be defined by a set of $Q$ vertically adjacent
-prisms, each one with thickness $t^{q}_{i}$, density $\rho^{q}$ and density contrast
-$\Delta \rho^{q} = \rho^{q} - \rho^{r}$, $q = 1, \dots Q$.
+$S_{0} + \Delta S_{0}$, which defines the reference Moho. 
+
 
 Given the density contrasts, the COT position $y_{COT}$, the isostatic compensation
-surface $S_{0}$, the thickness of the water layer and of the $Q-1$ prisms forming the
+depth $S_{0}$, the thickness of the water layer and of the $Q-1$ prisms forming the
 shallowest portion of the second layer, it is possible to describe the interpretation
 model in terms of an $M \times 1$ parameter vector $\mathbf{p}$, $M = 2N + 1$, defined
 as follows:
@@ -288,49 +292,54 @@ with define the constraints on the parameters to be estimated, $k = 0, 1, 2, 3$.
 
 \subsection{Airy constraint}
 
-Consider that the interpretation model is in isostatic equilibrium according to the
-Airy model \citep{turcotte-schubert2002, hofmann-wellenhof-moritz2005, lowrie2007}.
-In this case, the pressure (or lithostatic stress) exerted by the model is constant 
-on the isostatic compensation surface $S_{0}$. The pressure per unit area 
-exerted by the $i$-th column of the model on $S_{0}$, divided by gravity, 
+Consider that the interpretation model (Figure \ref{fig:interpretation-model}) is in
+isostatic equilibrium according to the Airy model \citep{turcotte-schubert2002,
+hofmann-wellenhof-moritz2005, lowrie2007}.
+In this case, the lithostatic stress (pressure) exerted by the model is constant on the
+isostatic compensation surface $S_{0}$. The one-dimensional lithostatic stress per unit
+area exerted by the $i$-th column of the model on $S_{0}$, divided by gravity, 
 is given by:
 \begin{equation}
-t^{w}_{i} \rho^{w} + t^{1}_{i} \rho^{1}_{i} + \dots + t^{Q}_{i} \rho^{Q}_{i} + 
-t^{c}_{i} \rho^{c}_{i} + t^{m}_{i} \rho^{m} = \sigma_{0} \: ,
+t^{(w)}_{i} \rho^{(w)} + t^{(1)}_{i} \rho^{(1)}_{i} + \dots + 
+t^{(Q)}_{i} \rho^{(Q)}_{i} + t^{(c)}_{i} \rho^{(c)}_{i} + t^{(m)}_{i} \rho^{(m)} 
+= \sigma_{0} \: ,
 \label{eq:lithostatic-stress-densities}
 \end{equation}
 where $\sigma_{0}$ is an arbitrary positive constant. Rearranging terms in Equation
 \ref{eq:lithostatic-stress-densities} and using the relation
 \begin{equation}
-S_{0} = t^{w}_{i} + t^{1}_{i} + \dots + t^{Q}_{i} + t^{c}_{i} + t^{m}_{i} \: ,
+S_{0} = t^{(w)}_{i} + t^{(1)}_{i} + \dots + t^{(Q)}_{i} + t^{(c)}_{i} + t^{(m)}_{i} \: ,
 \label{eq:S0}
 \end{equation}
 it is possible to show that:
 \begin{equation}
-(\rho^{Q}_{i} - \rho^{c}_{i}) \, t^{Q}_{i} + (\rho^{m} - \rho^{c}_{i}) \, t^{m}_{i} +
-(\rho^{w} - \rho^{c}_{i}) \, t^{w}_{i} + (\rho^{1}_{i} - \rho^{c}_{i}) \, t^{1}_{i} +
-\dots + (\rho^{Q-1}_{i} - \rho^{c}_{i}) \, t^{Q-1}_{i} + \rho^{c}_{i} \, S_{0} =
-\sigma_{0} \: .
+\Delta \tilde{\rho}^{(Q)}_{i} \, t^{(Q)}_{i} + 
+\Delta \tilde{\rho}^{(m)}_{i} \, t^{(m)}_{i} + 
+\Delta \tilde{\rho}^{(w)}_{i} \, t^{(w)}_{i} + 
+\Delta \tilde{\rho}^{(1)}_{i} \, t^{(1)}_{i} +
+\dots + 
+\Delta \tilde{\rho}^{(Q-1)}_{i} \, t^{(Q-1)}_{i} +
+\rho^{(c)}_{i} \, S_{0} = \sigma_{0} \: ,
 \label{eq:lithostatic-stress-density-contrasts}
 \end{equation}
-In order to describe the pressure exerted by all columns forming the interpretation
-model on the surface $S_{0}$, Equation \ref{eq:lithostatic-stress-density-contrasts}
-can be written, in matrix notation, as follows:
+where $\Delta \tilde{\rho}^{(\alpha)}_{i} = \rho^{(\alpha)}_{i} - \rho^{(c)}_{i}$, 
+$\alpha = w, 1, \dots, Q-1, Q, m$.
+In order to describe the lithostatic stress exerted by all columns forming the
+interpretation model on the surface $S_{0}$, Equation
+\ref{eq:lithostatic-stress-density-contrasts} can be written, in matrix notation, as
+follows:
 \begin{equation}
-\mathbf{M}^{Q} \mathbf{t}^{Q} + \mathbf{M}^{m} \mathbf{t}^{m} + \mathbf{M}^{w}
-\mathbf{t}^{w} + \mathbf{M}^{1} \mathbf{t}^{1} + \dots + \mathbf{M}^{Q-1}
-\mathbf{t}^{Q-1} + \boldsymbol{\rho}^{c} S_{0} = \sigma_{0} \mathbf{1} \: ,
+\mathbf{M}^{(Q)} \mathbf{t}^{(Q)} + \mathbf{M}^{(m)} \mathbf{t}^{(m)} + \mathbf{M}^{(w)}
+\mathbf{t}^{(w)} + \mathbf{M}^{(1)} \mathbf{t}^{(1)} + \dots + \mathbf{M}^{(Q-1)}
+\mathbf{t}^{(Q-1)} + \boldsymbol{\rho}^{(c)} S_{0} = \sigma_{0} \mathbf{1} \: ,
 \label{eq:lithostatic-stress-matrix}
 \end{equation}
 where $\mathbf{1}$ is an $N \times 1$ vector with all elements equal to one, 
-$\mathbf{t}^{\alpha}$ are $N \times 1$ vectors with $i$-th element defined by the
-thickness $t^{\alpha}_{i}$ of a prism forming the $i$-th column, 
-$\alpha = w, 1, \dots, Q-1, Q, m$, and $\mathbf{M}^{Q}$, $\mathbf{M}^{m}$, 
-$\mathbf{M}^{w}$, $\mathbf{M}^{1}$, \dots, $\mathbf{M}^{Q-1}$ are $N \times N$ diagonal
-matrices with elements $ii$ of main diagonal are given by density contrasts
-$(\rho^{Q}_{i} - \rho^{c}_{i})$, $(\rho^{m} - \rho^{c}_{i})$, 
-$(\rho^{w} - \rho^{c}_{i})$, $(\rho^{1}_{i} - \rho^{c}_{i})$ and $\dots$,
-$(\rho^{Q-1}_{i} - \rho^{c}_{i})$, respectively, and $\boldsymbol{\rho}^{c}$ is an 
+$\mathbf{t}^{(\alpha)}$, $\alpha = w, 1, \dots, Q-1, Q, m$, are $N \times 1$ vectors
+with $i$-th element defined by the thickness $t^{(\alpha)}_{i}$ of a prism forming the
+$i$-th column, $\mathbf{M}^{(\alpha)}$ are $N \times N$ diagonal matrices with elements
+$ii$ of main diagonal defined by the density contrasts 
+$\Delta \tilde{\rho}^{(\alpha)}_{i}$, respectively, and $\boldsymbol{\rho}^{(c)}$ is an 
 $N \times 1$ vector containing the densities of the prisms
 representing the crust. By applying the first-order Tikhonov regularization
 \citep{aster-etal2005} to the constant vector $\sigma_{0} \mathbf{1}$, we obtain the
@@ -343,19 +352,20 @@ following expression:
 where $\mathbf{0}$ is a vector with null elements and the remaining terms are given by:
 \begin{equation}
 \mathbf{C} = \begin{bmatrix}
-\mathbf{M}^{Q} & \mathbf{M}^{m} & \mathbf{0}
+\mathbf{M}^{(Q)} & \mathbf{M}^{(m)} & \mathbf{0}
 \end{bmatrix}_{N \times M} \: ,
 \label{eq:matrix-C}
 \end{equation}
 \begin{equation}
 \mathbf{D} = \begin{bmatrix}
-\mathbf{M}^{w} & \mathbf{M}^{1} & \cdots & \mathbf{M}^{Q-1} & \boldsymbol{\rho}^{c}
+\mathbf{M}^{(w)} & \mathbf{M}^{(1)} & \cdots & \mathbf{M}^{(Q-1)} &
+\boldsymbol{\rho}^{(c)}
 \end{bmatrix}_{N \times \left( QN + 1 \right)} \: ,
 \label{eq:matrix-D}
 \end{equation}
 \begin{equation}
 \mathbf{t} = \begin{bmatrix}
-\mathbf{t}^{w} \\ \mathbf{t}^{1} \\ \vdots \\ \mathbf{t}^{Q-1} \\ S_{0}
+\mathbf{t}^{(w)} \\ \mathbf{t}^{(1)} \\ \vdots \\ \mathbf{t}^{(Q-1)} \\ S_{0}
 \end{bmatrix}_{\left( QN + 1 \right) \times 1}\: ,
 \label{eq:vector-t}
 \end{equation}
@@ -389,7 +399,7 @@ the isostatic compensation surface $S_{0}$.
 This constraint imposes smoothness on the adjacent thickness of the prisms forming the
 deepest portion of the second layer and the shallowest part of the fourth layer
 of the interpretation model by applying the first-order Tikhonov regularization
-\citep{aster-etal2005} to the vectors $\mathbf{t}^{Q}$ and $\mathbf{t}^{m}$ 
+\citep{aster-etal2005} to the vectors $\mathbf{t}^{(Q)}$ and $\mathbf{t}^{(m)}$ 
 (Equation \ref{eq:parameter-vector}). 
 Mathematically, this constraint is represented by the regularizing function
 $\Psi_{1}(\mathbf{p})$ (Equation \ref{eq:goal-function}):
