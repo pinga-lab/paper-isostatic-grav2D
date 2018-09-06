@@ -62,7 +62,7 @@ order to constrain the range of possible models.
 
 There are methods that approximate the subsurface by a grid of
 juxtaposed cells with constant physical property. 
-Then they estimate the physical property value of each cell and finally 
+They estimate the physical property value of each cell and then 
 use the estimated values to estimate the geometry of the geophysical discontinuities.
 Notice that, in this case, the geometry of the geophysical discontinuities are
 estimated in an indirect way. Although very useful in geophysics, such methods are
@@ -73,57 +73,64 @@ separating layers with constant or depth-dependent physical property distributio
 In this case, the geometry of the geophysical discontinuities are directly determined
 by estimating the geometrical parameters describing the interfaces.
 
-These methods can be classified according to the scale of are on which
-they were applied.
-We consider those applied over a sedimentary basin, for example, as local scale methods,
-whereas those applied over a continent or country as regional scale methods
-and those applied over the whole globe as global scale methods.
-Examples of local scale methods estimating the geometry of a single
-interface separating two layers were presented by
+Different criteria can be used to classify these methods.
+Those applied over a sedimentary basin, for example, can be considered local scale methods,
+whereas those applied over a continent or country can be considered regional scale methods
+and those applied over the whole globe can be considered global scale methods.
+They can also be classified according to the number of geophysical interfaces
+to be estimated.
+
+By using these criteria, it is possible to define a first group of methods
+estimating the geometry of a single interface.
+In this group, there are local scale methods in space domain
 % scale: local | data: gravity | domain: space
-\citet{bott1960, tanner1967, cordell-henderson1968, dyrelius-vogel1972, pedersen1977,
+\citep[e.g.,][]{bott1960, tanner1967, cordell-henderson1968, dyrelius-vogel1972, pedersen1977,
 pilkington-crossley1986, richardson-macinnes1989, barbosa-etal1997, 
 barbosa-etal1999, barbosa-etal1999b, silva-etal2006, pilkington2006, 
 chakravarthi-sundararajan2007, martins-etal2010, silva-etal2010, lima-etal2011, 
 martins-etal2011, barnes-barraud2012, silva-etal2014, silva-santos2017},
-in the space domain, and 
+and Fourier domain
 % scale: local | data: gravity | domain: Fourier
-\citet{oldenburg1974, granser1987, reamer-ferguson1989, guspi1993},
-in the Fourier domain.
-Most of these methods estimate the relief of basement under a sedimentary basin.
-Methods estimating a single interface representing the Moho, at regional
-scale, were presented by 
+\citep[e.g.,][]{oldenburg1974, granser1987, reamer-ferguson1989, guspi1993}.
+Most of these methods were applied to estimate the relief of basement under
+a sedimentary basin.
+There are also regional scale methods for estimating a single interface 
+representing the Moho in spaced domain 
 % scale: regional | data: gravity | domain: space
-\citet{shin-etal2009, bagherbandi-eshagh2012, barzaghi-biagi2014, sampietro2015, uieda-barbosa2017},
-in space domain, and by 
+\citep[e.g.,][]{shin-etal2009, bagherbandi-eshagh2012, barzaghi-biagi2014, sampietro2015, uieda-barbosa2017} and in Fourier domain 
 % scale: regional | data: gravity | domain: Fourier
-\citet{braitenberg-etal1997, braitenberg-zadro1999, vandermeijde-etal2013}
-in Fourier domain.
-There are also some global scale methods 
+\citep[e.g.,][]{braitenberg-etal1997, braitenberg-zadro1999, vandermeijde-etal2013}.
+Additionally, there are some global scale methods for estimating the Moho
+in spaced domain
 % scale: global | data: gravity | domain: space
-\citep[e.g.,][]{sunkel1985, sjoberg2009},
-which generally estimate a single interface representing the Moho.
-Regional and global scale methods usually presume that the interface representing
-the Moho oscillates around a reference depth.
-Differently from the local scale methods, those applied at regional and global scales
-usually presume that crust and mantle are in isostatic equilibrium.
+\citep[e.g.,][]{sunkel1985, sjoberg2009}.
 
 The second group of methods is formed by those estimating multiple interfaces
-separating layers with constant or depth-dependent physical properties
-\citep[e.g.,][]{pilkington-crossley1986b, gallardo-etal2005, camacho-etal2011, salem-etal2014}.
-The number of methods in this group is significantly lower than that
-in the other one and all of them were applied at local scale.
-They suffer from a greater ambiguity if compared to those in the first group
-because the combination of interfaces with different geometries
-increase the number of possible physical property distributions producing
-the same potential field data.
-Consequently, the methods in the second group require more priori information.
-\citet{salem-etal2014} presented one of the few methods that impose isostatic
-equilibrium to simultaneously estimate the geometry of basement and Moho 
-under a sedimentary basin, by considering that both crust and mantle have 
-constant and known density contrasts.
+separating layers with constant or depth-dependent physical properties 
+\citep[e.g.,][]{pilkington-crossley1986b, gallardo-etal2005, camacho-etal2011, 
+salem-etal2014}.
+All these methods have been applied at local scale, to characterize a single 
+sedimentary basin.
+The number of methods forming this group is significantly lower than that
+in the first one.
+Additionally, the methods forming the second group suffer from a greater 
+ambiguity and, as a consequence, they require more priori information to
+decrease the number of possible solutions.
 
-In the present work, we ...
+In the scope of our work, 
+there are some regional and global scale methods in space domain that impose 
+some degree of isostatic equilibrium to the estimated models 
+\citep[e.g.,][]{sunkel1985, sjoberg2009, bagherbandi-eshagh2012, sampietro2015}
+or analyze their deviations from a perfect isostatic equilibrium
+\citep[e.g.,][]{shin-etal2009}.
+\citet{salem-etal2014} presented one of the few local scale methods
+in space domain that imposed isostatic equilibrium to the
+estimated models. They imposed a perfect isostatic equilibrium according to
+the Airy's local compensation model, which describes well the transition
+from continental to oceanic crust at rifted margins 
+\citep{worzel1968, watts-moore2017}.
+
+In the present work, we present a ...
 
 
 
