@@ -316,8 +316,8 @@ Consider that the interpretation model (Figure \ref{fig:interpretation-model})
 is in isostatic equilibrium \citep{turcotte-schubert2002, hofmann-wellenhof-moritz2005,
 lowrie2007} so that the lithostatic stress (pressure) is constant on the
 isostatic compensation surface $S_{0}$.
-The lithostatic stress per unit area exerted by the $i$-th column of the model on $S_{0}$,
-divided by gravity, is given by:
+The ratio of the lithostatic stress to gravity exerted by the $i$-th 
+column of the model on $S_{0}$ is given by:
 \begin{equation}
 t^{(w)}_{i} \rho^{(w)} + t^{(1)}_{i} \rho^{(1)}_{i} + \dots + 
 t^{(Q)}_{i} \rho^{(Q)}_{i} + t^{(c)}_{i} \rho^{(c)}_{i} + t^{(m)}_{i} \rho^{(m)} 
@@ -482,6 +482,29 @@ equal to one and all the remaining elements equal to zero. This matrix is define
 in the same way as matrix $\mathbf{A}$ (Equation \ref{eq:equality-constraint-basement}).
 
 
+\section{Applications to synthetic data}
+
+
+\subsection{Simple models}
+
+We have simulated two simple models formed by four layers. From top to bottom,
+the first layer represents water and has density $\rho^{(w)} = 1030$  \unit{kg/m$^{3}$}.
+The second represents a homogeneous sediment package with
+density $\rho^{(1)} = 2550$ \unit{kg/m$^{3}$}.
+
+
+\subsection{Volcanic margin model}
+
+
+
+
+\section{Application to real data}
+
+We applied our method to interpret a gravity profile over the Pelotas basin
+\citep{stica-etal2014}, located at the southern of Brazil. This basin is considered
+a classical example of volcanic margin \citep{geoffroy2005} showing ...
+
+
 \section{Conclusions}
 
 \lipsum[1-3]
@@ -519,6 +542,93 @@ in the same way as matrix $\mathbf{A}$ (Equation \ref{eq:equality-constraint-bas
 	at $S_{0}$. The base of the interpretation model coincides with the
 	reference Moho located at $S_{0} + \Delta S$.}
 	\label{fig:interpretation-model}
+}
+
+
+\plot{model-simple-I}{width=0.6\textwidth}{
+%\plot{model-simple-I}{width=\columnwidth}{
+	{Application to synthetic data produced by the simple model I.
+	 This model is formed by four layers representing: water, sediments, 
+	 crust (continental and oceanic) and mantle.
+	 The bottom panel shows the estimated model (gray prisms),
+	 the true basement and Moho (dashed white lines), the initial basement
+	 and Moho used in the inversion (continuous white lines), as well as the 
+	 known depths at basement (white triangles) and Moho (white diamonds).
+	 The middle panel shows the true and estimated lithostatic stress curves computed
+	 by using equation \ref{eq:lithostatic-stress-densities}. The values are multiplied 
+	 by a constant gravity value.
+	 The upper panel shows the true and predicted data, as well as the data produced
+	 by the model used as initial guess in the inversion.
+	 The estimated model was obtained by using all constraints.}
+	\label{fig:simple-model-I}
+}
+
+
+\plot{model-simple-I-no-vinc-isostatic}{width=0.6\textwidth}{
+	%\plot{model-simple-I-no-vinc-isostatic}{width=\columnwidth}{
+	{Application to synthetic data produced by the simple model I.
+	 The difference between this figure and Figure \ref{fig:simple-model-I}
+	 is that the estimated model was obtained by using all constraints,
+	 except the isostatic constraint.}
+	\label{fig:simple-model-I-without-isost-cons}
+}
+
+
+\plot{model-simple-II}{width=0.6\textwidth}{
+	%\plot{model-simple-II}{width=\columnwidth}{
+	{Application to synthetic data produced by the simple model II.
+	 This model is formed by four layers representing: water, sediments, 
+	 crust (continental and oceanic) and mantle.
+	 The bottom panel shows the estimated model (gray prisms),
+	 the true basement and Moho (dashed white lines), the initial basement
+	 and Moho used in the inversion (continuous white lines), as well as the 
+	 known depths at basement (white triangles) and Moho (white diamonds).
+	 The middle panel shows the true and estimated lithostatic stress curves computed
+	 by using equation \ref{eq:lithostatic-stress-densities}. The values are multiplied 
+	 by a constant gravity value.
+	 The upper panel shows the true and predicted data, as well as the data produced
+	 by the model used as initial guess in the inversion.
+	 The estimated model was obtained by using all constraints.}
+	\label{fig:simple-model-II}
+}
+
+
+\plot{model-simple-II-no-vinc-isostatic}{width=0.6\textwidth}{
+	%\plot{model-simple-II-no-vinc-isostatic}{width=\columnwidth}{
+	{Application to synthetic data produced by the simple model II.
+	 The difference between this figure and Figure \ref{fig:simple-model-II}
+	 is that the estimated model was obtained by using all constraints,
+	 except the isostatic constraint.}
+	\label{fig:simple-model-II-without-isost-cons}
+}
+
+
+\plot{model-pelotas-synthetic-data}{width=0.6\textwidth}{
+	%\plot{model-pelotas-synthetic-data}{width=\columnwidth}{
+	{Application to synthetic data produced by the volcanic margin model.
+	 This model is formed by four layers representing: water, sediments $+$
+	 SDR, crust (continental and oceanic) and mantle.
+	 The bottom panel shows the estimated model (gray prisms),
+	 the true basement and Moho (dashed white lines), the initial basement
+	 and Moho used in the inversion (continuous white lines), as well as the 
+	 known depths at basement (white triangles) and Moho (white diamonds).
+	 The middle panel shows the true and estimated lithostatic stress curves computed
+	 by using equation \ref{eq:lithostatic-stress-densities}. The values are multiplied 
+	 by a constant gravity value.
+	 The upper panel shows the true and predicted data, as well as the data produced
+	 by the model used as initial guess in the inversion.
+	 The estimated model was obtained by using all constraints.}
+	\label{fig:volcanic-margin-model}
+}
+
+
+\plot{model-pelotas-synthetic-data-no-vinc-isostatic}{width=0.6\textwidth}{
+	%\plot{model-pelotas-synthetic-data-no-vinc-isostatic}{width=\columnwidth}{
+	{Application to synthetic data produced by the volcanic margin model.
+	 The difference between this figure and Figure \ref{fig:volcanic-margin-model}
+	 is that the estimated model was obtained by using all constraints,
+	 except the isostatic constraint.}
+	\label{fig:volcanic-margin-model-without-isost-cons}
 }
 
 %%%%%%%%%%%%%%%%%% Figures %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
