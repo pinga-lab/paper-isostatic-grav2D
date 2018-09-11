@@ -19,7 +19,7 @@
 
 \begin{document}
 
-\title{2D gravity inversion with isostatic constraint applied to passive rifted margins}
+\title{Isostatic constraint for 2D gravity inversion on passive rifted margins}
 
 \renewcommand{\thefootnote}{\fnsymbol{footnote}} 
 
@@ -33,7 +33,7 @@ Rio de Janeiro, Brazil}
 
 \footer{vanderlei@on.br}
 \lefthead{Bastos and Oliveira Jr.}
-\righthead{2D gravity inversion for passive rifted margins}
+\righthead{Isostatic constraint for gravity inversion on passive margins}
 
 \maketitle
 
@@ -46,15 +46,16 @@ Rio de Janeiro, Brazil}
 \section{Introduction}
 
 Several methods have been proposed for using gravity and/or magnetic data to estimate
-the boundaries of adjacent sedimentary layers, the relief of basement under sedimentary 
+the boundaries of juxtaposed sedimentary layers, the relief of basement under sedimentary 
 basins and/or the Mohorovicic discontinuity (or simply Moho), which separates crust and 
 mantle.
 These geophysical discontinuities represent, for such particular methods, 
 density and/or magnetization contrasts in subsurface.
 All these methods suffer from the inherent ambiguity \citep{roy1962, skeels1962} in
-determining the true physical property distribution from a discrete set of
+determining the true physical property distribution that produces a discrete set of
 observed potential-field data. 
-It is well known that, by using different physical property values, it is possible to
+It is well known that, by using different density and/or magnetization contrasts, 
+it is possible to
 find different interfaces producing the same potential-field data. 
 To partially overcome this problem and obtain meaningful solutions, the interpreter
 must commonly use priori information obtained from seismic data and/or boreholes in
@@ -63,9 +64,9 @@ order to constrain the range of possible models.
 There are methods that approximate the subsurface by a grid of
 juxtaposed cells with constant physical property. 
 They estimate the physical property value of each cell and then 
-use the estimated values to estimate the geometry of the geophysical discontinuities.
-Notice that, in this case, the geometry of the geophysical discontinuities are
-estimated in an indirect way. Although very useful in geophysics, such methods are
+interpret the estimated values to indirectly estimate the geometry of the 
+geophysical discontinuities.
+Although very useful in geophysics, such methods are
 outside the scope of the present work.
 Here, we consider methods that represent discontinuities by interfaces 
 separating layers with constant or depth-dependent physical property distribution 
@@ -73,7 +74,8 @@ separating layers with constant or depth-dependent physical property distributio
 In this case, the geometry of the geophysical discontinuities are directly determined
 by estimating the geometrical parameters describing the interfaces.
 
-Different criteria can be used to classify these methods.
+Different criteria can be used to classify the methods that directly estimate
+the geometry of geophysical discontinuities.
 Those applied over a sedimentary basin, for example, can be considered local scale methods,
 whereas those applied over a continent or country can be considered regional scale methods
 and those applied over the whole globe can be considered global scale methods.
@@ -117,22 +119,45 @@ Additionally, the methods forming the second group suffer from a greater
 ambiguity and, as a consequence, they require more priori information to
 decrease the number of possible solutions.
 
-In the scope of our work, 
+Among those directly estimating the geometry of the interfaces, 
 there are some regional and global scale methods in space domain that impose 
 some degree of isostatic equilibrium to the estimated models 
 \citep[e.g.,][]{sunkel1985, sjoberg2009, bagherbandi-eshagh2012, sampietro2015}
 or analyze their deviations from a perfect isostatic equilibrium
 \citep[e.g.,][]{shin-etal2009}.
-\citet{salem-etal2014} presented one of the few local scale methods
-in space domain that imposed isostatic equilibrium to the
-estimated models. They imposed a perfect isostatic equilibrium according to
-the Airy's local compensation model, which describes well the transition
+\citet{salem-etal2014} presented one of the few local scale 
+methods in space domain that simultaneously estimates the basement and Moho
+reliefs by imposing isostatic equilibrium. 
+They imposed a perfect isostatic equilibrium according to
+the Airy's local compensation model \citep{turcotte-schubert2002}, 
+which describes well the transition
 from continental to oceanic crust at rifted margins 
 \citep{worzel1968, watts-moore2017}.
 
-In the present work, we present a ...
-
-
+Here, we present a new local scale method for simultaneously estimating the geometries
+of basement and Moho along a profile on a passive rifted margin.
+Our method is formulated, in space domain, as a non-linear gravity inversion.
+In order to produce stable solutions and introduce priori information,
+we use different constraints imposing smoothness and lower/upper 
+bounds on basement and Moho depths, as well as proximity between estimated 
+and known depths at some points along the profile. We also use a constraint
+(which we conveniently call as \textit{isostatic constraint}) imposing smoothness
+on the lithostatic stress exerted on a planar surface located at depth,
+below which we assume that there is no lateral density variations.
+We considered that no vertical forces are acting on the lateral surfaces of 
+each column forming the lithosphere.
+Notice that, by imposing smoothness on the lithostatic stress,
+our method does not estimate a model in perfect isostatic equilibrium, 
+but a model as close as possible to the isostatic equilibrium.
+Tests with synthetic data show the performance of our method in simultaneously
+retrieving the geometry of basement and Moho of different models. 
+We also analyze the influence of the isostatic constraint on the estimated
+interfaces at regions showing abrupt crustal thinning, which is
+typically shown in volcanic passive margins \citep{geoffroy2005}.
+Finally, we illustrate the performance of our method by inverting 
+satellite gravity data on a profile over the Pelotas basin \citep{stica-etal2014}, 
+which is located at the southern of Brazil and is considered a classical example 
+of volcanic passive margin.
 
 
 \section{Methodology}
@@ -269,8 +294,8 @@ particular parameter vector $\mathbf{p} = \hat{\mathbf{p}}$ producing a predicte
 vector $\mathbf{d}(\mathbf{p})$ as close as possible to the observed data vector 
 $\mathbf{d}^{o}$ can be formulated as the problem of minimizing the goal function
 \begin{equation}
-\Gamma (\mathbf{p}) = \Phi(\mathbf{p}) + \mu \sum_{k = 0}^{3} \alpha_{k}
-\Psi_{k}(\mathbf{p}) \: ,
+\Gamma (\mathbf{p}) = \Phi(\mathbf{p}) + \mu \sum_{\ell = 0}^{3} \alpha_{\ell}
+\Psi_{\ell}(\mathbf{p}) \: ,
 \label{eq:goal-function}
 \end{equation}
 subject to all elements of $\hat{\mathbf{p}}$ be positive. In Equation
@@ -281,26 +306,28 @@ represents the misfit function given by
 \: , 
 \label{eq:misfit-function}
 \end{equation}
-where $\| \cdot \|_{2}^{2}$ represents the squared Euclidean norm, $\alpha_{k}$
-represent the weights assigned to the regularizing functions $\Psi_{k}(\mathbf{p})$,
-with define the constraints on the parameters to be estimated, $k = 0, 1, 2, 3$.
+where $\| \cdot \|_{2}^{2}$ represents the squared Euclidean norm, $\alpha_{\ell}$
+represent the weights assigned to the regularizing functions $\Psi_{\ell}(\mathbf{p})$,
+with define the constraints on the parameters to be estimated, $\ell = 0, 1, 2, 3$.
 
-\subsection{Airy constraint}
+\subsection{Isostatic constraint}
 
-Consider that the interpretation model (Figure \ref{fig:interpretation-model}) is in
-isostatic equilibrium according to the Airy model \citep{turcotte-schubert2002,
-hofmann-wellenhof-moritz2005, lowrie2007}.
-In this case, the lithostatic stress (pressure) exerted by the model is constant on the
-isostatic compensation surface $S_{0}$. The one-dimensional lithostatic stress per unit
-area exerted by the $i$-th column of the model on $S_{0}$, divided by gravity, 
-is given by:
+Consider that the interpretation model (Figure \ref{fig:interpretation-model})
+is in isostatic equilibrium \citep{turcotte-schubert2002, hofmann-wellenhof-moritz2005,
+lowrie2007} so that the lithostatic stress (pressure) is constant on the
+isostatic compensation surface $S_{0}$.
+The lithostatic stress per unit area exerted by the $i$-th column of the model on $S_{0}$,
+divided by gravity, is given by:
 \begin{equation}
 t^{(w)}_{i} \rho^{(w)} + t^{(1)}_{i} \rho^{(1)}_{i} + \dots + 
 t^{(Q)}_{i} \rho^{(Q)}_{i} + t^{(c)}_{i} \rho^{(c)}_{i} + t^{(m)}_{i} \rho^{(m)} 
 = \sigma_{0} \: ,
 \label{eq:lithostatic-stress-densities}
 \end{equation}
-where $\sigma_{0}$ is an arbitrary positive constant. Rearranging terms in Equation
+where $\sigma_{0}$ is an arbitrary positive constant. 
+Here, we considered that no vertical forces are acting on the lateral surfaces of 
+each column forming the model.
+By rearranging terms in Equation
 \ref{eq:lithostatic-stress-densities} and using the relation
 \begin{equation}
 S_{0} = t^{(w)}_{i} + t^{(1)}_{i} + \dots + t^{(Q)}_{i} + t^{(c)}_{i} + t^{(m)}_{i} \: ,
@@ -383,9 +410,10 @@ define the regularizing function $\Psi_{0}(\mathbf{p})$
 \mathbf{t} \right) \|_{2}^{2} \: .
 \label{eq:airy-constraint-function}
 \end{equation}
-We call this function as \textit{Airy constraint}. Notice that minimizing this
-function imposes smoothness on the pressure exerted by the interpretation model on 
-the isostatic compensation surface $S_{0}$.
+We conveniently call this function as \textit{Isostatic constraint}. 
+Notice that minimizing this function imposes smoothness on the pressure exerted by the interpretation model on the isostatic compensation surface $S_{0}$. Consequently,
+it imposes an interpretation model as close as possible of an isostatic
+equilibrium.
 
 
 \subsection{Smoothness constraint}
