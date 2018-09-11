@@ -33,7 +33,7 @@ Rio de Janeiro, Brazil}
 
 \footer{vanderlei@on.br}
 \lefthead{Bastos and Oliveira Jr.}
-\righthead{Isostatic constraint for 2D gravity inversion}
+\righthead{Isostatic constraint for gravity inversion on passive margins}
 
 \maketitle
 
@@ -129,25 +129,26 @@ or analyze their deviations from a perfect isostatic equilibrium
 methods in space domain that simultaneously estimates the basement and Moho
 reliefs by imposing isostatic equilibrium. 
 They imposed a perfect isostatic equilibrium according to
-the Airy's local compensation model, which describes well the transition
+the Airy's local compensation model \citep{turcotte-schubert2002}, 
+which describes well the transition
 from continental to oceanic crust at rifted margins 
-\citep{worzel1968, turcotte-schubert2002, watts-moore2017}.
+\citep{worzel1968, watts-moore2017}.
 
-Here, we present a new local scale method for simultaneously estimate the geometries
+Here, we present a new local scale method for simultaneously estimating the geometries
 of basement and Moho along a profile on a passive rifted margin.
 Our method is formulated, in space domain, as a non-linear gravity inversion.
 In order to produce stable solutions and introduce priori information,
-we use different constraints imposing proximity between estimated 
-and known depths at some points along the profile, smoothness and lower/upper 
-bounds on basement and Moho depths. We also use a constraint
+we use different constraints imposing smoothness and lower/upper 
+bounds on basement and Moho depths, as well as proximity between estimated 
+and known depths at some points along the profile. We also use a constraint
 (which we conveniently call as \textit{isostatic constraint}) imposing smoothness
 on the lithostatic stress exerted on a planar surface located at depth,
 below which we assume that there is no lateral density variations.
 We considered that no vertical forces are acting on the lateral surfaces of 
 each column forming the lithosphere.
 Notice that, by imposing smoothness on the lithostatic stress,
-our method estimates interfaces resulting in a 
-model as close as possible to the isostatic equilibrium.
+our method does not estimate a model in perfect isostatic equilibrium, 
+but a model as close as possible to the isostatic equilibrium.
 Tests with synthetic data show the performance of our method in simultaneously
 retrieving the geometry of basement and Moho of different models. 
 We also analyze the influence of the isostatic constraint on the estimated
@@ -293,8 +294,8 @@ particular parameter vector $\mathbf{p} = \hat{\mathbf{p}}$ producing a predicte
 vector $\mathbf{d}(\mathbf{p})$ as close as possible to the observed data vector 
 $\mathbf{d}^{o}$ can be formulated as the problem of minimizing the goal function
 \begin{equation}
-\Gamma (\mathbf{p}) = \Phi(\mathbf{p}) + \mu \sum_{k = 0}^{3} \alpha_{k}
-\Psi_{k}(\mathbf{p}) \: ,
+\Gamma (\mathbf{p}) = \Phi(\mathbf{p}) + \mu \sum_{\ell = 0}^{3} \alpha_{\ell}
+\Psi_{\ell}(\mathbf{p}) \: ,
 \label{eq:goal-function}
 \end{equation}
 subject to all elements of $\hat{\mathbf{p}}$ be positive. In Equation
@@ -305,9 +306,9 @@ represents the misfit function given by
 \: , 
 \label{eq:misfit-function}
 \end{equation}
-where $\| \cdot \|_{2}^{2}$ represents the squared Euclidean norm, $\alpha_{k}$
-represent the weights assigned to the regularizing functions $\Psi_{k}(\mathbf{p})$,
-with define the constraints on the parameters to be estimated, $k = 0, 1, 2, 3$.
+where $\| \cdot \|_{2}^{2}$ represents the squared Euclidean norm, $\alpha_{\ell}$
+represent the weights assigned to the regularizing functions $\Psi_{\ell}(\mathbf{p})$,
+with define the constraints on the parameters to be estimated, $\ell = 0, 1, 2, 3$.
 
 \subsection{Isostatic constraint}
 
