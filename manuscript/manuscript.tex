@@ -307,6 +307,8 @@ p_{j}^{min} < p_{j} < p_{j}^{max} \: , \quad j = 1, \dots, M \: .
 The goal function is minimized by using the Levenberg-Marquardt method \citep{aster-etal2005}
 and the inequality constraint (equation \ref{eq:inequality-constraint}) was
 incorporated by using the same strategy employed by \citet{barbosa-etal1999}.
+All the derivatives with respect to the parameters were computed by using a
+central finite difference approximation.
 In Equation~\ref{eq:goal-function}, $\mu$ represents the regularizing parameter, 
 $\Phi(\mathbf{p})$ represents the misfit function given by
 \begin{equation}
@@ -317,6 +319,17 @@ $\Phi(\mathbf{p})$ represents the misfit function given by
 where $\| \cdot \|_{2}^{2}$ represents the squared Euclidean norm, $\alpha_{\ell}$
 represent the weights assigned to the regularizing functions $\Psi_{\ell}(\mathbf{p})$,
 which define the constraints on the parameters to be estimated, $\ell = 0, 1, 2, 3$.
+
+The weights $\alpha_{\ell}$ (equation~\ref{eq:goal-function}) are defined as follows:
+\begin{equation}
+\alpha_{\ell} = \tilde{\alpha}_{\ell} \, f_{\ell} \: , \quad \ell = 0, 1, 2, 3 \: ,
+\label{eq:constraint-weights}
+\end{equation}
+where $\tilde{\alpha}_{\ell}$ is a positive scalar, $f_{\ell} = \frac{E_{\ell}}{M}$ and
+$E_{\ell}$ is the trace of the Hessian matrix of the constraining function
+$\Psi_{\ell}(\mathbf{p})$. Notice that, in fact, the interpreter defines the
+weights $\alpha_{\ell}$ indirectly from the previously assigned values of the 
+positive scalars $\tilde{\alpha}_{\ell}$.
 
 
 \subsection{Isostatic constraint}
@@ -494,25 +507,59 @@ in the same way as matrix $\mathbf{A}$ (Equation~\ref{eq:equality-constraint-bas
 \section{Applications to synthetic data}
 
 
-\subsection*{Simple models}
+\subsection{Simple models}
 
 We have simulated two simple models (I and II) formed by four layers: water, sediments,
 crust (continental and oceanic) and mantle (Table~\ref{tbl:simple-models}).
-
-The only difference between the simple models I and II is the geometry of basement.
-
+The only differences between the simple models I and II are the geometries of basement
+and Moho.
 Figure~\ref{fig:model-simple-I} shows the result obtained by applying our method
 to invert the synthetic gravity disturbance produced by the simple model I.
+This result was obtained by using all the constraints.
+The weights $\alpha_{\ell}$ (equation~\ref{eq:goal-function}) were defined
+by using $\tilde{\alpha}_{\ell}$ (equation~\ref{eq:constraint-weights}) given by: 
+$\tilde{\alpha}_{0} = XXXX$, $\tilde{\alpha}_{1} = XXXX$, 
+$\tilde{\alpha}_{2} = XXXX$ and $\tilde{\alpha}_{3} = XXXX$.
+The initial guess and known depths used 
+in the inversion are represented, respectively, by the continuous white lines and 
+white symbols (triangles and diamonds) shown in Figure~\ref{fig:model-simple-I}.
 
-In this case, we have used all the constraints.
+Figure~\ref{fig:model-simple-I-no-vinc-isostatic} is very similar to
+Figure~\ref{fig:model-simple-I}. The difference is that the result was
+obtained by using all the constraints, except the isostatic constraint
+(equation~\ref{eq:isostatic-constraint-function}). Consequently,
+the weights $\alpha_{\ell}$ (equation~\ref{eq:goal-function}) were defined
+by using different values for the positive scalars $\tilde{\alpha}_{\ell}$ 
+(equation~\ref{eq:constraint-weights}): 
+$\tilde{\alpha}_{0} = 0$, $\tilde{\alpha}_{1} = XXXX$, 
+$\tilde{\alpha}_{2} = XXXX$ and $\tilde{\alpha}_{3} = XXXX$.
+These results obtained for the simple model I shows that our method
+was able to estimate models that fit the simulated gravity disturbance data, 
+retrieve the true basement and Moho reliefs, as well as 
+produce lithostatic stress curves close to the true ones.
+These results also show that, for the simple model I, the isostatic constraint 
+produces little effect on the estimated model. 
 
-Define the values of inversion parameters (alphas, S0, upper/lower bounds, Marquardt
-parameters). 
+Similarly to the tests with the synthetic data produced by the simple model I, 
+Figures~\ref{fig:model-simple-II} and \ref{fig:model-simple-II-no-vinc-isostatic}
+show the results obtained by applying our method to invert the synthetic gravity 
+disturbance produced by the simple model II.
+The result shown in the first one was obtained by using all constraints,
+with weights $\alpha_{\ell}$ (equation~\ref{eq:goal-function}) defined by
+using $\tilde{\alpha}_{\ell}$ (equation~\ref{eq:constraint-weights}) given by: 
+$\tilde{\alpha}_{0} = XXXX$, $\tilde{\alpha}_{1} = XXXX$, 
+$\tilde{\alpha}_{2} = XXXX$ and $\tilde{\alpha}_{3} = XXXX$.
+The result shown in Figure~\ref{fig:model-simple-II-no-vinc-isostatic} was
+obtained by using all constraints, except the isostatic constraint, 
+with weights $\alpha_{\ell}$ (equation~\ref{eq:goal-function}) defined by
+using $\tilde{\alpha}_{\ell}$ (equation~\ref{eq:constraint-weights}) given by: 
+$\tilde{\alpha}_{0} = 0$, $\tilde{\alpha}_{1} = XXXX$, 
+$\tilde{\alpha}_{2} = XXXX$ and $\tilde{\alpha}_{3} = XXXX$.
+Differently from the results obtained for the simple model I, those obtained
+for the simple model II show the influence of the isostatic constraint on
+the estimated model.
 
-true basement and Moho, the gravity disturbance data and the 
-
-Figure~\ref{fig:model-simple-I-no-vinc-isostatic} shows the results obtained for
-the simple model I, but without using the isostatic constraint (equation \ref{eq:isostatic-constraint-function}).
+COMMENT THE DIFFERENCES
 
 
 
@@ -550,8 +597,8 @@ a classical example of volcanic margin \citep{geoffroy2005} showing ...
 		\hline
 		sediments & 2550 & the whole model \\
 		\hline 
-		continental crust & 2670 & from beginning until $y_{COT}$ \\
-		oceanic crust & 2840 & from $y_{COT}$ until the end \\
+		continental crust & 2670 & from $y = 0$ km until $y_{COT}$ \\
+		oceanic crust & 2840 & from $y_{COT}$ until $y = 195$ km \\
 		\hline
 		mantle & 3200 & the whole model \\
 		\hline
@@ -574,8 +621,8 @@ a classical example of volcanic margin \citep{geoffroy2005} showing ...
 		sediments & 2350 & the whole model \\
 		SDR & 2750 & the whole model \\
 		\hline 
-		continental crust & 2770 & from beginning until $y_{COT}$ \\
-		oceanic crust & 2865 & from $y_{COT}$ until the end \\
+		continental crust & 2770 & from $y = 0$ km until $y_{COT}$ \\
+		oceanic crust & 2865 & from $y_{COT}$ until $y = 383$ km \\
 		\hline
 		mantle & 3300 & the whole model \\
 		\hline
@@ -599,8 +646,8 @@ a classical example of volcanic margin \citep{geoffroy2005} showing ...
 		sediments & XXXX & the whole model \\
 		SDR & XXXX & the whole model \\
 		\hline 
-		continental crust & XXXX & from beginning until $y_{COT}$ \\
-		oceanic crust & XXXX & from $y_{COT}$ until the end \\
+		continental crust & XXXX & from $y = 0$ km until $y_{COT}$ \\
+		oceanic crust & XXXX & from $y_{COT}$ until $y = XXX$ km \\
 		\hline
 		mantle & XXXX & the whole model \\
 		\hline
@@ -666,7 +713,7 @@ a classical example of volcanic margin \citep{geoffroy2005} showing ...
 \plot{model-simple-I-no-vinc-isostatic}{width=0.6\textwidth}{
 	%\plot{model-simple-I-no-vinc-isostatic}{width=\columnwidth}{
 	{Application to synthetic data produced by the simple model I.
-	 The difference between this figure and Figure~\ref{fig:simple-model-I}
+	 The difference between this figure and Figure~\ref{fig:model-simple-I}
 	 is that the estimated model was obtained by using all constraints,
 	 except the isostatic constraint.}
 }
@@ -695,7 +742,7 @@ a classical example of volcanic margin \citep{geoffroy2005} showing ...
 \plot{model-simple-II-no-vinc-isostatic}{width=0.6\textwidth}{
 	%\plot{model-simple-II-no-vinc-isostatic}{width=\columnwidth}{
 	{Application to synthetic data produced by the simple model II.
-	 The difference between this figure and Figure~\ref{fig:simple-model-II}
+	 The difference between this figure and Figure~\ref{fig:model-simple-II}
 	 is that the estimated model was obtained by using all constraints,
 	 except the isostatic constraint.}
 }
