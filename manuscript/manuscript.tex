@@ -173,7 +173,7 @@ $(x_{i}, y_{i}, z_{i})$, on a profile located over a rifted passive margin. The
 coordinates are referred to a topocentric Cartesian system, with $z$ axis pointing
 downward, $y$-axis along the profile and $x$-axis perpendicular to the profile. 
 We assume that the actual mass distribution in a rifted passive margin can be 
-schematically represented according to Figure~\ref{fig:rifted-margin-model}. 
+schematically represented according to Figure~\ref{fig:rifted-margin-model-color}. 
 In this model, the subsurface is formed by four layers. 
 The first and shallowest one represents a water layer with constant density
 $\rho^{(w)}$. 
@@ -188,9 +188,9 @@ oceanic crust.
 The deepest layer represents a homogeneous mantle with constant density $\rho^{(m)}$. 
 The interface separating the second and third layers defines the basement relief whereas
 that separating the third and fourth layers defines the Moho. These interfaces are
-represented by dashed-white lines in Figure~\ref{fig:rifted-margin-model}.
+represented by dashed-white lines in Figure~\ref{fig:rifted-margin-model-color}.
 We also presume the existence of an isostatic compensation depth at $S_{0}$ 
-(represented as a continuous white line in Figure~\ref{fig:rifted-margin-model}),
+(represented as a continuous white line in Figure~\ref{fig:rifted-margin-model-color}),
 below which there is no lateral variations in the mass distribution.
 
 In order to define the anomalous mass distribution producing the observed gravity
@@ -200,21 +200,21 @@ density $\rho^{(r)}$.
 The deepest layer in the reference mass distribution represents a homogeneous mantle
 with constant density $\rho^{(m)}$. Notice that the mantle in the reference mass 
 distribution has the same density as the mantle in our rifted margin model
-(Figure~\ref{fig:rifted-margin-model}).
+(Figure~\ref{fig:rifted-margin-model-color}).
 The interface separating the crust and mantle in the reference mass distribution 
 is conveniently called \textit{reference Moho} (represented as a continuous white line
-in Figure~\ref{fig:rifted-margin-model}).
+in Figure~\ref{fig:rifted-margin-model-color}).
 The reference model can be thought of as the outer layers of a concentric
 mass distribution producing the normal gravity field.
 
 We consider that the anomalous mass distribution producing the observed data
 is defined as the difference between the rifted margin model 
-(Figure~\ref{fig:rifted-margin-model}) and the reference mass distribution (not shown).
+(Figure~\ref{fig:rifted-margin-model-color}) and the reference mass distribution (not shown).
 As a consequence, the anomalous mass distribution is characterized by regions
 with constant density contrast.
 This anomalous distribution is approximated by an interpretation model 
 formed by $N$ columns of vertically stacked prisms 
-(Figure~\ref{fig:interpretation-model}).
+(Figure~\ref{fig:interpretation-model-color}).
 For convenience, we presume that there is an observed gravity disturbance over the
 center of each column.
 We consider that the prisms in the extremities of the interpretation model extend to
@@ -236,9 +236,9 @@ The third layer represents the crust, it is also formed by a single prism,
 has thickness $t^{(c)}_{i}$ and density contrast 
 $\Delta \rho^{(c)}_{i} = \rho^{(c)} - \rho^{(r)}$, 
 with $\rho^{c}$ being the crust density. 
-According to our rifted margin model (Figure~\ref{fig:rifted-margin-model}), the crust
+According to our rifted margin model (Figure~\ref{fig:rifted-margin-model-color}), the crust
 density $\rho^{(c)}_{i}$ may assume two possible values, depending on its position
-with respect to the $y_{COT}$ (Figure~\ref{fig:interpretation-model}).
+with respect to the $y_{COT}$ (Figure~\ref{fig:interpretation-model-color}).
 As a consequence, the prisms forming the third layer of the interpretation model may
 have two possible density contrasts: $\Delta \rho^{(c)}_{i} = \rho^{(cc)} - \rho^{(r)}$,
 for $y_{i} \le y_{COT}$, or $\Delta \rho^{(c)}_{i} = \rho^{(oc)} - \rho^{(r)}$,
@@ -329,12 +329,12 @@ where $\tilde{\alpha}_{\ell}$ is a positive scalar, $f_{\ell} = \frac{E_{\ell}}{
 $E_{\ell}$ is the trace of the Hessian matrix of the constraining function
 $\Psi_{\ell}(\mathbf{p})$. Notice that, in fact, the interpreter defines the
 weights $\alpha_{\ell}$ indirectly from the previously assigned values of the 
-positive scalars $\tilde{\alpha}_{\ell}$.
+positive scalars $\tilde{\alpha}_{\ell}$ (equation \ref{eq:constraint-weights}).
 
 
 \subsection{Isostatic constraint}
 
-Consider that the interpretation model (Figure~\ref{fig:interpretation-model})
+Consider that the interpretation model (Figure~\ref{fig:interpretation-model-color})
 is in isostatic equilibrium \citep{turcotte-schubert2002, hofmann-wellenhof-moritz2005,
 lowrie2007} so that the lithostatic stress (pressure) is constant on the
 isostatic compensation surface $S_{0}$.
@@ -659,8 +659,8 @@ a classical example of volcanic margin \citep{geoffroy2005} showing ...
 
 %%%%%%%%%%%%%%%%%% Figures %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\plot{rifted-margin-model}{width=0.6\textwidth}{
-\plot{rifted-margin-model}{width=\columnwidth}{
+%\plot{rifted-margin-model-color}{width=0.6\textwidth}{
+\plot{rifted-margin-model-color}{width=\columnwidth}{
 	{Rifted margin model formed by four layers. The first one 
 	represents a water layer with constant density $\rho^{(w)}$. The second layer
 	is formed by $Q = 2$ vertically adjacent parts. They represent sediments, salt or
@@ -674,13 +674,13 @@ a classical example of volcanic margin \citep{geoffroy2005} showing ...
 	at $S_{0}$ and the reference Moho at $S_{0} + \Delta S$.}
 }
 
-%\plot{interpretation-model}{width=0.6\textwidth}{
-\plot{interpretation-model}{width=\columnwidth}{
+%\plot{interpretation-model-color}{width=0.6\textwidth}{
+\plot{interpretation-model-color}{width=\columnwidth}{
 	{Interpretation model formed by $N$ columns of vertically stacked prisms. 
 	Each column is formed by four layers of prisms and locally approximates the four
-	layers of the rifted margin model (Figure~\ref{fig:rifted-margin-model}).
+	layers of the rifted margin model (Figure~\ref{fig:rifted-margin-model-color}).
 	Each prism has a constant density contrast defined as the difference between
-	its corresponding density at the rifted margin model (Figure~\ref{fig:rifted-margin-model})
+	its corresponding density at the rifted margin model (Figure~\ref{fig:rifted-margin-model-color})
 	and the constant density $\rho^{(r)}$ of the shallowest layer forming
 	the reference density distribution (see text).
 	Basement and Moho are represented by the dashed-white lines. 
