@@ -510,19 +510,18 @@ in the same way as matrix $\mathbf{A}$ (Equation~\ref{eq:equality-constraint-bas
 \subsection{Simple models}
 
 We have simulated two simple models (I and II) formed by four layers: water, sediments,
-crust (continental and oceanic) and mantle (Table~\ref{tbl:simple-models}).
+crust (continental and oceanic) and mantle.
+%(Table~\ref{tbl:simple-models}).
 The only differences between the simple models I and II are the geometries of basement
 and Moho.
 Figure~\ref{fig:model-simple-I} shows the result obtained by applying our method
-to invert the synthetic gravity disturbance produced by the simple model I.
+to invert the synthetic gravity disturbance produced by the simple model I,
+as well as the initial guess and known depths used in the inversion.
 This result was obtained by using all the constraints.
 The weights $\alpha_{\ell}$ (equation~\ref{eq:goal-function}) were defined
 by using $\tilde{\alpha}_{\ell}$ (equation~\ref{eq:constraint-weights}) given by: 
 $\tilde{\alpha}_{0} = XXXX$, $\tilde{\alpha}_{1} = XXXX$, 
 $\tilde{\alpha}_{2} = XXXX$ and $\tilde{\alpha}_{3} = XXXX$.
-The initial guess and known depths used 
-in the inversion are represented, respectively, by the continuous white lines and 
-white symbols (triangles and diamonds) shown in Figure~\ref{fig:model-simple-I}.
 
 Figure~\ref{fig:model-simple-I-no-vinc-isostatic} is very similar to
 Figure~\ref{fig:model-simple-I}. The difference is that the result was
@@ -538,7 +537,7 @@ was able to estimate models that fit the simulated gravity disturbance data,
 retrieve the true basement and Moho reliefs, as well as 
 produce lithostatic stress curves close to the true ones.
 These results also show that, for the simple model I, the isostatic constraint 
-produces little effect on the estimated model. 
+produces little effect on the estimated model.
 
 Similarly to the tests with the synthetic data produced by the simple model I, 
 Figures~\ref{fig:model-simple-II} and \ref{fig:model-simple-II-no-vinc-isostatic}
@@ -559,8 +558,27 @@ Differently from the results obtained for the simple model I, those obtained
 for the simple model II show the influence of the isostatic constraint on
 the estimated model.
 
-COMMENT THE DIFFERENCES
+The results obtained with and without the isostatic constraint produced
+practically the same data fit. However, there are significant differences
+on the lithostatic stress curves and the geometry of the estimated models.
+Figure~\ref{fig:model-simple-II} shows that 
+the isostatic constraint produces a smooth lithostatic stress
+curve, which is in perfect agreement with the a priori information
+imposed by the regularizing function $\Psi_{0}(\mathbf{p})$
+(equation~\ref{eq:isostatic-constraint-function}).
+By comparing the estimated Moho shown in 
+Figures~\ref{fig:model-simple-II} and \ref{fig:model-simple-II-no-vinc-isostatic},
+we can see that the result obtained by using the isostatic constraint 
+is closer to the true one along the entire profile.
+On the other hand, the estimated basement is better at the first $\approx 60$ km,
+on the region coincident with the abrupt crustal thinning.
+It is worth noting that, on this region, the true lithostatic stress curve is
+relatively smooth and the basement relief shows its steepest variations.
+These variations cannot be properly retrieved without using the isostatic
+constraint, as shown in Figure~\ref{fig:model-simple-II-no-vinc-isostatic}.
 
+
+PAREI AQUI  
 
 
 
@@ -583,77 +601,77 @@ a classical example of volcanic margin \citep{geoffroy2005} showing ...
 
 %%%%%%%%%%%%%%%%%% Tables %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\tabl{simple-models}{Properties of the simple models I and II. 
-	The density contrasts are defined with respect to the reference value 
-	$\rho^{(r)} = 2670$ kg/m$^{3}$. The model extends from $y = 0$ km
-	to $y = 195$ km. The Crust-Ocean Transition (COT) is located at $y_{COT} = 117$ km.
-}{
-\begin{center}
-	\begin{tabular}{lcc}
-		\hline
-		\textbf{Geological meaning} & \textbf{Density} $\rho$ (kg/m$^{3}$) & \textbf{Horizontal extension}\\
-		\hline
-		water & 1030 & the whole model \\
-		\hline
-		sediments & 2550 & the whole model \\
-		\hline 
-		continental crust & 2670 & from $y = 0$ km until $y_{COT}$ \\
-		oceanic crust & 2840 & from $y_{COT}$ until $y = 195$ km \\
-		\hline
-		mantle & 3200 & the whole model \\
-		\hline
-	\end{tabular}
-\end{center}
-}
-
-\tabl{volcanic-margin-model}{Properties of the volcanic magin model. 
-	The density contrasts are defined with respect to the
-	reference value $\rho^{(r)} = 2770$ kg/m$^{3}$. The model extends from $y = 0$ km
-	to $y = 383$ km. The Crust-Ocean Transition (COT) is located at $y_{COT} = 334$ km.
-}{
-\begin{center}
-	\begin{tabular}{lcc}
-		\hline
-		\textbf{Geological meaning} & \textbf{Density} $\rho$ (kg/m$^{3}$) & \textbf{Horizontal extension}\\
-		\hline
-		water & 1030 & the whole model \\
-		\hline
-		sediments & 2350 & the whole model \\
-		SDR & 2750 & the whole model \\
-		\hline 
-		continental crust & 2770 & from $y = 0$ km until $y_{COT}$ \\
-		oceanic crust & 2865 & from $y_{COT}$ until $y = 383$ km \\
-		\hline
-		mantle & 3300 & the whole model \\
-		\hline
-	\end{tabular}
-\end{center}
-}
-
-\tabl{pelotas-model}{Properties of the interpretation model used to
-	invert the gravity data over the Pelotas basin.
-	The density contrasts are defined with respect to the
-	reference value $\rho^{(r)} = XXXX$ kg/m$^{3}$. The model extends from $y = 0$ km
-	to $y = XXX$ km. The Crust-Ocean Transition (COT) is located at $y_{COT} = XXX$ km.
-}{
-\begin{center}
-	\begin{tabular}{lcc}
-		\hline
-		\textbf{Geological meaning} & \textbf{Density} $\rho$ (kg/m$^{3}$) & \textbf{Horizontal extension}\\
-		\hline
-		water & 1030 & the whole model \\
-		\hline
-		sediments & XXXX & the whole model \\
-		SDR & XXXX & the whole model \\
-		\hline 
-		continental crust & XXXX & from $y = 0$ km until $y_{COT}$ \\
-		oceanic crust & XXXX & from $y_{COT}$ until $y = XXX$ km \\
-		\hline
-		mantle & XXXX & the whole model \\
-		\hline
-	\end{tabular}
-\end{center}
-}
+%\tabl{simple-models}{Properties of the simple models I and II. 
+%	The density contrasts are defined with respect to the reference value 
+%	$\rho^{(r)} = 2670$ kg/m$^{3}$. The model extends from $y = 0$ km
+%	to $y = 195$ km. The Crust-Ocean Transition (COT) is located at $y_{COT} = 117$ km.
+%}{
+%\begin{center}
+%	\begin{tabular}{lcc}
+%		\hline
+%		\textbf{Geological meaning} & \textbf{Density} $\rho$ (kg/m$^{3}$) & \textbf{Horizontal extension}\\
+%		\hline
+%		water & 1030 & the whole model \\
+%		\hline
+%		sediments & 2550 & the whole model \\
+%		\hline 
+%		continental crust & 2670 & from $y = 0$ km until $y_{COT}$ \\
+%		oceanic crust & 2840 & from $y_{COT}$ until $y = 195$ km \\
+%		\hline
+%		mantle & 3200 & the whole model \\
+%		\hline
+%	\end{tabular}
+%\end{center}
+%}
+%
+%\tabl{volcanic-margin-model}{Properties of the volcanic magin model. 
+%	The density contrasts are defined with respect to the
+%	reference value $\rho^{(r)} = 2770$ kg/m$^{3}$. The model extends from $y = 0$ km
+%	to $y = 383$ km. The Crust-Ocean Transition (COT) is located at $y_{COT} = 334$ km.
+%}{
+%\begin{center}
+%	\begin{tabular}{lcc}
+%		\hline
+%		\textbf{Geological meaning} & \textbf{Density} $\rho$ (kg/m$^{3}$) & \textbf{Horizontal extension}\\
+%		\hline
+%		water & 1030 & the whole model \\
+%		\hline
+%		sediments & 2350 & the whole model \\
+%		SDR & 2750 & the whole model \\
+%		\hline 
+%		continental crust & 2770 & from $y = 0$ km until $y_{COT}$ \\
+%		oceanic crust & 2865 & from $y_{COT}$ until $y = 383$ km \\
+%		\hline
+%		mantle & 3300 & the whole model \\
+%		\hline
+%	\end{tabular}
+%\end{center}
+%}
+%
+%\tabl{pelotas-model}{Properties of the interpretation model used to
+%	invert the gravity data over the Pelotas basin.
+%	The density contrasts are defined with respect to the
+%	reference value $\rho^{(r)} = XXXX$ kg/m$^{3}$. The model extends from $y = 0$ km
+%	to $y = XXX$ km. The Crust-Ocean Transition (COT) is located at $y_{COT} = XXX$ km.
+%}{
+%\begin{center}
+%	\begin{tabular}{lcc}
+%		\hline
+%		\textbf{Geological meaning} & \textbf{Density} $\rho$ (kg/m$^{3}$) & \textbf{Horizontal extension}\\
+%		\hline
+%		water & 1030 & the whole model \\
+%		\hline
+%		sediments & XXXX & the whole model \\
+%		SDR & XXXX & the whole model \\
+%		\hline 
+%		continental crust & XXXX & from $y = 0$ km until $y_{COT}$ \\
+%		oceanic crust & XXXX & from $y_{COT}$ until $y = XXX$ km \\
+%		\hline
+%		mantle & XXXX & the whole model \\
+%		\hline
+%	\end{tabular}
+%\end{center}
+%}
 
 %%%%%%%%%%%%%%%%%% Tables %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -694,7 +712,9 @@ a classical example of volcanic margin \citep{geoffroy2005} showing ...
 %\plot{model-simple-I}{width=\columnwidth}{
 	{Application to synthetic data produced by the simple model I.
 	 This model is formed by four layers representing: water, sediments, 
-	 crust (continental and oceanic) and mantle (Table~\ref{tbl:simple-models}).
+	 crust (continental and oceanic) and mantle. The numbers in the legend
+	 represent de density values in kg/m$^{3}$.
+	 %(Table~\ref{tbl:simple-models}).
 	 The bottom panel shows the estimated model (gray prisms),
 	 the true basement and Moho (dashed white lines), the initial basement
 	 and Moho used in the inversion (continuous white lines), as well as the 
@@ -723,7 +743,9 @@ a classical example of volcanic margin \citep{geoffroy2005} showing ...
 	%\plot{model-simple-II}{width=\columnwidth}{
 	{Application to synthetic data produced by the simple model II.
 	 This model is formed by four layers representing: water, sediments, 
-	 crust (continental and oceanic) and mantle (Table~\ref{tbl:simple-models}).
+	 crust (continental and oceanic) and mantle. The numbers in the legend
+	 represent de density values in kg/m$^{3}$.
+	 % (Table~\ref{tbl:simple-models}).
 	 The bottom panel shows the estimated model (gray prisms),
 	 the true basement and Moho (dashed white lines), the initial basement
 	 and Moho used in the inversion (continuous white lines), as well as the 
@@ -752,7 +774,9 @@ a classical example of volcanic margin \citep{geoffroy2005} showing ...
 	%\plot{model-pelotas-synthetic-data}{width=\columnwidth}{
 	{Application to synthetic data produced by the volcanic margin model.
 	 This model is formed by four layers representing: water, sediments $+$
-	 SDR, crust (continental and oceanic) and mantle (Table~\ref{tbl:volcanic-margin-model}).
+	 SDR, crust (continental and oceanic) and mantle. The numbers in the legend
+	 represent de density values in kg/m$^{3}$.
+	 % (Table~\ref{tbl:volcanic-margin-model}).
 	 The bottom panel shows the estimated model (gray prisms),
 	 the true basement and Moho (dashed white lines), the initial basement
 	 and Moho used in the inversion (continuous white lines), as well as the 
