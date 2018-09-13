@@ -301,14 +301,14 @@ $\mathbf{d}^{o}$ can be formulated as the problem of minimizing the goal functio
 \end{equation}
 subject to 
 \begin{equation}
-p_{j}^{min} < p_{j} < p_{j}^{max} \: , \quad j = 1, \dots, M \: .
+p_{j}^{min} < p_{j} < p_{j}^{max} \: , \quad j = 1, \dots, M \: ,
 \label{eq:inequality-constraint}
 \end{equation}
+where $p_{j}^{min}$ and $p_{j}^{max}$ define, respectively, lower and upper bounds 
+for the $j$-th element of $\mathbf{p}$.
 The goal function is minimized by using the Levenberg-Marquardt method \citep{aster-etal2005}
-and the inequality constraint (equation \ref{eq:inequality-constraint}) was
+and the inequality constraint (equation \ref{eq:inequality-constraint}) is
 incorporated by using the same strategy employed by \citet{barbosa-etal1999}.
-All the derivatives with respect to the parameters were computed by using a
-central finite difference approximation.
 In Equation~\ref{eq:goal-function}, $\mu$ represents the regularizing parameter, 
 $\Phi(\mathbf{p})$ represents the misfit function given by
 \begin{equation}
@@ -319,16 +319,25 @@ $\Phi(\mathbf{p})$ represents the misfit function given by
 where $\| \cdot \|_{2}^{2}$ represents the squared Euclidean norm, $\alpha_{\ell}$
 represent the weights assigned to the regularizing functions $\Psi_{\ell}(\mathbf{p})$,
 which define the constraints on the parameters to be estimated, $\ell = 0, 1, 2, 3$.
-
-The weights $\alpha_{\ell}$ (equation~\ref{eq:goal-function}) are defined as follows:
+All the derivatives of the misfit function $\Phi(\mathbf{p})$ with respect to the parameters 
+as computed by using a central finite difference approximation. Finally,
+the weights $\alpha_{\ell}$ (equation~\ref{eq:goal-function}) are defined 
+as follows:
 \begin{equation}
 \alpha_{\ell} = \tilde{\alpha}_{\ell} \, f_{\ell} \: , \quad \ell = 0, 1, 2, 3 \: ,
 \label{eq:constraint-weights}
 \end{equation}
-where $\tilde{\alpha}_{\ell}$ is a positive scalar, $f_{\ell} = \frac{E_{\ell}}{M}$ and
-$E_{\ell}$ is the trace of the Hessian matrix of the constraining function
-$\Psi_{\ell}(\mathbf{p})$. Notice that, in fact, the interpreter defines the
-weights $\alpha_{\ell}$ indirectly from the previously assigned values of the 
+where $\tilde{\alpha}_{\ell}$ is a positive scalar, $f_{\ell} = \frac{E_{\ell}}{E_{\Phi}}$, 
+$E_{\ell}$ is the median of the elements forming the main diagonal of the Hessian matrix of the 
+$\ell$-th constraining function $\Psi_{\ell}(\mathbf{p})$ 
+(equations~\ref{eq:isostatic-constraint-function}, \ref{eq:smootheness-contraint},
+\ref{eq:equality-constraint-basement} and \ref{eq:equality-constraint-moho})
+and $E_{\Phi}$ is the median of the
+elements forming the main diagonal of the Hessian matrix of the misfit function 
+$\Phi(\mathbf{p})$ (equation~\ref{eq:misfit-function}) produced by the initial
+approximation for $\mathbf{p}$.
+Notice that, in fact, the interpreter defines the
+weights $\alpha_{\ell}$ indirectly from the previously assigned values for the 
 positive scalars $\tilde{\alpha}_{\ell}$ (equation \ref{eq:constraint-weights}).
 
 
@@ -504,6 +513,15 @@ equal to one and all the remaining elements equal to zero. This matrix is define
 in the same way as matrix $\mathbf{A}$ (Equation~\ref{eq:equality-constraint-basement}).
 
 
+\subsection{Practical procedures}
+
+
+Describe a brief recipe for choosing the weights $\tilde{\alpha}_{\ell}$ 
+(equation~\ref{eq:constraint-weights}) based on the convergence of the
+inverse problem, estimated model, etc.
+
+
+
 \section{Applications to synthetic data}
 
 
@@ -536,10 +554,16 @@ These results obtained for the simple model I shows that our method
 was able to estimate models that fit the simulated gravity disturbance data, 
 retrieve the true basement and Moho reliefs, as well as 
 produce lithostatic stress curves close to the true ones.
-These results also show that, for the simple model I, the isostatic constraint 
-produces little effect on the estimated model.
 
-Similarly to the tests with the synthetic data produced by the simple model I, 
+\textbf{PROBLEM HERE:} 
+It is important to note that the simple model I has a smooth basement relief
+and a non-smooth lithostatic stress curve. 
+In this case, the isostatic constraint (equation~\ref{eq:isostatic-constraint-function}) 
+does not impose an a priori information that is compatible with
+the true model. Consequently, the results obtained by using the isostatic
+constraint (Figure~\ref{fig:model-simple-I}) are worse than those show 
+in Figure~\ref{fig:model-simple-I-no-vinc-isostatic}.
+
 Figures~\ref{fig:model-simple-II} and \ref{fig:model-simple-II-no-vinc-isostatic}
 show the results obtained by applying our method to invert the synthetic gravity 
 disturbance produced by the simple model II.
@@ -554,10 +578,6 @@ with weights $\alpha_{\ell}$ (equation~\ref{eq:goal-function}) defined by
 using $\tilde{\alpha}_{\ell}$ (equation~\ref{eq:constraint-weights}) given by: 
 $\tilde{\alpha}_{0} = 0$, $\tilde{\alpha}_{1} = XXXX$, 
 $\tilde{\alpha}_{2} = XXXX$ and $\tilde{\alpha}_{3} = XXXX$.
-Differently from the results obtained for the simple model I, those obtained
-for the simple model II show the influence of the isostatic constraint on
-the estimated model.
-
 The results obtained with and without the isostatic constraint produced
 practically the same data fit. However, there are significant differences
 on the lithostatic stress curves and the geometry of the estimated models.
@@ -571,21 +591,17 @@ Figures~\ref{fig:model-simple-II} and \ref{fig:model-simple-II-no-vinc-isostatic
 we can see that the result obtained by using the isostatic constraint 
 is closer to the true one along the entire profile.
 On the other hand, the estimated basement is better at the first $\approx 60$ km,
-on the region coincident with the abrupt crustal thinning.
+on the region coincident with the abrupt crustal thinning
+in the simple model II.
 It is worth noting that, on this region, the true lithostatic stress curve is
-relatively smooth and the basement relief shows its steepest variations.
-These variations cannot be properly retrieved without using the isostatic
+relatively smooth and the basement presents steep slopes.
+These slopes cannot be properly retrieved without using the isostatic
 constraint, as shown in Figure~\ref{fig:model-simple-II-no-vinc-isostatic}.
-
-
-PAREI AQUI  
-
-
 
 
 \subsection*{Volcanic margin model}
 
-
+bla bla bla
 
 
 \section{Application to real data}
