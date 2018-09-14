@@ -327,7 +327,7 @@ as follows:
 \alpha_{\ell} = \tilde{\alpha}_{\ell} \, f_{\ell} \: , \quad \ell = 0, 1, 2, 3 \: ,
 \label{eq:constraint-weights}
 \end{equation}
-where $\tilde{\alpha}_{\ell}$ is a positive scalar, $f_{\ell} = \frac{E_{\ell}}{E_{\Phi}}$, 
+where $\tilde{\alpha}_{\ell}$ is a positive scalar, $f_{\ell} = \frac{E_{\Phi}}{E_{\ell}}$, 
 $E_{\ell}$ is the median of the elements forming the main diagonal of the Hessian matrix of the 
 $\ell$-th constraining function $\Psi_{\ell}(\mathbf{p})$ 
 (equations~\ref{eq:isostatic-constraint-function}, \ref{eq:smootheness-contraint},
@@ -538,8 +538,8 @@ This result was obtained by using all the constraints, except the isostatic
 constraint.
 The weights $\alpha_{\ell}$ (equation~\ref{eq:goal-function}) were defined
 by using $\tilde{\alpha}_{\ell}$ (equation~\ref{eq:constraint-weights}) given by: 
-$\tilde{\alpha}_{0} = 0$, $\tilde{\alpha}_{1} = 10^{-8}$, 
-$\tilde{\alpha}_{2} = 10^{-6}$ and $\tilde{\alpha}_{3} = 10^{-6}$.
+$\tilde{\alpha}_{0} = 0$, $\tilde{\alpha}_{1} = 10^{1}$, 
+$\tilde{\alpha}_{2} = 10^{2}$ and $\tilde{\alpha}_{3} = 10^{2}$.
 Notice that, without using the isostatic constraint, our method was able
 to estimate a model that fit the simulated gravity disturbance and 
 lithostatic stress curve, as well as show basement and Moho reliefs 
@@ -555,8 +555,8 @@ obtained by using all the constraints (including the isostatic constraint).
 In this case, the weights $\alpha_{\ell}$ (equation~\ref{eq:goal-function}) 
 were defined by using different values for the positive scalars 
 $\tilde{\alpha}_{\ell}$ (equation~\ref{eq:constraint-weights}): 
-$\tilde{\alpha}_{0} = 10^{-12}$, $\tilde{\alpha}_{1} = 10^{-8}$, 
-$\tilde{\alpha}_{2} = 10^{-6}$ and $\tilde{\alpha}_{3} = 10^{-6}$.
+$\tilde{\alpha}_{0} = 10^{2}$, $\tilde{\alpha}_{1} = 10^{1}$, 
+$\tilde{\alpha}_{2} = 10^{2}$ and $\tilde{\alpha}_{3} = 10^{2}$.
 Notice that, by using the isostatic constraint, the predicted 
 lithostatic stress curve becomes smoother than that shown in 
 Figure~\ref{fig:simple-model-I-no-isostatic}. 
@@ -578,14 +578,14 @@ The result shown in the first figure was obtained by using all constraints,
 except the isostatic constraint, with weights $\alpha_{\ell}$ 
 (equation~\ref{eq:goal-function}) defined by
 using $\tilde{\alpha}_{\ell}$ (equation~\ref{eq:constraint-weights}) given by: 
-$\tilde{\alpha}_{0} = 0$, $\tilde{\alpha}_{1} = 10^{-10}$, 
-$\tilde{\alpha}_{2} = 10^{-8}$ and $\tilde{\alpha}_{3} = 10^{-8}$.
+$\tilde{\alpha}_{0} = 0$, $\tilde{\alpha}_{1} = 10^{-1}$, 
+$\tilde{\alpha}_{2} = 10^{0}$ and $\tilde{\alpha}_{3} = 10^{0}$.
 The result shown in Figure~\ref{fig:model-simple-II} was
 obtained by using all constraints. 
 The weights $\alpha_{\ell}$ (equation~\ref{eq:goal-function}) were defined by
 using $\tilde{\alpha}_{\ell}$ (equation~\ref{eq:constraint-weights}) given by: 
-$\tilde{\alpha}_{0} = 10^{-14}$, $\tilde{\alpha}_{1} = 10^{-10}$, 
-$\tilde{\alpha}_{2} = 10^{-8}$ and $\tilde{\alpha}_{3} = 10^{-8}$.
+$\tilde{\alpha}_{0} = 10^{0}$, $\tilde{\alpha}_{1} = 10^{-1}$, 
+$\tilde{\alpha}_{2} = 10^{0}$ and $\tilde{\alpha}_{3} = 10^{0}$.
 In this example, the results obtained with and without the isostatic 
 constraint produced practically the same data fit. However, there are 
 significant differences on the lithostatic stress curves and the geometry of 
