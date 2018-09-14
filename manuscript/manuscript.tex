@@ -530,73 +530,85 @@ inverse problem, estimated model, etc.
 We have simulated two simple models (I and II) formed by four layers: water, sediments,
 crust (continental and oceanic) and mantle.
 %(Table~\ref{tbl:simple-models}).
-The only differences between the simple models I and II are the geometries of basement
-and Moho.
-Figure~\ref{fig:model-simple-I} shows the result obtained by applying our method
-to invert the synthetic gravity disturbance produced by the simple model I,
+The only differences between them are the geometries of basement and Moho.
+Figure~\ref{fig:simple-model-I-no-isostatic} shows the result obtained by applying 
+our method to invert the synthetic gravity disturbance produced by the simple model I,
 as well as the initial guess and known depths used in the inversion.
-This result was obtained by using all the constraints.
+This result was obtained by using all the constraints, except the isostatic
+constraint.
 The weights $\alpha_{\ell}$ (equation~\ref{eq:goal-function}) were defined
 by using $\tilde{\alpha}_{\ell}$ (equation~\ref{eq:constraint-weights}) given by: 
-$\tilde{\alpha}_{0} = XXXX$, $\tilde{\alpha}_{1} = XXXX$, 
-$\tilde{\alpha}_{2} = XXXX$ and $\tilde{\alpha}_{3} = XXXX$.
+$\tilde{\alpha}_{0} = 0$, $\tilde{\alpha}_{1} = 10^{-8}$, 
+$\tilde{\alpha}_{2} = 10^{-6}$ and $\tilde{\alpha}_{3} = 10^{-6}$.
+Notice that, without using the isostatic constraint, our method was able
+to estimate a model that fit the simulated gravity disturbance and 
+lithostatic stress curve, as well as show basement and Moho reliefs 
+very close to the true ones.
+Notice that, in this case, both basement and Moho are smooth. However,
+the lithostatic stress curve shows a pronounced discontinuity over the COT. 
+This feature breaks the smoothness of the lithostatic stress curve and 
+is not compatible with the a priori information imposed by
+the isostatic constraint (equation~\ref{eq:isostatic-constraint-function}).
 
-Figure~\ref{fig:model-simple-I-no-vinc-isostatic} is very similar to
-Figure~\ref{fig:model-simple-I}. The difference is that the result was
-obtained by using all the constraints, except the isostatic constraint
-(equation~\ref{eq:isostatic-constraint-function}). Consequently,
-the weights $\alpha_{\ell}$ (equation~\ref{eq:goal-function}) were defined
-by using different values for the positive scalars $\tilde{\alpha}_{\ell}$ 
-(equation~\ref{eq:constraint-weights}): 
-$\tilde{\alpha}_{0} = 0$, $\tilde{\alpha}_{1} = XXXX$, 
-$\tilde{\alpha}_{2} = XXXX$ and $\tilde{\alpha}_{3} = XXXX$.
-These results obtained for the simple model I shows that our method
-was able to estimate models that fit the simulated gravity disturbance data, 
-retrieve the true basement and Moho reliefs, as well as 
-produce lithostatic stress curves close to the true ones.
+Figure~\ref{fig:simple-model-I-all-constraints} shows the result
+obtained by using all the constraints (including the isostatic constraint).
+In this case, the weights $\alpha_{\ell}$ (equation~\ref{eq:goal-function}) 
+were defined by using different values for the positive scalars 
+$\tilde{\alpha}_{\ell}$ (equation~\ref{eq:constraint-weights}): 
+$\tilde{\alpha}_{0} = 10^{-12}$, $\tilde{\alpha}_{1} = 10^{-8}$, 
+$\tilde{\alpha}_{2} = 10^{-6}$ and $\tilde{\alpha}_{3} = 10^{-6}$.
+Notice that, by using the isostatic constraint, the predicted 
+lithostatic stress curve becomes smoother than that shown in 
+Figure~\ref{fig:simple-model-I-no-isostatic}. 
+However, differently from the previous result, there is a significant 
+discrepancy between the estimated and true reliefs of basement and Moho.
+The larger differences between the estimate and true depth occur
+on the region close to COT, where the true lithostatic stress curve
+shows that steep slope.
+These results illustrate a situation in which the a priori information
+imposed by the isostatic constraint is not compatible with the 
+true model.
 
-\textbf{PROBLEM HERE:} 
-It is important to note that the simple model I has a smooth basement relief
-and a non-smooth lithostatic stress curve. 
-In this case, the isostatic constraint (equation~\ref{eq:isostatic-constraint-function}) 
-does not impose an a priori information that is compatible with
-the true model. Consequently, the results obtained by using the isostatic
-constraint (Figure~\ref{fig:model-simple-I}) are worse than those show 
-in Figure~\ref{fig:model-simple-I-no-vinc-isostatic}.
-
-Figures~\ref{fig:model-simple-II} and \ref{fig:model-simple-II-no-vinc-isostatic}
-show the results obtained by applying our method to invert the synthetic gravity 
+Figures~\ref{fig:model-simple-II-no-vinc-isostatic} and \ref{fig:model-simple-II}
+show an example in which the isostatic constraint impose the correct
+a priori information. 
+These results were obtained by applying our method to invert the synthetic gravity 
 disturbance produced by the simple model II.
-The result shown in the first one was obtained by using all constraints,
-with weights $\alpha_{\ell}$ (equation~\ref{eq:goal-function}) defined by
+The result shown in the first figure was obtained by using all constraints,
+except the isostatic constraint, with weights $\alpha_{\ell}$ 
+(equation~\ref{eq:goal-function}) defined by
 using $\tilde{\alpha}_{\ell}$ (equation~\ref{eq:constraint-weights}) given by: 
-$\tilde{\alpha}_{0} = XXXX$, $\tilde{\alpha}_{1} = XXXX$, 
-$\tilde{\alpha}_{2} = XXXX$ and $\tilde{\alpha}_{3} = XXXX$.
-The result shown in Figure~\ref{fig:model-simple-II-no-vinc-isostatic} was
-obtained by using all constraints, except the isostatic constraint, 
-with weights $\alpha_{\ell}$ (equation~\ref{eq:goal-function}) defined by
+$\tilde{\alpha}_{0} = 0$, $\tilde{\alpha}_{1} = 10^{-10}$, 
+$\tilde{\alpha}_{2} = 10^{-8}$ and $\tilde{\alpha}_{3} = 10^{-8}$.
+The result shown in Figure~\ref{fig:model-simple-II} was
+obtained by using all constraints. 
+The weights $\alpha_{\ell}$ (equation~\ref{eq:goal-function}) were defined by
 using $\tilde{\alpha}_{\ell}$ (equation~\ref{eq:constraint-weights}) given by: 
-$\tilde{\alpha}_{0} = 0$, $\tilde{\alpha}_{1} = XXXX$, 
-$\tilde{\alpha}_{2} = XXXX$ and $\tilde{\alpha}_{3} = XXXX$.
-The results obtained with and without the isostatic constraint produced
-practically the same data fit. However, there are significant differences
-on the lithostatic stress curves and the geometry of the estimated models.
-Figure~\ref{fig:model-simple-II} shows that 
-the isostatic constraint produces a smooth lithostatic stress
-curve, which is in perfect agreement with the a priori information
+$\tilde{\alpha}_{0} = 10^{-14}$, $\tilde{\alpha}_{1} = 10^{-10}$, 
+$\tilde{\alpha}_{2} = 10^{-8}$ and $\tilde{\alpha}_{3} = 10^{-8}$.
+In this example, the results obtained with and without the isostatic 
+constraint produced practically the same data fit. However, there are 
+significant differences on the lithostatic stress curves and the geometry of 
+the estimated models. 
+We can see that the isostatic constraint produces a smoother  
+lithostatic stress curve, which is in perfect agreement with the a priori information
 imposed by the regularizing function $\Psi_{0}(\mathbf{p})$
 (equation~\ref{eq:isostatic-constraint-function}).
-By comparing the estimated Moho shown in 
-Figures~\ref{fig:model-simple-II} and \ref{fig:model-simple-II-no-vinc-isostatic},
-we can see that the result obtained by using the isostatic constraint 
-is closer to the true one along the entire profile.
-On the other hand, the estimated basement is better at the first $\approx 60$ km,
-on the region coincident with the abrupt crustal thinning
+The isostatic constraint also produces an estimated Moho which is closer to the
+true one along the entire profile.
+The main differences in the estimated basement, however, occur at
+first $\approx 60$ km, on the region coincident with the abrupt crustal thinning
 in the simple model II.
 It is worth noting that, on this region, the true lithostatic stress curve is
 relatively smooth and the basement presents steep slopes.
 These slopes cannot be properly retrieved without using the isostatic
 constraint, as shown in Figure~\ref{fig:model-simple-II-no-vinc-isostatic}.
+Differently from the results shown in 
+Figure~\ref{fig:simple-model-I-no-isostatic} and \ref{fig:simple-model-I-all-constraints},
+those shown in
+Figures~\ref{fig:model-simple-II-no-vinc-isostatic} and \ref{fig:model-simple-II}
+exemplify a case in which the isostatic constraint contributes to
+better estimating the geometries of basement and Moho.
 
 
 \subsection*{Volcanic margin model}
@@ -693,7 +705,6 @@ a classical example of volcanic margin \citep{geoffroy2005} showing ...
 
 %%%%%%%%%%%%%%%%%% Figures %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\plot{rifted-margin-model-color}{width=0.6\textwidth}{
 \plot{rifted-margin-model-color}{width=\columnwidth}{
 	{Rifted margin model formed by four layers. The first one 
 	represents a water layer with constant density $\rho^{(w)}$. The second layer
@@ -708,7 +719,6 @@ a classical example of volcanic margin \citep{geoffroy2005} showing ...
 	at $S_{0}$ and the reference Moho at $S_{0} + \Delta S$.}
 }
 
-%\plot{interpretation-model-color}{width=0.6\textwidth}{
 \plot{interpretation-model-color}{width=\columnwidth}{
 	{Interpretation model formed by $N$ columns of vertically stacked prisms. 
 	Each column is formed by four layers of prisms and locally approximates the four
@@ -724,96 +734,87 @@ a classical example of volcanic margin \citep{geoffroy2005} showing ...
 }
 
 
-\plot{model-simple-I}{width=0.6\textwidth}{
-%\plot{model-simple-I}{width=\columnwidth}{
+\plot{simple-model-I-no-isostatic}{width=0.6\textwidth}{
 	{Application to synthetic data produced by the simple model I.
 	 This model is formed by four layers representing: water, sediments, 
 	 crust (continental and oceanic) and mantle. The numbers in the legend
 	 represent de density values in kg/m$^{3}$.
-	 %(Table~\ref{tbl:simple-models}).
-	 The bottom panel shows the estimated model (gray prisms),
+	 The bottom panel shows the estimated model (colored prisms),
 	 the true basement and Moho (dashed white lines), the initial basement
-	 and Moho used in the inversion (continuous white lines), as well as the 
-	 known depths at basement (white triangles) and Moho (white diamonds).
+	 and Moho used in the inversion (dashed blue lines), as well as the 
+	 known depths at basement (blue triangles) and Moho (green diamonds).
 	 The middle panel shows the true and estimated lithostatic stress curves computed
 	 by using equation~\ref{eq:lithostatic-stress-densities}. The values are multiplied 
-	 by a constant gravity value.
+	 by a constant gravity value equal to $9.81$ m/s$^{2}$.
 	 The upper panel shows the true gravity disturbance data produced by the simple model 
 	 I (simulated data), 
 	 as well as the data produced by the estimated model (predicted data) and that produced
 	 by the model used as initial guess in the inversion (initial guess data).
-	 The estimated model was obtained by using all constraints.}
+	 The estimated model was obtained by using all constraints, except the isostatic
+	 constraint.}
 }
 
 
-\plot{model-simple-I-no-vinc-isostatic}{width=0.6\textwidth}{
-	%\plot{model-simple-I-no-vinc-isostatic}{width=\columnwidth}{
+\plot{simple-model-I-all-constraints}{width=0.6\textwidth}{
 	{Application to synthetic data produced by the simple model I.
-	 The difference between this figure and Figure~\ref{fig:model-simple-I}
-	 is that the estimated model was obtained by using all constraints,
-	 except the isostatic constraint.}
-}
-
-
-\plot{model-simple-II}{width=0.6\textwidth}{
-	%\plot{model-simple-II}{width=\columnwidth}{
-	{Application to synthetic data produced by the simple model II.
-	 This model is formed by four layers representing: water, sediments, 
-	 crust (continental and oceanic) and mantle. The numbers in the legend
-	 represent de density values in kg/m$^{3}$.
-	 % (Table~\ref{tbl:simple-models}).
-	 The bottom panel shows the estimated model (gray prisms),
-	 the true basement and Moho (dashed white lines), the initial basement
-	 and Moho used in the inversion (continuous white lines), as well as the 
-	 known depths at basement (white triangles) and Moho (white diamonds).
-	 The middle panel shows the true and estimated lithostatic stress curves computed
-	 by using equation~\ref{eq:lithostatic-stress-densities}. The values are multiplied 
-	 by a constant gravity value.
-	 The upper panel shows the true gravity disturbance data produced by the simple model I
-	 (simulated data), 
-	 as well as the data produced by the estimated model (predicted data) and that produced
-	 by the model used as initial guess in the inversion (initial guess data).
-	 The estimated model was obtained by using all constraints.}
+	 The difference between this figure and Figure~\ref{fig:simple-model-I-no-isostatic}
+	 is that the estimated model was obtained by using all constraints.}
 }
 
 
 \plot{model-simple-II-no-vinc-isostatic}{width=0.6\textwidth}{
-	%\plot{model-simple-II-no-vinc-isostatic}{width=\columnwidth}{
 	{Application to synthetic data produced by the simple model II.
-	 The difference between this figure and Figure~\ref{fig:model-simple-II}
-	 is that the estimated model was obtained by using all constraints,
-	 except the isostatic constraint.}
-}
-
-
-\plot{model-pelotas-synthetic-data}{width=0.6\textwidth}{
-	%\plot{model-pelotas-synthetic-data}{width=\columnwidth}{
-	{Application to synthetic data produced by the volcanic margin model.
-	 This model is formed by four layers representing: water, sediments $+$
-	 SDR, crust (continental and oceanic) and mantle. The numbers in the legend
+	 This model is formed by four layers representing: water, sediments, 
+	 crust (continental and oceanic) and mantle. The numbers in the legend
 	 represent de density values in kg/m$^{3}$.
-	 % (Table~\ref{tbl:volcanic-margin-model}).
 	 The bottom panel shows the estimated model (gray prisms),
 	 the true basement and Moho (dashed white lines), the initial basement
 	 and Moho used in the inversion (continuous white lines), as well as the 
 	 known depths at basement (white triangles) and Moho (white diamonds).
 	 The middle panel shows the true and estimated lithostatic stress curves computed
 	 by using equation~\ref{eq:lithostatic-stress-densities}. The values are multiplied 
-	 by a constant gravity value.
+	 by a constant gravity value equal to $9.81$ m/s$^{2}$.
 	 The upper panel shows the true gravity disturbance data produced by the simple model I
 	 (simulated data), 
 	 as well as the data produced by the estimated model (predicted data) and that produced
 	 by the model used as initial guess in the inversion (initial guess data).
-	 The estimated model was obtained by using all constraints.}
+	 The estimated model was obtained by using all constraints, except the isostatic
+	 constraint.}
+}
+
+
+\plot{model-simple-II}{width=0.6\textwidth}{
+	{Application to synthetic data produced by the simple model II.
+	 The difference between this figure and Figure~\ref{fig:model-simple-II}
+	 is that the estimated model was obtained by using all constraints.}
 }
 
 
 \plot{model-pelotas-synthetic-data-no-vinc-isostatic}{width=0.6\textwidth}{
-	%\plot{model-pelotas-synthetic-data-no-vinc-isostatic}{width=\columnwidth}{
+	{Application to synthetic data produced by the volcanic margin model.
+	 This model is formed by four layers representing: water, sediments $+$
+	 SDR, crust (continental and oceanic) and mantle. The numbers in the legend
+	 represent de density values in kg/m$^{3}$.
+	 The bottom panel shows the estimated model (gray prisms),
+	 the true basement and Moho (dashed white lines), the initial basement
+	 and Moho used in the inversion (continuous white lines), as well as the 
+	 known depths at basement (white triangles) and Moho (white diamonds).
+	 The middle panel shows the true and estimated lithostatic stress curves computed
+	 by using equation~\ref{eq:lithostatic-stress-densities}. The values are multiplied 
+	 by a constant gravity value equal to $9.81$ m/s$^{2}$.
+	 The upper panel shows the true gravity disturbance data produced by the simple model I
+	 (simulated data), 
+	 as well as the data produced by the estimated model (predicted data) and that produced
+	 by the model used as initial guess in the inversion (initial guess data).
+	 The estimated model was obtained by using all constraints, except the isostatic
+	 constraint.}
+}
+
+
+\plot{model-pelotas-synthetic-data}{width=0.6\textwidth}{
 	{Application to synthetic data produced by the volcanic margin model.
 	 The difference between this figure and Figure~\ref{fig:volcanic-margin-model}
-	 is that the estimated model was obtained by using all constraints,
-	 except the isostatic constraint.}
+	 is that the estimated model was obtained by using all constraints.}
 }
 
 %%%%%%%%%%%%%%%%%% Figures %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
