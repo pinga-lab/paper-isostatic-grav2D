@@ -535,17 +535,16 @@ Figure~\ref{fig:simple-model-I-without-isostatic-constraint}
 shows the result obtained by applying 
 our method to invert the synthetic gravity disturbance produced by the simple model I,
 as well as the initial guess and known depths used in the inversion.
-This result was obtained by using all the constraints, except the isostatic
-constraint.
+This result was obtained by using all but the isostatic constraint.
 The weights $\alpha_{\ell}$ (equation~\ref{eq:goal-function}) were defined
 by using $\tilde{\alpha}_{\ell}$ (equation~\ref{eq:constraint-weights}) given by: 
 $\tilde{\alpha}_{0} = 0$, $\tilde{\alpha}_{1} = 10^{1}$, 
 $\tilde{\alpha}_{2} = 10^{2}$ and $\tilde{\alpha}_{3} = 10^{2}$.
 Notice that, without using the isostatic constraint, our method was able
-to estimate a model that fit the simulated gravity disturbance and 
-lithostatic stress curve, as well as show basement and Moho reliefs 
+to estimate a model that fits the simulated gravity disturbance and 
+lithostatic stress curve, as well as shows basement and Moho reliefs 
 very close to the true ones.
-Notice that, in this case, both basement and Moho are smooth. However,
+In this case, both basement and Moho are smooth. However,
 the lithostatic stress curve shows a pronounced discontinuity over the COT. 
 This feature breaks the smoothness of the lithostatic stress curve and 
 is not compatible with the a priori information imposed by
@@ -558,27 +557,26 @@ were defined by using different values for the positive scalars
 $\tilde{\alpha}_{\ell}$ (equation~\ref{eq:constraint-weights}): 
 $\tilde{\alpha}_{0} = 10^{2}$, $\tilde{\alpha}_{1} = 10^{1}$, 
 $\tilde{\alpha}_{2} = 10^{2}$ and $\tilde{\alpha}_{3} = 10^{2}$.
-Notice that, by using the isostatic constraint, the predicted 
-lithostatic stress curve becomes smoother than that shown in 
+By using the isostatic constraint, we obtain a predicted 
+lithostatic stress curve that is smoother than that shown in 
 Figure~\ref{fig:simple-model-I-without-isostatic-constraint}. 
 However, differently from the previous result, there is a significant 
 discrepancy between the estimated and true reliefs of basement and Moho.
-The larger differences between the estimate and true depth occur
-on the region close to COT, where the true lithostatic stress curve
-shows that steep slope.
+The larger differences occur on the region close to COT, where the 
+true lithostatic stress curve shows that steep slope.
 These results illustrate a situation in which the a priori information
 imposed by the isostatic constraint is not compatible with the 
 true model.
 
 Figures~\ref{fig:simple-model-II-without-isostatic-constraint} and 
 \ref{fig:simple-model-II-all-constraints}
-show an example in which the isostatic constraint impose the correct
+show an example in which the isostatic constraint imposes the correct
 a priori information. 
 These results were obtained by applying our method to invert the synthetic gravity 
 disturbance produced by the simple model II.
-The result shown in the first figure was obtained by using all constraints,
-except the isostatic constraint, with weights $\alpha_{\ell}$ 
-(equation~\ref{eq:goal-function}) defined by
+The result shown in the first figure was obtained by using all but 
+the isostatic constraint. The weights $\alpha_{\ell}$ 
+(equation~\ref{eq:goal-function}) were defined by
 using $\tilde{\alpha}_{\ell}$ (equation~\ref{eq:constraint-weights}) given by: 
 $\tilde{\alpha}_{0} = 0$, $\tilde{\alpha}_{1} = 10^{-1}$, 
 $\tilde{\alpha}_{2} = 10^{0}$ and $\tilde{\alpha}_{3} = 10^{0}$.
@@ -598,7 +596,7 @@ imposed by the regularizing function $\Psi_{0}(\mathbf{p})$
 (equation~\ref{eq:isostatic-constraint-function}).
 The isostatic constraint also produces an estimated Moho which is closer to the
 true one along the entire profile.
-The main differences in the estimated basement, however, occur at
+The main differences in the estimated basement, however, occur at the 
 first $\approx 60$ km, on the region coincident with the abrupt crustal thinning
 in the simple model II.
 It is worth noting that, on this region, the true lithostatic stress curve is
@@ -617,7 +615,36 @@ better estimating the geometries of basement and Moho.
 
 \subsection*{Volcanic margin model}
 
-bla bla bla
+We have simulated a simple volcanic margin model formed by four layers: 
+water, sediments + seaward dipping reflectors, crust (continental and oceanic) 
+and mantle.
+Similarly to the simple model II (Figures~\ref{fig:simple-model-II-without-isostatic-constraint}
+and \ref{fig:simple-model-II-all-constraints}), our volcanic margin model
+shows a significant crustal thinning at the first part of
+the profile.
+Figures~\ref{fig:volcanin-margin-without-isostatic-constraint} and 
+\ref{fig:volcanin-margin-all-constraints} show the results obtained,
+respectively, by using and not using the isostatic constraint to estimate
+the geometries of basement and Moho.
+The weights $\alpha_{\ell}$ (equation~\ref{eq:goal-function}) used
+to obtain the result shown in the first figure were defined with
+$\tilde{\alpha}_{\ell}$ (equation~\ref{eq:constraint-weights}) equal to: 
+$\tilde{\alpha}_{0} = 0$, $\tilde{\alpha}_{1} = 10^{-1}$, 
+$\tilde{\alpha}_{2} = 10^{0}$ and $\tilde{\alpha}_{3} = 10^{0}$.
+The $\tilde{\alpha}_{\ell}$ (equation~\ref{eq:constraint-weights}) used to
+obtain the result shown in Figure~\ref{fig:volcanin-margin-all-constraints} 
+are given by: $\tilde{\alpha}_{0} = 10^{0}$, $\tilde{\alpha}_{1} = 10^{-1}$, 
+$\tilde{\alpha}_{2} = 10^{0}$ and $\tilde{\alpha}_{3} = 10^{0}$.
+
+We can see that, without using the isostatic constraint, out method could not 
+retrieve the pronounced crustal thinning located at the first part of our
+volcanic margin model. As shown in 
+Figure~\ref{fig:volcanin-margin-without-isostatic-constraint},
+the difference between the estimated and true basement reach
+$\approx 10$ km at the position $\approx 75$ km on the profile.
+On the other hand, as in the previous test with the simple model II, 
+the isostatic constraint was able to produce an estimated basement
+very close to the true one (Figure~\ref{fig:volcanin-margin-all-constraints}).
 
 
 \section{Application to real data}
@@ -753,7 +780,7 @@ a classical example of volcanic margin \citep{geoffroy2005} showing ...
 	 I (simulated data), 
 	 as well as the data produced by the estimated model (predicted data) and that produced
 	 by the model used as initial guess in the inversion (initial guess data).
-	 The estimated model was obtained by using all constraints, except the isostatic
+	 The estimated model was obtained by using all but the isostatic
 	 constraint. For simplicity, the contour of the prisms forming the interpretation model 
 	 were omitted.}
 	\label{fig:simple-model-I-without-isostatic-constraint}
@@ -782,7 +809,7 @@ a classical example of volcanic margin \citep{geoffroy2005} showing ...
 		II (simulated data), 
 		as well as the data produced by the estimated model (predicted data) and that produced
 		by the model used as initial guess in the inversion (initial guess data).
-		The estimated model was obtained by using all constraints, except the isostatic
+		The estimated model was obtained by using all but the isostatic
 		constraint. For simplicity, the contour of the prisms forming the interpretation model 
 		were omitted.}
 	\label{fig:simple-model-II-without-isostatic-constraint}
@@ -811,7 +838,7 @@ a classical example of volcanic margin \citep{geoffroy2005} showing ...
 		margin model (simulated data), 
 		as well as the data produced by the estimated model (predicted data) and that produced
 		by the model used as initial guess in the inversion (initial guess data).
-		The estimated model was obtained by using all constraints, except the isostatic
+		The estimated model was obtained by using all but the isostatic
 		constraint. For simplicity, the contour of the prisms forming the interpretation model 
 		were omitted.}
 	\label{fig:volcanin-margin-without-isostatic-constraint}
