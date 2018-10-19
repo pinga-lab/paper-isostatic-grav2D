@@ -290,9 +290,9 @@ by \citet{nagy-etal2000}, by using the open-source Python package
 
 
 Let $\mathbf{d}(\mathbf{p})$ be the predicted data vector, whose $i$-th element
-$d_{i}(\mathbf{p})$ is defined by Equation~\ref{eq:ith-predicted-data}. Estimating the
-particular parameter vector $\mathbf{p} = \hat{\mathbf{p}}$ producing a predicted data
-vector $\mathbf{d}(\mathbf{p})$ as close as possible to the observed data vector 
+$d_{i}(\mathbf{p})$ is defined by Equation \ref{eq:ith-predicted-data}. Estimating the
+particular parameter vector producing a predicted data
+$\mathbf{d}(\mathbf{p})$ as close as possible to the observed data 
 $\mathbf{d}^{o}$ can be formulated as the problem of minimizing the goal function
 \begin{equation}
 \Gamma (\mathbf{p}) = \Phi(\mathbf{p}) + \mu \sum_{\ell = 0}^{3} \alpha_{\ell}
@@ -309,55 +309,62 @@ for the $j$-th element of $\mathbf{p}$.
 The goal function is minimized by using the Levenberg-Marquardt method \citep{aster-etal2005}
 and the inequality constraint (equation \ref{eq:inequality-constraint}) is
 incorporated by using the same strategy employed by \citet{barbosa-etal1999}.
-In Equation~\ref{eq:goal-function}, $\mu$ represents the regularizing parameter, 
-$\Phi(\mathbf{p})$ represents the misfit function given by
+In Equation~\ref{eq:goal-function}, $\mu$ is the regularizing parameter,
+$\alpha_{\ell}$ is the weight assigned to the $\ell$-th regularizing function $\Psi_{\ell}(\mathbf{p})$, $\ell = 0, 1, 2, 3$, and $\Phi(\mathbf{p})$ is the misfit
+function given by
 \begin{equation}
 \Phi(\mathbf{p}) = \frac{1}{N} \| \mathbf{d}^{o} - \mathbf{d}(\mathbf{p}) \|_{2}^{2} 
 \: , 
 \label{eq:misfit-function}
 \end{equation}
-where $\| \cdot \|_{2}^{2}$ represents the squared Euclidean norm, $\alpha_{\ell}$
-represent the weights assigned to the regularizing functions $\Psi_{\ell}(\mathbf{p})$,
-which define the constraints on the parameters to be estimated, $\ell = 0, 1, 2, 3$.
+where $\| \cdot \|_{2}^{2}$ represents the squared Euclidean norm.
 All the derivatives of the misfit function $\Phi(\mathbf{p})$ with respect to the parameters 
-as computed by using a central finite difference approximation. Finally,
-the weights $\alpha_{\ell}$ (equation~\ref{eq:goal-function}) are defined 
-as follows:
+are computed by using a central finite difference approximation.
+
+The specific $\alpha_{\ell}$ (equation~\ref{eq:goal-function}) values leading to
+reliable estimates of the parameter vector can be very dependent on the 
+particular characteristics of the interpretation model. 
+Consequently, there is no analytical rule to define them. 
+To overcome this problem, we normalize the $\alpha_{\ell}$ values as follows:
 \begin{equation}
-\alpha_{\ell} = \tilde{\alpha}_{\ell} \, f_{\ell} \: , \quad \ell = 0, 1, 2, 3 \: ,
+\alpha_{\ell} = \tilde{\alpha}_{\ell} \, \frac{E_{\Phi}}{E_{\ell}} \: 
+, \quad \ell = 0, 1, 2, 3 \: ,
 \label{eq:constraint-weights}
 \end{equation}
-where $\tilde{\alpha}_{\ell}$ is a positive scalar, $f_{\ell} = \frac{E_{\Phi}}{E_{\ell}}$, 
-$E_{\ell}$ is the median of the elements forming the main diagonal of the Hessian matrix of the 
+where $\tilde{\alpha}_{\ell}$ is a positive scalar and $E_{\Phi} / E_{\ell}$
+is a normalizing constant. In this equation, $E_{\ell}$ represents the median 
+of the elements forming the main diagonal of the Hessian matrix of the 
 $\ell$-th constraining function $\Psi_{\ell}(\mathbf{p})$ 
-(equations~\ref{eq:isostatic-constraint-function}, \ref{eq:smootheness-contraint},
-\ref{eq:equality-constraint-basement} and \ref{eq:equality-constraint-moho})
-and $E_{\Phi}$ is the median of the
-elements forming the main diagonal of the Hessian matrix of the misfit function 
-$\Phi(\mathbf{p})$ (equation~\ref{eq:misfit-function}) produced by the initial
-approximation for $\mathbf{p}$.
-Notice that, in fact, the interpreter defines the
-weights $\alpha_{\ell}$ indirectly from the previously assigned values for the 
-positive scalars $\tilde{\alpha}_{\ell}$ (equation \ref{eq:constraint-weights}).
+(equations~\ref{eq:isostatic-constraint-function}, 
+\ref{eq:smootheness-contraint}, \ref{eq:equality-constraint-basement} and 
+\ref{eq:equality-constraint-moho}). The constant $E_{\Phi}$ is defined in 
+a similar way by using the Hessian matrix of the misfit function $\Phi(\mathbf{p})$ 
+(equation~\ref{eq:misfit-function}). 
+Both $E_{\Phi}$ and $E_{\ell}$ are defined by using the Hessian matrix computed with 
+the initial approximation for the parameter vector $\mathbf{p}$.
+According to this empirical strategy, the weights $\alpha_{\ell}$ are defined 
+by using the positive scalars $\tilde{\alpha}_{\ell}$ 
+(equation \ref{eq:constraint-weights}), which are less dependent on the particular 
+characteristics of the interpretation model.
 
 
 \subsection{Isostatic constraint}
 
-Consider that the interpretation model (Figure~\ref{fig:interpretation-model})
-is in isostatic equilibrium \citep{turcotte-schubert2002, hofmann-wellenhof-moritz2005,
-lowrie2007} so that the lithostatic stress (pressure) is constant on the
-isostatic compensation surface $S_{0}$.
-The ratio of the lithostatic stress to gravity exerted by the $i$-th 
-column of the model on $S_{0}$ is given by:
+Consider that the interpretation model (Figure \ref{fig:interpretation-model})
+is in isostatic equilibrium \citep{turcotte-schubert2002, hofmann-wellenhof-moritz2005, 
+lowrie2007}, so that the lithostatic stress (pressure) is constant on the isostatic 
+compensation surface $S_{0}$.
+Let us also consider that no vertical forces are acting on the lateral surfaces of 
+each column forming the model.
+Based on these assumptions, we may write the following expression:
 \begin{equation}
 t^{(w)}_{i} \rho^{(w)} + t^{(1)}_{i} \rho^{(1)}_{i} + \dots + 
 t^{(Q)}_{i} \rho^{(Q)}_{i} + t^{(c)}_{i} \rho^{(c)}_{i} + t^{(m)}_{i} \rho^{(m)} 
 = \sigma_{0} \: ,
 \label{eq:lithostatic-stress-densities}
 \end{equation}
-where $\sigma_{0}$ is an arbitrary positive constant. 
-Here, we considered that no vertical forces are acting on the lateral surfaces of 
-each column forming the model.
+where $\sigma_{0}$ is an arbitrary positive constant representing the ratio of
+lithostatic stress to the mean gravity value on the study area.
 By rearranging terms in Equation~\ref{eq:lithostatic-stress-densities} 
 and using the relation
 \begin{equation}
@@ -437,14 +444,26 @@ Finally, from Equation~\ref{eq:tik1-lithostatic-stress}, it is possible to
 define the regularizing function $\Psi_{0}(\mathbf{p})$ 
 (Equation~\ref{eq:goal-function}): 
 \begin{equation}
-\Psi_{0}(\mathbf{p}) = \| \mathbf{R} \left( \mathbf{C} \mathbf{p} + \mathbf{D}
-\mathbf{t} \right) \|_{2}^{2} \: .
+\Psi_{0}(\mathbf{p}) = \| \mathbf{W} \, \mathbf{R} \left( \mathbf{C} \mathbf{p} + \mathbf{D}
+\mathbf{t} \right) \|_{2}^{2} \: ,
 \label{eq:isostatic-constraint-function}
 \end{equation}
-We conveniently call this function as \textit{Isostatic constraint}. 
-Notice that minimizing this function imposes smoothness on the pressure exerted by the interpretation model on the isostatic compensation surface $S_{0}$. Consequently,
-it imposes an interpretation model as close as possible of an isostatic
-equilibrium.
+where $\mathbf{W}$ is an $(N - 1) \times (N - 1)$ diagonal matrix having constant
+elements $0 > w_{kk} \ge 1$.
+
+Function $\Psi_{0}(\mathbf{p})$ defines the \textit{Isostatic constraint}. 
+Notice that, by minimizing this function, the interpreter imposes smoothness on 
+the lithostatic stress exerted by the interpretation model on the isostatic 
+compensation surface $S_{0}$. Consequently, it forces the interpretation model to be
+as close as possible to an isostatic equilibrium. 
+The diagonal matrix $\mathbf{W}$ controls the relative amount of isostatic
+equilibrium imposed along the profile. By setting $\mathbf{W}$ equal to the identity, the
+interpreter imposes the same amount of isostatic equilibrium along the whole profile. By using
+different values $0 > w_{kk} \ge 1$, $k = 1, \dots, (N - 1)$, for the elements on 
+the diagonal of $\mathbf{W}$, the interpreter can impose different amounts of isostatic
+equilibrium along the profile. Elements $w_{kk} \approx 0$ allow abrupt changes on the 
+lithostatic stress exerted by the adjacent columns $k$-th and $k+1$-th forming the 
+interpretation model.
 
 
 \subsection{Smoothness constraint}
