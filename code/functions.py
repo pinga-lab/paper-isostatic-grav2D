@@ -783,6 +783,33 @@ def D_matrix_function(dw,dc,ds=None,two_layers=False,three_layers=False):
     
     return D
 
+def W_matrix_function(sgm,gobs,g):
+    '''
+        Compute the diagonal matrix used in the Airy coinstraint function.
+        
+        Input
+        sgm: float - exponential function decay constant.
+        gobs: numpy array 1D - observed gravity disturbance along the profile.
+        g: numpy array 1D - predicted gravity disturbance along the profile.
+        
+        Output
+        W: numpy array 2D - diagonal matrix used in the Airy coinstraint function.
+        
+        '''
+    
+    #initialization of variables
+    n = len(g)
+    W = np.zeros((n-1,n-1))
+    res_avg = np.zeros((n-1,))
+    
+    #function implementation
+    res = gobs - g
+    for i in range(n-1):
+        res_avg[i] = ((res[i+1]-res[i])/2)
+        W[i,i] = np.exp(-(1/sgm)*(res_avg[i]**2))
+    
+    return W
+
 def R_matrix_function(n, isostatic=False):
     '''
     Compute the finite differences matrix.
@@ -871,7 +898,7 @@ def B_matrix_function(n,r,index_r):
     
     return B
 
-def grad_ps0_function(S0,tw,p,R0,C,D,ts0=None,ts1=None,two_layers=False,three_layers=False):
+def grad_ps0_function(S0,tw,p,W,R0,C,D,ts0=None,ts1=None,two_layers=False,three_layers=False):
     '''
     Compute the gradient of the Airy constraint function.
         
@@ -879,6 +906,7 @@ def grad_ps0_function(S0,tw,p,R0,C,D,ts0=None,ts1=None,two_layers=False,three_la
     S0: numpy array 1D - isostatic compensation surface.
     tw: numpy array 1D - thickness of the water layer along the profile.
     p: numpy array 1D - vector parameters of the model.
+    W: numpy array 2D - identity matrix formed by weight of data residue used in the isostatic regularization.
     R0: numpy array 2D - finite differences matrix used in the isostatic regularization.
     C: numpy array 2D - diagonal matrix of mantle and unknown sediment layer density contrasts.
     D: numpy array 2D - diagonal matrix of water and known sediments layers density.
@@ -913,7 +941,7 @@ def grad_ps0_function(S0,tw,p,R0,C,D,ts0=None,ts1=None,two_layers=False,three_la
         t = np.vstack((tw, S0))
     
     #function implementation
-    grad_psi = 2.*(((C.T.dot(R0.T)).dot(R0)).dot((D.dot(t) + C.dot(p))))
+    grad_psi = 2.*(((((C.T.dot(R0.T)).dot(W.T)).dot(W)).dot(R0)).dot((D.dot(t) + C.dot(p))))
     
     return grad_psi
 
@@ -967,10 +995,10 @@ def grad_psi2_function(p,r,Matrix):
 
     return grad_psi
 
-def gama_function(alpha0,alpha1,alpha2,alpha3,lamb,S0,tw,gobs,g,p,rs,rm,R0,C,D,R,A,B,ts0=None,ts1=None,two_layers=False,three_layers=False):
+def gama_function(alpha0,alpha1,alpha2,alpha3,lamb,S0,tw,gobs,g,p,rs,rm,W,R0,C,D,R,A,B,ts0=None,ts1=None,two_layers=False,three_layers=False):
     
     '''
-    Compute the gradient of the Airy constraint function.
+    Compute sum of residue and constraint functions.
         
     Input
     alpha0: float - weight of parameter of regularization (isostatic constrain).
@@ -985,6 +1013,7 @@ def gama_function(alpha0,alpha1,alpha2,alpha3,lamb,S0,tw,gobs,g,p,rs,rm,R0,C,D,R
     p: numpy array 1D - vector parameters of the model.
     rs: numpy array 1D - vector of the known values parameters of the model (top of basement known depths).
     rm: numpy array 1D - vector of the known values parameters of the model (Moho known depths).
+    W: numpy array 2D - identity matrix formed by weight of data residue used in the isostatic regularization.
     R0: numpy array 2D - finite differences matrix used in the isostatic regularization.
     C: numpy array 2D - diagonal matrix of mantle and unknown sediment layer density contrasts.
     D: numpy array 2D - diagonal matrix of water and known sediments layers density.
@@ -1035,7 +1064,7 @@ def gama_function(alpha0,alpha1,alpha2,alpha3,lamb,S0,tw,gobs,g,p,rs,rm,R0,C,D,R
         t = np.vstack((tw, S0))
     
     phi = (1./n)*((gobs - g).T.dot(gobs - g))[0,0]
-    psi0 = ((R0.dot(D.dot(t)) + R0.dot(C.dot(p))).T.dot(R0.dot(D.dot(t)) + R0.dot(C.dot(p))))[0,0]
+    psi0 = ((W.dot(R0.dot(D.dot(t))) + W.dot(R0.dot(C.dot(p)))).T.dot(W.dot(R0.dot(D.dot(t))) + W.dot(R0.dot(C.dot(p)))))[0,0]
     psi1 = ((R.dot(p)).T.dot(R.dot(p)))[0,0]
     psi2 = ((A.dot(p) - rs).T.dot((A.dot(p) - rs)))[0,0]
     psi3 = ((B.dot(p) - rm).T.dot((B.dot(p) - rm)))[0,0]
