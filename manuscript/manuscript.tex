@@ -299,7 +299,7 @@ Estimating the particular parameter vector producing a predicted data
 $\mathbf{d}(\mathbf{p})$ as close as possible to the observed data 
 $\mathbf{d}^{o}$ can be formulated as the problem of minimizing the goal function
 \begin{equation}
-\Gamma (\mathbf{p}) = \Phi(\mathbf{p}) + \mu \sum_{\ell = 0}^{3} \alpha_{\ell}
+\Gamma (\mathbf{p}) = \Phi(\mathbf{p}) + \sum_{\ell = 0}^{3} \alpha_{\ell}
 \Psi_{\ell}(\mathbf{p}) \: ,
 \label{eq:goal-function}
 \end{equation}
@@ -310,18 +310,18 @@ p_{j}^{min} < p_{j} < p_{j}^{max} \: , \quad j = 1, \dots, M \: ,
 \end{equation}
 where $p_{j}^{min}$ and $p_{j}^{max}$ define, respectively, lower and upper bounds 
 for the $j$-th element of $\mathbf{p}$.
-In equation~\ref{eq:goal-function}, $\mu$ is the regularizing parameter,
-$\alpha_{\ell}$ is the weight assigned to the $\ell$-th regularizing function $\Psi_{\ell}(\mathbf{p})$, $\ell = 0, 1, 2, 3$, and $\Phi(\mathbf{p})$ is the misfit
-function given by
+In equation~\ref{eq:goal-function}, $\alpha_{\ell}$ is the weight assigned to the 
+$\ell$-th regularizing function $\Psi_{\ell}(\mathbf{p})$, $\ell = 0, 1, 2, 3$, and
+$\Phi(\mathbf{p})$ is the misfit function given by
 \begin{equation}
 \Phi(\mathbf{p}) = \frac{1}{N} \| \mathbf{d}^{o} - \mathbf{d}(\mathbf{p}) \|_{2}^{2} 
 \: , 
 \label{eq:misfit-function}
 \end{equation}
-where $\| \cdot \|_{2}^{2}$ represents the squared Euclidean norm. Details about the 
-regularizing functions $\Psi_{\ell}(\mathbf{p})$, $\ell = 0, 1, 2, 3$ and the 
-iterative procedure used to solve this non-linear inverse problem are given in the 
-following sections.
+where $\| \cdot \|_{2}^{2}$ represents the squared Euclidean norm. Details about 
+the regularizing functions $\Psi_{\ell}(\mathbf{p})$, $\ell = 0, 1, 2, 3$ and the 
+numerical procedure to solve this non-linear inverse problem are given in the following 
+sections.
 
 
 \subsection{Isostatic constraint}
@@ -336,10 +336,10 @@ Based on these assumptions, we may write the following expression:
 \begin{equation}
 t^{(w)}_{i} \rho^{(w)} + t^{(1)}_{i} \rho^{(1)}_{i} + \dots + 
 t^{(Q)}_{i} \rho^{(Q)}_{i} + t^{(c)}_{i} \rho^{(c)}_{i} + t^{(m)}_{i} \rho^{(m)} 
-= \sigma_{0} \: ,
+= \tau \: ,
 \label{eq:lithostatic-stress-densities}
 \end{equation}
-where $\sigma_{0}$ is an arbitrary positive constant representing the ratio of
+where $\tau$ is an arbitrary positive constant representing the ratio of
 lithostatic stress to the mean gravity value on the study area.
 By rearranging terms in equation~\ref{eq:lithostatic-stress-densities} 
 and using the relation
@@ -355,7 +355,7 @@ it is possible to show that:
 \Delta \tilde{\rho}^{(1)}_{i} \, t^{(1)}_{i} +
 \dots + 
 \Delta \tilde{\rho}^{(Q-1)}_{i} \, t^{(Q-1)}_{i} +
-\rho^{(c)}_{i} \, S_{0} = \sigma_{0} \: ,
+\rho^{(c)}_{i} \, S_{0} = \tau \: ,
 \label{eq:lithostatic-stress-density-contrasts}
 \end{equation}
 where $\Delta \tilde{\rho}^{(\alpha)}_{i} = \rho^{(\alpha)}_{i} - \rho^{(c)}_{i}$, 
@@ -367,7 +367,7 @@ can be written as follows:
 \begin{equation}
 \mathbf{M}^{(Q)} \mathbf{t}^{(Q)} + \mathbf{M}^{(m)} \mathbf{t}^{(m)} + \mathbf{M}^{(w)}
 \mathbf{t}^{(w)} + \mathbf{M}^{(1)} \mathbf{t}^{(1)} + \dots + \mathbf{M}^{(Q-1)}
-\mathbf{t}^{(Q-1)} + \boldsymbol{\rho}^{(c)} S_{0} = \sigma_{0} \mathbf{1} \: ,
+\mathbf{t}^{(Q-1)} + \boldsymbol{\rho}^{(c)} S_{0} = \tau \mathbf{1} \: ,
 \label{eq:lithostatic-stress-matrix}
 \end{equation}
 where $\mathbf{1}$ is an $N \times 1$ vector with all elements equal to one, 
@@ -378,7 +378,7 @@ elements in the main diagonal are defined by the density contrasts
 $\Delta \tilde{\rho}^{(\alpha)}_{i}$, $i = 1, \dots, N$, of the prisms in a layer and
 $\boldsymbol{\rho}^{(c)}$ is an $N \times 1$ vector containing the densities of the prisms
 representing the crust. By applying the first-order Tikhonov regularization
-\citep{aster-etal2005} to the constant vector $\sigma_{0} \mathbf{1}$, we obtain the
+\citep{aster-etal2005} to the constant vector $\tau \mathbf{1}$, we obtain the
 following expression:
 \begin{equation}
 \mathbf{R} \left( \mathbf{C} \mathbf{p} + \mathbf{D} \mathbf{t} \right) = \mathbf{0} 
@@ -423,30 +423,30 @@ define the regularizing function $\Psi_{0}(\mathbf{p})$
 \mathbf{t} \right) \|_{2}^{2} \: ,
 \label{eq:isostatic-constraint-function}
 \end{equation}
-where $\mathbf{W}_{(k)}$ is an $(N - 1) \times (N - 1)$ diagonal matrix having constant
-elements $0 < w_{ii}^{(k)} \le 1$, $i = 1, \dots, N - 1$, along the $k$-th iteration of the
-algorithm used to solve the non-linear inverse problem. 
+where $\mathbf{W}$ is an $(N - 1) \times (N - 1)$ diagonal matrix having constant
+elements $0 < w_{ii} \le 1$, $i = 1, \dots, N - 1$. 
 Function $\Psi_{0}(\mathbf{p})$ defines the \textit{Isostatic constraint}.
 
 Notice that, by minimizing the function $\Psi_{0}(\mathbf{p})$ 
 (equation~\ref{eq:isostatic-constraint-function}), the method imposes smoothness on 
 the lithostatic stress exerted by the interpretation model on the isostatic 
 compensation surface $S_{0}$.
-Matrix $\mathbf{W}_{(k)}$ controls the relative amount of isostatic
-equilibrium imposed along the profile at the $k$-th iteration. 
-The equation defining their diagonal elements $w_{ii}^{(k)}$ at a given iteration $k$ is
-presented in the specific section describing the iterative solution of the inverse problem.
-In the particular case in which all diagonal elements $w_{ii}^{(k)}$ have the same
+Matrix $\mathbf{W}$ controls the relative amount of isostatic equilibrium imposed 
+along the profile. 
+In the particular case in which all diagonal elements $w_{ii}$ have the same
 constant value, the same amount of isostatic equilibrium is imposed along the 
 whole profile. On the other hand, different amounts of isostatic equilibrium
 can be imposed along the profile by varying the values of these elements.
-Elements $w_{ii}^{(k)} \approx 1$ impose a smooth lithostatic stress curve 
+Elements $w_{ii} \approx 1$ impose a smooth lithostatic stress curve 
 at the transition between columns $i$ and $i+1$ of the interpretation model.
-Elements $w_{ii}^{(k)} \approx 0$ allow abrupt variations in the lithostatic stress 
+Elements $w_{ii} \approx 0$ allow abrupt variations in the lithostatic stress 
 curve between columns $i$ and $i+1$ of the interpretation model.
-By varying the elements of $\mathbf{W}_{(k)}$ at each iteration, our method
-allows the interpretation model deviates from the isostatic equilibrium 
-at specific regions along the profile.
+By using all elements $w_{ii} = 1$, we impose full isostatic equilibrium 
+along the entire profile. Alternatively, we may allow the interpretation model 
+deviates from the isostatic equilibrium by conveniently decreasing the numerical values
+assigned to the elements $w_{ii}$ at specific regions along the profile. 
+The strategy used to define the elements $w_{ii}$ is 
+presented in the specific section describing the numerical solution of the inverse problem.
 
 
 \subsection{Smoothness constraint}
@@ -515,18 +515,61 @@ equal to one and all the remaining elements equal to zero. This matrix is define
 in the same way as matrix $\mathbf{A}$ (equation~\ref{eq:equality-constraint-basement}).
 
 
-\subsection{Iterative solution of the inverse problem}
+\subsection{Computational procedures for solving of the inverse problem}
 
 The parameter vector $\mathbf{p}$ (equation~\ref{eq:parameter-vector}) minimizing the
 goal function $\Gamma (\mathbf{p})$ (equation~\ref{eq:goal-function}), subjected to
 the inequality constraint (equation~\ref{eq:inequality-constraint}), is estimated 
-iteratively. 
-At each iteration, the goal function is minimized by using the Levenberg-Marquardt 
+in three steps. At each step, the goal function is minimized by using the Levenberg-Marquardt 
 method \citep{aster-etal2005} and the inequality constraint 
 (equation~\ref{eq:inequality-constraint}) is incorporated by using the same strategy 
 employed by \citet{barbosa-etal1999}.
 All derivatives of the misfit function $\Phi(\mathbf{p})$ (equation~\ref{eq:misfit-function})
 with respect to the parameters are computed by using a finite difference approximation.
+
+The first step consists in solving the inverse problem without imposing the isostatic
+constraint, by using $\alpha_{0} = 0$ (equation \ref{eq:goal-function}). For this step,
+the interpreter must set:
+\begin{itemize}
+	\item \underline{Parameters defining the interpretation model
+	(Figure~\ref{fig:interpretation-model}):} density contrasts $\Delta \rho^{(\alpha)}$, 
+	$\alpha = w, 1, \dots, Q, cc, oc, m$, of the four layers, COT position $y_{COT}$ and
+	isostatic compensation depth $S_{0}$. Figure \ref{fig:interpretation-model} illustrates 
+	the case in which the second layer is formed by $Q = 2$ parts. This number, however, 
+	can be changed according to the study area.
+	\item \underline{Parameters for the inversion:} weights $\alpha_{\ell}$,
+	$\ell = 1, 2, 3$ (equation~\ref{eq:goal-function}), associated to the 
+	smoothness and equality constraints (equations \ref{eq:smootheness-contraint},
+	\ref{eq:equality-constraint-basement} and \ref{eq:equality-constraint-moho})
+	and an initial approximation $\mathbf{p}_{0}$ for the parameter vector $\mathbf{p}$
+	(equation~\ref{eq:parameter-vector}). The initial approximation $\mathbf{p}_{0}$
+	must satisfy the inequality constraints (equation~\ref{eq:inequality-constraint}).
+\end{itemize}
+The estimated parameter vector obtained at the end of this first step is conveniently called
+$\mathbf{p}^{(0)}$. The main goal in this step is finding suitable values for the parameters
+defining the interpretation model and those used for inversion. Several trials may be
+necessary to find suitable values for these parameters. 
+
+The second step consists in obtaining an estimated parameter vector $\mathbf{p}^{(1)}$
+by imposing full isostatic equilibrium on the interpretation model along the entire profile.
+In this step, the interpreter must use the previously obtained estimate
+$\mathbf{p}^{(0)}$ as initial approximation for the parameter vector $\mathbf{p}$ 
+(equation~\ref{eq:parameter-vector}). Additionally, the interpreter must find a suitable 
+value for the weight $\alpha_{0} = 0$ (equation \ref{eq:goal-function}) controlling the 
+isostatic constraint, by using the matrix $\mathbf{W}$
+(equation~\ref{eq:isostatic-constraint-function}) equal to the identity.
+We presume that, by imposing full isostatic equilibrium along the entire profile,
+the estimated parameter vector $\mathbf{p}^{(1)}$ will produce a good data fit,
+except at some isolated regions, where there will be hight residuals between the
+observed and predicted data. 
+
+PAREI AQUI
+
+After obtaining an estimate $\mathbf{p}^{(1)}$ that produces high residuals at isolated
+regions along the profiles, we run the 
+
+Finally, the third step consists in solving the inverse problem
+
 
 At a given iteration $k$, we define the diagonal elements $w_{ii}^{(k)}$, $i = 1, \dots, N - 1$,
 of the matrix $\mathbf{W}_{(k)}$ (equation~\ref{eq:isostatic-constraint-function}) as follows:
@@ -555,11 +598,12 @@ our method allows the interpretation model deviates from isostatic equilibrium a
 regions. This idea is in perfect agreement with the fact that the isostatic equilibrium
 in a continental margin cannot be perfectly explained by using the Airy's local model.
 
+
+
 Other important aspect of our method is related to the values attributed to 
 the weights $\alpha_{\ell}$ (equation~\ref{eq:goal-function}).
-The specific values leading to reliable estimates of the parameter vector can be 
-very dependent on the particular characteristics of the interpretation model. 
-Consequently, there is no analytical rule to define them. 
+Their values can be very dependent on the particular characteristics of the 
+interpretation model and there is no analytical rule to define them. 
 To overcome this problem, we normalize the $\alpha_{\ell}$ values as follows:
 \begin{equation}
 \alpha_{\ell} = \tilde{\alpha}_{\ell} \, \frac{E_{\Phi}}{E_{\ell}} \: 
@@ -577,7 +621,7 @@ a similar way by using the Hessian matrix of the misfit function $\Phi(\mathbf{p
 (equation~\ref{eq:misfit-function}). 
 Both $E_{\Phi}$ and $E_{\ell}$ are defined by using the Hessian matrix computed with 
 the initial approximation for the parameter vector $\mathbf{p}$ at the first 
-iteration $k = 0$.
+step to solve the inverse problem.
 According to this empirical strategy, the weights $\alpha_{\ell}$ are defined 
 by using the positive scalars $\tilde{\alpha}_{\ell}$ 
 (equation \ref{eq:constraint-weights}), which are less dependent on the particular 
