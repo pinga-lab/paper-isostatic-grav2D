@@ -1071,7 +1071,6 @@ def gama_function(alpha0,alpha1,alpha2,alpha3,lamb,S0,tw,gobs,g,p,rs,rm,W,R0,C,D
     
     gama = phi + lamb*(alpha0*psi0 + alpha1*psi1 + alpha2*psi2 + alpha3*psi3)
 
-#    print 'vinculos', phi, psi0, psi1, psi2, psi3
     return gama
 
 def convergence_function(gama0,gama,beta):
