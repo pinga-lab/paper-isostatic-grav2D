@@ -419,7 +419,7 @@ Finally, from equation~\ref{eq:tik1-lithostatic-stress}, it is possible to
 define the regularizing function $\Psi_{0}(\mathbf{p})$ 
 (equation~\ref{eq:goal-function}): 
 \begin{equation}
-\Psi_{0}(\mathbf{p}) = \| \mathbf{W}_{(k)} \, \mathbf{R} \left( \mathbf{C} \mathbf{p} + \mathbf{D}
+\Psi_{0}(\mathbf{p}) = \| \mathbf{W} \, \mathbf{R} \left( \mathbf{C} \mathbf{p} + \mathbf{D}
 \mathbf{t} \right) \|_{2}^{2} \: ,
 \label{eq:isostatic-constraint-function}
 \end{equation}
@@ -561,44 +561,36 @@ isostatic constraint, by using the matrix $\mathbf{W}$
 We presume that, by imposing full isostatic equilibrium along the entire profile,
 the estimated parameter vector $\mathbf{p}^{(1)}$ will produce a good data fit,
 except at some isolated regions, where there will be hight residuals between the
-observed and predicted data. 
+observed and predicted data. We assume that, at these regions, the study area deviates
+from the isostatic equilibrium described by the Airy's local model.
 
-PAREI AQUI
-
-After obtaining an estimate $\mathbf{p}^{(1)}$ that produces high residuals at isolated
-regions along the profiles, we run the 
-
-Finally, the third step consists in solving the inverse problem
-
-
-At a given iteration $k$, we define the diagonal elements $w_{ii}^{(k)}$, $i = 1, \dots, N - 1$,
-of the matrix $\mathbf{W}_{(k)}$ (equation~\ref{eq:isostatic-constraint-function}) as follows:
+Finally, the third step consists in obtaining an estimated parameter vector $\mathbf{p}^{(2)}$
+by imposing different amounts of isostatic equilibrium on the interpretation model along the
+entire profile. Specifically, this step aims at computing diagonal elements $w_{ii}$ of the
+matrix $\mathbf{W}$ (equation~\ref{eq:isostatic-constraint-function}) that allow deviations 
+of the interpretation model from the isostatic equilibrium at the regions presenting high
+residuals between the observed and predicted data. At this step, the elements of $\mathbf{W}$
+are computed as follows:
 \begin{equation} \label{eq:elements-wii}
-w_{ii}^{(k)} = \begin{cases}
-1 \: &, \quad k = 0 \\
-\exp \left[ - \frac{ \left( r_{i}^{(k-1)} + r_{i+1}^{(k-1)} \right)^{2}}{4 \sigma} \right]
-\: &, \quad k > 0
-\end{cases}
+w_{ii} = 
+\exp \left[ - \frac{ \left( r_{i}^{(1)} + r_{i+1}^{(1)} \right)^{2}}{4 \sigma} \right] \: ,
 \end{equation}
-where $\sigma$ is a positive constant, $\tilde{\mathbf{p}}_{(k-1)}$ is the
-parameter vector (equation~\ref{eq:parameter-vector}) estimated at the iteration $k-1$
-and the variables
-$r_{i}^{(k-1)} = d^{o}_{i} - d_{i} \left( \tilde{\mathbf{p}}_{(k-1)} \right)$ and 
-$r_{i+1}^{(k-1)} = d^{o}_{i+1} - d_{i+1} \left(\tilde{\mathbf{p}}_{(k-1)} \right)$ represent,
+where $\sigma$ is a positive constant, $\mathbf{p}^{(1)}$ is the estimate parameter vector
+obtained in the previous step and the variables
+$r_{i}^{(1)} = d^{o}_{i} - d_{i} \left( \mathbf{p}^{(1)} \right)$ and 
+$r_{i+1}^{(1)} = d^{o}_{i+1} - d_{i+1} \left(\mathbf{p}^{(1)} \right)$ represent,
 respectively, the residuals between observed and predicted data
 (equation~\ref{eq:ith-predicted-data}) at the positions $(x_{i}, y_{i}, z_{i})$ and 
-$(x_{i+1}, y_{i+1}, z_{i+1})$. Equation~\ref{eq:elements-wii} shows that the elements 
-$w_{ii}^{(k)}$ are in the interval $\left] \dots \right]$. Additionally, it shows that
-$w_{ii}^{(k)} \approx 1$ at regions where the residuals are close to zero and 
-$w_{ii}^{(k)} \approx 0$ at regions presenting high residual values. 
-This strategy to define the elements of matrix $\mathbf{W}_{(k)}$ 
+$(x_{i+1}, y_{i+1}, z_{i+1})$. Equation~\ref{eq:elements-wii} defines elements 
+$w_{ii}$ in the interval $\left] 0, 1 \right]$. Additionally, it results in 
+$w_{ii} \approx 1$ at regions where the residuals are close to zero and 
+$w_{ii} \approx 0$ at regions presenting high residual values. 
+This strategy to define the elements of matrix $\mathbf{W}$ 
 (equation\ref{eq:isostatic-constraint-function}) presumes that the isostatic constraint may
 produce large residuals at some regions along the profile. To counteract this problem,
 our method allows the interpretation model deviates from isostatic equilibrium at these 
 regions. This idea is in perfect agreement with the fact that the isostatic equilibrium
 in a continental margin cannot be perfectly explained by using the Airy's local model.
-
-
 
 Other important aspect of our method is related to the values attributed to 
 the weights $\alpha_{\ell}$ (equation~\ref{eq:goal-function}).
@@ -620,28 +612,12 @@ $\ell$-th constraining function $\Psi_{\ell}(\mathbf{p})$
 a similar way by using the Hessian matrix of the misfit function $\Phi(\mathbf{p})$ 
 (equation~\ref{eq:misfit-function}). 
 Both $E_{\Phi}$ and $E_{\ell}$ are defined by using the Hessian matrix computed with 
-the initial approximation for the parameter vector $\mathbf{p}$ at the first 
-step to solve the inverse problem.
+the initial approximation $\mathbf{p}_{0}$ for the parameter vector $\mathbf{p}$ 
+(equation~\ref{eq:parameter-vector}) at the first step to solve the inverse problem.
 According to this empirical strategy, the weights $\alpha_{\ell}$ are defined 
 by using the positive scalars $\tilde{\alpha}_{\ell}$ 
 (equation \ref{eq:constraint-weights}), which are less dependent on the particular 
 characteristics of the interpretation model.
-
-The algorithm used to solve our nonlinear inverse problem can be summarized as follows:
-
-\begin{enumerate}
-	\item Iteration $k = 0$: define an initial approximation 
-	for the parameter vector (equation~\ref{eq:parameter-vector}) satisfying the 
-	inequality constraint (equation~\ref{eq:inequality-constraint}). 
-	Set $\mathbf{W}_{(0)}$ (equation~\ref{eq:isostatic-constraint-function}) equal to the
-	identity, according to equation~\ref{eq:elements-wii}.
-	
-	\item Estimate a parameter vector $\tilde{\mathbf{p}}_{(k)}$ minimizing the goal function $\Gamma(\mathbf{p})$ (equation~\ref{eq:goal-function})
-	subjected to the inequality constraint (equation~\ref{eq:inequality-constraint}).
-	
-	\item 
-
-\end{enumerate}
 
 
 \section{Applications to synthetic data}
