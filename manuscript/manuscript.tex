@@ -627,41 +627,20 @@ We have simulated a simple volcanic margin model formed by four layers:
 water, sediments + seaward dipping reflectors, crust (continental and oceanic) 
 and mantle. 
 
-The density contrasts associated with each layer are shown in 
+Parameters defining this model are shown in Table~\ref{tab:volcanic-margin-model}.
+
+By following the procedures described in the previous section, we applied our method 
+to the synthetic gravity disturbance data produced by our volcanic margin model.
+
+The interpretation model was defined by using the parameters shown in
 Table~\ref{tab:volcanic-margin-model}.
 
+The parameters $\tilde{\alpha}_{0}$, $\tilde{\alpha}_{1}$, $\tilde{\alpha}_{2}$ and 
+$\tilde{\alpha}_{3}$ (equation~\ref{eq:constraint-weights}) used to estimate a parameter 
+vector $\mathbf{p}^{(0)}$ without imposing the isostatic constraint have values $0$, $10^{1}$, $10^{1}$ and $10^{2}$, respectively.
 
-PAREI AQUI
+Figure \ref{fig:synt-estimated-model-without-isostatic} 
 
-The reference density $\rho^{(r)}$ is equal to
-that of the continental crust.
-Similarly to the simple model II (Figures~\ref{fig:simple-model-II-without-isostatic-constraint}
-and \ref{fig:simple-model-II-all-constraints}), our volcanic margin model
-shows a significant crustal thinning at the first part of
-the profile.
-Figures~\ref{fig:volcanin-margin-without-isostatic-constraint} and 
-\ref{fig:volcanin-margin-all-constraints} show the results obtained,
-respectively, by using and not using the isostatic constraint to estimate
-the geometries of basement and Moho.
-The weights $\alpha_{\ell}$ (equation~\ref{eq:goal-function}) used
-to obtain the result shown in the first figure were defined with
-$\tilde{\alpha}_{\ell}$ (equation~\ref{eq:constraint-weights}) equal to: 
-$\tilde{\alpha}_{0} = 0$, $\tilde{\alpha}_{1} = 10^{-1}$, 
-$\tilde{\alpha}_{2} = 10^{0}$ and $\tilde{\alpha}_{3} = 10^{0}$.
-The $\tilde{\alpha}_{\ell}$ (equation~\ref{eq:constraint-weights}) used to
-obtain the result shown in Figure~\ref{fig:volcanin-margin-all-constraints} 
-are given by: $\tilde{\alpha}_{0} = 10^{0}$, $\tilde{\alpha}_{1} = 10^{-1}$, 
-$\tilde{\alpha}_{2} = 10^{0}$ and $\tilde{\alpha}_{3} = 10^{0}$.
-
-We can see that, without using the isostatic constraint, out method could not 
-retrieve the pronounced crustal thinning located at the first part of our
-volcanic margin model. As shown in 
-Figure~\ref{fig:volcanin-margin-without-isostatic-constraint},
-the difference between the estimated and true basement reach
-$\approx 10$ km at the position $\approx 75$ km on the profile.
-On the other hand, as in the previous test with the simple model II, 
-the isostatic constraint was able to produce an estimated basement
-very close to the true one (Figure~\ref{fig:volcanin-margin-all-constraints}).
 
 
 \section{Application to real data}
@@ -736,6 +715,8 @@ a classical example of volcanic margin \citep{geoffroy2005} showing ...
 
 %%%%%%%%%%%%%%%%%% Figures %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%% Methodology
+
 \plot{rifted-margin-model-color}{width=\columnwidth}{
 	{Rifted margin model formed by four layers. The first one 
 	represents a water layer with constant density $\rho^{(w)}$. The second 
@@ -768,92 +749,35 @@ a classical example of volcanic margin \citep{geoffroy2005} showing ...
 	\label{fig:interpretation-model}
 }
 
+%% Results
 
-\plot{model-simple-I-no-vinc-isostatic-no-stripes}{width=0.6\textwidth}{
-	{Application to synthetic data produced by the simple model I.
-	 The numbers in the legend represent the density values in kg/m$^{3}$.
-	 The bottom panel shows the estimated and true surfaces,
-	 the initial basement and Moho used in the inversion (initial guess surfaces), 
-	 as well as the known depths at basement (blue triangles) and Moho (green diamonds).
-	 The middle panel shows the true and estimated lithostatic stress curves computed
-	 by using equation~\ref{eq:lithostatic-stress-densities}. The values are multiplied 
-	 by a constant gravity value equal to $9.81$ m/s$^{2}$.
-	 The upper panel shows the true gravity disturbance data produced by the simple model 
-	 I (simulated data), 
-	 as well as the data produced by the estimated model (predicted data) and that produced
-	 by the model used as initial guess in the inversion (initial guess data).
-	 The estimated model was obtained by using all but the isostatic
-	 constraint. For simplicity, the contour of the prisms forming the interpretation model 
-	 were omitted.}
-	\label{fig:simple-model-I-without-isostatic-constraint}
+\plot{volcanic-margin-grafics-estimated-model-alphas_X_1_1_2}{width=0.6\textwidth}{
+	{Application to synthetic data.
+	(Bottom panel) Estimated and true surfaces,
+	the initial basement and Moho used in the inversion, 
+	as well as the known depths at basement and Moho.
+	(Middle panel) True and estimated lithostatic stress curves computed
+	by using equation~\ref{eq:lithostatic-stress-densities}. The values are multiplied 
+	by a constant gravity value equal to $9.81$ m/s$^{2}$.
+	(Upper panel) True gravity disturbance data produced by the volcanic 
+	margin model (simulated data), data produced by the estimated model 
+	(predicted data) and data produced the model used as initial guess in the 
+	inversion (initial guess data).
+	All but the isostatic constraint where used. 
+	For simplicity, the contour of the prisms forming the 
+	interpretation model were omitted.
+	The numbers in the legend represent the density contrasts 
+	$\Delta\rho^{(\alpha)}$, $\alpha = w, 1, 2, cc, c0, m$. 
+	The values are given in kg/m$^{3}$.}
+	\label{fig:synt-estimated-model-without-isostatic}
+}
+
+\plot{volcanic-margin-grafics-estimated-model-alphas_X_1_1_2_more-known-depths}{width=0.6\textwidth}{
+	{Application to synthetic data....}
+	\label{fig:synt2-estimated-model-without-isostatic}
 }
 
 
-\plot{model-simple-I-no-stripes}{width=0.6\textwidth}{
-	{Application to synthetic data produced by the simple model I.
-	 The difference with respect to 
-	 Figure~\ref{fig:simple-model-I-without-isostatic-constraint}
-	 is that the estimated model was obtained by using all constraints.}
-	\label{fig:simple-model-I-all-constraints}
-}
-
-
-\plot{model-simple-II-no-vinc-isostatic-no-stripes}{width=0.6\textwidth}{
-	{Application to synthetic data produced by the simple model II.
-		The numbers in the legend represent the density values in kg/m$^{3}$.
-		The bottom panel shows the estimated and true surfaces,
-		the initial basement and Moho used in the inversion (initial guess surfaces), 
-		as well as the known depths at basement (blue triangles) and Moho (green diamonds).
-		The middle panel shows the true and estimated lithostatic stress curves computed
-		by using equation~\ref{eq:lithostatic-stress-densities}. The values are multiplied 
-		by a constant gravity value equal to $9.81$ m/s$^{2}$.
-		The upper panel shows the true gravity disturbance data produced by the simple model 
-		II (simulated data), 
-		as well as the data produced by the estimated model (predicted data) and that produced
-		by the model used as initial guess in the inversion (initial guess data).
-		The estimated model was obtained by using all but the isostatic
-		constraint. For simplicity, the contour of the prisms forming the interpretation model 
-		were omitted.}
-	\label{fig:simple-model-II-without-isostatic-constraint}
-}
-
-
-\plot{model-simple-II-no-stripes}{width=0.6\textwidth}{
-	{Application to synthetic data produced by the simple model II.
-	 The difference with respect to
-	 Figure~\ref{fig:simple-model-II-without-isostatic-constraint}
-	 is that the estimated model was obtained by using all constraints.}
-	\label{fig:simple-model-II-all-constraints}
-}
-
-
-\plot{pelotas-synthetic-data-no-vinc-isostatic-no-stripes}{width=0.6\textwidth}{
-	{Application to synthetic data produced by the volcanic margin model.
-		The numbers in the legend represent the density values in kg/m$^{3}$.
-		The bottom panel shows the estimated and true surfaces,
-		the initial basement and Moho used in the inversion (initial guess surfaces), 
-		as well as the known depths at basement (blue triangles) and Moho (green diamonds).
-		The middle panel shows the true and estimated lithostatic stress curves computed
-		by using equation~\ref{eq:lithostatic-stress-densities}. The values are multiplied 
-		by a constant gravity value equal to $9.81$ m/s$^{2}$.
-		The upper panel shows the true gravity disturbance data produced by the volcanic 
-		margin model (simulated data), 
-		as well as the data produced by the estimated model (predicted data) and that produced
-		by the model used as initial guess in the inversion (initial guess data).
-		The estimated model was obtained by using all but the isostatic
-		constraint. For simplicity, the contour of the prisms forming the interpretation model 
-		were omitted.}
-	\label{fig:volcanin-margin-without-isostatic-constraint}
-}
-
-
-\plot{pelotas-synthetic-data-no-stripes}{width=0.6\textwidth}{
-	{Application to synthetic data produced by the volcanic margin model.
-	 The difference with respect to
-	 Figure~\ref{fig:volcanin-margin-without-isostatic-constraint}
-	 is that the estimated model was obtained by using all constraints.}
-	\label{fig:volcanin-margin-all-constraints}
-}
 
 %%%%%%%%%%%%%%%%%% Figures %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
