@@ -623,101 +623,17 @@ characteristics of the interpretation model.
 \section{Applications to synthetic data}
 
 
-\subsection{Simple models}
-
-We have simulated two simple models (I and II) formed by four layers: water, sediments,
-crust (continental and oceanic) and mantle.
-%(Table~\ref{tbl:simple-models}).
-The only differences between them are the geometries of basement and Moho.
-For both models, the reference density $\rho^{(r)}$ is equal to that of the
-continental crust.
-Figure~\ref{fig:simple-model-I-without-isostatic-constraint} 
-shows the result obtained by applying 
-our method to invert the synthetic gravity disturbance produced by the simple model I,
-as well as the initial guess and known depths used in the inversion.
-This result was obtained by using all but the isostatic constraint.
-The weights $\alpha_{\ell}$ (equation~\ref{eq:goal-function}) were defined
-by using $\tilde{\alpha}_{\ell}$ (equation~\ref{eq:constraint-weights}) given by: 
-$\tilde{\alpha}_{0} = 0$, $\tilde{\alpha}_{1} = 10^{1}$, 
-$\tilde{\alpha}_{2} = 10^{2}$ and $\tilde{\alpha}_{3} = 10^{2}$.
-Notice that, without using the isostatic constraint, our method was able
-to estimate a model that fits the simulated gravity disturbance and 
-lithostatic stress curve, as well as shows basement and Moho reliefs 
-very close to the true ones.
-In this case, both basement and Moho are smooth. However,
-the lithostatic stress curve shows a pronounced discontinuity over the COT. 
-This feature breaks the smoothness of the lithostatic stress curve and 
-is not compatible with the a priori information imposed by
-the isostatic constraint (equation~\ref{eq:isostatic-constraint-function}).
-
-Figure~\ref{fig:simple-model-I-all-constraints} shows the result
-obtained by using all the constraints (including the isostatic constraint).
-In this case, the weights $\alpha_{\ell}$ (equation~\ref{eq:goal-function}) 
-were defined by using different values for the positive scalars 
-$\tilde{\alpha}_{\ell}$ (equation~\ref{eq:constraint-weights}): 
-$\tilde{\alpha}_{0} = 10^{2}$, $\tilde{\alpha}_{1} = 10^{1}$, 
-$\tilde{\alpha}_{2} = 10^{2}$ and $\tilde{\alpha}_{3} = 10^{2}$.
-By using the isostatic constraint, we obtain a predicted 
-lithostatic stress curve that is smoother than that shown in 
-Figure~\ref{fig:simple-model-I-without-isostatic-constraint}. 
-However, differently from the previous result, there is a significant 
-discrepancy between the estimated and true reliefs of basement and Moho.
-The larger differences occur on the region close to COT, where the 
-true lithostatic stress curve shows that steep slope.
-These results illustrate a situation in which the a priori information
-imposed by the isostatic constraint is not compatible with the 
-true model.
-
-Figures~\ref{fig:simple-model-II-without-isostatic-constraint} and 
-\ref{fig:simple-model-II-all-constraints}
-show an example in which the isostatic constraint imposes the correct
-a priori information. 
-These results were obtained by applying our method to invert the synthetic gravity 
-disturbance produced by the simple model II.
-The result shown in the first figure was obtained by using all but 
-the isostatic constraint. The weights $\alpha_{\ell}$ 
-(equation~\ref{eq:goal-function}) were defined by
-using $\tilde{\alpha}_{\ell}$ (equation~\ref{eq:constraint-weights}) given by: 
-$\tilde{\alpha}_{0} = 0$, $\tilde{\alpha}_{1} = 10^{-1}$, 
-$\tilde{\alpha}_{2} = 10^{0}$ and $\tilde{\alpha}_{3} = 10^{0}$.
-The result shown in Figure~\ref{fig:simple-model-II-all-constraints} was
-obtained by using all constraints. 
-The weights $\alpha_{\ell}$ (equation~\ref{eq:goal-function}) were defined by
-using $\tilde{\alpha}_{\ell}$ (equation~\ref{eq:constraint-weights}) given by: 
-$\tilde{\alpha}_{0} = 10^{0}$, $\tilde{\alpha}_{1} = 10^{-1}$, 
-$\tilde{\alpha}_{2} = 10^{0}$ and $\tilde{\alpha}_{3} = 10^{0}$.
-In this example, the results obtained with and without the isostatic 
-constraint produced practically the same data fit. However, there are 
-significant differences on the lithostatic stress curves and the geometry of 
-the estimated models. 
-We can see that the isostatic constraint produces a smoother  
-lithostatic stress curve, which is in perfect agreement with the a priori information
-imposed by the regularizing function $\Psi_{0}(\mathbf{p})$
-(equation~\ref{eq:isostatic-constraint-function}).
-The isostatic constraint also produces an estimated Moho which is closer to the
-true one along the entire profile.
-The main differences in the estimated basement, however, occur at the 
-first $\approx 60$ km, on the region coincident with the abrupt crustal thinning
-in the simple model II.
-It is worth noting that, on this region, the true lithostatic stress curve is
-relatively smooth and the basement presents steep slopes.
-These slopes cannot be properly retrieved without using the isostatic
-constraint, as shown in Figure~\ref{fig:simple-model-II-without-isostatic-constraint}.
-Differently from the results shown in 
-Figure~\ref{fig:simple-model-I-without-isostatic-constraint} and
-\ref{fig:simple-model-I-all-constraints},
-those shown in
-Figures~\ref{fig:simple-model-II-without-isostatic-constraint} and 
-\ref{fig:simple-model-II-all-constraints}
-exemplify a case in which the isostatic constraint contributes to
-better estimating the geometries of basement and Moho.
-
-
-\subsection*{Volcanic margin model}
-
 We have simulated a simple volcanic margin model formed by four layers: 
 water, sediments + seaward dipping reflectors, crust (continental and oceanic) 
-and mantle. The reference density $\rho^{(r)}$ is equal to
+and mantle. 
+
+The density contrasts associated with each layer are shown in 
+Table~\ref{tab:volcanic-margin-model}.
+
+
+PAREI AQUI
+
+The reference density $\rho^{(r)}$ is equal to
 that of the continental crust.
 Similarly to the simple model II (Figures~\ref{fig:simple-model-II-without-isostatic-constraint}
 and \ref{fig:simple-model-II-all-constraints}), our volcanic margin model
@@ -761,53 +677,36 @@ a classical example of volcanic margin \citep{geoffroy2005} showing ...
 
 %%%%%%%%%%%%%%%%%% Tables %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\tabl{simple-models}{Properties of the simple models I and II. 
-%	The density contrasts are defined with respect to the reference value 
-%	$\rho^{(r)} = 2670$ kg/m$^{3}$. The model extends from $y = 0$ km
-%	to $y = 195$ km. The Crust-Ocean Transition (COT) is located at $y_{COT} = 117$ km.
-%}{
-%\begin{center}
-%	\begin{tabular}{lcc}
-%		\hline
-%		\textbf{Geological meaning} & \textbf{Density} $\rho$ (kg/m$^{3}$) & \textbf{Horizontal extension}\\
-%		\hline
-%		water & 1030 & the whole model \\
-%		\hline
-%		sediments & 2550 & the whole model \\
-%		\hline 
-%		continental crust & 2670 & from $y = 0$ km until $y_{COT}$ \\
-%		oceanic crust & 2840 & from $y_{COT}$ until $y = 195$ km \\
-%		\hline
-%		mantle & 3200 & the whole model \\
-%		\hline
-%	\end{tabular}
-%\end{center}
-%}
-%
-%\tabl{volcanic-margin-model}{Properties of the volcanic magin model. 
-%	The density contrasts are defined with respect to the
-%	reference value $\rho^{(r)} = 2770$ kg/m$^{3}$. The model extends from $y = 0$ km
-%	to $y = 383$ km. The Crust-Ocean Transition (COT) is located at $y_{COT} = 334$ km.
-%}{
-%\begin{center}
-%	\begin{tabular}{lcc}
-%		\hline
-%		\textbf{Geological meaning} & \textbf{Density} $\rho$ (kg/m$^{3}$) & \textbf{Horizontal extension}\\
-%		\hline
-%		water & 1030 & the whole model \\
-%		\hline
-%		sediments & 2350 & the whole model \\
-%		SDR & 2750 & the whole model \\
-%		\hline 
-%		continental crust & 2770 & from $y = 0$ km until $y_{COT}$ \\
-%		oceanic crust & 2865 & from $y_{COT}$ until $y = 383$ km \\
-%		\hline
-%		mantle & 3300 & the whole model \\
-%		\hline
-%	\end{tabular}
-%\end{center}
-%}
-%
+\tabl{volcanic-margin-model}{Properties of the volcanic magin model. 
+	The model extends from $y = 0$ km to $y = 383$ km, the Crust-Ocean 
+	Transition (COT) is located at $y_{COT} = 350$ km and the reference 
+	Moho is located at $S_{0} + \Delta S = 43 \, 200$ km, where 
+	$\Delta S = 2 \, 200$ km (Figures~\ref{fig:rifted-margin-model} and 
+	\ref{fig:interpretation-model}).
+	The density contrasts $\Delta\rho^{(\alpha)}$ are defined with respect to the
+	reference value $\rho^{(r)} = 2870$ kg/m$^{3}$, which coincides with
+	the density $\rho^{(cc)}$ attributed to the continental crust.
+	\label{tab:volcanic-margin-model}
+}{
+\begin{center}
+	\begin{tabular}[]{lccc}
+		\hline
+		\textbf{Geological meaning} & $\rho^{(\alpha)}$ (kg/m$^{3}$) & $\Delta\rho^{(\alpha)}$ (kg/m$^{3}$) & $\alpha$ \\
+		\hline
+		water & $1030$ & $-1840$ & $w$ \\
+		\hline
+		sediments & $2350$ & $-520$ & $1$ \\
+		SDR & $2855$ & $-15$ & $2$ \\
+		\hline 
+		continental crust & $2870$ & $0$ & $cc$ \\
+		oceanic crust & $2885$ & $15$ & $oc$ \\
+		\hline
+		mantle & $3240$ & $370$ & $m$ \\
+		\hline
+	\end{tabular}
+\end{center}
+}
+
 %\tabl{pelotas-model}{Properties of the interpretation model used to
 %	invert the gravity data over the Pelotas basin.
 %	The density contrasts are defined with respect to the
