@@ -805,7 +805,7 @@ def W_matrix_function(sgm,gobs,g):
     #function implementation
     res = gobs - g
     for i in range(n-1):
-        res_avg[i] = ((res[i+1]-res[i])/2)
+        res_avg[i] = ((res[i+1]+res[i])/2)
         W[i,i] = np.exp(-(1/sgm)*(res_avg[i]**2))
     
     return W
@@ -1068,7 +1068,7 @@ def gama_function(alpha0,alpha1,alpha2,alpha3,lamb,S0,tw,gobs,g,p,rs,rm,W,R0,C,D
     psi1 = ((R.dot(p)).T.dot(R.dot(p)))[0,0]
     psi2 = ((A.dot(p) - rs).T.dot((A.dot(p) - rs)))[0,0]
     psi3 = ((B.dot(p) - rm).T.dot((B.dot(p) - rm)))[0,0]
-
+    
     gama = phi + lamb*(alpha0*psi0 + alpha1*psi1 + alpha2*psi2 + alpha3*psi3)
 
     return gama
