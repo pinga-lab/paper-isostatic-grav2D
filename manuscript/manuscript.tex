@@ -463,24 +463,28 @@ $\Psi_{1}(\mathbf{p})$ (equation~\ref{eq:goal-function}):
 \Psi_{1}(\mathbf{p}) = \| \mathbf{S}\mathbf{p} \|_{2}^{2} \: ,
 \label{eq:smootheness-contraint}
 \end{equation}
-where $\mathbf{S}$ is an $\left( N-1 \right) \times M$ matrix given by:
+where $\mathbf{S}$ is an $2 \left( N-1 \right) \times M$ matrix given by:
 \begin{equation}
 \mathbf{S} = \begin{bmatrix}
-\mathbf{R} & \mathbf{R} & \mathbf{0}
+\mathbf{R} & \mathbf{0} & \mathbf{0} \\
+\mathbf{0} & \mathbf{R} & \mathbf{0}
 \end{bmatrix} \: ,
 \label{eq:matrix-S}
 \end{equation}
 where $\mathbf{R}$ is defined by equation~\ref{eq:matrix-R} and $\mathbf{0}$
-is a vector with all elements equal to zero.
+are matrices with all elements equal to zero.
 
 
 \subsection{Equality constraint}
 
-\subsubsection*{Equality constraint on basement depths}
+\subsubsection*{Equality constraint on vector $\mathbf{t}^{Q}$}
 
 Let $\mathbf{a}$ be a vector whose $k$-th element $a_{k}$,
-$k = 1, \dots, A$, is the known basement depth at the horizontal coordinate
-$y^{A}_{k}$ of the profile. These known basement depth values are used to define 
+$k = 1, \dots, A$, is the difference between a known basement depth and
+the sum of the thickness of the upper portions of the interpretation model
+(water layer and the upper parts of second layer), all at the same
+horizontal coordinate $y^{A}_{k}$ of the profile. 
+These differences, which must be positive, are used to define 
 the regularizing function $\Psi_{2}(\mathbf{p})$ 
 (equation~\ref{eq:goal-function}):
 \begin{equation}
@@ -492,19 +496,22 @@ equal to one and all the remaining elements equal to zero. The location of the
 single non-null element in the $k$-th line of $\mathbf{A}$ depends on the coordinate
 $y^{A}_{k}$ of the known basement depth $a_{k}$. Let us consider, 
 for example, an interpretation model formed by $N = 10$ columns. Consider also that 
-the basement depth at the coordinates $y^{A}_{1} = y_{4}$ and $y^{A}_{2} = y_{9}$ of
-the profile are equal to $25$ and $35.7$ km, respectively. In this case, $A = 2$,
+the thickness of the deepest part $Q$ of the second layer forming the interpretation model 
+at the coordinates $y^{A}_{1} = y_{4}$ and $y^{A}_{2} = y_{9}$ 
+are equal to $25$ and $35.7$ km, respectively. In this case, $A = 2$,
 $\mathbf{a}$ is a $2 \times 1$ vector with elements $a_{1} = 25$ and $a_{2} = 35.7$
 and $\mathbf{A}$ is a $2 \times M$ matrix ($M = 2N + 1 = 21$). The element $4$ of the
 first line and the element $9$ of the second line of $\mathbf{A}$ are equal to $1$ and
 all its remaining elements are equal to zero.
 
-\subsubsection*{Equality constraint on Moho depths}
+\subsubsection*{Equality constraint on vector $\mathbf{t}^{m}$}
 
 Let $\mathbf{b}$ be a vector whose $k$-th element $b_{k}$,
 $k = 1, \dots, B$, is the difference between the isostatic compensation depth
 $S_{0}$ and the known Moho depth at the horizontal coordinate $y^{B}_{k}$ of the
-profile. These differences, which must be positive, are used to define the 
+profile. These differences, which must be positive, define known thickness values
+of the upper part of the fourth layer forming the interpretation model.
+These values are used to define the 
 regularizing function $\Psi_{3}(\mathbf{p})$ (equation~\ref{eq:goal-function}):
 \begin{equation}
 \Psi_{3}(\mathbf{p}) = \| \mathbf{B}\mathbf{p} - \mathbf{b} \|_{2}^{2} \: ,
@@ -676,7 +683,7 @@ and mantle.
 
 Parameters defining this model are shown in Table~\ref{tab:volcanic-margin-model}.
 
-By following the procedures described in the previous section, we applied our method 
+By following the algorithm described in the previous section, we applied our method 
 to the synthetic gravity disturbance data produced by our volcanic margin model.
 
 The interpretation model was defined by using the parameters shown in
@@ -799,7 +806,7 @@ a classical example of volcanic margin \citep{geoffroy2005} showing ...
 %% Results
 
 \plot{volcanic-margin-grafics-estimated-model-alphas_X_1_1_2}{width=0.6\textwidth}{
-	{Application to synthetic data.
+	{Application to synthetic data. Results obtained in Step 1. 
 	(Bottom panel) Estimated and true surfaces,
 	the initial basement and Moho used in the inversion, 
 	as well as the known depths at basement and Moho.
@@ -811,17 +818,17 @@ a classical example of volcanic margin \citep{geoffroy2005} showing ...
 	(predicted data) and data produced the model used as initial guess in the 
 	inversion (initial guess data).
 	All but the isostatic constraint where used. 
-	For simplicity, the contour of the prisms forming the 
-	interpretation model were omitted.
-	The numbers in the legend represent the density contrasts 
-	$\Delta\rho^{(\alpha)}$, $\alpha = w, 1, 2, cc, c0, m$. 
-	The values are given in kg/m$^{3}$.}
+	The contour of the prisms forming the interpretation model were omitted.
+	The numbers within the colored rectangles represent the density contrasts 
+	$\Delta\rho^{(\alpha)}$, $\alpha = w, 1, 2, cc, c0, m$, in kg/m$^{3}$.}
 	\label{fig:synt-estimated-model-without-isostatic}
 }
 
 \plot{volcanic-margin-grafics-estimated-model-alphas_X_1_1_2_more-known-depths}{width=0.6\textwidth}{
-	{Application to synthetic data....}
-	\label{fig:synt2-estimated-model-without-isostatic}
+	{Application to synthetic data. Results obtained in Step 1 by using
+	additional known basement depths (purple symbols).
+	See the caption of Figure~\ref{fig:synt-estimated-model-without-isostatic}.
+	\label{fig:synt2-estimated-model-without-isostatic}}
 }
 
 
