@@ -688,12 +688,35 @@ $\tilde{\alpha}_{3}$ (equation~\ref{eq:constraint-weights}) used to estimate a p
 vector $\mathbf{p}^{(1)}$ without imposing the isostatic constraint have values $10^{1}$, $10^{1}$ and $10^{2}$, respectively.
 As we can see, the estimated model produces a gravity disturbance and 
 lithostatic stress very close to the true ones.
-The estimated Moho is also very close to the 
+The estimated Moho is very close to the true one.
+On the other hand, the estimated basement relief is very smooth and does not
+retrieve the true one along the first $\approx 200$ km of the profile.
+
+Figure~\ref{fig:volc-margem-step2} shows the estimated model obtained at the end
+of Step 2, by using $\tilde{\alpha}_{0} = 10^{2}$ (equation~\ref{eq:constraint-weights}).
+In comparison to estimated model obtained in the Step 1 (Figure~\ref{fig:volc-margem-step1}),
+this result shows a very smooth lithostatic stress curve as a consequence of the
+isostatic constraint. The use of the isostatic has produced a worse estimated Moho, 
+but has improved the estimated basement relief. The main improvement occurs along the 
+first $\approx 100$ km on the profile, where the true model exhibits a pronounced crustal
+thinning. The region from $\approx 100$ to $\approx 200$ km, however, shows large 
+differences between the estimated and true basement reliefs. At this region, we can also
+notice the presence of large differences between the simulated and predicted gravity
+disturbances.
+
+Figure~\ref{fig:volc-margem-step3} shows the estimated model obtained at the Step 3
+of our algorithm, by using $\sigma = 19$ (equation~\ref{eq:elements-wii}). 
+
+Residuals decreased
+Estimated Moho was improved
+Estimated basement relief is ...
+
+PAREI AQUI
+
+To solve the problems shown by the estimated model obtained at Step 2 
+counteract these problems, we proceed with the Step 3 of our algorithm.
 
 
-
-
-Figures \ref{fig:volc-margem-step2} and \ref{fig:volc-margem-step3} 
 
 
 
@@ -817,10 +840,8 @@ a classical example of volcanic margin \citep{geoffroy2005} showing ...
 	margin model (simulated data), data produced by the estimated model 
 	(predicted data) and data produced the model used as initial guess in the 
 	inversion (initial guess data).
-	All but the isostatic constraint where used. 
 	The contour of the prisms forming the interpretation model were omitted.
-	The numbers within the colored rectangles represent the density contrasts 
-	$\Delta\rho^{(\alpha)}$, $\alpha = w, 1, 2, cc, c0, m$, in kg/m$^{3}$.}
+	The density contrasts were defined according to Table~\ref{tab:volcanic-margin-model}.}
 	\label{fig:volc-margem-step1}
 }
 
