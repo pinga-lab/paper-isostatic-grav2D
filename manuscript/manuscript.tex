@@ -540,7 +540,12 @@ the interpreter must set:
 	\item \underline{Parameters for the inversion:} weights $\alpha_{\ell}$,
 	$\ell = 1, 2, 3$ (equation~\ref{eq:goal-function}), associated to the 
 	smoothness and equality constraints (equations \ref{eq:smootheness-contraint},
-	\ref{eq:equality-constraint-basement} and \ref{eq:equality-constraint-moho})
+	\ref{eq:equality-constraint-basement} and \ref{eq:equality-constraint-moho}),
+	lower and upper bounds $p_{j}^{min}$ and $p_{j}^{max}$
+	(equation~\ref{eq:inequality-constraint}), $j = 1, \dots, M$,
+	for the parameters to be estimated, vectors $\mathbf{a}$ 
+	(equation~\ref{eq:equality-constraint-basement}) and $\mathbf{b}$
+	(equation~\ref{eq:equality-constraint-moho}) containing known basement and Moho depths
 	and an initial approximation $\mathbf{p}_{0}$ for the parameter vector $\mathbf{p}$
 	(equation~\ref{eq:parameter-vector}). The initial approximation $\mathbf{p}_{0}$
 	must satisfy the inequality constraints (equation~\ref{eq:inequality-constraint}).
@@ -618,6 +623,48 @@ According to this empirical strategy, the weights $\alpha_{\ell}$ are defined
 by using the positive scalars $\tilde{\alpha}_{\ell}$ 
 (equation \ref{eq:constraint-weights}), which are less dependent on the particular 
 characteristics of the interpretation model.
+
+The algorithm can be summarized as follows:
+
+\begin{enumerate}
+	\item [\textbf{(Step 1)}] Use $\tilde{\alpha}_{0} = 0$ and set non-null values for $\tilde{\alpha}_{1}$, $\tilde{\alpha}_{2}$ and $\tilde{\alpha}_{3}$ (equation~\ref{eq:constraint-weights}).
+	Define $p_{j}^{min}$, $p_{j}^{max}$ (equation~\ref{eq:inequality-constraint}),
+	$\mathbf{a}$ (equation~\ref{eq:equality-constraint-basement}) and
+	$\mathbf{b}$ (equation~\ref{eq:equality-constraint-moho}).
+	Define an initial approximation $\mathbf{p}_{0}$ satisfying the inequality constraint
+	(equation~\ref{eq:inequality-constraint}). Use $\mathbf{p}_{0}$ to compute the Hessian
+	matrices of the constraining functions $\Psi_{\ell}(\mathbf{p})$, $\ell = 1, 2, 3$ (equations \ref{eq:smootheness-contraint}, \ref{eq:equality-constraint-basement} and \ref{eq:equality-constraint-moho}), and the Hessian matrix of the misfit function
+	$\Phi(\mathbf{p})$ (equation~\ref{eq:misfit-function}). Use these Hessian matrices to
+	compute $E_{\Phi}$, $E_{\ell}$ and $\alpha_{\ell}$ (equation~\ref{eq:constraint-weights}),
+	$\ell = 1, 2, 3$. Estimate a parameter vector $\mathbf{p}^{(0)}$
+	minimizing $\Gamma(\mathbf{p})$ (equation~\ref{eq:goal-function}), 
+	subject to the inequality constraint (equation~\ref{eq:inequality-constraint}).
+	\item [\textbf{(Step 2)}] Use $\mathbf{p}^{(0)}$ as initial approximation. Set $\mathbf{W}$
+	(equation~\ref{eq:isostatic-constraint-function}) equal to identity. Set a non-null
+	value for $\tilde{\alpha}_{0}$ (equation~\ref{eq:constraint-weights}). 
+	Use $\mathbf{p}^{(0)}$ to compute the Hessian
+	matrices of the constraining functions $\Psi_{\ell}(\mathbf{p})$, $\ell = 0, 1, 2, 3$
+	(equations \ref{eq:isostatic-constraint-function}, \ref{eq:smootheness-contraint},
+	\ref{eq:equality-constraint-basement} and \ref{eq:equality-constraint-moho}), and 
+	the Hessian matrix of the misfit function
+	$\Phi(\mathbf{p})$ (equation~\ref{eq:misfit-function}). Use these Hessian matrices to
+	compute $E_{\Phi}$, $E_{\ell}$ and $\alpha_{\ell}$ (equation~\ref{eq:constraint-weights}),
+	$\ell = 0, 1, 2, 3$.
+	Estimate a parameter vector $\mathbf{p}^{(1)}$ minimizing $\Gamma(\mathbf{p})$ (equation~\ref{eq:goal-function}), subject to the inequality constraint 
+	(equation~\ref{eq:inequality-constraint}).
+	\item [\textbf{(Step 3)}] Use $\mathbf{p}^{(1)}$ as initial approximation. Compute the 
+	diagonal elements $w_{ii}$, $i = 1, \dots N-1$ (equation~\ref{eq:elements-wii}).
+	Use $\mathbf{p}^{(1)}$ to compute the Hessian
+	matrices of the constraining functions $\Psi_{\ell}(\mathbf{p})$, $\ell = 0, 1, 2, 3$
+	(equations \ref{eq:isostatic-constraint-function}, \ref{eq:smootheness-contraint},
+	\ref{eq:equality-constraint-basement} and \ref{eq:equality-constraint-moho}), and 
+	the Hessian matrix of the misfit function
+	$\Phi(\mathbf{p})$ (equation~\ref{eq:misfit-function}). Use these Hessian matrices to
+	compute $E_{\Phi}$, $E_{\ell}$ and $\alpha_{\ell}$ (equation~\ref{eq:constraint-weights}),
+	$\ell = 0, 1, 2, 3$.
+	Estimate a parameter vector $\mathbf{p}^{(2)}$ minimizing $\Gamma(\mathbf{p})$ (equation~\ref{eq:goal-function}), subject to the inequality constraint 
+	(equation~\ref{eq:inequality-constraint}).
+\end{enumerate}
 
 
 \section{Applications to synthetic data}
