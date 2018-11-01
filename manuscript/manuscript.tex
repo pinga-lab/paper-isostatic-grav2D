@@ -326,21 +326,18 @@ sections.
 
 \subsection{Isostatic constraint}
 
-Consider that the interpretation model (Figure \ref{fig:interpretation-model})
-is in isostatic equilibrium \citep{turcotte-schubert2002, hofmann-wellenhof-moritz2005, 
-lowrie2007}, so that the lithostatic stress (pressure) is constant on the isostatic 
-compensation surface $S_{0}$.
-Let us also consider that no vertical forces are acting on the lateral surfaces of 
-each column forming the model.
-Based on these assumptions, we may write the following expression:
+Consider that no vertical forces are acting on the lateral surfaces of 
+each column forming the model (Figure \ref{fig:interpretation-model}). In this case, 
+the lithostatic stress (pressure) exerted by the $i$-th column at the surface $S_{0}$
+can be computed as follows \citep{turcotte-schubert2002}:
 \begin{equation}
 t^{(w)}_{i} \rho^{(w)} + t^{(1)}_{i} \rho^{(1)}_{i} + \dots + 
 t^{(Q)}_{i} \rho^{(Q)}_{i} + t^{(c)}_{i} \rho^{(c)}_{i} + t^{(m)}_{i} \rho^{(m)} 
-= \tau \: ,
+= \tau_{i} \: ,
 \label{eq:lithostatic-stress-densities}
 \end{equation}
-where $\tau$ is an arbitrary positive constant representing the ratio of
-lithostatic stress to the mean gravity value on the study area.
+where $\tau_{i}$ is the ratio of lithostatic stress to the mean gravity 
+value on the study area.
 By rearranging terms in equation~\ref{eq:lithostatic-stress-densities} 
 and using the relation
 \begin{equation}
@@ -355,7 +352,7 @@ it is possible to show that:
 \Delta \tilde{\rho}^{(1)}_{i} \, t^{(1)}_{i} +
 \dots + 
 \Delta \tilde{\rho}^{(Q-1)}_{i} \, t^{(Q-1)}_{i} +
-\rho^{(c)}_{i} \, S_{0} = \tau \: ,
+\rho^{(c)}_{i} \, S_{0} = \tau_{i} \: ,
 \label{eq:lithostatic-stress-density-contrasts}
 \end{equation}
 where $\Delta \tilde{\rho}^{(\alpha)}_{i} = \rho^{(\alpha)}_{i} - \rho^{(c)}_{i}$, 
@@ -367,18 +364,18 @@ can be written as follows:
 \begin{equation}
 \mathbf{M}^{(Q)} \mathbf{t}^{(Q)} + \mathbf{M}^{(m)} \mathbf{t}^{(m)} + \mathbf{M}^{(w)}
 \mathbf{t}^{(w)} + \mathbf{M}^{(1)} \mathbf{t}^{(1)} + \dots + \mathbf{M}^{(Q-1)}
-\mathbf{t}^{(Q-1)} + \boldsymbol{\rho}^{(c)} S_{0} = \tau \mathbf{1} \: ,
+\mathbf{t}^{(Q-1)} + \boldsymbol{\rho}^{(c)} S_{0} = \boldsymbol{\tau} \: ,
 \label{eq:lithostatic-stress-matrix}
 \end{equation}
-where $\mathbf{1}$ is an $N \times 1$ vector with all elements equal to one, 
-$\mathbf{t}^{(\alpha)}$, $\alpha = w, 1, \dots, Q-1, Q, m$, is a $N \times 1$ vector
-with $i$-th element defined by the thickness $t^{(\alpha)}_{i}$ of a prism in the
-$i$-th column, $\mathbf{M}^{(\alpha)}$ is an $N \times N$ diagonal matrix whose  
-elements in the main diagonal are defined by the density contrasts 
+where $\boldsymbol{\tau}$ is an $N \times 1$ vector whose $i$-th element is
+the $\tau_{i}$ (equation~\ref{eq:lithostatic-stress-densities}) associated with
+the $i$-th column, $\mathbf{t}^{(\alpha)}$, $\alpha = w, 1, \dots, Q-1, Q, m$, 
+is a $N \times 1$ vector with $i$-th element defined by the thickness 
+$t^{(\alpha)}_{i}$ of a prism in the $i$-th column, $\mathbf{M}^{(\alpha)}$ is an $N \times N$ diagonal matrix whose elements in the main diagonal are defined by the density contrasts 
 $\Delta \tilde{\rho}^{(\alpha)}_{i}$, $i = 1, \dots, N$, of the prisms in a layer and
 $\boldsymbol{\rho}^{(c)}$ is an $N \times 1$ vector containing the densities of the prisms
 representing the crust. By applying the first-order Tikhonov regularization
-\citep{aster-etal2005} to the constant vector $\tau \mathbf{1}$, we obtain the
+\citep{aster-etal2005} to the vector $\boldsymbol{\tau}$, we obtain the
 following expression:
 \begin{equation}
 \mathbf{R} \left( \mathbf{C} \mathbf{p} + \mathbf{D} \mathbf{t} \right) = \mathbf{0} 
@@ -552,51 +549,54 @@ the interpreter must set:
 	(equation~\ref{eq:inequality-constraint}), $j = 1, \dots, M$,
 	for the parameters to be estimated, vectors $\mathbf{a}$ 
 	(equation~\ref{eq:equality-constraint-basement}) and $\mathbf{b}$
-	(equation~\ref{eq:equality-constraint-moho}) containing known basement and Moho depths
-	and an initial approximation $\mathbf{p}_{0}$ for the parameter vector $\mathbf{p}$
-	(equation~\ref{eq:parameter-vector}). The initial approximation $\mathbf{p}_{0}$
+	(equation~\ref{eq:equality-constraint-moho}) containing known thickness values
+	and an initial approximation $\mathbf{p}^{(0)}$ for the parameter vector $\mathbf{p}$
+	(equation~\ref{eq:parameter-vector}). The initial approximation $\mathbf{p}^{(0)}$
 	must satisfy the inequality constraints (equation~\ref{eq:inequality-constraint}).
 \end{itemize}
 The estimated parameter vector obtained at the end of this first step is conveniently called
-$\mathbf{p}^{(0)}$. The main goal in this step is finding suitable values for the parameters
+$\mathbf{p}^{(1)}$. The main goal in this step is finding suitable values for the parameters
 defining the interpretation model and those used for inversion. Several trials may be
 necessary to find suitable values for these parameters. 
 
-The second step consists in obtaining an estimated parameter vector $\mathbf{p}^{(1)}$
+The second step consists in obtaining an estimated parameter vector $\mathbf{p}^{(2)}$
 by imposing full isostatic equilibrium on the interpretation model along the entire profile.
-In this step, the interpreter must use the previously obtained estimate
-$\mathbf{p}^{(0)}$ as initial approximation for the parameter vector $\mathbf{p}$ 
-(equation~\ref{eq:parameter-vector}). Additionally, the interpreter must find a suitable 
+In this step, the interpreter must use the same initial approximation $\mathbf{p}^{(0)}$
+for the parameter vector $\mathbf{p}$ (equation~\ref{eq:parameter-vector}). 
+Additionally, the interpreter must find a suitable 
 value for the weight $\alpha_{0} = 0$ (equation \ref{eq:goal-function}) controlling the 
 isostatic constraint, by using the matrix $\mathbf{W}$
 (equation~\ref{eq:isostatic-constraint-function}) equal to the identity.
 We presume that, by imposing full isostatic equilibrium along the entire profile,
-the estimated parameter vector $\mathbf{p}^{(1)}$ will produce a good data fit,
+the estimated parameter vector $\mathbf{p}^{(2)}$ will produce a good data fit,
 except at some isolated regions, where there will be hight residuals between the
 observed and predicted data. We assume that, at these regions, the study area deviates
 from the isostatic equilibrium described by the Airy's local model.
 
-Finally, the third step consists in obtaining an estimated parameter vector $\mathbf{p}^{(2)}$
+Finally, the third step consists in obtaining an estimated parameter vector $\mathbf{p}^{(3)}$
 by imposing different amounts of isostatic equilibrium on the interpretation model along the
-entire profile. Specifically, this step aims at computing diagonal elements $w_{ii}$ of the
-matrix $\mathbf{W}$ (equation~\ref{eq:isostatic-constraint-function}) that allow deviations 
-of the interpretation model from the isostatic equilibrium at the regions presenting high
-residuals between the observed and predicted data. At this step, the elements of $\mathbf{W}$
-are computed as follows:
+entire profile. At this step, the interpreter must compute the diagonal elements 
+$w_{ii}$ of the matrix $\mathbf{W}$
+(equation~\ref{eq:isostatic-constraint-function}) that allow deviations 
+of the interpretation model from the isostatic equilibrium at the regions presenting 
+residuals with high absolute values. The elements of $\mathbf{W}$ are computed as follows:
 \begin{equation} \label{eq:elements-wii}
 w_{ii} = 
-\exp \left[ - \frac{ \left( r_{i}^{(1)} + r_{i+1}^{(1)} \right)^{2}}{4 \sigma} \right] \: ,
+\exp \left[ - \frac{ \left( r_{i}^{(2)} + r_{i+1}^{(2)} \right)^{2}}{4 \sigma} \right] \: ,
 \end{equation}
-where $\sigma$ is a positive constant, $\mathbf{p}^{(1)}$ is the estimate parameter vector
+where $\sigma$ is a positive constant, $\mathbf{p}^{(2)}$ is the estimate parameter vector
 obtained in the previous step and the variables
-$r_{i}^{(1)} = d^{o}_{i} - d_{i} \left( \mathbf{p}^{(1)} \right)$ and 
-$r_{i+1}^{(1)} = d^{o}_{i+1} - d_{i+1} \left(\mathbf{p}^{(1)} \right)$ represent,
+$r_{i}^{(2)} = d^{o}_{i} - d_{i} \left( \mathbf{p}^{(2)} \right)$ and 
+$r_{i+1}^{(2)} = d^{o}_{i+1} - d_{i+1} \left(\mathbf{p}^{(2)} \right)$ represent,
 respectively, the residuals between observed and predicted data
 (equation~\ref{eq:ith-predicted-data}) at the positions $(x_{i}, y_{i}, z_{i})$ and 
 $(x_{i+1}, y_{i+1}, z_{i+1})$. Equation~\ref{eq:elements-wii} defines elements 
 $w_{ii}$ in the interval $\left] 0, 1 \right]$. Additionally, it results in 
 $w_{ii} \approx 1$ at regions where the residuals are close to zero and 
-$w_{ii} \approx 0$ at regions presenting high residual values. 
+$w_{ii} \approx 0$ at regions presenting residuals with high absolute values.
+The positive constant $\sigma$ controls the deviation from isostatic equilibrium.
+Large $\sigma$ values allow small deviations from isostatic equilibrium at
+regions presenting residuals with high absolute values.
 This strategy to define the elements of matrix $\mathbf{W}$ 
 (equation\ref{eq:isostatic-constraint-function}) presumes that the isostatic constraint may
 produce large residuals at some regions along the profile. To counteract this problem,
@@ -624,7 +624,7 @@ $\ell$-th constraining function $\Psi_{\ell}(\mathbf{p})$
 a similar way by using the Hessian matrix of the misfit function $\Phi(\mathbf{p})$ 
 (equation~\ref{eq:misfit-function}). 
 Both $E_{\Phi}$ and $E_{\ell}$ are defined by using the Hessian matrix computed with 
-the initial approximation $\mathbf{p}_{0}$ for the parameter vector $\mathbf{p}$ 
+the initial approximation $\mathbf{p}^{(0)}$ for the parameter vector $\mathbf{p}$ 
 (equation~\ref{eq:parameter-vector}) at the first step to solve the inverse problem.
 According to this empirical strategy, the weights $\alpha_{\ell}$ are defined 
 by using the positive scalars $\tilde{\alpha}_{\ell}$ 
@@ -638,38 +638,27 @@ The algorithm can be summarized as follows:
 	Define $p_{j}^{min}$, $p_{j}^{max}$ (equation~\ref{eq:inequality-constraint}),
 	$\mathbf{a}$ (equation~\ref{eq:equality-constraint-basement}) and
 	$\mathbf{b}$ (equation~\ref{eq:equality-constraint-moho}).
-	Define an initial approximation $\mathbf{p}_{0}$ satisfying the inequality constraint
-	(equation~\ref{eq:inequality-constraint}). Use $\mathbf{p}_{0}$ to compute the Hessian
+	Define an initial approximation $\mathbf{p}^{(0)}$ satisfying the inequality constraint
+	(equation~\ref{eq:inequality-constraint}). Use $\mathbf{p}^{(0)}$ to compute the Hessian
 	matrices of the constraining functions $\Psi_{\ell}(\mathbf{p})$, $\ell = 1, 2, 3$ (equations \ref{eq:smootheness-contraint}, \ref{eq:equality-constraint-basement} and \ref{eq:equality-constraint-moho}), and the Hessian matrix of the misfit function
 	$\Phi(\mathbf{p})$ (equation~\ref{eq:misfit-function}). Use these Hessian matrices to
 	compute $E_{\Phi}$, $E_{\ell}$ and $\alpha_{\ell}$ (equation~\ref{eq:constraint-weights}),
-	$\ell = 1, 2, 3$. Estimate a parameter vector $\mathbf{p}^{(0)}$
+	$\ell = 1, 2, 3$. Estimate a parameter vector $\mathbf{p}^{(1)}$
 	minimizing $\Gamma(\mathbf{p})$ (equation~\ref{eq:goal-function}), 
 	subject to the inequality constraint (equation~\ref{eq:inequality-constraint}).
-	\item [\textbf{(Step 2)}] Use $\mathbf{p}^{(0)}$ as initial approximation. Set $\mathbf{W}$
-	(equation~\ref{eq:isostatic-constraint-function}) equal to identity. Set a non-null
-	value for $\tilde{\alpha}_{0}$ (equation~\ref{eq:constraint-weights}). 
-	Use $\mathbf{p}^{(0)}$ to compute the Hessian
-	matrices of the constraining functions $\Psi_{\ell}(\mathbf{p})$, $\ell = 0, 1, 2, 3$
-	(equations \ref{eq:isostatic-constraint-function}, \ref{eq:smootheness-contraint},
-	\ref{eq:equality-constraint-basement} and \ref{eq:equality-constraint-moho}), and 
-	the Hessian matrix of the misfit function
-	$\Phi(\mathbf{p})$ (equation~\ref{eq:misfit-function}). Use these Hessian matrices to
-	compute $E_{\Phi}$, $E_{\ell}$ and $\alpha_{\ell}$ (equation~\ref{eq:constraint-weights}),
-	$\ell = 0, 1, 2, 3$.
-	Estimate a parameter vector $\mathbf{p}^{(1)}$ minimizing $\Gamma(\mathbf{p})$ (equation~\ref{eq:goal-function}), subject to the inequality constraint 
-	(equation~\ref{eq:inequality-constraint}).
-	\item [\textbf{(Step 3)}] Use $\mathbf{p}^{(1)}$ as initial approximation. Compute the 
-	diagonal elements $w_{ii}$, $i = 1, \dots N-1$ (equation~\ref{eq:elements-wii}).
-	Use $\mathbf{p}^{(1)}$ to compute the Hessian
-	matrices of the constraining functions $\Psi_{\ell}(\mathbf{p})$, $\ell = 0, 1, 2, 3$
-	(equations \ref{eq:isostatic-constraint-function}, \ref{eq:smootheness-contraint},
-	\ref{eq:equality-constraint-basement} and \ref{eq:equality-constraint-moho}), and 
-	the Hessian matrix of the misfit function
-	$\Phi(\mathbf{p})$ (equation~\ref{eq:misfit-function}). Use these Hessian matrices to
-	compute $E_{\Phi}$, $E_{\ell}$ and $\alpha_{\ell}$ (equation~\ref{eq:constraint-weights}),
-	$\ell = 0, 1, 2, 3$.
+	\item [\textbf{(Step 2)}] Use the same initial approximation $\mathbf{p}^{(0)}$
+	of the previous step. Set $\mathbf{W}$ (equation~\ref{eq:isostatic-constraint-function})
+	equal to identity. Set a non-null value for $\tilde{\alpha}_{0}$
+	(equation~\ref{eq:constraint-weights}). 
+	Use $\mathbf{p}^{(0)}$ to compute the Hessian matrix of the constraining function
+	$\Psi_{0}(\mathbf{p})$ (equation~\ref{eq:isostatic-constraint-function}). Use this 
+	Hessian matrix to compute $E_{0}$ and $\alpha_{0}$ (equation~\ref{eq:constraint-weights}).
 	Estimate a parameter vector $\mathbf{p}^{(2)}$ minimizing $\Gamma(\mathbf{p})$ (equation~\ref{eq:goal-function}), subject to the inequality constraint 
+	(equation~\ref{eq:inequality-constraint}).
+	\item [\textbf{(Step 3)}] Use $\mathbf{p}^{(2)}$ as initial approximation. 
+	Set the positive constant $\sigma$ and compute the 
+	diagonal elements $w_{ii}$ (equation~\ref{eq:elements-wii}), $i = 1, \dots N-1$.
+	Estimate a parameter vector $\mathbf{p}^{(3)}$ minimizing $\Gamma(\mathbf{p})$ (equation~\ref{eq:goal-function}), subject to the inequality constraint 
 	(equation~\ref{eq:inequality-constraint}).
 \end{enumerate}
 
@@ -680,20 +669,25 @@ The algorithm can be summarized as follows:
 We have simulated a simple volcanic margin model formed by four layers: 
 water, sediments + seaward dipping reflectors, crust (continental and oceanic) 
 and mantle. 
-
 Parameters defining this model are shown in Table~\ref{tab:volcanic-margin-model}.
-
 By following the algorithm described in the previous section, we applied our method 
 to the synthetic gravity disturbance data produced by our volcanic margin model.
 
+Figure \ref{fig:volc-margem-step1} shows the results obtained at Step 1 of our
+algorithm.
 The interpretation model was defined by using the parameters shown in
 Table~\ref{tab:volcanic-margin-model}.
-
-The parameters $\tilde{\alpha}_{0}$, $\tilde{\alpha}_{1}$, $\tilde{\alpha}_{2}$ and 
+The parameters $\tilde{\alpha}_{1}$, $\tilde{\alpha}_{2}$ and 
 $\tilde{\alpha}_{3}$ (equation~\ref{eq:constraint-weights}) used to estimate a parameter 
-vector $\mathbf{p}^{(0)}$ without imposing the isostatic constraint have values $0$, $10^{1}$, $10^{1}$ and $10^{2}$, respectively.
+vector $\mathbf{p}^{(1)}$ without imposing the isostatic constraint have values $10^{1}$, $10^{1}$ and $10^{2}$, respectively.
+As we can see, the estimated model produces a gravity disturbance and 
+lithostatic stress very close to the true ones.
+The estimated Moho is also very close to the 
 
-Figure \ref{fig:synt-estimated-model-without-isostatic} 
+
+
+
+Figures \ref{fig:volc-margem-step2} and \ref{fig:volc-margem-step3} 
 
 
 
@@ -821,14 +815,19 @@ a classical example of volcanic margin \citep{geoffroy2005} showing ...
 	The contour of the prisms forming the interpretation model were omitted.
 	The numbers within the colored rectangles represent the density contrasts 
 	$\Delta\rho^{(\alpha)}$, $\alpha = w, 1, 2, cc, c0, m$, in kg/m$^{3}$.}
-	\label{fig:synt-estimated-model-without-isostatic}
+	\label{fig:volc-margem-step1}
 }
 
-\plot{volcanic-margin-grafics-estimated-model-alphas_X_1_1_2_more-known-depths}{width=0.6\textwidth}{
-	{Application to synthetic data. Results obtained in Step 1 by using
-	additional known basement depths (purple symbols).
-	See the caption of Figure~\ref{fig:synt-estimated-model-without-isostatic}.
-	\label{fig:synt2-estimated-model-without-isostatic}}
+\plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2}{width=0.6\textwidth}{
+	{Application to synthetic data. Results obtained in Step 2.
+	See the caption of Figure~\ref{fig:volc-margem-step1}.
+	\label{fig:volc-margem-step2}}
+}
+
+\plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2-sgm_19}{width=0.6\textwidth}{
+	{Application to synthetic data. Results obtained in Step 3.
+	See the caption of Figure~\ref{fig:volc-margem-step1}.
+	\label{fig:volc-margem-step3}}
 }
 
 
