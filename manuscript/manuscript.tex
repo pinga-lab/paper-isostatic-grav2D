@@ -374,8 +374,14 @@ is a $N \times 1$ vector with $i$-th element defined by the thickness
 $t^{(\alpha)}_{i}$ of a prism in the $i$-th column, $\mathbf{M}^{(\alpha)}$ is an $N \times N$ diagonal matrix whose elements in the main diagonal are defined by the density contrasts 
 $\Delta \tilde{\rho}^{(\alpha)}_{i}$, $i = 1, \dots, N$, of the prisms in a layer and
 $\boldsymbol{\rho}^{(c)}$ is an $N \times 1$ vector containing the densities of the prisms
-representing the crust. By applying the first-order Tikhonov regularization
-\citep{aster-etal2005} to the vector $\boldsymbol{\tau}$, we obtain the
+representing the crust. 
+
+Let us now consider that the interpretation model is in isostatic equilibrium
+according to the Airy's local model \citep[e.g.,][]{turcotte-schubert2002,
+hofmann-wellenhof-moritz2005, lowrie2007}. We impose this condition 
+by applying the first-order Tikhonov regularization
+\citep{aster-etal2005} to the vector $\boldsymbol{\tau}$
+(equation~\ref{eq:lithostatic-stress-matrix}), obtaining the
 following expression:
 \begin{equation}
 \mathbf{R} \left( \mathbf{C} \mathbf{p} + \mathbf{D} \mathbf{t} \right) = \mathbf{0} 
