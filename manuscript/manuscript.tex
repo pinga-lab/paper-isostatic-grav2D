@@ -690,11 +690,11 @@ Table~\ref{tab:volcanic-margin-model}.
 The parameters $\tilde{\alpha}_{1}$, $\tilde{\alpha}_{2}$ and 
 $\tilde{\alpha}_{3}$ (equation~\ref{eq:constraint-weights}) used to estimate a parameter 
 vector $\mathbf{p}^{(1)}$ without imposing the isostatic constraint have values $10^{1}$, $10^{1}$ and $10^{2}$, respectively.
-As we can see, the estimated model produces a gravity disturbance and 
-lithostatic stress very close to the true ones and the
+As we can see, the estimated model produces a gravity disturbance and a 
+lithostatic stress very close to the simulated ones and the
 estimated Moho retrieves the true one.
 On the other hand, the estimated basement relief is very smooth and does not
-retrieve the true one along the first $\approx 200$ km of the profile.
+retrieve the true one along the first $200$ km of the profile.
 
 Figure~\ref{fig:volc-margem-step2} shows the estimated model obtained at the end
 of Step 2, by using $\tilde{\alpha}_{0} = 10^{2}$ (equation~\ref{eq:constraint-weights}).
@@ -709,14 +709,14 @@ notice the presence of large differences between the simulated and predicted gra
 disturbances.
 
 Figure~\ref{fig:volc-margem-step3} shows the estimated model obtained at the Step 3
-of our algorithm, by using $\sigma = 19$ (equation~\ref{eq:elements-wii}). 
+of our algorithm, by using $\sigma = 21$ (equation~\ref{eq:elements-wii}). 
 In comparison with the estimated model obtained at Step 2 
 (Figure~\ref{fig:volc-margem-step2}), the new estimated model produces a very good 
 data fit along the whole profile and shows an estimated Moho closer to the true one.
 The estimated basement relief is worse than that obtained at Step 2
 (Figure~\ref{fig:volc-margem-step2}), but it is still much better than that obtained
 at Step 1 (Figure~\ref{fig:volc-margem-step1}).
-It worth noting that the new lithostatic stress curve shows an abrupt variation
+It worth noting that the new lithostatic stress curve contains an abrupt variation
 at the region located between $100$ and $200$ km,
 showing that our method was able to successfully enables
 the interpretation model deviates from the isostatic equilibrium at an
@@ -751,8 +751,50 @@ priori information.
 \section{Application to real data}
 
 We applied our method to interpret a gravity profile over the Pelotas basin
-\citep{stica-etal2014}, located at the southern of Brazil. This basin is considered
-a classical example of volcanic margin \citep{geoffroy2005} showing ...
+\citep{stica-etal2014}, located at the southern of Brazil. This basin is 
+considered a classical example of volcanic margin \citep{geoffroy2005} showing 
+a pronounced crustal thinning.
+Parameters defining the model representing the Pelotas basin are the same used
+to define our volcanic margin model ()Table~\ref{tab:volcanic-margin-model}).
+We apply our method to the gravity disturbance data provided by the EIGEN6C4
+model \citep{forste2014} on the study area.
+
+Figure~\ref{fig:pelotas-step3} shows the estimated model obtained at the Step 3
+of our algorithm, by using $\sigma = 58$ (equation~\ref{eq:elements-wii}). 
+As we can see, the estimated model produces a very good data fit along the whole
+profile. Our estimated model is very close to that obtained independently by
+\citet{zalan2015}.
+The large differences ($\approx 10$ km) occur at the basement, along the first 
+$100$ km of the profile.
+At this region, \citeauthor{zalan2015} proposes a steep variation in basement
+relief, which shows a maximum depth $\approx 27$ km. On the other hand, our result 
+shows a smooth variation in basement relief. Despite these large differences,
+Figure~\ref{fig:pelotas-step3} shows that our model produces a very good data fit
+at this region.
+It worth noting that the estimated lithostatic stress curve contains abrupt variations
+at an isolated region close to $150$ km, indicating deviations of our estimated model
+from the isostatic equilibrium predicted by the Airy's local model.
+On the remaining parts of the profile, the lithostatic stress curve is very smooth,
+suggesting that the Pelotas basin is in isostatic equilibrium according to the
+Airy's model.
+Figure~\ref{fig:pelotas-step3-more-infs} shows an estimated model
+obtained in the same way as that shown in Figure~\ref{fig:pelotas-step3},
+but by using additional known depths at basement.
+Similarly to the estimated model shown in Figure~\ref{fig:pelotas-step3},
+this new model produces a very good data fit and deviates from the
+isostatic equilibrium at $\approx 150$ km. 
+Notice that, by using the additional known depths, the differences between our model
+and that obtained by \citet{zalan2015} decrease considerably.
+
+Figures~\ref{fig:pelotas-step3} and \ref{fig:pelotas-step3-more-infs} show that our
+method produces results very consistent with the
+previous interpretation obtained independently by \citet{zalan2015}.
+It is worth stress that our results were obtained by using by using gravity data
+provided by the global gravity model EIGEN6C4 \citep{forste2014}, whereas 
+\citet{zalan2015} obtained his result by interpreting ultra-deep seismic sections
+available to the petroleum industry.
+
+
 
 
 \section{Conclusions}
@@ -793,30 +835,6 @@ are typical of volcanic passive margins.
 \end{center}
 }
 
-%\tabl{pelotas-model}{Properties of the interpretation model used to
-%	invert the gravity data over the Pelotas basin.
-%	The density contrasts are defined with respect to the
-%	reference value $\rho^{(r)} = XXXX$ kg/m$^{3}$. The model extends from $y = 0$ km
-%	to $y = XXX$ km. The Crust-Ocean Transition (COT) is located at $y_{COT} = XXX$ km.
-%}{
-%\begin{center}
-%	\begin{tabular}{lcc}
-%		\hline
-%		\textbf{Geological meaning} & \textbf{Density} $\rho$ (kg/m$^{3}$) & \textbf{Horizontal extension}\\
-%		\hline
-%		water & 1030 & the whole model \\
-%		\hline
-%		sediments & XXXX & the whole model \\
-%		SDR & XXXX & the whole model \\
-%		\hline 
-%		continental crust & XXXX & from $y = 0$ km until $y_{COT}$ \\
-%		oceanic crust & XXXX & from $y_{COT}$ until $y = XXX$ km \\
-%		\hline
-%		mantle & XXXX & the whole model \\
-%		\hline
-%	\end{tabular}
-%\end{center}
-%}
 
 %%%%%%%%%%%%%%%%%% Tables %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -868,7 +886,7 @@ are typical of volcanic passive margins.
 	by a constant gravity value equal to $9.81$ m/s$^{2}$.
 	(Upper panel) True gravity disturbance data produced by the volcanic 
 	margin model (simulated data), data produced by the estimated model 
-	(predicted data) and data produced the model used as initial guess in the 
+	(predicted data) and data produced the by model used as initial guess in the 
 	inversion (initial guess data).
 	The contour of the prisms forming the interpretation model were omitted.
 	The density contrasts were defined according to Table~\ref{tab:volcanic-margin-model}.}
@@ -877,31 +895,65 @@ are typical of volcanic passive margins.
 
 \plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2}{width=0.6\textwidth}{
 	{Application to synthetic data. Results obtained in Step 2.
-	See the caption of Figure~\ref{fig:volc-margem-step1}.
+	The remaining informations are the same shown in the caption of
+	Figure~\ref{fig:volc-margem-step1}.
 	\label{fig:volc-margem-step2}}
 }
 
-\plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2-sgm_19}{width=0.6\textwidth}{
-	{Application to synthetic data. Results obtained in Step 3.
-	See the caption of Figure~\ref{fig:volc-margem-step1}.
+\plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2-sgm_21}{width=0.6\textwidth}{
+	{Application to synthetic data. Results obtained in Step 3 by using 
+	$\sigma = 21$ (equation~\ref{eq:elements-wii}).
+	The remaining informations are the same shown in the caption of
+	Figure~\ref{fig:volc-margem-step1}.
 	\label{fig:volc-margem-step3}}
 }
 
 \plot{volcanic-margin-grafics-estimated-model-alphas_X_1_1_2_more-known-depths}{width=0.6\textwidth}{
 	{Application to synthetic data. Results obtained in Step 1 by using
 	additional known depths at basement (purple symbols).
-	See the caption of Figure~\ref{fig:volc-margem-step1}.
+	The remaining informations are the same shown in the caption of
+	Figure~\ref{fig:volc-margem-step1}.
 	\label{fig:volc-margem-step1-more-inf}}
 }
 
-\plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2-sgm_19_more-known-depths}{width=0.6\textwidth}{
-	{Application to synthetic data. Results obtained in Step 3 by using
+\plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2-sgm_21_more-known-depths}{width=0.6\textwidth}{
+	{Application to synthetic data. Results obtained in Step 3 by using 
+	$\sigma = 21$ (equation~\ref{eq:elements-wii}) and 
 	additional known depths at basement (purple symbols). 
-	See the caption of Figure~\ref{fig:volc-margem-step1}.
+	The remaining informations are the same shown in the caption of
+	Figure~\ref{fig:volc-margem-step1}.
 	Notice that, in comparison with the estimated model shown in 
 	Figure~\ref{fig:volc-margem-step1-more-inf}, the number of additional
-	known depth is small.
+	known depths is small.
 	\label{fig:volc-margem-step3-more-inf}}
+}
+
+\plot{pelotas-profile-grafics-estimated-model-alphas_2_1_1_2-sgm_58}{width=0.6\textwidth}{
+	{Application to real data on Pelotas basin, Brazil. Results obtained in Step 3 by
+	using $\sigma = 58$ (equation~\ref{eq:elements-wii}).
+	(Bottom panel) Estimated surfaces, initial basement and Moho used in the
+	inversion, as well as the known depths at basement and Moho.
+	The initial guess was obtained by interpreting a seismic line presented
+	by \citet{stica-etal2014}.
+	The dashed white lines represent an alternative interpretation obtained 
+	by \citet{zalan2015} at the same study area.
+	(Middle panel) Estimated lithostatic stress curve computed
+	by using equation~\ref{eq:lithostatic-stress-densities}. The values are multiplied 
+	by a constant gravity value equal to $9.81$ m/s$^{2}$.
+	(Upper panel) Observed gravity disturbance data, data produced by the estimated
+	model (predicted data) and data produced the by model used as initial guess in the
+	inversion (initial guess data).
+	The contour of the prisms forming the interpretation model were omitted.
+	The density contrasts were defined according to Table~\ref{tab:volcanic-margin-model}.
+	\label{fig:pelotas-step3}}
+}
+
+\plot{pelotas-profile-grafics-estimated-model-alphas_2_1_1_2-sgm_58_more-known-depths}{width=0.6\textwidth}{
+	{Application to real data on Pelotas basin, Brazil. Results obtained in Step 3 by
+	using $\sigma = 58$ (equation~\ref{eq:elements-wii}) and additional
+	known depths at basement. The remaining informations are the same shown in
+	the caption of Figure \ref{fig:pelotas-step3}.
+	\label{fig:pelotas-step3-more-infs}}
 }
 
 
