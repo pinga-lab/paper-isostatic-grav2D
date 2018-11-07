@@ -142,23 +142,27 @@ In order to produce stable solutions and introduce priori information,
 we use different constraints imposing smoothness and lower/upper 
 bounds on basement and Moho depths, as well as proximity between estimated 
 and known depths at some points along the profile. We also use a constraint
-(which we conveniently call as \textit{isostatic constraint}) imposing smoothness
-on the lithostatic stress exerted on a planar surface located at depth,
-below which we assume that there is no lateral density variations.
-We considered that no vertical forces are acting on the lateral surfaces of 
-each column forming the lithosphere.
-Notice that, by imposing smoothness on the lithostatic stress,
-our method does not estimate a model in perfect isostatic equilibrium, 
-but a model as close as possible to the isostatic equilibrium.
-Tests with synthetic data show the performance of our method in simultaneously
-retrieving the geometry of basement and Moho of different models. 
-We also analyze the influence of the isostatic constraint on the estimated
-surfaces at regions showing abrupt crustal thinning, which is
-typically shown in volcanic passive margins \citep{geoffroy2005}.
-Finally, we illustrate the performance of our method by inverting 
-satellite gravity data on a profile over the Pelotas basin \citep{stica-etal2014}, 
-which is located at the southern of Brazil and is considered a classical example 
-of volcanic passive margin.
+on the lithostatic stress exerted by the interpretation model on a planar surface 
+located at depth, below which we assume that there is no lateral density variations.
+This constraint, which we conveniently call as \textit{isostatic constraint},
+imposes that the lithostatic stress must be smooth along the entire profile,
+except at some isolated regions, were it can present abrupt variations.
+At these regions, our method enables the estimated model deviates from the 
+isostatic equilibrium.
+Consequently, our method does not estimate a model in perfect isostatic equilibrium, 
+but a model as close as possible to the isostatic equilibrium according to the
+Airy's local model. 
+Tests with synthetic data show the good performance of our method in simultaneously
+retrieving the geometry of basement and Moho of a simulated vulcanic margin
+model. Finally, we illustrate an application of our method to invert 
+gravity data provided by the global model EIGEN6C4 \citep{forste2014} 
+on a profile over the Pelotas basin \citep{stica-etal2014}. This basin is
+located at the southern of Brazil and is considered a classical example 
+of volcanic passive margin \citep{geoffroy2005}. 
+We obtained results that are very consistent with a previous
+interpretation presented by \citet{zalan2015}, which used ultra-deep seismic data.
+These results show that our method can be very effective at regions
+presenting abrupt crustal thinning, which is typically shown in volcanic passive margins.
 
 
 \section{Methodology}
@@ -253,7 +257,6 @@ respectively, the depths of Moho and the planar isostatic compensation layer $S_
 The deepest portion of the fourth layer has thickness $\Delta S_{0}$, top at the
 surface $S_{0}$ and bottom at the planar surface 
 $S_{0} + \Delta S_{0}$, which defines the reference Moho. 
-
 
 Given the density contrasts, the COT position $y_{COT}$, the isostatic compensation
 depth $S_{0}$, the thickness of the water layer and of the $Q-1$ prisms forming the
@@ -752,22 +755,26 @@ priori information.
 
 We applied our method to interpret a gravity profile over the Pelotas basin
 \citep{stica-etal2014}, located at the southern of Brazil. This basin is 
-considered a classical example of volcanic margin \citep{geoffroy2005} showing 
-a pronounced crustal thinning.
-Parameters defining the model representing the Pelotas basin are the same used
-to define our volcanic margin model ()Table~\ref{tab:volcanic-margin-model}).
+considered a classical example of volcanic margin \citep{geoffroy2005}.
 We apply our method to the gravity disturbance data provided by the EIGEN6C4
-model \citep{forste2014} on the study area.
+model \citep{forste2014} on the study area. 
 
 Figure~\ref{fig:pelotas-step3} shows the estimated model obtained at the Step 3
-of our algorithm, by using $\sigma = 58$ (equation~\ref{eq:elements-wii}). 
+of our algorithm, by using $\sigma = 58$ (equation~\ref{eq:elements-wii}), 
+$\tilde{\alpha}_{0} = 10^{2}$, $\tilde{\alpha}_{1} = 10^{1}$, 
+$\tilde{\alpha}_{2} = 10^{1}$ and $\tilde{\alpha}_{3} = 10^{2}$
+(equation~\ref{eq:constraint-weights}).
+Parameters defining the interpretation model are the same used
+to define our volcanic margin model (Table~\ref{tab:volcanic-margin-model}).
+The initial approximation used in Step 1 (not shown) was obtained by interpreting a
+seismic section presented by \citet{stica-etal2014}.
 As we can see, the estimated model produces a very good data fit along the whole
 profile. Our estimated model is very close to that obtained independently by
 \citet{zalan2015}.
-The large differences ($\approx 10$ km) occur at the basement, along the first 
+The larger differences ($\approx 10$ km) occur at the basement, along the first 
 $100$ km of the profile.
 At this region, \citeauthor{zalan2015} proposes a steep variation in basement
-relief, which shows a maximum depth $\approx 27$ km. On the other hand, our result 
+relief, which shows a maximum depth $\approx 30$ km. On the other hand, our result 
 shows a smooth variation in basement relief. Despite these large differences,
 Figure~\ref{fig:pelotas-step3} shows that our model produces a very good data fit
 at this region.
@@ -776,25 +783,20 @@ at an isolated region close to $150$ km, indicating deviations of our estimated 
 from the isostatic equilibrium predicted by the Airy's local model.
 On the remaining parts of the profile, the lithostatic stress curve is very smooth,
 suggesting that the Pelotas basin is in isostatic equilibrium according to the
-Airy's model.
+Airy's model on those regions.
 Figure~\ref{fig:pelotas-step3-more-infs} shows an estimated model
 obtained in the same way as that shown in Figure~\ref{fig:pelotas-step3},
 but by using additional known depths at basement.
-Similarly to the estimated model shown in Figure~\ref{fig:pelotas-step3},
-this new model produces a very good data fit and deviates from the
-isostatic equilibrium at $\approx 150$ km. 
+Similarly to that shown in Figure~\ref{fig:pelotas-step3},
+the new model (Figure~~\ref{fig:pelotas-step3-more-infs}) produces a very good data fit 
+and deviates from the isostatic equilibrium at the position $\approx 150$ km. 
 Notice that, by using the additional known depths, the differences between our model
-and that obtained by \citet{zalan2015} decrease considerably.
-
-Figures~\ref{fig:pelotas-step3} and \ref{fig:pelotas-step3-more-infs} show that our
-method produces results very consistent with the
-previous interpretation obtained independently by \citet{zalan2015}.
-It is worth stress that our results were obtained by using by using gravity data
+and that obtained by \citet{zalan2015} decrease considerably without producing
+significant changes in the predicted data.
+It is worth stressing that our results were obtained by using gravity data
 provided by the global gravity model EIGEN6C4 \citep{forste2014}, whereas 
 \citet{zalan2015} obtained his result by interpreting ultra-deep seismic sections
 available to the petroleum industry.
-
-
 
 
 \section{Conclusions}
@@ -933,8 +935,6 @@ are typical of volcanic passive margins.
 	using $\sigma = 58$ (equation~\ref{eq:elements-wii}).
 	(Bottom panel) Estimated surfaces, initial basement and Moho used in the
 	inversion, as well as the known depths at basement and Moho.
-	The initial guess was obtained by interpreting a seismic line presented
-	by \citet{stica-etal2014}.
 	The dashed white lines represent an alternative interpretation obtained 
 	by \citet{zalan2015} at the same study area.
 	(Middle panel) Estimated lithostatic stress curve computed
