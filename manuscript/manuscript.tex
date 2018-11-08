@@ -58,7 +58,7 @@ It is well known that, by using different density and/or magnetization contrasts
 it is possible to
 find different surfaces producing the same potential-field data. 
 To partially overcome this problem and obtain meaningful solutions, the interpreter
-must commonly use priori information obtained from seismic data and/or boreholes in
+must commonly use a priori information obtained from seismic data and/or boreholes in
 order to constrain the range of possible models.
 
 There are methods that approximate the subsurface by a grid of
@@ -66,8 +66,7 @@ juxtaposed cells with constant physical property.
 They estimate the physical property value of each cell and then 
 interpret the estimated values to indirectly estimate the geometry of the 
 geophysical discontinuities.
-Although very useful in geophysics, such methods are
-outside the scope of the present work.
+Although very useful in geophysics, such methods are outside the scope of the present work.
 Here, we consider methods that represent discontinuities by surfaces 
 separating layers with constant or depth-dependent physical property distribution 
 (density and/or magnetization).
@@ -87,7 +86,7 @@ estimating the geometry of a single interface.
 In this group, there are local scale methods in space domain
 % scale: local | data: gravity | domain: space
 \citep[e.g.,][]{bott1960, tanner1967, cordell-henderson1968, dyrelius-vogel1972, pedersen1977,
-pilkington-crossley1986, richardson-macinnes1989, barbosa-etal1997, 
+pilkington-crossley1986, richardson-macinnes1989, barbosa-etal1997, condi-etal1999, 
 barbosa-etal1999, barbosa-etal1999b, silva-etal2006, pilkington2006, 
 chakravarthi-sundararajan2007, martins-etal2010, silva-etal2010, lima-etal2011, 
 martins-etal2011, barnes-barraud2012, silva-etal2014, silva-santos2017},
@@ -109,14 +108,14 @@ in spaced domain
 
 The second group of methods is formed by those estimating multiple surfaces
 separating layers with constant or depth-dependent physical properties 
-\citep[e.g.,][]{pilkington-crossley1986b, gallardo-etal2005, camacho-etal2011, 
-salem-etal2014}.
+\citep[e.g.,][]{pilkington-crossley1986b, gallardo-etal2005, condi-etal1999, 
+camacho-etal2011, salem-etal2014}.
 All these methods have been applied at local scale, to characterize a single 
 sedimentary basin.
 The number of methods forming this group is significantly lower than that
 in the first one.
 Additionally, the methods forming the second group suffer from a greater 
-ambiguity and, as a consequence, they require more priori information to
+ambiguity and, as a consequence, they require more a priori information to
 decrease the number of possible solutions.
 
 Among those directly estimating the geometry of the surfaces, 
@@ -125,33 +124,41 @@ some degree of isostatic equilibrium to the estimated models
 \citep[e.g.,][]{sunkel1985, sjoberg2009, bagherbandi-eshagh2012, sampietro2015}
 or analyze their deviations from a perfect isostatic equilibrium
 \citep[e.g.,][]{shin-etal2009}.
-
-Few authors have presented local scale methods in space domain for 
-simultaneously estimating the basement and Moho reliefs subjected to 
-isostatic equilibrium. 
-
-\citet{condi-etal1999} parametrized the subsurface by using a set of
-polygonal bodies, each one having uniform density, and proposed a non-linear
-inverse problem for estimating the densities and the vertical coordinates 
-of the polygon vertices. 
-
-\citet{salem-etal2014} presented one of the few 
-They imposed a perfect isostatic equilibrium according to
+\citet{salem-etal2014} presented one of the few local scale methods in space 
+domain for simultaneously estimating the basement and Moho reliefs. 
+They impose a perfect isostatic equilibrium according to
 the Airy's local compensation model \citep{turcotte-schubert2002}, 
 which describes well the transition from continental to oceanic crust 
-at rifted margins \citep{worzel1968, watts-moore2017}.
-
-
+at rifted margins \citep{worzel1968}.
+Their method approximates the subsurface by three juxtaposed layers having
+constant density contrasts.
+They are defined in terms of 2D bodies having polygonal
+cross-sections and represent sediments, crust and mantle.
+The two interfaces separating them represent the basement and Moho
+reliefs. In their method, \citet{salem-etal2014} estimate the basement
+relief by using an iterative approach similar to that
+presented by \citet{bott1960} and \citet{cordell-henderson1968}. 
+The difference is that, at each iteration, they use the Airy's model 
+to update the Moho geometry.
+As properly pointed out by \citet{silva-etal2014}, \citeauthor{bott1960}'s
+method does not define optimal step sizes at the iterative corrections,
+does not impose constraints for obtaining stable solutions, nor use
+an objective stopping criterion. 
+It is reasonable to presume that the method presented by \citet{salem-etal2014} is also
+susceptible to these limitations based on its resemblance with that proposed by \citeauthor{bott1960}.
 
 Here, we present a new local scale method for simultaneously estimating the geometries
 of basement and Moho along a profile on a passive rifted margin.
 Our method is formulated, in space domain, as a non-linear gravity inversion.
-In order to produce stable solutions and introduce priori information,
+In order to produce stable solutions and introduce a priori information,
 we use different constraints imposing smoothness and lower/upper 
 bounds on basement and Moho depths, as well as proximity between estimated 
-and known depths at some points along the profile. We also use a constraint
-on the lithostatic stress exerted by the interpretation model on a planar surface 
-located at depth, below which we assume that there is no lateral density variations.
+and known depths at some points along the profile. 
+We also impose isostatic equilibrium to the estimated model. However,
+differently from previous methods, we introduce this information by
+imposing smoothness on the lithostatic stress exerted by the interpretation 
+model on a planar surface located at depth, below which we assume that there is no lateral
+density variations.
 This constraint, which we conveniently call as \textit{isostatic constraint},
 imposes that the lithostatic stress must be smooth along the entire profile,
 except at some isolated regions, were it can present abrupt variations.
@@ -194,7 +201,7 @@ salt or volcanic rocks.
 In our example, this layer is formed by two parts with constant densities
 $\rho^{(q)}$, $q = 1, 2$. Different models can be created by changing the number $Q$.
 The third layer of our model represents the crust. For simplicity, we presume that the
-crust density may be equal to $\rho^{(cc)}$, which
+crust density assumes two possible values. It can be equal to $\rho^{(cc)}$, which
 represents the continental crust, or equal to $\rho^{(oc)}$, which represents the
 oceanic crust.
 The deepest layer represents a homogeneous mantle with constant density $\rho^{(m)}$. 
@@ -261,7 +268,7 @@ The fourth layer represents the mantle, it is divided into two parts, each one f
 by a single prism having a constant density contrast 
 $\Delta \rho^{(m)} = \rho^{(m)} - \rho^{(r)}$. The shallowest
 portion of this layer has thickness $t^{(m)}_{i}$. Its top and bottom define,
-respectively, the depths of Moho and the planar isostatic compensation layer $S_{0}$.
+respectively, the depths of Moho and the planar surface at the compensation depth $S_{0}$.
 The deepest portion of the fourth layer has thickness $\Delta S_{0}$, top at the
 surface $S_{0}$ and bottom at the planar surface 
 $S_{0} + \Delta S_{0}$, which defines the reference Moho. 
@@ -389,7 +396,10 @@ representing the crust.
 
 Let us now consider that the interpretation model is in isostatic equilibrium
 according to the Airy's local model \citep[e.g.,][]{turcotte-schubert2002,
-hofmann-wellenhof-moritz2005, lowrie2007}. We impose this condition 
+hofmann-wellenhof-moritz2005, lowrie2007}. 
+In this case, the lithostatic stress exerted by the interpretation model
+must be constant on a planar surface located at depth.
+Differently from previous approaches in literature, we impose this condition 
 by applying the first-order Tikhonov regularization
 \citep{aster-etal2005} to the vector $\boldsymbol{\tau}$
 (equation~\ref{eq:lithostatic-stress-matrix}), obtaining the
@@ -443,8 +453,8 @@ Function $\Psi_{0}(\mathbf{p})$ defines the \textit{Isostatic constraint}.
 
 Notice that, by minimizing the function $\Psi_{0}(\mathbf{p})$ 
 (equation~\ref{eq:isostatic-constraint-function}), the method imposes smoothness on 
-the lithostatic stress exerted by the interpretation model on the isostatic 
-compensation surface $S_{0}$.
+the lithostatic stress exerted by the interpretation model on the 
+compensation depth $S_{0}$.
 Matrix $\mathbf{W}$ controls the relative amount of isostatic equilibrium imposed 
 along the profile. 
 In the particular case in which all diagonal elements $w_{ii}$ have the same
@@ -723,7 +733,9 @@ Figure~\ref{fig:volc-margem-step3} shows the estimated model obtained at the Ste
 of our algorithm, by using $\sigma = 21$ (equation~\ref{eq:elements-wii}). 
 In comparison with the estimated model obtained at Step 2 
 (Figure~\ref{fig:volc-margem-step2}), the new estimated model produces a very good 
-data fit along the whole profile and shows an estimated Moho closer to the true one.
+data fit along the whole profile. Additionally, it shows an estimated Moho that,
+regardless of the small artifact created at the position $\approx 150$ km, is
+closer to the true one.
 The estimated basement relief is worse than that obtained at Step 2
 (Figure~\ref{fig:volc-margem-step2}), but it is still much better than that obtained
 at Step 1 (Figure~\ref{fig:volc-margem-step1}).
@@ -747,16 +759,20 @@ obtained in the same way as that shown in
 Figure~\ref{fig:volc-margem-step1}, but by using a great number of additional 
 known depths at basement. As we can see, the additional known depths
 improve the estimated basement relief.
-In practical situations, however, the amount of available priori 
+In practical situations, however, the amount of available a priori 
 information on the study area is limited.
 Figure~\ref{fig:volc-margem-step3-more-inf} shows an estimated model
 obtained in the same way as that shown in Figure~\ref{fig:volc-margem-step3},
 but by using a limited number of additional known depths at basement.
 Notice that the number of additional known depths is smaller than that
 used in Figure~\ref{fig:volc-margem-step1-more-inf}.
-This result shows that the isostatic constraint can be very effective in 
+Other curious feature noted in this new model is that,
+similarly to that shown in Figure~\ref{fig:volc-margem-step3},
+the estimated Moho shows an artifact at the position $\approx 150$ km.
+Notwithstanding this artifact, 
+this result shows that the isostatic constraint can be very effective in 
 retrieving the basement relief and Moho by using a limited amount of
-priori information. 
+a priori information. 
 
 
 \section{Application to real data}
@@ -774,8 +790,8 @@ $\tilde{\alpha}_{2} = 10^{1}$ and $\tilde{\alpha}_{3} = 10^{2}$
 (equation~\ref{eq:constraint-weights}).
 Parameters defining the interpretation model are the same used
 to define our volcanic margin model (Table~\ref{tab:volcanic-margin-model}).
-The initial approximation used in Step 1 (not shown) was obtained by interpreting a
-seismic section presented by \citet{stica-etal2014}.
+The initial approximation used in Steps 1 and 2 (not shown) was obtained by 
+interpreting a seismic section presented by \citet{stica-etal2014}.
 As we can see, the estimated model produces a very good data fit along the whole
 profile. Our estimated model is very close to that obtained independently by
 \citet{zalan2015}.
@@ -785,13 +801,17 @@ At this region, \citeauthor{zalan2015} proposes a steep variation in basement
 relief, which shows a maximum depth $\approx 30$ km. On the other hand, our result 
 shows a smooth variation in basement relief. Despite these large differences,
 Figure~\ref{fig:pelotas-step3} shows that our model produces a very good data fit
-at this region.
+at this region. It means that, by presuming an SDR having a small density contrast 
+(Table~\ref{tab:volcanic-margin-model}), the steep variation 
+proposed by \citeauthor{zalan2015} in the basement relief cannot be determined by using only
+gravity data.
 It worth noting that the estimated lithostatic stress curve contains abrupt variations
 at an isolated region close to $150$ km, indicating deviations of our estimated model
 from the isostatic equilibrium predicted by the Airy's local model.
 On the remaining parts of the profile, the lithostatic stress curve is very smooth,
-suggesting that the Pelotas basin is in isostatic equilibrium according to the
-Airy's model on those regions.
+suggesting that the Pelotas basin is in isostatic equilibrium according to 
+the Airy's model on those regions.
+
 Figure~\ref{fig:pelotas-step3-more-infs} shows an estimated model
 obtained in the same way as that shown in Figure~\ref{fig:pelotas-step3},
 but by using additional known depths at basement.
@@ -811,46 +831,48 @@ available to the petroleum industry.
 
 We present a new local scale method for simultaneously estimating the geometries of
 basement and Moho on a profile located on a passive rifted margin.
-
 Our method approximates the subsurface by a set of adjacent columns, each one divided
-into a four layers. The first one represents water; the second can be formed by more than
-one part, according to the complexity of the study area; the third represents the crust 
-and the last one the mantle.
+into four layers. The first one represents water; the second is formed by vertically
+stacked parts, according to the complexity of the study area; the third and fourth represent,
+respectively, the crust and mantle, being the last one formed by two vertically stacked parts.
+The interface separating the upper and lower parts of the fourth layer represents a
+planar surface below which there is no lateral density variations.
+This planar surface defines the isostatic compensation depth.
+The interfaces defining the top and bottom of the third layer define, respectively, 
+the basement and Moho in our model.
+We assume that the Crust-Ocean Transition (COT) can be represented by an abrupt and 
+vertical interface.
+The layers representing water and mantle have constant density contrasts.
+In the second layer, each part has a constant density contrast.
+The density contrast in the third layer assumes two possible values representing
+the continental crust, before the COT, and oceanic crust, after the COT.
 
-The interfaces defining the top and bottom of the third layer represent, respectively, 
-the basement and Moho.
-
-All layers have a constant density contrast, except the third, which can assume two 
-possible values representing the continental and oceanic crusts.
-
-We assume that Crust-Ocean Transition (COT) can be represented by an abrupt and vertical 
-interface.
-
-Our method presumes the knowledge of the COT position, all density contrasts 
-and the geometry of all layers above the basement.
-
-The method is formulated as a constrained and non-linear inverse problem. 
-
-In order to obtain stable solutions, we force the estimated basement and Moho to be 
+Our method presumes the knowledge of the COT position, the compensation depth,
+all density contrasts and the geometry of all layers above the basement.
+The method is formulated as a non-linear inverse problem. 
+The parameters to be estimated are the thickness of the deeper part forming the 
+second layer, the thickness of the upper part forming the fourth layer and the
+constant thickness of the deeper part forming the fourth layer.
+Because all parameters represent thickness, we force them to be positive.
+In order to obtain stable solutions, we impose the estimated basement and Moho to be 
 smooth and close to some points having known depths along the profile.
-
-We also impose that the lithostatic stress exerted by the model on a planar surface 
-located at depth must be mostly smooth, except at some isolated regions, where it can
+We also impose isostatic equilibrium according to the Airy's local compensation model.
+Our original approach introduces this information by enforcing that the lithostatic stress
+exerted by the model on a planar surface located at the compensation depth 
+must be mostly smooth, except at some isolated regions, where it can
 present abrupt variations.
-
- 
 
 Tests with synthetic data show that the isostatic constraint can considerably improve 
 the estimated model at regions showing pronounced crustal thinning, which 
 are typical of volcanic passive margins. 
-
 Applications to real data over the Pelotas basin, considered a classical volcanic
 margin at the southern of Brazil, produced results in agreement with a previous 
-interpretation obtained independently at the study area by using ultra-deep seismic
-data.
-
-Further research could be conducted to generalize our method for estimating
-three dimensional models.
+interpretation obtained independently by using ultra-deep seismic data.
+These results show that our method can be a useful tool for interpreting
+gravity data on rifted margins.
+Further research could be conducted to generalize our method to estimate
+three dimensional models and also include lateral density variations in 
+mantle and crust.
 
 %%%%%%%%%%%%%%%%%% Tables %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
