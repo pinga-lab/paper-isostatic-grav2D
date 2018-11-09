@@ -26,14 +26,14 @@
 
 \ms{GEO-XXXX} % manuscript number
 
-\address{
-\footnotemark[1]Observat\'{o}rio Nacional, \\
-Department of Geophysics, \\
-Rio de Janeiro, Brazil}
-\author{B. Marcela S. Bastos\footnotemark[1] and Vanderlei C. Oliveira Jr\footnotemark[1]}
+%\address{
+%\footnotemark[1]Observat\'{o}rio Nacional, \\
+%Department of Geophysics, \\
+%Rio de Janeiro, Brazil}
+%\author{B. Marcela S. Bastos\footnotemark[1] and Vanderlei C. Oliveira Jr\footnotemark[1]}
 
-\footer{vanderlei@on.br}
-\lefthead{Bastos and Oliveira Jr.}
+%\footer{vanderlei@on.br}
+%\lefthead{Bastos and Oliveira Jr.}
 \righthead{Isostatic constraint for gravity inversion on passive margins}
 
 \maketitle
@@ -226,6 +226,8 @@ The second layer is formed by $Q$ vertically adjacent parts representing sedimen
 salt or volcanic rocks.
 In our example, this layer is formed by two parts with constant densities
 $\rho^{(q)}$, $q = 1, 2$. Different models can be created by changing the number $Q$.
+In many cases, seismic data can be used to constrain the geometry of these 
+shallow structures.
 The third layer of our model represents the crust. For simplicity, we presume that the
 crust density assumes two possible values. It can be equal to $\rho^{(cc)}$, which
 represents the continental crust, or equal to $\rho^{(oc)}$, which represents the
@@ -860,11 +862,10 @@ geometries of basement and Moho on a profile crossing a passive rifted margin.
 Our method approximates the subsurface by a set of adjacent columns, each one divided
 into four layers. The first one represents water; the second is formed by vertically
 stacked parts, according to the complexity of the study area; the third and fourth represent,
-respectively, the crust and mantle, being the last one formed by two vertically stacked parts.
-The surface separating the upper and lower parts of the fourth layer represents a
-planar surface below which there is no lateral density variations.
-This planar surface defines the isostatic compensation depth.
-The surfaces defining the top and bottom of the third layer define, respectively, 
+respectively, the crust and mantle, being the last one formed by two parts.
+The planar surface separating these two parts represents the isostatic compensation depth,
+below which there is no lateral density variations.
+The surfaces defining the top and bottom of the third layer represent, respectively, 
 the basement and Moho in our model.
 We assume that the Continent-Ocean Transition (COT) can be represented by an abrupt and 
 vertical interface.
@@ -875,17 +876,20 @@ the continental crust, before the COT, and oceanic crust, after the COT.
 
 Our method presumes the knowledge of the COT position, the compensation depth,
 all density contrasts and the geometry of all layers above the basement.
+In practical situations, 
+seismic data commonly constrain the geometry of these shallow layers.
 The method is formulated as a non-linear inverse problem. 
 The parameters to be estimated are the thickness of the deeper part forming the 
-second layer, the thickness of the upper part forming the fourth layer and the
-constant thickness of the deeper part forming the fourth layer.
+second layer, which defines the basement, the thickness of the upper part forming the 
+fourth layer, which defines the Moho, and the constant thickness of the deeper part forming 
+the fourth layer, which defines the reference Moho.
 Because all parameters represent thickness, we force them to be positive.
 In order to obtain stable solutions, we enforces the estimated basement and Moho to be 
 smooth and close to some points having known depths along the profile.
 We also impose isostatic equilibrium according to the Airy's local compensation model.
-Our original approach introduces this information by enforcing that the lithostatic stress
-exerted by the model on a planar surface located at the compensation depth 
-must be mostly smooth, except at some isolated regions, where it can
+This information is introduced by constraining the lithostatic stress
+exerted by the model on a constant compensation depth. The constraint forces the
+lithostatic stress to be mostly smooth, except at some isolated regions, where it can
 present abrupt variations.
 
 Tests with synthetic data show that the isostatic constraint can considerably improve 
@@ -973,7 +977,7 @@ mantle and crust.
 
 %% Results
 
-\plot{volcanic-margin-grafics-estimated-model-alphas_X_1_1_2}{width=0.6\textwidth}{
+\plot{volcanic-margin-step1}{width=0.6\textwidth}{
 	{Application to synthetic data. Results obtained in Step 1. 
 	(Bottom panel) Estimated and true surfaces,
 	initial basement and Moho used in the inversion (initial guess) and
@@ -990,14 +994,14 @@ mantle and crust.
 	\label{fig:volc-margem-step1}
 }
 
-\plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2}{width=0.6\textwidth}{
+\plot{volcanic-margin-step2}{width=0.6\textwidth}{
 	{Application to synthetic data. Results obtained in Step 2.
 	The remaining informations are the same shown in the caption of
 	Figure~\ref{fig:volc-margem-step1}.
 	\label{fig:volc-margem-step2}}
 }
 
-\plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2-sgm_21}{width=0.6\textwidth}{
+\plot{volcanic-margin-step3}{width=0.6\textwidth}{
 	{Application to synthetic data. Results obtained in Step 3 by using 
 	$\sigma = 21$ (equation~\ref{eq:elements-wii}).
 	The remaining informations are the same shown in the caption of
@@ -1005,7 +1009,7 @@ mantle and crust.
 	\label{fig:volc-margem-step3}}
 }
 
-\plot{volcanic-margin-grafics-estimated-model-alphas_X_1_1_2_more-known-depths}{width=0.6\textwidth}{
+\plot{volcanic-margin-step1-more-inf}{width=0.6\textwidth}{
 	{Application to synthetic data. Results obtained in Step 1 by using
 	additional known depths at basement (purple symbols).
 	The remaining informations are the same shown in the caption of
@@ -1013,7 +1017,7 @@ mantle and crust.
 	\label{fig:volc-margem-step1-more-inf}}
 }
 
-\plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2-sgm_21_more-known-depths}{width=0.6\textwidth}{
+\plot{volcanic-margin-step3-more-inf}{width=0.6\textwidth}{
 	{Application to synthetic data. Results obtained in Step 3 by using 
 	$\sigma = 21$ (equation~\ref{eq:elements-wii}) and 
 	additional known depths at basement (purple symbols). 
@@ -1025,7 +1029,7 @@ mantle and crust.
 	\label{fig:volc-margem-step3-more-inf}}
 }
 
-\plot{pelotas-profile-grafics-estimated-model-alphas_2_1_1_2-sgm_58}{width=0.6\textwidth}{
+\plot{pelotas-step3}{width=0.6\textwidth}{
 	{Application to real data on Pelotas basin, Brazil. Results obtained in Step 3 by
 	using $\sigma = 58$ (equation~\ref{eq:elements-wii}).
 	(Bottom panel) Estimated surfaces, initial basement and Moho used in the
@@ -1043,7 +1047,7 @@ mantle and crust.
 	\label{fig:pelotas-step3}}
 }
 
-\plot{pelotas-profile-grafics-estimated-model-alphas_2_1_1_2-sgm_58_more-known-depths}{width=0.6\textwidth}{
+\plot{pelotas-step3-more-inf}{width=0.6\textwidth}{
 	{Application to real data on Pelotas basin, Brazil. Results obtained in Step 3 by
 	using $\sigma = 58$ (equation~\ref{eq:elements-wii}) and additional
 	known depths at basement. The remaining informations are the same shown in
@@ -1056,7 +1060,7 @@ mantle and crust.
 
 \section{ACKNOWLEDGMENTS}
 
-\lipsum[0-1]
+%\lipsum[1]
 
 
 \newpage
