@@ -235,7 +235,7 @@ The interface separating the second and third layers defines the basement relief
 that separating the third and fourth layers defines the Moho. These surfaces are
 represented by dashed-white lines in Figure~\ref{fig:rifted-margin-model}.
 We also presume the existence of an isostatic compensation depth at $S_{0}$ 
-(represented as a continuous white line in Figure~\ref{fig:rifted-margin-model}),
+(represented as a continuous black line in Figure~\ref{fig:rifted-margin-model}),
 below which there is no lateral variations in the mass distribution.
 
 In order to define the anomalous mass distribution producing the observed gravity
@@ -247,7 +247,7 @@ with constant density $\rho^{(m)}$. Notice that the mantle in the reference mass
 distribution has the same density as the mantle in our rifted margin model
 (Figure~\ref{fig:rifted-margin-model}).
 The interface separating the crust and mantle in the reference mass distribution 
-is conveniently called \textit{reference Moho} (represented as a continuous white line
+is conveniently called \textit{reference Moho} (represented as a continuous black line
 in Figure~\ref{fig:rifted-margin-model}).
 The reference model can be thought of as the outer layers of a concentric
 mass distribution producing the normal gravity field.
@@ -256,7 +256,7 @@ We consider that the anomalous mass distribution producing the observed data
 is defined as the difference between the rifted margin model 
 (Figure~\ref{fig:rifted-margin-model}) and the reference mass distribution (not shown).
 As a consequence, the anomalous mass distribution is characterized by regions
-with constant density contrast.
+with constant density contrasts.
 This anomalous distribution is approximated by an interpretation model 
 formed by $N$ columns of vertically stacked prisms 
 (Figure~\ref{fig:interpretation-model}).
@@ -415,7 +415,8 @@ where $\boldsymbol{\tau}$ is an $N \times 1$ vector whose $i$-th element is
 the $\tau_{i}$ (equation~\ref{eq:lithostatic-stress-densities}) associated with
 the $i$-th column, $\mathbf{t}^{(\alpha)}$, $\alpha = w, 1, \dots, Q-1, Q, m$, 
 is a $N \times 1$ vector with $i$-th element defined by the thickness 
-$t^{(\alpha)}_{i}$ of a prism in the $i$-th column, $\mathbf{M}^{(\alpha)}$ is an $N \times N$ diagonal matrix whose elements in the main diagonal are defined by the density contrasts 
+$t^{(\alpha)}_{i}$ of a prism in the $i$-th column, $\mathbf{M}^{(\alpha)}$ is an $N \times N$ diagonal 
+matrix whose elements in the main diagonal are defined by the density contrasts 
 $\Delta \tilde{\rho}^{(\alpha)}_{i}$, $i = 1, \dots, N$, of the prisms in a layer and
 $\boldsymbol{\rho}^{(c)}$ is an $N \times 1$ vector containing the densities of the prisms
 representing the crust. 
@@ -424,7 +425,8 @@ Let us now consider that the interpretation model is in isostatic equilibrium
 according to the Airy's local model \citep[e.g.,][]{turcotte-schubert2002,
 hofmann-wellenhof-moritz2005, lowrie2007}. 
 In this case, the lithostatic stress exerted by the interpretation model
-must be constant on a planar surface located at depth.
+must be constant on the planar surface located at the compensation depth $S_{0}$
+(Figures \ref{fig:rifted-margin-model} and \ref{fig:interpretation-model}).
 Differently from previous approaches in literature, we impose this condition 
 by applying the first-order Tikhonov regularization
 \citep{aster-etal2005} to the vector $\boldsymbol{\tau}$
@@ -496,7 +498,8 @@ along the entire profile. Alternatively, we may enable the interpretation model
 deviates from the isostatic equilibrium by conveniently decreasing the numerical values
 assigned to the elements $w_{ii}$ at specific regions along the profile. 
 The strategy used to define the elements $w_{ii}$ is 
-presented in the specific section describing the numerical solution of the inverse problem.
+presented in the specific section describing the computational procedures
+for solving the inverse problem.
 
 
 \subsection{Smoothness constraint}
@@ -504,7 +507,8 @@ presented in the specific section describing the numerical solution of the inver
 
 This constraint imposes smoothness on the adjacent thickness of the prisms forming the
 deepest portion of the second layer and the shallowest part of the fourth layer
-of the interpretation model by applying the first-order Tikhonov regularization
+of the interpretation model. 
+This information is introduced by applying the first-order Tikhonov regularization
 \citep{aster-etal2005} to the vectors $\mathbf{t}^{(Q)}$ and $\mathbf{t}^{(m)}$ 
 (equation~\ref{eq:parameter-vector}). 
 Mathematically, this constraint is represented by the regularizing function
@@ -615,47 +619,47 @@ necessary to find suitable values for these parameters.
 The second step consists in obtaining an estimated parameter vector $\mathbf{p}^{(2)}$
 by imposing full isostatic equilibrium on the interpretation model along the entire profile.
 In this step, the interpreter must use the same initial approximation $\mathbf{p}^{(0)}$
-for the parameter vector $\mathbf{p}$ (equation~\ref{eq:parameter-vector}). 
-Additionally, the interpreter must find a suitable 
-value for the weight $\alpha_{0}$ (equation \ref{eq:goal-function}) controlling the 
-isostatic constraint, by using the matrix $\mathbf{W}$
-(equation~\ref{eq:isostatic-constraint-function}) equal to the identity.
+of the previous step. 
+Additionally, the interpreter must set the matrix $\mathbf{W}$
+equal to the identity and find a suitable value for the weight $\alpha_{0}$ 
+(equation \ref{eq:goal-function}) controlling the isostatic constraint 
+(equation~\ref{eq:isostatic-constraint-function}).
 We presume that, by imposing full isostatic equilibrium along the entire profile,
-the estimated parameter vector $\mathbf{p}^{(2)}$ will produce a good data fit,
-except at some isolated regions, where there will be large residuals between the
-observed and predicted data. We assume that, at these regions, the study area deviates
+the estimated parameter vector $\mathbf{p}^{(2)}$ will produce a mostly good data fit,
+except at some isolated regions. 
+We assume that, at these regions, the passive margin deviates
 from the isostatic equilibrium described by the Airy's local model.
 
 Finally, the third step consists in obtaining an estimated parameter vector $\mathbf{p}^{(3)}$
 by imposing different amounts of isostatic equilibrium on the interpretation model along the
-entire profile. At this step, the interpreter must compute the diagonal elements 
-$w_{ii}$ of the matrix $\mathbf{W}$
-(equation~\ref{eq:isostatic-constraint-function}) that enable the interpretation 
-model deviates from the isostatic equilibrium at the regions presenting 
-large residuals. The elements of $\mathbf{W}$ are computed as follows:
+profile. At this step, the interpreter must compute the diagonal elements 
+$w_{ii}$ of the matrix $\mathbf{W}$ (equation~\ref{eq:isostatic-constraint-function}) 
+in order to enable the interpretation model deviates from the isostatic equilibrium 
+at the regions presenting large residuals. 
+The elements of $\mathbf{W}$ are computed as follows:
 \begin{equation} \label{eq:elements-wii}
 w_{ii} = 
 \exp \left[ - \frac{ \left( r_{i}^{(2)} + r_{i+1}^{(2)} \right)^{2}}{4 \sigma} \right] \: ,
 \end{equation}
-where $\sigma$ is a positive constant, $\mathbf{p}^{(2)}$ is the estimate parameter vector
+where $\sigma$ is a positive constant, $\mathbf{p}^{(2)}$ is the estimated parameter vector
 obtained in the previous step and the variables
 $r_{i}^{(2)} = d^{o}_{i} - d_{i} \left( \mathbf{p}^{(2)} \right)$ and 
 $r_{i+1}^{(2)} = d^{o}_{i+1} - d_{i+1} \left(\mathbf{p}^{(2)} \right)$ represent,
 respectively, the residuals between observed and predicted data
 (equation~\ref{eq:ith-predicted-data}) at the positions $(x_{i}, y_{i}, z_{i})$ and 
-$(x_{i+1}, y_{i+1}, z_{i+1})$. Equation~\ref{eq:elements-wii} defines elements 
-$w_{ii}$ in the interval $\left] 0, 1 \right]$. Additionally, it results in 
+$(x_{i+1}, y_{i+1}, z_{i+1})$. Notice that equation~\ref{eq:elements-wii} defines elements 
+$w_{ii}$ in the interval $\left] 0, 1 \right]$. Additionally, this equation results in 
 $w_{ii} \approx 1$ at regions where the residuals are close to zero and 
 $w_{ii} \approx 0$ at regions presenting large residuals.
 The positive constant $\sigma$ controls the deviation from isostatic equilibrium.
 Large $\sigma$ values allow small deviations from isostatic equilibrium at
-regions presenting large residuals.
+regions presenting large residuals and vice versa.
 This strategy to define the elements of matrix $\mathbf{W}$ 
 (equation\ref{eq:isostatic-constraint-function}) presumes that the isostatic constraint may
 produce large residuals at some regions along the profile. To counteract this problem,
 our method enables the interpretation model deviates from isostatic equilibrium at these 
 regions. This idea is in perfect agreement with the fact that the isostatic equilibrium
-in a continental margin cannot be perfectly explained by using the Airy's local model.
+in a passive rifted margin cannot be perfectly explained by using the Airy's local model.
 
 Other important aspect of our method is related to the values attributed to 
 the weights $\alpha_{\ell}$ (equation~\ref{eq:goal-function}).
@@ -943,7 +947,7 @@ mantle and crust.
 	{Rifted margin model formed by four layers. The first one 
 	represents a water layer with constant density $\rho^{(w)}$. The second 
 	layer is formed by $Q$ vertically adjacent parts, according to the
-	geological are to be studied. In this example, $Q = 2$.
+	complexity of the study area. In this example, $Q = 2$.
 	These parts represent sediments, salt or volcanic rocks and have constant 
 	densities $\rho^{(q)}$, $q = 1, \dots, Q$. The
 	third layer represents the crust, which is divided into the continental crust, with
@@ -951,7 +955,7 @@ mantle and crust.
 	$\rho^{(oc)}$. We presume an abrupt Continent-Ocean Transition (COT). Finally, the
 	fourth layer of our model represents a homogeneous mantle with constant density
 	$\rho^{(m)}$. Basement and Moho are represented by the dashed-white lines. 
-	The continuous white lines represent the isostatic compensation depth
+	The continuous black lines represent the isostatic compensation depth
 	at $S_{0}$ and the reference Moho at $S_{0} + \Delta S$.}
 	\label{fig:rifted-margin-model}
 }
@@ -965,7 +969,7 @@ mantle and crust.
 	and the constant density $\rho^{(r)}$ of the shallowest layer forming
 	the reference density distribution (see text).
 	Basement and Moho are represented by the dashed-white lines. 
-	The continuous white line represents the isostatic compensation depth
+	The continuous black line represents the isostatic compensation depth
 	at $S_{0}$. The base of the interpretation model coincides with the
 	reference Moho located at $S_{0} + \Delta S$.}
 	\label{fig:interpretation-model}

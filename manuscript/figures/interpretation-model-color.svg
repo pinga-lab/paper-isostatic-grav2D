@@ -14,7 +14,7 @@
    viewBox="0 0 389.99999 270.00001"
    id="svg2"
    version="1.1"
-   inkscape:version="0.92.3 (unknown)"
+   inkscape:version="0.91 r13725"
    sodipodi:docname="interpretation-model-color.svg"
    inkscape:export-filename="/home/vanderlei/Documents/paper-isostatic-grav2D/manuscript/figures/interpretation-model-color.png"
    inkscape:export-xdpi="600"
@@ -27,14 +27,14 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.8870192"
-     inkscape:cx="208"
+     inkscape:cx="118.17579"
      inkscape:cy="144"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      units="pc"
-     inkscape:window-width="1295"
-     inkscape:window-height="744"
+     inkscape:window-width="1855"
+     inkscape:window-height="1056"
      inkscape:window-x="65"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
@@ -232,7 +232,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1303,15 +1303,16 @@
        inkscape:connector-curvature="0" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'TG Pagella Math';-inkscape-font-specification:'TG Pagella Math';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
-       x="214.34167"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'TG Pagella Math';-inkscape-font-specification:'TG Pagella Math';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="182.34167"
        y="970.31598"
-       id="text5527-3"><tspan
+       id="text5527-3"
+       sodipodi:linespacing="0%"><tspan
          sodipodi:role="line"
          id="tspan5529-7"
-         x="214.34167"
+         x="182.34167"
          y="970.31598"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;line-height:0;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#000000;">Crust-Ocean Transition (COT)</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;line-height:0;font-family:sans-serif;-inkscape-font-specification:sans-serif;fill:#000000">Continent-Ocean Transition (COT)</tspan></text>
     <path
        style="fill:#000000;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Mend-3-5-2)"
        d="m 297.97887,958.58829 17.00762,-15.27747"
@@ -1504,28 +1505,30 @@
          id="tspan14003"
          sodipodi:role="line">water</tspan></text>
     <g
-       transform="translate(-58.59323,330.96441)"
+       transform="translate(-66.920868,330.96441)"
        id="g14029">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'TG Pagella Math';-inkscape-font-specification:'TG Pagella Math';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
          x="154.01523"
          y="483.37411"
-         id="text14007"><tspan
+         id="text14007"
+         sodipodi:linespacing="0%"><tspan
            sodipodi:role="line"
            x="154.01523"
            y="483.37411"
            id="tspan14011"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;line-height:0;font-family:sans-serif;-inkscape-font-specification:sans-serif">sediments, salt or</tspan></text>
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;line-height:0;font-family:sans-serif;-inkscape-font-specification:sans-serif">sediments, salt and/or</tspan></text>
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'TG Pagella Math';-inkscape-font-specification:'TG Pagella Math';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         x="161.19296"
+         x="169.19296"
          y="494.34256"
-         id="text14015"><tspan
+         id="text14015"
+         sodipodi:linespacing="0%"><tspan
            sodipodi:role="line"
            id="tspan14017"
-           x="161.19296"
+           x="169.19296"
            y="494.34256"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.5px;line-height:0;font-family:sans-serif;-inkscape-font-specification:sans-serif">volcanic rocks </tspan></text>
     </g>
