@@ -40,7 +40,34 @@ Rio de Janeiro, Brazil}
 
 \begin{abstract}
 
-\lipsum[1]
+We propose a new gravity inversion method for jointly estimating the basement and 
+Moho reliefs along a profile crossing a passive rifted margin.
+We approximate the subsurface by an interpretation model composed of 
+adjacent columns, each one formed by vertically stacked prisms having constant 
+and known density contrasts.
+Our method consists in solving a non-linear inverse problem to estimate the 
+thickness of specific prisms defining the basement and Moho geometries, 
+as well as a constant thickness defining the maximum depth of our interpretation 
+model.
+This maximum depth represents a planar reference Moho.
+To obtain stable solutions, we impose smoothness on the basement and Moho reliefs,
+force them to be close to known depths along the profile and also impose
+isostatic equilibrium according to the Airy's local compensation model.
+Our method imposes isostatic equilibrium by constraining the lithostatic stress 
+exerted by the interpretation model at a given constant depth, 
+below which there is no lateral density variations.
+This isostatic constraint introduces the information that the lithostatic stress 
+is mostly smooth, except at some isolated regions, where it can present abrupt 
+variations.
+Tests with synthetic data show the good performance of our method in
+determining the basement and Moho geometries at regions with  
+pronounced crustal thinning, which is typical of passive volcanic margins.
+Results obtained by our method at the Pelotas basin, considered a classical example
+of passive volcanic margin at the southern of Brazil, agree with a previous
+interpretation obtained independently by using ultra-deep seismic data.
+The applications to synthetic and real data show that our method is a
+promising tool for interpreting gravity data on passive rifted margins.
+
 
 \end{abstract}
 
@@ -148,7 +175,7 @@ It is reasonable to presume that the method presented by \citet{salem-etal2014} 
 susceptible to these limitations based on its resemblance with that proposed by \citeauthor{bott1960}.
 
 Here, we present a new local scale method for simultaneously estimating the geometries
-of basement and Moho along a profile on a passive rifted margin.
+of basement and Moho along a profile crossing a passive rifted margin.
 Our method is formulated, in space domain, as a non-linear gravity inversion.
 In order to produce stable solutions and introduce a priori information,
 we use different constraints imposing smoothness and lower/upper 
@@ -518,9 +545,9 @@ the regularizing function $\Psi_{2}(\mathbf{p})$
 where $\mathbf{A}$ is an $A \times M$ matrix whose $k$-th line has one element 
 equal to one and all the remaining elements equal to zero. The location of the
 single non-null element in the $k$-th line of $\mathbf{A}$ depends on the coordinate
-$y^{A}_{k}$ of the known basement depth $a_{k}$. Let us consider, 
+$y^{A}_{k}$ of the known thickness $a_{k}$. Let us consider, 
 for example, an interpretation model formed by $N = 10$ columns. Consider also that 
-the thickness of the deepest part $Q$ of the second layer forming the interpretation model 
+the thickness of the deepest part of the second layer forming the interpretation model 
 at the coordinates $y^{A}_{1} = y_{4}$ and $y^{A}_{2} = y_{9}$ 
 are equal to $25$ and $35.7$ km, respectively. In this case, $A = 2$,
 $\mathbf{a}$ is a $2 \times 1$ vector with elements $a_{1} = 25$ and $a_{2} = 35.7$
@@ -829,8 +856,8 @@ available to the petroleum industry.
 
 \section{Conclusions}
 
-We present a new local scale method for simultaneously estimating the geometries of
-basement and Moho on a profile located on a passive rifted margin.
+We present a new gravity inversion method for simultaneously estimating the 
+geometries of basement and Moho on a profile crossing a passive rifted margin.
 Our method approximates the subsurface by a set of adjacent columns, each one divided
 into four layers. The first one represents water; the second is formed by vertically
 stacked parts, according to the complexity of the study area; the third and fourth represent,
