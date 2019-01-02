@@ -89,7 +89,7 @@ must commonly use a priori information obtained from seismic data and/or borehol
 order to constrain the range of possible models.
 
 There are methods that approximate the subsurface by a grid of
-juxtaposed cells with constant physical property. 
+juxtaposed cells with constant physical properties. 
 They estimate the physical property value of each cell and then 
 interpret the estimated values to indirectly estimate the geometry of the 
 geophysical discontinuities.
@@ -151,28 +151,65 @@ some degree of isostatic equilibrium to the estimated models
 \citep[e.g.,][]{sunkel1985, sjoberg2009, bagherbandi-eshagh2012, sampietro2015}
 or analyze their deviations from a perfect isostatic equilibrium
 \citep[e.g.,][]{shin-etal2009}.
+
+
+
 \citet{salem-etal2014} presented one of the few local scale methods in space 
-domain for simultaneously estimating the basement and Moho relief. 
-They impose a perfect isostatic equilibrium according to
-the Airy-Heiskanen model \citep[e.g.,][$\,$p. 135]{heiskanen-moritz1967}, 
-which describes well the transition from continental to oceanic crust 
-at rifted margins \citep{worzel1968}.
-Their method approximates the subsurface by three juxtaposed layers having
-constant density contrasts.
-They are defined in terms of 2D bodies having polygonal
-cross-sections and represent sediments, crust and mantle.
-The two surfaces separating them represent the basement and Moho
-reliefs. Their method estimates the basement
+domain for estimating the geometry of basement and Moho.
+
+
+
+
+AQUI
+
+They approximate the subsurface by 2D stacked bodies that have constant density contrasts,
+polygonal cross-sections and represent the sediments, crust and mantle. 
+
+The interfaces separating the prisms represent the basement and the Moho.
+
+The depth of the vertices defining these interfaces are the 
+parameters to be estimated iteratively.
+
+At each iteration, the depth of the vertices associated with the basement are 
+estimated based on the difference between the observed and predicted gravity data,
+
+
+
+
+ Their method estimates the basement
 relief by using an iterative approach similar to that
 presented by \citet{bott1960} and \citet{cordell-henderson1968}. 
 The difference is that, at each iteration, the Airy-Heiskanen model
 is used to update the Moho geometry.
+
+
+
+they estimate the moho, remove their gravitational effect and then use the residual 
+anomaly to estimate correction at basement
+
+they do not simultaneously estimate basement and Moho relief
+ 
+
+They impose a perfect isostatic equilibrium according to
+the Airy-Heiskanen model \citep[e.g.,][$\,$p. 135]{heiskanen-moritz1967}, 
+which describes well the transition from continental to oceanic crust 
+at rifted margins \citep{worzel1968}.
+
+
+
 As properly pointed out by \citet{silva-etal2014}, \citeauthor{bott1960}'s
 method does not define optimal step sizes at the iterative corrections,
 does not impose constraints for obtaining stable solutions, nor use
 an objective stopping criterion. 
 Consequently, the method presented by \citet{salem-etal2014} is also susceptible 
 to these limitations.
+
+LOCAL SCALE METHODS IMPOSING ISOSTATIC EQUILIBRIUM
+
+\citet{condi-etal1999, ferderer-etal2017, garcia-abdeslem2017, salem2017} presented 
+similar local scale methods.
+
+
 
 Here, we present a new local scale method for simultaneously estimating the geometries
 of basement and Moho along a profile crossing a passive rifted margin.
@@ -185,6 +222,10 @@ Differently from previous methods, we introduce this information by
 imposing smoothness on the lithostatic stress exerted by the interpretation 
 model on a planar surface located at depth, below which there is no lateral
 density variations.
+This information is directionally consistent with the basic principle of 
+Airy-Heiskanen model, which is that stress is constant at some depth within 
+the lithosphere.
+
 This constraint, which we conveniently call as \textit{isostatic constraint},
 introduces the information that the lithostatic stress must be smooth along the 
 entire profile, except at some isolated regions, where it can present abrupt variations.
