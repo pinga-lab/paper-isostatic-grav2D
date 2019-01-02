@@ -50,12 +50,12 @@ thickness of specific prisms defining the basement and Moho geometries,
 as well as a constant thickness defining the maximum depth of our interpretation 
 model.
 This maximum depth represents a planar reference Moho.
-To obtain stable solutions, we impose smoothness on the basement and Moho reliefs,
+To obtain stable solutions, we impose smoothness on the basement and Moho relief,
 force them to be close to known depths along the profile and also impose
-isostatic equilibrium according to the Airy's local compensation model.
+isostatic equilibrium according to the Airy-Heiskanen model.
 Our method imposes isostatic equilibrium by constraining the lithostatic stress 
 exerted by the interpretation model at a given constant depth, 
-below which there is no lateral density variations.
+below which there are no lateral density variations.
 This isostatic constraint introduces the information that the lithostatic stress 
 is mostly smooth, except at some isolated regions, where it can present abrupt 
 variations. At these regions, our method enables the interpretation model deviates
@@ -110,14 +110,14 @@ They can also be classified according to the number of geophysical surfaces
 to be estimated.
 By using these criteria, it is possible to define a first group of methods
 estimating the geometry of a single surface.
-In this group, there are local scale methods in space domain
+In this group, there are local scale methods in the space domain
 % scale: local | data: gravity | domain: space
 \citep[e.g.,][]{bott1960, tanner1967, cordell-henderson1968, dyrelius-vogel1972, pedersen1977,
 pilkington-crossley1986, richardson-macinnes1989, barbosa-etal1997, condi-etal1999, 
 barbosa-etal1999, barbosa-etal1999b, silva-etal2006, pilkington2006, 
 chakravarthi-sundararajan2007, martins-etal2010, silva-etal2010, lima-etal2011, 
 martins-etal2011, barnes-barraud2012, silva-etal2014, silva-santos2017},
-and Fourier domain
+and the Fourier domain
 % scale: local | data: gravity | domain: Fourier
 \citep[e.g.,][]{oldenburg1974, granser1987, reamer-ferguson1989, guspi1993}.
 Most of these methods were applied to estimate the relief of basement under
@@ -146,15 +146,15 @@ ambiguity and, as a consequence, they require more a priori information to
 decrease the number of possible solutions.
 
 Among those directly estimating the geometry of the surfaces, 
-there are some regional and global scale methods in space domain that impose 
+there are some regional and global scale methods in the space domain that impose 
 some degree of isostatic equilibrium to the estimated models 
 \citep[e.g.,][]{sunkel1985, sjoberg2009, bagherbandi-eshagh2012, sampietro2015}
 or analyze their deviations from a perfect isostatic equilibrium
 \citep[e.g.,][]{shin-etal2009}.
 \citet{salem-etal2014} presented one of the few local scale methods in space 
-domain for simultaneously estimating the basement and Moho reliefs. 
+domain for simultaneously estimating the basement and Moho relief. 
 They impose a perfect isostatic equilibrium according to
-the Airy's local compensation model \citep{turcotte-schubert2002}, 
+the Airy-Heiskanen model \citep[e.g.,][$\,$p. 135]{heiskanen-moritz1967}, 
 which describes well the transition from continental to oceanic crust 
 at rifted margins \citep{worzel1968}.
 Their method approximates the subsurface by three juxtaposed layers having
@@ -165,8 +165,8 @@ The two surfaces separating them represent the basement and Moho
 reliefs. Their method estimates the basement
 relief by using an iterative approach similar to that
 presented by \citet{bott1960} and \citet{cordell-henderson1968}. 
-The difference is that, at each iteration, the Airy's model is used 
-to update the Moho geometry.
+The difference is that, at each iteration, the Airy-Heiskanen model
+is used to update the Moho geometry.
 As properly pointed out by \citet{silva-etal2014}, \citeauthor{bott1960}'s
 method does not define optimal step sizes at the iterative corrections,
 does not impose constraints for obtaining stable solutions, nor use
@@ -176,9 +176,9 @@ to these limitations.
 
 Here, we present a new local scale method for simultaneously estimating the geometries
 of basement and Moho along a profile crossing a passive rifted margin.
-Our method is formulated, in space domain, as a non-linear gravity inversion.
+Our method is formulated, in the space domain, as a non-linear gravity inversion.
 In order to produce stable solutions,
-we use different constraints imposing smoothness on basement and Moho reliefs, 
+we use different constraints imposing smoothness on basement and Moho relief, 
 as well as force them to be close to some known depths along the profile. 
 We also impose isostatic equilibrium to the estimated model. 
 Differently from previous methods, we introduce this information by
@@ -192,7 +192,7 @@ At these regions, our method enables the estimated model deviates from the
 isostatic equilibrium.
 Consequently, our method does not estimate a model in perfect isostatic equilibrium, 
 but a model as close as possible to the isostatic equilibrium according to the
-Airy's local model. 
+Airy-Heiskanen model. 
 Tests with synthetic data show the good performance of our method in simultaneously
 retrieving the geometry of basement and Moho of a simulated volcanic margin
 model. Finally, we illustrate an application of our method to invert 
@@ -424,8 +424,7 @@ $\boldsymbol{\rho}^{(c)}$ is an $N \times 1$ vector containing the densities of 
 representing the crust. 
 
 Let us now consider that the interpretation model is in isostatic equilibrium
-according to the Airy's local model \citep[e.g.,][]{turcotte-schubert2002,
-hofmann-wellenhof-moritz2005, lowrie2007}. 
+according to the Airy-Heiskanen model \citep[][$\,$p. 135]{heiskanen-moritz1967}. 
 In this case, the lithostatic stress exerted by the interpretation model
 must be constant on the planar surface located at the compensation depth $S_{0}$
 (Figures \ref{fig:rifted-margin-model} and \ref{fig:interpretation-model}).
@@ -630,7 +629,7 @@ We presume that, by imposing full isostatic equilibrium along the entire profile
 the estimated parameter vector $\mathbf{p}^{(2)}$ will produce a mostly good data fit,
 except at some isolated regions. 
 We assume that, at these regions, the passive margin deviates
-from the isostatic equilibrium described by the Airy's local model.
+from the isostatic equilibrium described by the Airy-Heiskanen model.
 
 Finally, the third step consists in obtaining an estimated parameter vector $\mathbf{p}^{(3)}$
 by imposing different amounts of isostatic equilibrium on the interpretation model along the
@@ -661,7 +660,7 @@ This strategy to define the elements of matrix $\mathbf{W}$
 produce large residuals at some regions along the profile. To counteract this problem,
 our method enables the interpretation model deviates from isostatic equilibrium at these 
 regions. This idea is in perfect agreement with the fact that the isostatic equilibrium
-in a passive rifted margin cannot be perfectly explained by using the Airy's local model.
+in a passive rifted margin cannot be perfectly explained by using the Airy-Heiskanen model.
 
 Other important aspect of our method is related to the values attributed to 
 the weights $\alpha_{\ell}$ (equation~\ref{eq:goal-function}).
@@ -838,7 +837,7 @@ using only gravity data.
 The estimated lithostatic stress curve contains abrupt variations
 at an isolated region close to $150$ km and is very smooth on the remaining parts
 of the profile. This result suggests that the margin is mostly in isostatic 
-equilibrium according to the Airy's local model, except at the region $\approx 150$.
+equilibrium according to the Airy-Heiskanen model, except at the region $\approx 150$.
 
 Figure~\ref{fig:pelotas-step3-more-infs} shows an estimated model
 obtained in the same way as that shown in Figure~\ref{fig:pelotas-step3},
@@ -864,7 +863,7 @@ into four layers. The first one represents water; the second is formed by vertic
 stacked parts, according to the complexity of the study area; the third and fourth represent,
 respectively, the crust and mantle, being the last one formed by two parts.
 The planar surface separating these two parts represents the isostatic compensation depth,
-below which there is no lateral density variations.
+below which there are no lateral density variations.
 The surfaces defining the top and bottom of the third layer represent, respectively, 
 the basement and Moho in our model.
 We assume that the Continent-Ocean Transition (COT) can be represented by an abrupt and 
@@ -886,7 +885,7 @@ the fourth layer, which defines the reference Moho.
 Because all parameters represent thickness, we force them to be positive.
 In order to obtain stable solutions, we enforces the estimated basement and Moho to be 
 smooth and close to some points having known depths along the profile.
-We also impose isostatic equilibrium according to the Airy's local compensation model.
+We also impose isostatic equilibrium according to the Airy-Heiskanen model.
 This information is introduced by constraining the lithostatic stress
 exerted by the model on a constant compensation depth. The constraint forces the
 lithostatic stress to be mostly smooth, except at some isolated regions, where it can
