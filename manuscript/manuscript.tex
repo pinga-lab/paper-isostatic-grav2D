@@ -58,7 +58,7 @@ exerted by the interpretation model at a given constant depth,
 below which there are no lateral density variations.
 This isostatic constraint introduces the information that the lithostatic stress 
 is mostly smooth, except at some isolated regions, where it can present abrupt 
-variations. At these regions, our method enables the interpretation model deviates
+variations. At these regions, our method enables the interpretation model to deviate
 from the isostatic equilibrium.
 Tests with synthetic data show the good performance of our method in
 determining the basement and Moho geometries at regions with  
@@ -125,7 +125,8 @@ a sedimentary basin.
 There are also regional scale methods for estimating a single surface 
 representing the Moho in spaced domain 
 % scale: regional | data: gravity | domain: space
-\citep[e.g.,][]{shin-etal2009, bagherbandi-eshagh2012, barzaghi-biagi2014, sampietro2015, uieda-barbosa2017} and in Fourier domain 
+\citep[e.g.,][]{shin-etal2009, bagherbandi-eshagh2012, barzaghi-biagi2014, 
+sampietro2015, uieda-barbosa2017} and in Fourier domain 
 % scale: regional | data: gravity | domain: Fourier
 \citep[e.g.,][]{braitenberg-etal1997, braitenberg-zadro1999, vandermeijde-etal2013}.
 Additionally, there are some global scale methods for estimating the Moho
@@ -135,39 +136,37 @@ in spaced domain
 
 The second group of methods is formed by those estimating multiple surfaces
 separating layers with constant or depth-dependent physical properties 
-\citep[e.g.,][]{pilkington-crossley1986b, gallardo-etal2005, 
-camacho-etal2011, salem-etal2014}.
+\citep[e.g.,][]{pilkington-crossley1986b, condi-etal1999, gallardo-etal2005, 
+camacho-etal2011, salem-etal2014, ferderer-etal2017, garcia-abdeslem2017, salem2017}.
 All these methods have been applied at local scale, to characterize a single 
 sedimentary basin.
-The number of methods forming this group is significantly lower than that
-in the first one.
-Additionally, the methods forming the second group suffer from a greater 
-ambiguity and, as a consequence, they require more a priori information to
+It is known that these methods suffer from a greater ambiguity in compared with 
+those estimating the geometry of a single surface.
+As a consequence, they require more a priori information to
 decrease the number of possible solutions.
 
-Among those directly estimating the geometry of the surfaces, 
+Among those methods directly estimating the geometry of the surfaces, 
 there are some regional and global scale methods in the space domain that impose 
 some degree of isostatic equilibrium to the estimated models 
 \citep[e.g.,][]{sunkel1985, sjoberg2009, bagherbandi-eshagh2012, sampietro2015}
 or analyze their deviations from a perfect isostatic equilibrium
 \citep[e.g.,][]{shin-etal2009}.
 
+AQUI ====== >
+
+Some local-scale methods have also...
 
 
 \citet{salem-etal2014} presented one of the few local scale methods in space 
 domain for estimating the geometry of basement and Moho.
 
 
-
-
-AQUI
-
 They approximate the subsurface by 2D stacked bodies that have constant density contrasts,
 polygonal cross-sections and represent the sediments, crust and mantle. 
 
-The interfaces separating the prisms represent the basement and the Moho.
+The surfaces separating the prisms represent the basement and the Moho.
 
-The depth of the vertices defining these interfaces are the 
+The depth of the vertices defining these surfaces are the 
 parameters to be estimated iteratively.
 
 At each iteration, the depth of the vertices associated with the basement are 
@@ -209,7 +208,32 @@ LOCAL SCALE METHODS IMPOSING ISOSTATIC EQUILIBRIUM
 \citet{condi-etal1999, ferderer-etal2017, garcia-abdeslem2017, salem2017} presented 
 similar local scale methods.
 
+Our method is also substantially different from that presented by García-Abdeslem (2017). 
+According to García-Abdeslem (page G52), “An estimate of the crustal thickness for the 
+region surrounding the Montage Basin, based upon the flexural isostatic response to 
+surface loads, was used to compute an  isostatic regional gravity, which, subtracted 
+from Bouguer gravity anomalies, led to the isostatic residual gravity anomaly at Montage 
+Basin”. Then, after estimating the crustal thickness explaining the “isostatic 
+regional gravity”, the author estimated the depth to the basement at Montage Basin by 
+solving a nonlinear inverse problem for explaining the “isostatic residual gravity anomaly”. 
+Notice that, different from our method, that presented by García-Abdeslem (2017) does 
+not estimate the basement relief and Moho simultaneously.
 
+Finally, there are some similarities between our method and that presented in the 
+SEG expanded abstract authored by Ferderer et al. (2017). Our parameterization is 
+similar and we also used a concept similar to their “general local isostasy” (GLI). 
+According to the GLI, the “crust and mantle densities as well as the depth to the 
+top and base of the crust may vary laterally while local isostatic equilibrium is 
+maintained”. Their global inversion strategy, which “falls under the category of 
+“enumerative or grid search techniques” of Sen and Stoffa (1995)”, uses a “model space 
+within which all models obey GLI is defined and a set of trial models which regularly 
+span the model space is evaluated”. On the other hand, we formulated a different 
+nonlinear inverse problem that uses the Levenberg-Marquardt method for simultaneously 
+estimating the geometries of basement and Moho. We present a constraint introducing 
+the information that the lithostatic stress must be mostly smooth, except at some 
+isolated regions, where it can present abrupt variations.
+
+< ====== AQUI
 
 Here, we present a new local scale method for simultaneously estimating the geometries
 of basement and Moho along a profile crossing a passive rifted margin.
@@ -217,19 +241,25 @@ Our method is formulated, in the space domain, as a non-linear gravity inversion
 In order to produce stable solutions,
 we use different constraints imposing smoothness on basement and Moho relief, 
 as well as force them to be close to some known depths along the profile. 
-We also impose isostatic equilibrium to the estimated model. 
-Differently from previous methods, we introduce this information by
-imposing smoothness on the lithostatic stress exerted by the interpretation 
+We also impose local isostatic equilibrium to the estimated model. 
+Differently from previous methods, which use local isostatic models to link
+the geometries of basement and Moho \citep[e.g.,][]{condi-etal1999, salem-etal2014},
+we impose smoothness on the lithostatic stress exerted by the interpretation 
 model on a planar surface located at depth, below which there is no lateral
 density variations.
 This information is directionally consistent with the basic principle of 
-Airy-Heiskanen model, which is that stress is constant at some depth within 
-the lithosphere.
+local isostatic equilibrium according to the Airy-Heiskanen and Pratt-Hayford models
+\citep{heiskanen-moritz1967, lowrie2007}.
+Similarly to \citet{ferderer-etal2017}, we combine the Airy-Heiskanen and Pratt-Hayford
+models so that the crust density and geometry may vary laterally in order to maintain the 
+local isostatic equilibrium.
 
-This constraint, which we conveniently call as \textit{isostatic constraint},
+AQUI
+
+Our constraint, which we conveniently call the \textit{isostatic constraint},
 introduces the information that the lithostatic stress must be smooth along the 
 entire profile, except at some isolated regions, where it can present abrupt variations.
-At these regions, our method enables the estimated model deviates from the 
+At these regions, our method enables the estimated model to deviate from the 
 isostatic equilibrium.
 Consequently, our method does not estimate a model in perfect isostatic equilibrium, 
 but a model as close as possible to the isostatic equilibrium according to the
@@ -237,14 +267,17 @@ Airy-Heiskanen model.
 Tests with synthetic data show the good performance of our method in simultaneously
 retrieving the geometry of basement and Moho of a simulated volcanic margin
 model. Finally, we illustrate an application of our method to invert 
-gravity data provided by the global model EIGEN6C4 \citep{forste2014} 
-on a profile over the Pelotas basin \citep{stica-etal2014}. This basin is
-located at the southern of Brazil and is considered a classical example 
+gravity data on a profile over the Pelotas basin \citep{stica-etal2014}. This basin is
+located at the offshore southern of Brazil and is considered a classical example 
 of volcanic passive margin \citep{geoffroy2005}. 
+We inverted gravity data provided by the combined global gravity field model EIGEN-6C4
+\citep{forste2014}, one of the latest releases of the ``European Improved Gravity model of 
+the Earth by New techniques" series, containing the complete gravity gradient data of the 
+GOCE-Mission.
 We obtained results that are very consistent with a previous
 interpretation presented by \citet{zalan2015}, who used ultra-deep seismic data.
-These results show that our method can be very effective at regions
-presenting abrupt crustal thinning, which is typically shown in volcanic passive margins.
+These results show that our method can be very effective in areas with abrupt crustal 
+thinning, which is typically the case along volcanic passive margins.
 
 
 \section{Methodology}
@@ -537,7 +570,7 @@ Elements $w_{ii} \approx 0$ allow abrupt variations in the lithostatic stress
 curve between columns $i$ and $i+1$ of the interpretation model.
 By using all elements $w_{ii} = 1$, we impose full isostatic equilibrium 
 along the entire profile. Alternatively, we may enable the interpretation model 
-deviates from the isostatic equilibrium by conveniently decreasing the numerical values
+to deviate from the isostatic equilibrium by conveniently decreasing the numerical values
 assigned to the elements $w_{ii}$ at specific regions along the profile. 
 The strategy used to define the elements $w_{ii}$ is 
 presented in the specific section describing the computational procedures
@@ -669,15 +702,15 @@ equal to the identity and find a suitable value for the weight $\alpha_{0}$
 We presume that, by imposing full isostatic equilibrium along the entire profile,
 the estimated parameter vector $\mathbf{p}^{(2)}$ will produce a mostly good data fit,
 except at some isolated regions. 
-We assume that, at these regions, the passive margin deviates
+We assume that, at these regions, the passive margin to deviate
 from the isostatic equilibrium described by the Airy-Heiskanen model.
 
 Finally, the third step consists in obtaining an estimated parameter vector $\mathbf{p}^{(3)}$
 by imposing different amounts of isostatic equilibrium on the interpretation model along the
 profile. At this step, the interpreter must compute the diagonal elements 
 $w_{ii}$ of the matrix $\mathbf{W}$ (equation~\ref{eq:isostatic-constraint-function}) 
-in order to enable the interpretation model deviates from the isostatic equilibrium 
-at the regions presenting large residuals. 
+in order to enable the interpretation model to deviate from isostatic equilibrium in 
+the regions presenting large residuals. 
 The elements of $\mathbf{W}$ are computed as follows:
 \begin{equation} \label{eq:elements-wii}
 w_{ii} = 
@@ -699,8 +732,8 @@ regions presenting large residuals and vice versa.
 This strategy to define the elements of matrix $\mathbf{W}$ 
 (equation\ref{eq:isostatic-constraint-function}) presumes that the isostatic constraint may
 produce large residuals at some regions along the profile. To counteract this problem,
-our method enables the interpretation model deviates from isostatic equilibrium at these 
-regions. This idea is in perfect agreement with the fact that the isostatic equilibrium
+our method enables the interpretation model to deviate from isostatic equilibrium at these 
+regions. This idea is in agreement with the fact that the isostatic equilibrium
 in a passive rifted margin cannot be perfectly explained by using the Airy-Heiskanen model.
 
 Other important aspect of our method is related to the values attributed to 
@@ -815,7 +848,7 @@ at Step 1 (Figure~\ref{fig:volc-margem-step1}).
 It is worth noting that the new lithostatic stress curve contains an abrupt variation
 at the region located between $100$ and $200$ km,
 showing that our method was able to successfully enable 
-the interpretation model deviates from the isostatic equilibrium at an
+the interpretation model to deviate from the isostatic equilibrium at an
 isolated region. This region coincides with that presenting the large absolute 
 differences between the simulated and predicted gravity data in Figure~\ref{fig:volc-margem-step2}.
 
