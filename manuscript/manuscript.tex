@@ -88,12 +88,12 @@ To partially overcome this problem and obtain meaningful solutions, the interpre
 must commonly use a priori information obtained from seismic data and/or boreholes in
 order to constrain the range of possible models.
 
-There are methods that approximate the subsurface by a grid of
-juxtaposed cells with constant physical properties. 
-They estimate the physical property value of each cell and then 
-interpret the estimated values to indirectly estimate the geometry of the 
-geophysical discontinuities.
-Although very useful in geophysics, such methods are outside the scope of the present work.
+%There are methods that approximate the subsurface by a grid of
+%juxtaposed cells with constant physical properties. 
+%They estimate the physical property value of each cell and then 
+%interpret the estimated values to indirectly estimate the geometry of the 
+%geophysical discontinuities.
+%Although very useful in geophysics, such methods are outside the scope of the present work.
 Here, we consider methods that approximate the subsurface by a set of layers that have
 know physical property distribution (density and/or magnetization), which can be
 constant or depth-dependent, and are separated by surfaces, which represent the
@@ -140,62 +140,45 @@ separating layers with constant or depth-dependent physical properties
 camacho-etal2011, salem-etal2014, ferderer-etal2017, garcia-abdeslem2017, salem2017}.
 All these methods have been applied at local scale, to characterize a single 
 sedimentary basin.
-It is known that these methods suffer from a greater ambiguity in compared with 
+It is known that these methods suffer from a greater ambiguity if compared with 
 those estimating the geometry of a single surface.
 As a consequence, they require more a priori information to
 decrease the number of possible solutions.
+The principle of isostasy has been used for this purpose in 
+regional and global scale methods 
+\citep[e.g.,][]{sunkel1985, shin-etal2009, sjoberg2009, bagherbandi-eshagh2012, sampietro2015},
+as well as in local-scale methods for estimating the surfaces 
+associated with basement and Moho on sedimentary basins.
 
-Among those methods directly estimating the geometry of the surfaces, 
-there are some regional and global scale methods in the space domain that impose 
-some degree of isostatic equilibrium to the estimated models 
-\citep[e.g.,][]{sunkel1985, sjoberg2009, bagherbandi-eshagh2012, sampietro2015}
-or analyze their deviations from a perfect isostatic equilibrium
-\citep[e.g.,][]{shin-etal2009}.
+\citet{condi-etal1999} proposed a nonlinear gravity inversion for estimating the
+offshore deep structures of a rifted margin.
+They approximate the margin by using multiple irregular polygons, each having a 
+uniform density and fixed horizontal position of their vertices.
+The polygons represent four homogeneous layers: water, sediments, crust and mantle.
+The parameters to be estimated are the constant densities of each polygon and 
+the vertical positions of the vertices separating adjacent layers.
+The parameters are estimated by using a globally convergent Newton method
+together with an algorithm for solving sparse linear systems.
+Their method uses local isostasy and uniform extension for directly constraining the 
+geometries of the shallow and deeper parts of their model, without necessarily
+forcing it to be in a perfect isostatic equilibrium.
 
-AQUI ====== >
-
-Some local-scale methods have also...
-
-
-\citet{salem-etal2014} presented one of the few local scale methods in space 
-domain for estimating the geometry of basement and Moho.
-
-
-They approximate the subsurface by 2D stacked bodies that have constant density contrasts,
-polygonal cross-sections and represent the sediments, crust and mantle. 
-
-The surfaces separating the prisms represent the basement and the Moho.
-
-The depth of the vertices defining these surfaces are the 
-parameters to be estimated iteratively.
-
-At each iteration, the depth of the vertices associated with the basement are 
-estimated based on the difference between the observed and predicted gravity data,
-
-
-
-
- Their method estimates the basement
-relief by using an iterative approach similar to that
+\citet{salem-etal2014} presented a nonlinear gravity inversion for estimating the 
+surfaces representing basement and Moho on an onshore rifted basin. 
+They approximate the rifted basin by using three homogeneous layers: sediments, crust and mantle.
+The layers are also described in terms of irregular polygons having constant density
+contrasts.
+The horizontal positions of the polygon vertices are fixed and the vertical positions
+of the vertices associated with basement and Moho are the parameters to be estimated by 
+inversion.
+The position of the vertices associated with basement are estimated 
+by using an iterative approach similar to that
 presented by \citet{bott1960} and \citet{cordell-henderson1968}. 
 The difference is that, at each iteration, the Airy-Heiskanen model
-is used to update the Moho geometry.
-
-
-
-they estimate the moho, remove their gravitational effect and then use the residual 
-anomaly to estimate correction at basement
-
-they do not simultaneously estimate basement and Moho relief
- 
-
-They impose a perfect isostatic equilibrium according to
-the Airy-Heiskanen model \citep[e.g.,][$\,$p. 135]{heiskanen-moritz1967}, 
-which describes well the transition from continental to oceanic crust 
-at rifted margins \citep{worzel1968}.
-
-
-
+is used to subsequently update the Moho geometry.
+Notice that their method does not estimate the geometries of basement and Moho 
+simultaneously.
+They impose a perfect isostatic equilibrium according to the Aity-Heiskanen model.
 As properly pointed out by \citet{silva-etal2014}, \citeauthor{bott1960}'s
 method does not define optimal step sizes at the iterative corrections,
 does not impose constraints for obtaining stable solutions, nor use
@@ -203,37 +186,46 @@ an objective stopping criterion.
 Consequently, the method presented by \citet{salem-etal2014} is also susceptible 
 to these limitations.
 
-LOCAL SCALE METHODS IMPOSING ISOSTATIC EQUILIBRIUM
+Recently, other methods have been proposed for estimating the surfaces of basement
+and Moho by inverting gravity data.
+\citet{garcia-abdeslem2017} presented a method for estimating the 
+geometries of basement and Moho on the Montage Basin, located between Mexico and USA.
+He uses an approach based on flexural isostasy to estimate the Moho and compute 
+a regional gravity field, which is subsequently subtracted from the observed gravity 
+data to obtain a residual gravity field. 
+His method consists in solving a nonlinear inverse problem for estimating the
+basement geometry explaining the residual gravity field.
 
-\citet{condi-etal1999, ferderer-etal2017, garcia-abdeslem2017, salem2017} presented 
-similar local scale methods.
+\citet{salem2017} presents a general framework for estimating the surfaces associated with
+basement and Moho on a rifted continental margin.
+He also approximates the margin by using a set of irregular polygons
+representing water, sediments, crust and mantle.
+The density contrasts of these layers are considered to be known functions
+of the horizontal position along the profile.
+The method is based on an empirical logistic function that acts as a gain control of the 
+Moho uplift.
+Similarly to \citet{salem-etal2014} and \citet{garcia-abdeslem2017}, the method presented
+by \citet{salem2017} does not estimate the surfaces of basement and Moho simultaneously.
+The Moho surface is estimated in a first step and then used to estimate the basement surface.
 
-Our method is also substantially different from that presented by García-Abdeslem (2017). 
-According to García-Abdeslem (page G52), “An estimate of the crustal thickness for the 
-region surrounding the Montage Basin, based upon the flexural isostatic response to 
-surface loads, was used to compute an  isostatic regional gravity, which, subtracted 
-from Bouguer gravity anomalies, led to the isostatic residual gravity anomaly at Montage 
-Basin”. Then, after estimating the crustal thickness explaining the “isostatic 
-regional gravity”, the author estimated the depth to the basement at Montage Basin by 
-solving a nonlinear inverse problem for explaining the “isostatic residual gravity anomaly”. 
-Notice that, different from our method, that presented by García-Abdeslem (2017) does 
-not estimate the basement relief and Moho simultaneously.
-
-Finally, there are some similarities between our method and that presented in the 
-SEG expanded abstract authored by Ferderer et al. (2017). Our parameterization is 
-similar and we also used a concept similar to their “general local isostasy” (GLI). 
-According to the GLI, the “crust and mantle densities as well as the depth to the 
-top and base of the crust may vary laterally while local isostatic equilibrium is 
-maintained”. Their global inversion strategy, which “falls under the category of 
-“enumerative or grid search techniques” of Sen and Stoffa (1995)”, uses a “model space 
-within which all models obey GLI is defined and a set of trial models which regularly 
-span the model space is evaluated”. On the other hand, we formulated a different 
-nonlinear inverse problem that uses the Levenberg-Marquardt method for simultaneously 
-estimating the geometries of basement and Moho. We present a constraint introducing 
-the information that the lithostatic stress must be mostly smooth, except at some 
-isolated regions, where it can present abrupt variations.
+\citet{ferderer-etal2017} proposed a ``general local isostasy" approach, which consists
+in combining the Airy-Heiskanen and Pratt-Hayford models so that the crust density and geometry 
+may vary laterally in order to maintain the local isostatic equilibrium on a profile crossing
+a rifted margin. Their approach also uses local isostatic models to directly link the geometry
+of shallow and deeper structures with the purpose of reducing the range of 
+possible solutions.
+They approximate the margin by using a set irregular polygons and propose a method 
+for estimating their shapes and density contrasts by using a grid-search technique \citep{sen-stoffa2013}.
+Such techniques involve the systematic search for model parameters producing the best data fit
+and may be far from being practical in geophysical applications for the cases in which
+the model space is very large and the forward problem is slow.
 
 < ====== AQUI
+
+SOBRE A NOSSA CAMADA DE SEDIMENTOS: Sublayers within the sediment and crustal
+layers are useful for gravity modeling because they allow
+for vertical density variations which typically occur in
+nature.
 
 Here, we present a new local scale method for simultaneously estimating the geometries
 of basement and Moho along a profile crossing a passive rifted margin.
