@@ -45,7 +45,7 @@ Moho reliefs along a profile crossing a passive rifted margin.
 We approximate the subsurface by an interpretation model composed of 
 adjacent columns, each one formed by vertically stacked prisms having constant 
 and known density contrasts.
-Our method consists in solving a non-linear inverse problem to estimate the 
+Our method consists in solving a nonlinear inverse problem to estimate the 
 thickness of specific prisms defining the basement and Moho geometries, 
 as well as a constant thickness defining the maximum depth of our interpretation 
 model.
@@ -104,8 +104,8 @@ By using these criteria, it is possible to define a first group of methods
 estimating the geometry of a single surface.
 In this group, there are local scale methods in the space domain
 % scale: local | data: gravity | domain: space
-\citep[e.g.,][]{bott1960, tanner1967, cordell-henderson1968, dyrelius-vogel1972, pedersen1977,
-richardson-macinnes1989, barbosa-etal1997, condi-etal1999, 
+\citep[e.g.,][]{bott1960, tanner1967, cordell-henderson1968, dyrelius-vogel1972, 
+pedersen1977, richardson-macinnes1989, barbosa-etal1997, condi-etal1999, 
 barbosa-etal1999, barbosa-etal1999b, silva-etal2006,  
 chakravarthi-sundararajan2007, martins-etal2010, silva-etal2010, lima-etal2011, 
 martins-etal2011, barnes-barraud2012, silva-etal2014, silva-santos2017},
@@ -127,20 +127,20 @@ in spaced domain
 \citep[e.g.,][]{sunkel1985, sjoberg2009}.
 
 The second group of methods is formed by those estimating multiple surfaces
-separating layers with constant or depth-dependent physical properties 
-\citep[e.g.,][]{pilkington-crossley1986b, condi-etal1999, 
-camacho-etal2011, salem-etal2014, ferderer-etal2017, garcia-abdeslem2017, salem2017}.
+separating layers with constant or depth-dependent density distribution 
+\citep[e.g.,][]{condi-etal1999, camacho-etal2011, salem-etal2014, 
+ferderer-etal2017, garcia-abdeslem2017, salem2017}.
 All these methods have been applied at local scale, to characterize a single 
 sedimentary basin.
 It is known that these methods suffer from a greater ambiguity if compared with 
 those estimating the geometry of a single surface.
 As a consequence, they require more a priori information to
-decrease the number of possible solutions.
-The principle of isostasy has been used for this purpose in 
-regional and global scale methods 
-\citep[e.g.,][]{sunkel1985, shin-etal2009, sjoberg2009, bagherbandi-eshagh2012, sampietro2015},
-as well as in local-scale methods for estimating the surfaces 
-associated with basement and Moho on sedimentary basins.
+decrease the number of possible solutions. 
+To reduce this inherent ambiguity, these methods followed different approaches
+for combining gravity data with seismic and isostasy 
+to determine the geometries of basement and Moho surfaces, which are important 
+constraints on the amount of extension and heat flow at a margin during rifting
+\citep{watts-fairhead1999}.
 
 \citet{condi-etal1999} proposed a nonlinear gravity inversion for estimating the
 offshore deep structures of a rifted margin.
@@ -167,7 +167,8 @@ The position of the vertices associated with basement are estimated
 by using an iterative approach similar to that
 presented by \citet{bott1960} and \citet{cordell-henderson1968}. 
 The difference is that, at each iteration, the Airy-Heiskanen model
-is used to subsequently update the Moho geometry.
+\citep{heiskanen-moritz1967} for local isostatic equilibrium is used 
+to subsequently update the Moho geometry.
 Notice that their method does not estimate the geometries of basement and Moho 
 simultaneously.
 They impose a perfect isostatic equilibrium according to the Aity-Heiskanen model.
@@ -194,63 +195,65 @@ He also approximates the margin by using a set of irregular polygons
 representing water, sediments, crust and mantle.
 The density contrasts of these layers are considered to be known functions
 of the horizontal position along the profile.
-The method is based on an empirical logistic function that acts as a gain control of the 
+His method is based on an empirical logistic function that acts as a gain control of the 
 Moho uplift.
 Similarly to \citet{salem-etal2014} and \citet{garcia-abdeslem2017}, the method presented
 by \citet{salem2017} does not estimate the surfaces of basement and Moho simultaneously.
 The Moho surface is estimated in a first step and then used to estimate the basement surface.
 
 \citet{ferderer-etal2017} proposed a ``general local isostasy" approach, which consists
-in combining the Airy-Heiskanen and Pratt-Hayford models so that the crust density and geometry 
+in combining the Airy-Heiskanen and Pratt-Hayford models \citep{heiskanen-moritz1967} 
+so that the crust density and geometry 
 may vary laterally in order to maintain the local isostatic equilibrium on a profile crossing
-a rifted margin. Their approach also uses local isostatic models to directly link the geometry
-of shallow and deeper structures with the purpose of reducing the range of 
-possible solutions.
+a rifted margin. Their approach also uses local isostasy to directly link the geometries
+of shallow and deeper structures with the purpose of reducing the range of possible solutions.
 They approximate the margin by using a set irregular polygons and propose a method 
-for estimating their shapes and density contrasts by using a grid-search technique \citep{sen-stoffa2013}.
+for estimating their shapes and density contrasts by using a 
+grid-search technique \citep{sen-stoffa2013}.
 Such techniques involve the systematic search for model parameters producing the best data fit
 and may be far from being practical in geophysical applications for the cases in which
 the model space is very large and the forward problem is slow.
 
-< ====== AQUI
-
-SOBRE A NOSSA CAMADA DE SEDIMENTOS: Sublayers within the sediment and crustal
-layers are useful for gravity modeling because they allow
-for vertical density variations which typically occur in
-nature.
-
-Here, we present a new local scale method for simultaneously estimating the geometries
-of basement and Moho along a profile crossing a passive rifted margin.
-Our method is formulated, in the space domain, as a non-linear gravity inversion.
+We present a new local scale method for estimating the geometries
+of basement and Moho along a profile crossing a rifted margin.
+We approximate the margin by an interpretation model formed by four adjacent layers.
+Layers 1 and 4 represent, respectively, water and mantle with constant density contrasts.
+Layer 2 can have an arbitrary number of sub-layers with constant density.
+These sub-layers are predefined by the interpreter according to
+the complexity of the study area and the available priori information.
+Finally, Layer 3 represents the crust with a predefined density distribution
+variating along the profile.
+Our method is formulated, in the space domain, as a nonlinear gravity inversion
+based on the Levenberg-Marquardt method \citep{silva-etal2001, aster-etal2005}, 
+by following a strategy similar to \citet{barbosa-etal1999}.
+The parameters to be estimated by inversion define the geometries of 
+basement, which separates Layers 2 and 3, and Moho, which separates Layers 3 and 4.
+The remaining surfaces are fixed.
+At each iteration, our method estimates corrections for the geometries of
+basement and Moho simultaneously. 
 In order to produce stable solutions,
-we use different constraints imposing smoothness on basement and Moho relief, 
+we use different constraints imposing smoothness on basement and Moho surfaces, 
 as well as force them to be close to some known depths along the profile. 
-We also impose local isostatic equilibrium to the estimated model. 
-Differently from previous methods, which use local isostatic models to link
-the geometries of basement and Moho \citep[e.g.,][]{condi-etal1999, salem-etal2014},
-we impose smoothness on the lithostatic stress exerted by the interpretation 
-model on a planar surface located at depth, below which there is no lateral
-density variations.
-This information is directionally consistent with the basic principle of 
-local isostatic equilibrium according to the Airy-Heiskanen and Pratt-Hayford models
-\citep{heiskanen-moritz1967, lowrie2007}.
+
 Similarly to \citet{ferderer-etal2017}, we combine the Airy-Heiskanen and Pratt-Hayford
-models so that the crust density and geometry may vary laterally in order to maintain the 
-local isostatic equilibrium.
-
-AQUI
-
+models to impose local isostatic equilibrium.
+Differently from previous methods, we do not use local isostasy to directly link
+the geometries of basement and Moho.
+Rather, we impose smoothness on the lithostatic stress exerted by the interpretation 
+model on a constant compensation depth, below which there is no lateral density variations.
+This information is directionally consistent with the basic principle of 
+local isostatic equilibrium according to the Airy-Heiskanen and Pratt-Hayford models.
 Our constraint, which we conveniently call the \textit{isostatic constraint},
-introduces the information that the lithostatic stress must be smooth along the 
+introduces the information that the lithostatic stress must be mostly smooth along the 
 entire profile, except at some isolated regions, where it can present abrupt variations.
 At these regions, our method enables the estimated model to deviate from the 
 isostatic equilibrium.
-Consequently, our method does not estimate a model in perfect isostatic equilibrium, 
-but a model as close as possible to the isostatic equilibrium according to the
-Airy-Heiskanen model. 
+As a consequence, our method does not estimate a model in perfect isostatic equilibrium, 
+but a model as close as possible to the local isostatic equilibrium. 
+
 Tests with synthetic data show the good performance of our method in simultaneously
 retrieving the geometry of basement and Moho of a simulated volcanic margin
-model. Finally, we illustrate an application of our method to invert 
+model. We also applied our method to invert 
 gravity data on a profile over the Pelotas basin \citep{stica-etal2014}. This basin is
 located at the offshore southern of Brazil and is considered a classical example 
 of volcanic passive margin \citep{geoffroy2005}. 
@@ -258,11 +261,10 @@ We inverted gravity data provided by the combined global gravity field model EIG
 \citep{forste2014}, one of the latest releases of the ``European Improved Gravity model of 
 the Earth by New techniques" series, containing the complete gravity gradient data of the 
 GOCE-Mission.
-We obtained results that are very consistent with a previous
+Our results are very consistent with a previous
 interpretation presented by \citet{zalan2015}, who used ultra-deep seismic data.
-These results show that our method can be very effective in areas with abrupt crustal 
-thinning, which is typically the case along volcanic passive margins.
-
+These results show that, combined with a priori information, our method can be very effective in 
+areas with abrupt crustal thinning, which is typically the case along volcanic passive margins.
 
 \section{Methodology}
 
@@ -424,7 +426,7 @@ $\Phi(\mathbf{p})$ is the misfit function given by
 \end{equation}
 where $\| \cdot \|_{2}^{2}$ represents the squared Euclidean norm. Details about 
 the regularizing functions $\Psi_{\ell}(\mathbf{p})$, $\ell = 0, 1, 2, 3$ and the 
-numerical procedure to solve this non-linear inverse problem are given in the following 
+numerical procedure to solve this nonlinear inverse problem are given in the following 
 sections.
 
 
@@ -641,7 +643,7 @@ The parameter vector $\mathbf{p}$ (equation~\ref{eq:parameter-vector}) minimizin
 goal function $\Gamma (\mathbf{p})$ (equation~\ref{eq:goal-function}), subjected to
 the inequality constraint (equation~\ref{eq:inequality-constraint}), is estimated 
 in three steps. At each step, the goal function is minimized by using the Levenberg-Marquardt 
-method \citep{aster-etal2005} and the inequality constraint 
+method \citep{silva-etal2001, aster-etal2005} and the inequality constraint 
 (equation~\ref{eq:inequality-constraint}) is incorporated by using the same strategy 
 employed by \citet{barbosa-etal1999}.
 All derivatives of the misfit function $\Phi(\mathbf{p})$ (equation~\ref{eq:misfit-function})
@@ -935,7 +937,7 @@ Our method presumes the knowledge of the COT position, the compensation depth,
 all density contrasts and the geometry of all layers above the basement.
 In practical situations, 
 seismic data commonly constrain the geometry of these shallow layers.
-The method is formulated as a non-linear inverse problem. 
+The method is formulated as a nonlinear inverse problem. 
 The parameters to be estimated are the thickness of the deeper part forming the 
 second layer, which defines the basement, the thickness of the upper part forming the 
 fourth layer, which defines the Moho, and the constant thickness of the deeper part forming 
