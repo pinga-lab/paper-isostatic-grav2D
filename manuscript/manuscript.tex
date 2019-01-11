@@ -273,32 +273,56 @@ areas with abrupt crustal thinning, which is typically the case along volcanic p
 
 
 Let $\mathbf{d}^{o}$ be the observed data vector, whose $i$-th element $d^{o}_{i}$, 
-$i = 1, \dots, N$, represent the observed gravity disturbance at the point 
+$i = 1, \dots, N$, represents the observed gravity disturbance at the point 
 $(x_{i}, y_{i}, z_{i})$, on a profile located over a rifted passive margin. The
 coordinates are referred to a topocentric Cartesian system, with $z$ axis pointing
 downward, $y$-axis along the profile and $x$-axis perpendicular to the profile. 
+In local- and regional-scale, the gravity disturbance \citep{heiskanen-moritz1967} 
+represents the vertical component of the gravitational attraction exerted by the gravity 
+sources. It is more appropriated for geophysical applications 
+\citep{li2001, fairhead2003, hackney-featherstone2003, hinze2005, vajda-etal2006, vajda-etal2007}
+and is numerically similar to the classical free-air anomaly.
+
+The density distribution in a rifted margin can be very complex.
+In volcanic margins, for example, the crust can be heavily intruded with
+flood-basalts and tuffs, which are commonly imaged as Seaward Dipping Reflectors (SDR).
+Underneath this intruded crust, high-velocity seismic zones are usually interpreted 
+as bodies of underplated mafic to ultra-mafic magma \citep{geoffroy2005}.
 We assume that the actual mass distribution in a rifted passive margin can be 
 schematically represented according to Figure~\ref{fig:rifted-margin-model}. 
 In this model, the subsurface is formed by four layers. 
-The first and shallowest one represents a water layer with constant density
+Layer 1 is the shallowest and represents a water layer with constant density
 $\rho^{(w)}$. 
-The second layer is formed by $Q$ vertically adjacent parts representing sediments,
-salt or volcanic rocks.
-In our example, this layer is formed by two parts with constant densities
-$\rho^{(q)}$, $q = 1, 2$. Different models can be created by changing the number $Q$.
+Layer 2 is formed by $Q$ vertically adjacent sub-layers representing 
+sediments, salt or volcanic rocks.
+In our example, this layer is formed by two sub-layers with constant densities
+$\rho^{(q)}$, $q = 1, 2$. Different models can be created by changing the number $Q$
+according to the complexity and available a priori information at the
+study area.
 In many cases, seismic data can be used to constrain the geometry of these 
 shallow structures.
-The third layer of our model represents the crust. For simplicity, we presume that the
-crust density assumes two possible values. It can be equal to $\rho^{(cc)}$, which
+Layer 3 represents the crust and we presume that its density distribution 
+varies horizontally along the profile, according to a predefine function.
+In Figure \ref{fig:rifted-margin-model}, we consider that crust density assumes two possible values. 
+It can be equal to $\rho^{(cc)}$, which
 represents the continental crust, or equal to $\rho^{(oc)}$, which represents the
 oceanic crust.
-The deepest layer represents a homogeneous mantle with constant density $\rho^{(m)}$. 
-The surface separating the second and third layers defines the basement relief whereas
-that separating the third and fourth layers defines the Moho. These surfaces are
+However, more complex functions representing the crust density distribution can be
+specified according to interpreter's knowledge about the geology at the study area.
+This approach presumes that gravity data are predominantly affected by the combined variations 
+in the geometries of the basement and Moho surfaces and are less sensitive to vertical density variations 
+taking place between them. As a consequence, we consider that bulk density values can be used 
+to approximate the real density distribution of the continental and oceanic crusts along
+the profile.
+Finally, Layer 4 represents a homogeneous mantle with constant density $\rho^{(m)}$. 
+The surface separating the Layers 1 and 2 defines the basement relief whereas
+that separating Layers 3 and 4 defines the Moho. These surfaces are
 represented by dashed-white lines in Figure~\ref{fig:rifted-margin-model}.
 We also presume the existence of an isostatic compensation depth at $S_{0}$ 
 (represented as a continuous black line in Figure~\ref{fig:rifted-margin-model}),
 below which there is no lateral variations in the mass distribution.
+
+MODELO DE REFERÊNCIA $\rightarrow$
 
 In order to define the anomalous mass distribution producing the observed gravity
 disturbance, we presume a reference mass distribution formed by two 
@@ -329,6 +353,8 @@ infinity along the $y$ axis in order to prevent edge effects in the forward
 calculations. 
 The $i$-th column is formed by four vertically adjacent layers, which in turn are
 composed of vertically adjacent prisms having infinite length along the $x$-axis.
+
+$\leftarrow$ MODELO DE REFERÊNCIA
 
 The first and shallowest layer represents water, 
 is formed by a single prism, has thickness $t^{(w)}_{i}$ and a constant density
@@ -1003,24 +1029,29 @@ mantle and crust.
 %% Methodology
 
 \plot{rifted-margin-model-color}{width=\columnwidth}{
-	{Rifted margin model formed by four layers. The first one 
-	represents a water layer with constant density $\rho^{(w)}$. The second 
-	layer is formed by $Q$ vertically adjacent parts, according to the
-	complexity of the study area. In this example, $Q = 2$.
-	These parts represent sediments, salt or volcanic rocks and have constant 
-	densities $\rho^{(q)}$, $q = 1, \dots, Q$. The
-	third layer represents the crust, which is divided into the continental crust, with
+	{Rifted margin model formed by four layers. Layer 1 
+	represents a water layer with constant density $\rho^{(w)}$. Layer 2
+	split into $Q$ sub-layers according to the complexity of the study area. 
+	In this example, $Q = 2$.
+	These sub-layers represent sediments, salt or volcanic rocks and have constant 
+	densities $\rho^{(q)}$, $q = 1, \dots, Q$. 
+	Layer 3 represents the crust. In this example, it is divided into continental crust, with
 	a constant density $\rho^{(cc)}$, and the oceanic crust, with a constant density
-	$\rho^{(oc)}$. We presume an abrupt Continent-Ocean Transition (COT). Finally, the
-	fourth layer of our model represents a homogeneous mantle with constant density
+	$\rho^{(oc)}$. More complex models can be generated by using a function
+	describing the lateral density variations within the crust.
+	Finally, Layer 4 represents a homogeneous mantle with constant density
 	$\rho^{(m)}$. Basement and Moho are represented by the dashed-white lines. 
 	The continuous black lines represent the isostatic compensation depth
-	at $S_{0}$ and the reference Moho at $S_{0} + \Delta S$.}
+	at $S_{0}$ and the reference Moho at $S_{0} + \Delta S$.
+	The reference mass distribution is formed by an upper layer with constant density $\rho^{(r)}$
+	and base at the reference Moho. Below the reference Moho, the reference distribution has the
+	same constant density $\rho^{(m)}$ of the mantle.}
 	\label{fig:rifted-margin-model}
 }
 
 \plot{interpretation-model-color}{width=\columnwidth}{
-	{Interpretation model formed by $N$ columns of vertically stacked prisms. 
+	{PRECISA ARRUMAR O TEXTO DESSA LEGENDA. 
+	Interpretation model formed by $N$ columns of vertically stacked prisms. 
 	Each column is formed by four layers of prisms and locally approximates the four
 	layers of the rifted margin model (Figure~\ref{fig:rifted-margin-model-color}).
 	Each prism has a constant density contrast defined as the difference between
