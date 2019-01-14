@@ -115,14 +115,14 @@ and the Fourier domain
 Most of these methods were applied to estimate the relief of basement under
 a sedimentary basin.
 There are also regional scale methods for estimating a single surface 
-representing the Moho in spaced domain 
+representing the Moho in the space domain 
 % scale: regional | data: gravity | domain: space
 \citep[e.g.,][]{shin-etal2009, bagherbandi-eshagh2012, barzaghi-biagi2014, 
-sampietro2015, uieda-barbosa2017} and in Fourier domain 
+sampietro2015, uieda-barbosa2017} and in the Fourier domain 
 % scale: regional | data: gravity | domain: Fourier
 \citep[e.g.,][]{braitenberg-etal1997, braitenberg-zadro1999, vandermeijde-etal2013}.
 Additionally, there are some global scale methods for estimating the Moho
-in spaced domain
+in the space domain
 % scale: global | data: gravity | domain: space
 \citep[e.g.,][]{sunkel1985, sjoberg2009}.
 
@@ -168,10 +168,10 @@ by using an iterative approach similar to that
 presented by \citet{bott1960} and \citet{cordell-henderson1968}. 
 The difference is that, at each iteration, the Airy-Heiskanen model
 \citep{heiskanen-moritz1967} for local isostatic equilibrium is used 
-to subsequently update the Moho geometry.
+to subsequently update the Moho geometry, forcing the model to be in
+perfect isostatic equilibrium according to the Airy-Heiskanen model.
 Notice that their method does not estimate the geometries of basement and Moho 
 simultaneously.
-They impose a perfect isostatic equilibrium according to the Aity-Heiskanen model.
 As properly pointed out by \citet{silva-etal2014}, \citeauthor{bott1960}'s
 method does not define optimal step sizes at the iterative corrections,
 does not impose constraints for obtaining stable solutions, nor use
@@ -179,8 +179,6 @@ an objective stopping criterion.
 Consequently, the method presented by \citet{salem-etal2014} is also susceptible 
 to these limitations.
 
-Recently, other methods have been proposed for estimating the surfaces of basement
-and Moho by inverting gravity data.
 \citet{garcia-abdeslem2017} presented a method for estimating the 
 geometries of basement and Moho on the Montage Basin, located between Mexico and USA.
 He uses an approach based on flexural isostasy to estimate the Moho and compute 
