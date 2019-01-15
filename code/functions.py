@@ -1092,7 +1092,7 @@ def convergence_function(gama0,gama,beta):
     
     return tau   
 
-def polygons_display(surfu,surfd,dS0u,dS0d,yli,yri,dy,S0,dw,ds,dm,dref,dc,tw,p,yc,area,ts0=None,ts1=None,two_layers=False,three_layers=False):
+def polygons_display2(surfu,surfd,dS0u,dS0d,yli,yri,dy,S0,dw,ds,dm,dref,dc,tw,p,yc,area,ts0=None,ts1=None,two_layers=False,three_layers=False):
     '''
     This function display the models of prisms with a parameter and its finite difference step.
         
@@ -1511,7 +1511,7 @@ def G_matrix_function(xmax,xmin,dy,edge,dp1,dp2,S0,dw,ds,dm,dref,dc,tw,p,yc,ts0=
 
     return G
 
-def G_matrix_function_all(xmax,xmin,dy,edge,dp1,dp2,S0,dw,ds,dm,dref,dc,tw,p,yc,area,ipar,ts0=None,ts1=None,two_layers=False,three_layers=False,display=True):
+def G_matrix_function_all(xmax,xmin,dy,edge,dp1,dp2,COT,S0,dw,ds,dm,dref,dc,tw,p,yc,area,ipar):
     '''
     This function create the sensibility matrix considering the contribution 
     of all the prisms at a point of observation.
@@ -1557,6 +1557,7 @@ def G_matrix_function_all(xmax,xmin,dy,edge,dp1,dp2,S0,dw,ds,dm,dref,dc,tw,p,yc,
     z = np.zeros_like(yc)-150.0
     n = len(yc)
     dS0 = p[n+n]
+    dcc = np.copy(dref)
     
     gplus = np.zeros_like(yc)
     gminus = np.zeros_like(yc)
@@ -1574,13 +1575,8 @@ def G_matrix_function_all(xmax,xmin,dy,edge,dp1,dp2,S0,dw,ds,dm,dref,dc,tw,p,yc,
     #function implementation
     prism_w = prism_w_function(xmax,xmin,dy,edge,dw,dref,tw,yc)
     gzw = prism.gz(np.reshape(x,(n,)),np.reshape(yc,(n,)),np.reshape(z,(n,)),prism_w)
-    
-    if two_layers:
-        tc = S0 - tw - ts0 - p[0:n] - p[n:n+n]
-    elif three_layers:
-        tc = S0 - tw - ts0 - ts1 - p[0:n] - p[n:n+n]
-    else:
-        tc = S0 - tw - p[0:n] - p[n:n+n]
+
+    tc = S0 - tw - p[0:n] - p[n:n+n]
     
     for k in range(2*n):
         dp = dp1
@@ -1604,21 +1600,10 @@ def G_matrix_function_all(xmax,xmin,dy,edge,dp1,dp2,S0,dw,ds,dm,dref,dc,tw,p,yc,
             pplus[k] = p[k]+dp
             pminus[k] = p[k]-dp 
                
-        if two_layers:
-            prism_s_plus = prism_s_function(xmax,xmin,dy,edge,ds,dref,tw,pplus,yc,ts0,two_layers=True)
-            prism_c_plus = prism_c_function(xmax,xmin,dy,edge,S0,dref,dc,tw,pplus,yc,ts0,two_layers=True)
-            prism_s_minus = prism_s_function(xmax,xmin,dy,edge,ds,dref,tw,pminus,yc,ts0,two_layers=True)
-            prism_c_minus = prism_c_function(xmax,xmin,dy,edge,S0,dref,dc,tw,pminus,yc,ts0,two_layers=True)
-        elif three_layers:
-            prism_s_plus = prism_s_function(xmax,xmin,dy,edge,ds,dref,tw,pplus,yc,ts0,ts1,three_layers=True)
-            prism_c_plus = prism_c_function(xmax,xmin,dy,edge,S0,dref,dc,tw,pplus,yc,ts0,ts1,three_layers=True)
-            prism_s_minus = prism_s_function(xmax,xmin,dy,edge,ds,dref,tw,pminus,yc,ts0,ts1,three_layers=True)
-            prism_c_minus = prism_c_function(xmax,xmin,dy,edge,S0,dref,dc,tw,pminus,yc,ts0,ts1,three_layers=True)
-        else:
-            prism_s_plus = prism_s_function(xmax,xmin,dy,edge,ds,dref,tw,pplus,yc)
-            prism_c_plus = prism_c_function(xmax,xmin,dy,edge,S0,dref,dc,tw,pplus,yc)
-            prism_s_minus = prism_s_function(xmax,xmin,dy,edge,ds,dref,tw,pminus,yc)
-            prism_c_minus = prism_c_function(xmax,xmin,dy,edge,S0,dref,dc,tw,pminus,yc)
+        prism_s_plus = prism_s_function(xmax,xmin,dy,edge,ds,dref,tw,pplus,yc)
+        prism_c_plus = prism_c_function(xmax,xmin,dy,edge,S0,dref,dc,tw,pplus,yc)
+        prism_s_minus = prism_s_function(xmax,xmin,dy,edge,ds,dref,tw,pminus,yc)
+        prism_c_minus = prism_c_function(xmax,xmin,dy,edge,S0,dref,dc,tw,pminus,yc)
 
         prism_m_plus = prism_m_function(xmax,xmin,dy,edge,S0,dref,dm,pplus,yc)
         prism_m_minus = prism_m_function(xmax,xmin,dy,edge,S0,dref,dm,pminus,yc)
@@ -1633,27 +1618,16 @@ def G_matrix_function_all(xmax,xmin,dy,edge,dp1,dp2,S0,dw,ds,dm,dref,dc,tw,p,yc,
     
             G[i,k] = (gplus[i] - gminus[i])/(2*dp)
     
-    # Para os parametros S0 e dS0:
+    # Para os parametros dS0:
     for k in range(2*n,2*n+1):
         dp = dp2
         pplus[k] = p[k] + dp
         pminus[k] = p[k] - dp
-                  
-        if two_layers:
-            prism_s_plus = prism_s_function(xmax,xmin,dy,edge,ds,dref,tw,pplus,yc,ts0,two_layers=True)
-            prism_c_plus = prism_c_function(xmax,xmin,dy,edge,S0,dref,dc,tw,pplus,yc,ts0,two_layers=True)
-            prism_s_minus = prism_s_function(xmax,xmin,dy,edge,ds,dref,tw,pminus,yc,ts0,two_layers=True)
-            prism_c_minus = prism_c_function(xmax,xmin,dy,edge,S0,dref,dc,tw,pminus,yc,ts0,two_layers=True)
-        elif three_layers:
-            prism_s_plus = prism_s_function(xmax,xmin,dy,edge,ds,dref,tw,pplus,yc,ts0,ts1,three_layers=True)
-            prism_c_plus = prism_c_function(xmax,xmin,dy,edge,S0,dref,dc,tw,pplus,yc,ts0,ts1,three_layers=True)
-            prism_s_minus = prism_s_function(xmax,xmin,dy,edge,ds,dref,tw,pminus,yc,ts0,ts1,three_layers=True)
-            prism_c_minus = prism_c_function(xmax,xmin,dy,edge,S0,dref,dc,tw,pminus,yc,ts0,ts1,three_layers=True)
-        else:
-            prism_s_plus = prism_s_function(xmax,xmin,dy,edge,ds,dref,tw,pplus,yc)
-            prism_c_plus = prism_c_function(xmax,xmin,dy,edge,S0,dref,dc,tw,pplus,yc)
-            prism_s_minus = prism_s_function(xmax,xmin,dy,edge,ds,dref,tw,pminus,yc)
-            prism_c_minus = prism_c_function(xmax,xmin,dy,edge,S0,dref,dc,tw,pminus,yc)
+            
+        prism_s_plus = prism_s_function(xmax,xmin,dy,edge,ds,dref,tw,pplus,yc)
+        prism_c_plus = prism_c_function(xmax,xmin,dy,edge,S0,dref,dc,tw,pplus,yc)
+        prism_s_minus = prism_s_function(xmax,xmin,dy,edge,ds,dref,tw,pminus,yc)
+        prism_c_minus = prism_c_function(xmax,xmin,dy,edge,S0,dref,dc,tw,pminus,yc)
     
     
         prism_m_plus = prism_m_function(xmax,xmin,dy,edge,S0,dref,dm,pplus,yc)
@@ -1672,15 +1646,8 @@ def G_matrix_function_all(xmax,xmin,dy,edge,dp1,dp2,S0,dw,ds,dm,dref,dc,tw,p,yc,
         yli = yc[ipar%n] - (0.5*dy)
         yri = yc[ipar%n] + (0.5*dy)
         if ipar < n:
-            if two_layers:
-                surfu = tw[ipar] + ts0[ipar] + (p[ipar] - dp)
-                surfd = tw[ipar] + ts0[ipar] + (p[ipar] + dp)
-            elif three_layers:
-                surfu = tw[ipar] + ts0[ipar] + ts1[ipar] + (p[ipar] - dp)
-                surfd = tw[ipar] + ts0[ipar] + ts1[ipar] + (p[ipar] + dp)
-            else:
-                surfu = tw[ipar] + (p[ipar] - dp)
-                surfd = tw[ipar] + (p[ipar] + dp)
+            surfu = tw[ipar] + (p[ipar] - dp)
+            surfd = tw[ipar] + (p[ipar] + dp)
             dS0u = p[n+n]
             dS0d = p[n+n]
         elif ipar >= n and ipar < 2*n:
@@ -1691,18 +1658,211 @@ def G_matrix_function_all(xmax,xmin,dy,edge,dp1,dp2,S0,dw,ds,dm,dref,dc,tw,p,yc,
         else:
             yli = yc[0] - (0.5*dy)
             yri = yc[n-1] + (0.5*dy)
-            #surfu = p[ipar-1] + p[ipar] - dp
-            #surfd = p[ipar-1] + p[ipar] + dp
             surfu = S0 + p[ipar] - dp
             surfd = S0 + p[ipar] + dp
             
             dS0u = p[n+n]
             dS0d = p[n+n]
-        if two_layers:
-            polygons_display(surfu,surfd,dS0u,dS0d,yli,yri,dy,S0,dw,ds,dm,dref,dc,tw,p,yc,area,ts0,two_layers=True)
-        elif three_layers:
-            polygons_display(surfu,surfd,dS0u,dS0d,yli,yri,dy,S0,dw,ds,dm,dref,dc,tw,p,yc,area,ts0,ts1,three_layers=True)
-        else:
-            polygons_display(surfu,surfd,dS0u,dS0d,yli,yri,dy,S0,dw,ds,dm,dref,dc,tw,p,yc,area)
+
+    polygons_display(surfu,surfd,dS0u,dS0d,yli,yri,dy,COT,S0,dw,ds,dm,dref,dc,tw,p,yc,area)
 
     return G
+
+def polygons_display(surfu,surfd,dS0u,dS0d,yli,yri,dy,COT,S0,dw,ds,dm,dcc,dc,tw,p,yc,area):
+    '''
+        This function display the models of prisms with a parameter and its finite difference step.
+        
+        Input
+        surfu: float - surface chosen for viewing with subtraction of FD step.
+        surfd: float - surface chosen for viewing with addition of FD step.
+        dS0u: float -  difference between isostatic compensation surface and reference Moho
+        with subtraction of FD step, if necessary.
+        dS0d: float -  difference between isostatic compensation surface and reference Moho
+        with addition of FD step, if necessary.
+        yli:  float - left coordinate of the prism column relative to the chosen surface.
+        yri: float - right coordinate of the prism column relative to the chosen surface.
+        dy: float - Thickness of columns forming the
+        S0: numpy array 1D - isostatic compensation surface.
+        interpretation model (East direction).
+        dw: numpy array 1D - water density.
+        ds: numpy array 1D - sediments density.
+        dm: numpy array 1D - mantle density.
+        dref: numpy array 1D - reference density.
+        dc: numpy array 1D - crust density.
+        tw: numpy array 1D - thickness of the water layer along
+        the profile.
+        p: numpy array 1D - vector parameters of the model.
+        yc: numpy array 1D - coordinates of the center of the columns forming the
+        interpretation model (East direction).
+        area: numpy array 2D - model  limits = [ymin, ymax, zmax, zmin]
+        ts0: numpy array 1D - if not None, thickness of the first sediment layer along
+        the profile.
+        ts1: numpy array 1D - if not None, thickness of the second sediment layer along
+        the profile.
+        two_layers: boolean - if true, the sediment layer has 2 layers. Otherwise it will has 1.
+        three_layers: boolean - if true, the sediment layer has 3 layers. Otherwise it will has 1.
+        
+        Output
+        image of the prism models.
+        '''
+    
+    #initialization of variables
+    ymin = area[0]
+    ymax = area[1]
+    zmin = area[3]
+    zmax = area[2]
+    ycmin = ymin + 0.5*dy
+    ycmax = ymax - 0.5*dy
+    n = len(yc)
+    ts = p[0:n]
+    tm = p[n:n+n]
+    dS0 = p[n+n]
+    dy2 = 0.5*dy
+    moho = S0 - tm
+    ds0 = ds[:1,0]
+    ds1 = np.zeros((1))
+    ds2 = np.zeros((1))
+    basement = tw + ts
+    
+    #error messages
+    assert surfu < surfd, \
+        'surface plus FD step must be placed below surface less FD step'
+
+    #function implementation
+    polygons_water = []
+    for (yi, twi) in zip(yc, np.reshape(tw,(n,))):
+        y1 = yi - 0.5*dy
+        y2 = yi + 0.5*dy
+    
+        polygons_water.append(Polygon(np.array([[y1, y2, y2, y1],
+                                                [0.0, 0.0, twi, twi]]).T,
+                                      props={'density': dw - dcc}))
+    polygons_sediments = []
+    for (yi, twi, si, dsi) in zip(yc, np.reshape(tw,(n,)), np.reshape(basement,(n,)), ds):
+        y1 = yi - 0.5*dy
+        y2 = yi + 0.5*dy
+    
+        polygons_sediments.append(Polygon(np.array([[y1, y2, y2, y1],
+                                                    [twi, twi, si, si]]).T,
+                                          props={'density': ds0 - dcc}))
+
+    polygons_crust = []
+    for (yi, si, Si, dci) in zip(yc, np.reshape(basement,(n,)), np.reshape(moho,(n,)), dc):
+        y1 = yi - 0.5*dy
+        y2 = yi + 0.5*dy
+    
+        polygons_crust.append(Polygon(np.array([[y1, y2, y2, y1],
+                                                [si, si, Si, Si]]).T,
+                                      props={'density': dci - dcc}))
+
+    polygons_mantle = []
+    for (yi, Si) in zip(yc, np.reshape(moho,(n,))):
+        y1 = yi - 0.5*dy
+        y2 = yi + 0.5*dy
+    
+        polygons_mantle.append(Polygon(np.array([[y1, y2, y2, y1],
+                                                 [Si, Si, S0+dS0, S0+dS0]]).T,
+                                       props={'density': dm - dcc}))
+
+    
+    #plot
+    plt.close('all')
+    fig = plt.figure(figsize=(12,7))
+
+    import matplotlib.gridspec as gridspec
+    heights = [8, 1]
+    gs = gridspec.GridSpec(2, 1, height_ratios=heights)
+    ax1 = plt.subplot(gs[0])
+    ax2 = plt.subplot(gs[1])
+
+    ax1.axhline(y=0.0, xmin=ymin, xmax=ymax, color='k', linestyle='-', linewidth=1) 
+    aux = yc <= COT
+    for (pwi) in (polygons_water):
+        tmpx = [x for x in pwi.x]
+        tmpx.append(pwi.x[0])
+        tmpy = [y for y in pwi.y]
+        tmpy.append(pwi.y[0])
+        ax1.plot(tmpx, tmpy, linestyle='None')
+        ax1.fill(tmpx, tmpy, color='aqua')
+    for (psi) in (polygons_sediments):
+        tmpx = [x for x in psi.x]
+        tmpx.append(psi.x[0])
+        tmpy = [y for y in psi.y]
+        tmpy.append(psi.y[0])
+        ax1.plot(tmpx, tmpy, linestyle='None')
+        ax1.fill(tmpx, tmpy, color='tan')
+    for (pci) in (polygons_crust[:len(yc[aux])]):
+        tmpx = [x for x in pci.x]
+        tmpx.append(pci.x[0])
+        tmpy = [y for y in pci.y]
+        tmpy.append(pci.y[0])
+        ax1.plot(tmpx, tmpy, linestyle='None')
+        ax1.fill(tmpx, tmpy, color='orange')
+    for (pcoi) in (polygons_crust[len(yc[aux]):n]):
+        tmpx = [x for x in pcoi.x]
+        tmpx.append(pcoi.x[0])
+        tmpy = [y for y in pcoi.y]
+        tmpy.append(pcoi.y[0])
+        ax1.plot(tmpx, tmpy, linestyle='None')
+        ax1.fill(tmpx, tmpy, color='orangered')
+    for (pmi) in (polygons_mantle):
+        tmpx = [x for x in pmi.x]
+        tmpx.append(pmi.x[0])
+        tmpy = [y for y in pmi.y]
+        tmpy.append(pmi.y[0])
+        ax1.plot(tmpx, tmpy, linestyle='None')
+        ax1.fill(tmpx, tmpy, color='plum')
+    #print 'yli =', yli
+    #print 'yri =', yri
+    ax1.axhline(y=S0, xmin=ymin, xmax=ymax, color='w', linestyle='--', linewidth=2, label='S0')
+    ax1.axhline(y=surfu, xmin=0.189, xmax=0.311, color='g', linestyle='-', linewidth=2, label='p + dp')
+    ax1.axhline(y=surfd, xmin=0.189, xmax=0.311, color='b', linestyle='-', linewidth=2, label='p - dp')
+    ax1.set_ylim((S0+dS0), zmin)
+    ax1.set_xlim(ycmin, ycmax)
+    ax1.set_xlabel('y (km)', fontsize=16)
+    ax1.set_ylabel('z (km)', fontsize=16)
+    ax1.set_xticklabels(['%g'% (0.001*l) for l in ax1.get_xticks()], fontsize=14)
+    ax1.set_yticklabels(['%g'% (0.001*l) for l in ax1.get_yticks()], fontsize=14)
+    ax1.legend(loc='lower right', fontsize=14, facecolor='silver')
+
+    X, Y = fig.get_dpi()*fig.get_size_inches()
+    plt.title('Density contrast (kg/m$^{3}$)', fontsize=18)
+    ax2.axis('off')
+
+    layers_list1 = ['water', 'sediment', 'continental', 'oceanic', 'mantle']
+    layers_list2 = ['', '', 'crust', 'crust', '']
+    colors_list = ['aqua', 'tan', 'orange', 'orangered', 'plum']
+    density_list = [r'$\Delta\rho^{(w)}$', r'$\Delta\rho^{(1)}$', r'$\Delta\rho^{(cc)}$', r'$\Delta\rho^{(oc)}$', r'$\Delta\rho^{(m)}$']
+    ncols = len(colors_list)
+    nrows = 1
+    h = Y / nrows
+    w = X / (ncols + 1)
+
+    i=ncols-1
+    for color, density, layers1, layers2 in zip(colors_list, density_list, layers_list1, layers_list2):
+        col = i // nrows
+        row = i % nrows
+        x = X - (col*w) - w
+    
+        yi_line = Y
+        yf_line = Y - Y*0.15
+        yi_text1 = Y - Y*0.2
+        yi_text2 = Y - Y*0.27
+        yi_text3 = Y - Y*0.08
+    
+        i-=1
+        poly = Polygon(np.array([[x, x+w*0.75, x+w*0.75, x], [yi_line, yi_line, yf_line, yf_line]]).T)
+        tmpx = [x for x in poly.x]
+        tmpx.append(poly.x[0])
+        tmpy = [y for y in poly.y]
+        tmpy.append(poly.y[0])
+        ax2.plot(tmpx, tmpy, linestyle='-', color='k', linewidth=1)
+        ax2.fill(tmpx, tmpy, color=color)
+        ax2.text(x+w*0.375, yi_text1, layers1, fontsize=(w*0.14), horizontalalignment='center', verticalalignment='top')
+        ax2.text(x+w*0.375, yi_text2, layers2, fontsize=(w*0.14), horizontalalignment='center', verticalalignment='top')
+        ax2.text(x+w*0.375, yi_text3, density, fontsize=(w*0.14), horizontalalignment='center', verticalalignment='center')
+
+    plt.tight_layout()
+    mpl.show()
+    
+    return
