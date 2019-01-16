@@ -275,7 +275,7 @@ $i = 1, \dots, N$, represents the observed gravity disturbance at the point
 $(x_{i}, y_{i}, z_{i})$, on a profile located over a rifted passive margin. The
 coordinates are referred to a topocentric Cartesian system, with $z$ axis pointing
 downward, $y$-axis along the profile and $x$-axis perpendicular to the profile. 
-In local- and regional-scale, the gravity disturbance \citep{heiskanen-moritz1967} 
+In local- and regional-scale studies, the gravity disturbance \citep{heiskanen-moritz1967} 
 represents the vertical component of the gravitational attraction exerted by the gravity 
 sources. It is more appropriated for geophysical applications 
 \citep{li2001, fairhead2003, hackney-featherstone2003, hinze2005, vajda-etal2006, vajda-etal2007}
@@ -295,50 +295,47 @@ Layer 2 is formed by $Q$ vertically adjacent sub-layers representing
 sediments, salt or volcanic rocks.
 In our example, this layer is formed by two sub-layers with constant densities
 $\rho^{(q)}$, $q = 1, 2$. Different models can be created by changing the number $Q$
-according to the complexity and available a priori information at the
-study area.
+according to the complexity and available a priori information at the study area.
 In many cases, seismic data can be used to constrain the geometry of these 
 shallow structures.
-Layer 3 represents the crust and we presume that its density distribution 
+Layer 3 represents the crust and we presume that its density $\rho^{c}$
 varies horizontally along the profile, according to a predefine function.
-In Figure \ref{fig:rifted-margin-model}, we consider that crust density assumes two possible values. 
-It can be equal to $\rho^{(cc)}$, which
+In Figure \ref{fig:rifted-margin-model}, we consider that crust density assumes 
+two possible values. It can be equal to $\rho^{(cc)}$, which
 represents the continental crust, or equal to $\rho^{(oc)}$, which represents the
 oceanic crust.
 However, more complex functions representing the crust density distribution can be
-specified according to interpreter's knowledge about the geology at the study area.
-This approach presumes that gravity data are predominantly affected by the combined variations 
-in the geometries of the basement and Moho surfaces and are less sensitive to vertical density variations 
-taking place between them. As a consequence, we consider that bulk density values can be used 
-to approximate the real density distribution of the continental and oceanic crusts along
-the profile.
+specified according to interpreter's knowledge about the geology at study area.
+This approach presumes that bulk values can be used 
+to approximate the real density distribution at the deeper parts of crust. 
 Finally, Layer 4 represents a homogeneous mantle with constant density $\rho^{(m)}$. 
 The surface separating the Layers 1 and 2 defines the basement relief whereas
 that separating Layers 3 and 4 defines the Moho. These surfaces are
-represented by dashed-white lines in Figure~\ref{fig:rifted-margin-model}.
-We also presume the existence of an isostatic compensation depth at $S_{0}$ 
-(represented as a continuous black line in Figure~\ref{fig:rifted-margin-model}),
-below which there is no lateral variations in the mass distribution.
-
-MODELO DE REFERÊNCIA $\rightarrow$
+represented as dashed-white lines in Figure~\ref{fig:rifted-margin-model}.
+We also presume the existence of an compensation depth at $S_{0}$ 
+(continuous black line in Figure~\ref{fig:rifted-margin-model}),
+below which there is no lateral density variations.
 
 In order to define the anomalous mass distribution producing the observed gravity
 disturbance, we presume a reference mass distribution formed by two 
-layers (not shown). The shallowest layer represents a homogeneous crust with constant
-density $\rho^{(r)}$.
+layers. The shallowest represents a homogeneous crust with constant
+density $\rho^{(r)}$. Its thickness is schematically represented in
+Figure~\ref{fig:rifted-margin-model}.
 The deepest layer in the reference mass distribution represents a homogeneous mantle
 with constant density $\rho^{(m)}$. Notice that the mantle in the reference mass 
 distribution has the same density as the mantle in our rifted margin model
 (Figure~\ref{fig:rifted-margin-model}).
 The surface separating the crust and mantle in the reference mass distribution 
-is conveniently called \textit{reference Moho} (represented as a continuous black line
-in Figure~\ref{fig:rifted-margin-model}).
+is conveniently called \textit{reference Moho} (Figures~\ref{fig:rifted-margin-model} 
+and \ref{fig:interpretation-model}).
 The reference model can be thought of as the outer layers of a concentric
 mass distribution producing the normal gravity field.
+In a local scale, this concentric mass distribution can be approximated by a 
+stack of two Bouguer slabs.
 
 We consider that the anomalous mass distribution producing the observed data
 is defined as the difference between the rifted margin model 
-(Figure~\ref{fig:rifted-margin-model}) and the reference mass distribution (not shown).
+and the reference mass distribution (Figure~\ref{fig:rifted-margin-model}).
 As a consequence, the anomalous mass distribution is characterized by regions
 with constant density contrasts.
 This anomalous distribution is approximated by an interpretation model 
@@ -349,45 +346,39 @@ center of each column.
 We consider that the prisms in the extremities of the interpretation model extend to
 infinity along the $y$ axis in order to prevent edge effects in the forward 
 calculations. 
-The $i$-th column is formed by four vertically adjacent layers, which in turn are
-composed of vertically adjacent prisms having infinite length along the $x$-axis.
+The $i$-th column is formed by vertically stacked prisms having infinite length along 
+the $x$-axis and locally approximates the four layers of our rifted margin model
+(Figure~\ref{fig:rifted-margin-model}).
 
-$\leftarrow$ MODELO DE REFERÊNCIA
-
-The first and shallowest layer represents water, 
-is formed by a single prism, has thickness $t^{(w)}_{i}$ and a constant density
+Layer 1 is defined by a single prism, has thickness $t^{(w)}_{i}$ and a constant density
 contrast $\Delta \rho^{(w)} = \rho^{(w)} - \rho^{(r)}$.
-The second layer forming the $i$-th column of the interpretation model is defined by
-the interpreter, according to the geological environment to be studied and the a priori
-information availability. 
-As a general rule, this layer can be defined by a set of $Q$ vertically adjacent
+Layer 2 is defined by the interpreter, according to the complexity of the study area 
+and the available a priori information, by a set of $Q$ vertically stacked
 prisms, each one with thickness $t^{(q)}_{i}$ and constant density contrast
 $\Delta \rho^{(q)} = \rho^{(q)} - \rho^{(r)}$, $q = 1, \dots Q$.
-The third layer represents the crust, it is also formed by a single prism,
+Layer 3 represents the deeper part of the crust, it is also formed by a single prism,
 has thickness $t^{(c)}_{i}$ and density contrast 
-$\Delta \rho^{(c)}_{i} = \rho^{(c)} - \rho^{(r)}$, 
-with $\rho^{c}$ being the crust density. 
-According to our rifted margin model (Figure~\ref{fig:rifted-margin-model}), the crust
-density $\rho^{(c)}_{i}$ may assume two possible values, depending on its position
-with respect to the $y_{COT}$ (Figure~\ref{fig:interpretation-model}).
-As a consequence, the prisms forming the third layer of the interpretation model may
-have two possible density contrasts: $\Delta \rho^{(c)}_{i} = \rho^{(cc)} - \rho^{(r)}$,
-for $y_{i} \le y_{COT}$, or $\Delta \rho^{(c)}_{i} = \rho^{(oc)} - \rho^{(r)}$,
-for $y_{i} > y_{COT}$. 
-The top of this layer defines the basement relief and its bottom the relief of the
-Moho. 
-The fourth layer represents the mantle, it is divided into two parts, each one formed
-by a single prism having a constant density contrast 
-$\Delta \rho^{(m)} = \rho^{(m)} - \rho^{(r)}$. The shallowest
-portion of this layer has thickness $t^{(m)}_{i}$. Its top and bottom define,
-respectively, the depths of Moho and the planar surface at the compensation depth $S_{0}$.
-The deepest portion of the fourth layer has thickness $\Delta S_{0}$, top at the
-surface $S_{0}$ and bottom at the planar surface 
+$\Delta \rho^{(c)}_{i} = \rho^{(c)}_{i} - \rho^{(r)}$, 
+with $\rho^{(c)}_{i}$ being the crust density at the coordinate
+$y_{i}$, $i = 1, \dots, N$, along the profile.
+According to Figure~\ref{fig:interpretation-model}, the crust density contrast
+$\Delta \rho^{(c)}_{i}$ may assume two possible values, depending on its position
+with respect to the $y_{COT}$.
+More complex models can be set by the interpreter according to the available
+a priori information at the study area.
+The top and bottom of this layer define, respectively, the basement and Moho. 
+Finally, Layer 4 representing the mantle is divided into two sub-layers, each one formed
+by a single prism having the same constant density contrast 
+$\Delta \rho^{(m)} = \rho^{(m)} - \rho^{(r)}$. The shallowest sub-layer 
+has thickness $t^{(m)}_{i}$. Its top and bottom define,
+respectively, the depths of Moho and the compensation depth $S_{0}$.
+The deepest sub-layer has thickness $\Delta S_{0}$, top at $S_{0}$ and bottom at 
 $S_{0} + \Delta S_{0}$, which defines the reference Moho. 
 
-Given the density contrasts, the COT position $y_{COT}$, the isostatic compensation
-depth $S_{0}$, the thickness of the water layer and of the $Q-1$ prisms forming the
-shallowest portion of the second layer, it is possible to describe the interpretation
+Given the density contrasts, the COT position $y_{COT}$, the compensation
+depth $S_{0}$, the thickness $t^{(w)}_{i}$ of the prisms defining Layer 1 and 
+also the thickness $t^{(q)}_{i}$, $i = 1 \dots, N$, of the prisms forming the 
+upper $Q-1$ sub-layers of Layer 2, it is possible to describe the interpretation
 model in terms of an $M \times 1$ parameter vector $\mathbf{p}$, $M = 2N + 1$, defined
 as follows:
 \begin{equation}
@@ -399,11 +390,10 @@ as follows:
 \label{eq:parameter-vector}
 \end{equation}
 where $\mathbf{t}^{Q}$ and $\mathbf{t}^{m}$ are $N \times 1$ vectors whose $i$-th
-elements $t^{Q}_{i}$ and $t^{m}_{i}$ represent, respectively, the thickness of the
-prism forming the deepest portion of the second layer and the thickness of the prism
-forming the shallowest portion of the fourth layer of the interpretation model.
-As a consequence, $t^{Q}_{i}$ and $t^{m}_{i}$ approximate, respectively, the geometry
-of basement relief and Moho.
+elements $t^{Q}_{i}$ and $t^{m}_{i}$ represent the thickness of the
+prisms forming, respectively, the base of Layer 2 and the top of Layer 4.
+Notice that $t^{Q}_{i}$ and $t^{m}_{i}$, $i = 1, \dots, N$, approximate, respectively, the 
+geometries of basement and Moho.
 In this case, the gravity disturbance produced by the interpretation model (the
 predicted gravity disturbance) at the position $(x_{i}, y_{i}, z_{i})$ can be written
 as the sum of the vertical component of the gravitational attraction exerted by the $L$
@@ -425,9 +415,9 @@ Let $\mathbf{d}(\mathbf{p})$ be the predicted data vector, whose $i$-th element
 $d_{i}(\mathbf{p})$ is the vertical component of the gravitational attraction
 (equation~\ref{eq:ith-predicted-data}) exerted by the interpretation model
 at the position $(x_{i}, y_{i}, z_{i})$ on the profile.
-Estimating the particular parameter vector producing a predicted data
+We estimate a particular parameter vector producing a predicted data
 $\mathbf{d}(\mathbf{p})$ as close as possible to the observed data 
-$\mathbf{d}^{o}$ can be formulated as the problem of minimizing the goal function
+$\mathbf{d}^{o}$ by minimizing the goal function
 \begin{equation}
 \Gamma (\mathbf{p}) = \Phi(\mathbf{p}) + \sum_{\ell = 0}^{3} \alpha_{\ell}
 \Psi_{\ell}(\mathbf{p}) \: ,
@@ -448,10 +438,18 @@ $\Phi(\mathbf{p})$ is the misfit function given by
 \: , 
 \label{eq:misfit-function}
 \end{equation}
-where $\| \cdot \|_{2}^{2}$ represents the squared Euclidean norm. Details about 
-the regularizing functions $\Psi_{\ell}(\mathbf{p})$, $\ell = 0, 1, 2, 3$ and the 
-numerical procedure to solve this nonlinear inverse problem are given in the following 
-sections.
+where $\| \cdot \|_{2}^{2}$ represents the squared Euclidean norm. 
+Notice that our method estimates the parameter vector $\mathbf{p}$ 
+(equation~\ref{eq:parameter-vector}), which contains the geometries of 
+basement and Moho, as well as the thickness $\Delta S$ defining the base of the 
+interpretation model.
+The geometries of Layer 1 and of the upper sub-layers forming Layer 2, as well as the 
+compensating depth $S_{0}$ (Figure~\ref{fig:interpretation-model}) are predefined by 
+using the bathymetry and the available a priori information. 
+These predefined quantities remain fixed during the inversion.
+Details about the regularizing functions $\Psi_{\ell}(\mathbf{p})$, $\ell = 0, 1, 2, 3$ 
+and the numerical procedure to solve this nonlinear inverse problem are given in the 
+following sections.
 
 
 \subsection{Isostatic constraint}
@@ -459,7 +457,7 @@ sections.
 Consider that no vertical forces are acting on the lateral surfaces of 
 each column forming the model (Figure \ref{fig:interpretation-model}). In this case, 
 the lithostatic stress (pressure) exerted by the $i$-th column at the surface $S_{0}$
-can be computed as follows \citep{turcotte-schubert2002}:
+can be computed according to the Archimedes' principle as follows:
 \begin{equation}
 t^{(w)}_{i} \rho^{(w)} + t^{(1)}_{i} \rho^{(1)}_{i} + \dots + 
 t^{(Q)}_{i} \rho^{(Q)}_{i} + t^{(c)}_{i} \rho^{(c)}_{i} + t^{(m)}_{i} \rho^{(m)} 
@@ -499,21 +497,25 @@ can be written as follows:
 \end{equation}
 where $\boldsymbol{\tau}$ is an $N \times 1$ vector whose $i$-th element is
 the $\tau_{i}$ (equation~\ref{eq:lithostatic-stress-densities}) associated with
-the $i$-th column, $\mathbf{t}^{(\alpha)}$, $\alpha = w, 1, \dots, Q-1, Q, m$, 
-is a $N \times 1$ vector with $i$-th element defined by the thickness 
-$t^{(\alpha)}_{i}$ of a prism in the $i$-th column, $\mathbf{M}^{(\alpha)}$ is an $N \times N$ diagonal 
-matrix whose elements in the main diagonal are defined by the density contrasts 
+the $i$-th column; $\mathbf{t}^{(\alpha)}$, $\alpha = w, 1, \dots, Q-1, Q, m$, 
+is an $N \times 1$ vector with $i$-th element defined by the thickness 
+$t^{(\alpha)}_{i}$ of a prism in the $i$-th column; $\mathbf{M}^{(\alpha)}$ is an $N \times N$ diagonal 
+matrix whose elements are defined by the density contrasts 
 $\Delta \tilde{\rho}^{(\alpha)}_{i}$, $i = 1, \dots, N$, of the prisms in a layer and
 $\boldsymbol{\rho}^{(c)}$ is an $N \times 1$ vector containing the densities of the prisms
 representing the crust. 
 
-Let us now consider that the interpretation model is in isostatic equilibrium
-according to the Airy-Heiskanen model \citep[][$\,$p. 135]{heiskanen-moritz1967}. 
+Let us now use an approach similar to that presented by \citet{ferderer-etal2017}
+to combine the Airy-Heiskanen and Pratt-Hayford models \citep{heiskanen-moritz1967} 
+in order to impose local isostatic equilibrium.
+We impose this condition by varying both density and geometry of the crust along the 
+rifted margin.
 In this case, the lithostatic stress exerted by the interpretation model
-must be constant on the planar surface located at the compensation depth $S_{0}$
+must be constant at the compensation depth $S_{0}$
 (Figures \ref{fig:rifted-margin-model} and \ref{fig:interpretation-model}).
-Differently from previous approaches in literature, we impose this condition 
-by applying the first-order Tikhonov regularization
+Differently from previous approaches in literature, we impose isostatic equilibrium 
+by forcing the lithostatic stress to be smooth at $S_{0}$.
+We apply the first-order Tikhonov regularization
 \citep{aster-etal2005} to the vector $\boldsymbol{\tau}$
 (equation~\ref{eq:lithostatic-stress-matrix}), obtaining the
 following expression:
@@ -591,8 +593,7 @@ for solving the inverse problem.
 
 
 This constraint imposes smoothness on the adjacent thickness of the prisms forming the
-deepest portion of the second layer and the shallowest part of the fourth layer
-of the interpretation model. 
+base of Layer 2 and the top of Layer 4. 
 This information is introduced by applying the first-order Tikhonov regularization
 \citep{aster-etal2005} to the vectors $\mathbf{t}^{(Q)}$ and $\mathbf{t}^{(m)}$ 
 (equation~\ref{eq:parameter-vector}). 
@@ -620,8 +621,8 @@ are matrices with all elements equal to zero.
 
 Let $\mathbf{a}$ be a vector whose $k$-th element $a_{k}$,
 $k = 1, \dots, A$, is the difference between a known basement depth and
-the sum of the thickness of the upper portions of the interpretation model
-(water layer and the upper parts of second layer), all at the same
+the sum of the thickness of the upper parts of the interpretation model
+(water layer and the upper sub-layers of Layer 2), all at the same
 horizontal coordinate $y^{A}_{k}$ of the profile. 
 These differences, which must be positive, are used to define 
 the regularizing function $\Psi_{2}(\mathbf{p})$ 
@@ -635,7 +636,7 @@ equal to one and all the remaining elements equal to zero. The location of the
 single non-null element in the $k$-th line of $\mathbf{A}$ depends on the coordinate
 $y^{A}_{k}$ of the known thickness $a_{k}$. Let us consider, 
 for example, an interpretation model formed by $N = 10$ columns. Consider also that 
-the thickness of the deepest part of the second layer forming the interpretation model 
+the thickness of the deepest sub-layer of Layer 2  
 at the coordinates $y^{A}_{1} = y_{4}$ and $y^{A}_{2} = y_{9}$ 
 are equal to $25$ and $35.7$ km, respectively. In this case, $A = 2$,
 $\mathbf{a}$ is a $2 \times 1$ vector with elements $a_{1} = 25$ and $a_{2} = 35.7$
@@ -646,11 +647,10 @@ all its remaining elements are equal to zero.
 \subsubsection*{Equality constraint on vector $\mathbf{t}^{m}$}
 
 Let $\mathbf{b}$ be a vector whose $k$-th element $b_{k}$,
-$k = 1, \dots, B$, is the difference between the isostatic compensation depth
+$k = 1, \dots, B$, is the difference between the compensation depth
 $S_{0}$ and the known Moho depth at the horizontal coordinate $y^{B}_{k}$ of the
 profile. These differences, which must be positive, define known thickness values
-of the upper part of the fourth layer forming the interpretation model.
-These values are used to define the 
+of the upper part of Layer 4. These values are used to define the 
 regularizing function $\Psi_{3}(\mathbf{p})$ (equation~\ref{eq:goal-function}):
 \begin{equation}
 \Psi_{3}(\mathbf{p}) = \| \mathbf{B}\mathbf{p} - \mathbf{b} \|_{2}^{2} \: ,
@@ -660,6 +660,7 @@ where $\mathbf{B}$ is a $B \times M$ matrix whose $k$-th line has one element
 equal to one and all the remaining elements equal to zero. This matrix is defined 
 in the same way as matrix $\mathbf{A}$ (equation~\ref{eq:equality-constraint-basement}).
 
+PAREI AQUI
 
 \subsection{Computational procedures for solving of the inverse problem}
 
@@ -1028,36 +1029,35 @@ mantle and crust.
 
 \plot{rifted-margin-model-color}{width=\columnwidth}{
 	{Rifted margin model formed by four layers. Layer 1 
-	represents a water layer with constant density $\rho^{(w)}$. Layer 2
+	represents a water with constant density $\rho^{(w)}$. Layer 2 is
 	split into $Q$ sub-layers according to the complexity of the study area. 
 	In this example, $Q = 2$.
 	These sub-layers represent sediments, salt or volcanic rocks and have constant 
 	densities $\rho^{(q)}$, $q = 1, \dots, Q$. 
-	Layer 3 represents the crust. In this example, it is divided into continental crust, with
-	a constant density $\rho^{(cc)}$, and the oceanic crust, with a constant density
-	$\rho^{(oc)}$. More complex models can be generated by using a function
+	Layer 3 represents the crust. In this example, its density $\rho{(c)}$ assumes two possible 
+	values $\rho^{(cc)}$ and $\rho^{(oc)}$ representing, respectively, continental and oceanic crust. 
+	More complex models can be generated by using a function
 	describing the lateral density variations within the crust.
 	Finally, Layer 4 represents a homogeneous mantle with constant density
 	$\rho^{(m)}$. Basement and Moho are represented by the dashed-white lines. 
-	The continuous black lines represent the isostatic compensation depth
+	The continuous black lines represent the compensation depth
 	at $S_{0}$ and the reference Moho at $S_{0} + \Delta S$.
 	The reference mass distribution is formed by an upper layer with constant density $\rho^{(r)}$
-	and base at the reference Moho. Below the reference Moho, the reference distribution has the
+	and base at the reference Moho. Below this layer, we presume a reference distribution with the
 	same constant density $\rho^{(m)}$ of the mantle.}
 	\label{fig:rifted-margin-model}
 }
 
 \plot{interpretation-model-color}{width=\columnwidth}{
-	{PRECISA ARRUMAR O TEXTO DESSA LEGENDA. 
-	Interpretation model formed by $N$ columns of vertically stacked prisms. 
-	Each column is formed by four layers of prisms and locally approximates the four
-	layers of the rifted margin model (Figure~\ref{fig:rifted-margin-model-color}).
+	{Interpretation model formed by $N$ columns of vertically stacked prisms. 
+	Each column is formed by four layers of prisms and locally approximates the 
+	rifted margin model shown in Figure~\ref{fig:rifted-margin-model-color}.
 	Each prism has a constant density contrast defined as the difference between
-	its corresponding density at the rifted margin model (Figure~\ref{fig:rifted-margin-model-color})
+	its corresponding density at the rifted margin model 
 	and the constant density $\rho^{(r)}$ of the shallowest layer forming
-	the reference density distribution (see text).
+	the reference density distribution (Figure~\ref{fig:rifted-margin-model-color}).
 	Basement and Moho are represented by the dashed-white lines. 
-	The continuous black line represents the isostatic compensation depth
+	The continuous black line represents the compensation depth
 	at $S_{0}$. The base of the interpretation model coincides with the
 	reference Moho located at $S_{0} + \Delta S$.}
 	\label{fig:interpretation-model}
