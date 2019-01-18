@@ -615,7 +615,11 @@ where $\mathbf{R}$ is defined by equation~\ref{eq:matrix-R} and $\mathbf{0}$
 are matrices with all elements equal to zero.
 
 
-\subsection{Equality constraint}
+\subsection{Equality constraints}
+
+In order to incorporate a priori information at isolated points on the basement
+and Moho surfaces, we use an approach similar to those proposed by
+\citet{barbosa-etal1997} and \citet{barbosa-etal1999b}. 
 
 \subsubsection*{Equality constraint on vector $\mathbf{t}^{Q}$}
 
@@ -660,7 +664,6 @@ where $\mathbf{B}$ is a $B \times M$ matrix whose $k$-th line has one element
 equal to one and all the remaining elements equal to zero. This matrix is defined 
 in the same way as matrix $\mathbf{A}$ (equation~\ref{eq:equality-constraint-basement}).
 
-PAREI AQUI
 
 \subsection{Computational procedures for solving of the inverse problem}
 
@@ -674,7 +677,9 @@ employed by \citet{barbosa-etal1999}.
 All derivatives of the misfit function $\Phi(\mathbf{p})$ (equation~\ref{eq:misfit-function})
 with respect to the parameters are computed by using a finite difference approximation.
 
-The first step consists in solving the inverse problem without imposing the isostatic
+\subsubsection{General description of Step 1 (S1)}
+
+Step 1 consists in solving the inverse problem without imposing the isostatic
 constraint, by using $\alpha_{0} = 0$ (equation \ref{eq:goal-function}). For this step,
 the interpreter must set:
 \begin{itemize}
@@ -700,9 +705,11 @@ the interpreter must set:
 The estimated parameter vector obtained at the end of this first step is conveniently called
 $\mathbf{p}^{(1)}$. The main goal in this step is finding suitable values for the parameters
 defining the interpretation model and those used for inversion. Several trials may be
-necessary to find suitable values for these parameters. 
+necessary to find suitable values for these parameters.
 
-The second step consists in obtaining an estimated parameter vector $\mathbf{p}^{(2)}$
+\subsubsection{General description of Step 2 (S2)}
+
+Step 2 consists in obtaining an estimated parameter vector $\mathbf{p}^{(2)}$
 by imposing full isostatic equilibrium on the interpretation model along the entire profile.
 In this step, the interpreter must use the same initial approximation $\mathbf{p}^{(0)}$
 of the previous step. 
@@ -716,7 +723,9 @@ except at some isolated regions.
 We assume that, at these regions, the passive margin to deviate
 from the isostatic equilibrium described by the Airy-Heiskanen model.
 
-Finally, the third step consists in obtaining an estimated parameter vector $\mathbf{p}^{(3)}$
+\subsubsection{General description of Step 3 (S3)}
+
+Step 3 consists in obtaining an estimated parameter vector $\mathbf{p}^{(3)}$
 by imposing different amounts of isostatic equilibrium on the interpretation model along the
 profile. At this step, the interpreter must compute the diagonal elements 
 $w_{ii}$ of the matrix $\mathbf{W}$ (equation~\ref{eq:isostatic-constraint-function}) 
@@ -738,14 +747,24 @@ $w_{ii}$ in the interval $\left] 0, 1 \right]$. Additionally, this equation resu
 $w_{ii} \approx 1$ at regions where the residuals are close to zero and 
 $w_{ii} \approx 0$ at regions presenting large residuals.
 The positive constant $\sigma$ controls the deviation from isostatic equilibrium.
-Large $\sigma$ values allow small deviations from isostatic equilibrium at
-regions presenting large residuals and vice versa.
+
+CHECAR COM A MARCELA $\rightarrow$
+
+Small $\sigma$ values allow small deviations from isostatic equilibrium,
+resulting in estimated models close to that obtained at Step 1.
+Large $\sigma$ values allow small deviations from isostatic equilibrium,
+resulting in estimated models close to that obtained at Step 2.
+
+$\leftarrow$ CHECAR COM A MARCELA
+
 This strategy to define the elements of matrix $\mathbf{W}$ 
 (equation\ref{eq:isostatic-constraint-function}) presumes that the isostatic constraint may
 produce large residuals at some regions along the profile. To counteract this problem,
 our method enables the interpretation model to deviate from isostatic equilibrium at these 
-regions. This idea is in agreement with the fact that the isostatic equilibrium
-in a passive rifted margin cannot be perfectly explained by using the Airy-Heiskanen model.
+regions. This idea is in agreement with the fact that the isostatic equilibrium at 
+passive rifted margin cannot be totally explained by local models.
+
+\subsubsection{Considerations about the weights $\alpha_{0}$, $\alpha_{1}$, $\alpha_{2}$ and $\alpha_{3}$}
 
 Other important aspect of our method is related to the values attributed to 
 the weights $\alpha_{\ell}$ (equation~\ref{eq:goal-function}).
@@ -773,10 +792,13 @@ by using the positive scalars $\tilde{\alpha}_{\ell}$
 (equation \ref{eq:constraint-weights}), which are less dependent on the particular 
 characteristics of the interpretation model.
 
-The algorithm can be summarized as follows:
+\subsubsection{Summarized version of our algorithm}
 
 \begin{enumerate}
-	\item [\textbf{(Step 1)}] Use $\tilde{\alpha}_{0} = 0$ and set non-null values for $\tilde{\alpha}_{1}$, $\tilde{\alpha}_{2}$ and $\tilde{\alpha}_{3}$ (equation~\ref{eq:constraint-weights}).
+	\item [\textbf{(S1)}] Use $\tilde{\alpha}_{0} = 0$ and set non-null values for 
+	$\tilde{\alpha}_{1}$, $\tilde{\alpha}_{2}$ and $\tilde{\alpha}_{3}$ 
+	(equation~\ref{eq:constraint-weights})
+	(see the subsection \textit{Practical considerations}).
 	Define $p_{j}^{min}$, $p_{j}^{max}$ (equation~\ref{eq:inequality-constraint}),
 	$\mathbf{a}$ (equation~\ref{eq:equality-constraint-basement}) and
 	$\mathbf{b}$ (equation~\ref{eq:equality-constraint-moho}).
@@ -791,23 +813,87 @@ The algorithm can be summarized as follows:
 	Estimate a parameter vector $\mathbf{p}^{(1)}$
 	minimizing $\Gamma(\mathbf{p})$ (equation~\ref{eq:goal-function}), 
 	subject to the inequality constraint (equation~\ref{eq:inequality-constraint}).
-	\item [\textbf{(Step 2)}] Use the same initial approximation $\mathbf{p}^{(0)}$
+	\item [\textbf{(S2)}] Use the same initial approximation $\mathbf{p}^{(0)}$
 	of the previous step. Set $\mathbf{W}$ (equation~\ref{eq:isostatic-constraint-function})
 	equal to identity. Set a non-null value for $\tilde{\alpha}_{0}$
-	(equation~\ref{eq:constraint-weights}).
+	(equation~\ref{eq:constraint-weights})
+	(see the subsection \textit{Practical considerations}).
 	Compute the Hessian matrix of the constraining function $\Psi_{0}(\mathbf{p})$
 	(equation~\ref{eq:isostatic-constraint-function}).
 	Compute $E_{0}$ and $\alpha_{0}$ (equation~\ref{eq:constraint-weights}).
-	Estimate a parameter vector $\mathbf{p}^{(2)}$ minimizing $\Gamma(\mathbf{p})$ (equation~\ref{eq:goal-function}), subject to the inequality constraint 
+	Estimate a parameter vector $\mathbf{p}^{(2)}$ minimizing $\Gamma(\mathbf{p})$ 
+	(equation~\ref{eq:goal-function}), subject to the inequality constraint 
 	(equation~\ref{eq:inequality-constraint}).
-	\item [\textbf{(Step 3)}] Use $\mathbf{p}^{(2)}$ as initial approximation.
-	Set the positive constant $\sigma$ and compute the 
+	\item [\textbf{(S3)}] Use $\mathbf{p}^{(2)}$ as initial approximation.
+	Set the positive constant $\sigma$ 
+	(see the subsection \textit{Practical considerations}) and compute the 
 	diagonal elements $w_{ii}$ (equation~\ref{eq:elements-wii}), $i = 1, \dots N-1$.
 	With the new $\mathbf{W}$, compute the Hessian matrix of the constraining function
 	$\Psi_{0}(\mathbf{p})$ (equation~\ref{eq:isostatic-constraint-function}).
-	Estimate a parameter vector $\mathbf{p}^{(3)}$ minimizing $\Gamma(\mathbf{p})$ (equation~\ref{eq:goal-function}), subject to the inequality constraint 
+	Estimate a parameter vector $\mathbf{p}^{(3)}$ minimizing $\Gamma(\mathbf{p})$ 
+	(equation~\ref{eq:goal-function}), subject to the inequality constraint 
 	(equation~\ref{eq:inequality-constraint}).
 \end{enumerate}
+
+
+\subsubsection*{Practical considerations}
+
+Our algorithm depends on several parameters that significantly impact the estimated models
+and cannot be automatically set without the interpreter’s judgment.
+They are the parameters $\tilde{\alpha}_{1}$, $\tilde{\alpha}_{2}$ and $\tilde{\alpha}_{3}$
+(set at Step 1), $\tilde{\alpha}_{0}$ (set at Step 2) and 
+$\sigma$ (set at Step 3).
+Based on our practical experience, we suggest
+some empirical procedures for setting these parameters at each step of our algorithm.
+
+CHECAR COM A MARCELA $\rightarrow$
+
+At Step 1, set $\tilde{\alpha}_{1} = 0$ and try different positive values for 
+$\tilde{\alpha}_{2}$ and $\tilde{\alpha}_{3}$. 
+These two parameters control the equality constraints
+(equations \ref{eq:equality-constraint-basement} and \ref{eq:equality-constraint-moho})
+imposing a priori information at isolated points on the basement and Moho surfaces.
+Good guesses are, respectively,
+$10^{1}$ and $10^{2}$. Normally, $\tilde{\alpha}_{3}$ is one order of magnitude greater
+than $\tilde{\alpha}_{2}$.
+The values of $\tilde{\alpha}_{2}$ and $\tilde{\alpha}_{3}$ 
+must be the smallest positive numbers resulting in an estimated model with
+basement and Moho surfaces close to the values provided by the a priori information
+at some isolated points. Notice that this estimated model must be obtained 
+by using only the equality constraints. Consequently, there must be some
+pinnacles around the points associated with the a priori information. This effect
+has already been observed by \citet{barbosa-etal1997}.
+By using the chosen values for $\tilde{\alpha}_{2}$ and $\tilde{\alpha}_{3}$, 
+try different positive values for $\tilde{\alpha}_{1}$. 
+This parameter controls the smoothness of basement and Moho surfaces
+(equation \ref{eq:smootheness-contraint}).
+A good guess is $10^{1}$.
+This parameter must be smallest positive number producing an estimated model
+satisfying the following criteria: (i) the data fit must be good along the entire profile
+and (ii) the pinnacles must be removed. 
+
+At Step 2, try different positive values for $\tilde{\alpha}_{0}$ 
+(equation \ref{eq:isostatic-constraint-function}). This parameter
+controls the smoothness of the lithostatic stress exerted by the interpretation model
+at the compensation depth $S_{0}$. A good guess is $10^{2}$.
+Generally, $\tilde{\alpha}_{0}$ is one order of magnitude greater than
+$\tilde{\alpha}_{1}$. Large values produce a poor data fit along the profile.
+This parameter must be the largest positive number resulting in an estimated
+model satisfying two criteria: (i) the lithostatic stress curve must be smooth
+along the entire profile and (ii) there must be a good data fit along the entire
+profile, except at some isolated regions presenting relatively large residuals.
+
+Finally, at Step 3, try different positive values for $\sigma$ (equation \ref{eq:elements-wii}).
+This parameter controls the deviations of the interpretation model from the
+isostatic equilibrium at regions presenting large residuals.
+Small values produce estimated models close to that obtained at Step 1
+On the other hand, large values produce estimated models close to that
+obtained at Step 2.
+This parameter must be set as the largest positive number producing a good data-fit
+along the entire profile. A good practice is generate a set of estimates by using different
+values for $\sigma$. 
+
+$\leftarrow$ CHECAR COM A MARCELA
 
 
 \section{Applications to synthetic data}
