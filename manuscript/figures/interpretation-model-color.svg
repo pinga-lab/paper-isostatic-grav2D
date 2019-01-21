@@ -28,7 +28,7 @@
      inkscape:pageshadow="2"
      inkscape:zoom="3.0820513"
      inkscape:cx="195"
-     inkscape:cy="44.151414"
+     inkscape:cy="135"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -1808,5 +1808,10 @@
        id="path4252-7-5-59-9"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
+    <path
+       style="fill:#ffffff;fill-rule:evenodd;stroke:#ffffff;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:3,3;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 25.631544,1016.3318 341.973316,0.2893"
+       id="path4715-6-1-1"
+       inkscape:connector-curvature="0" />
   </g>
 </svg>

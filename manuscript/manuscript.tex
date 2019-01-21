@@ -312,9 +312,9 @@ Finally, Layer 4 represents a homogeneous mantle with constant density $\rho^{(m
 The surface separating the Layers 1 and 2 defines the basement relief whereas
 that separating Layers 3 and 4 defines the Moho. These surfaces are
 represented as dashed-white lines in Figure~\ref{fig:rifted-margin-model}.
-We also presume the existence of an compensation depth at $S_{0}$ 
-(continuous black line in Figure~\ref{fig:rifted-margin-model}),
-below which there is no lateral density variations.
+%We also presume the existence of an compensation depth at $S_{0}$ 
+%(continuous black line in Figure~\ref{fig:rifted-margin-model}),
+%below which there is no lateral density variations.
 
 In order to define the anomalous mass distribution producing the observed gravity
 disturbance, we presume a reference mass distribution formed by two 
@@ -372,8 +372,8 @@ by a single prism having the same constant density contrast
 $\Delta \rho^{(m)} = \rho^{(m)} - \rho^{(r)}$. The shallowest sub-layer 
 has thickness $t^{(m)}_{i}$. Its top and bottom define,
 respectively, the depths of Moho and the compensation depth $S_{0}$.
-The deepest sub-layer has thickness $\Delta S_{0}$, top at $S_{0}$ and bottom at 
-$S_{0} + \Delta S_{0}$, which defines the reference Moho. 
+The deepest sub-layer has thickness $\Delta S$, top at $S_{0}$ and bottom at 
+$S_{0} + \Delta S$, which defines the reference Moho. 
 
 Given the density contrasts, the COT position $y_{COT}$, the compensation
 depth $S_{0}$, the thickness $t^{(w)}_{i}$ of the prisms defining Layer 1 and 
@@ -385,7 +385,7 @@ as follows:
 \mathbf{p} = \begin{bmatrix}
 \mathbf{t}^{Q} \\
 \mathbf{t}^{m} \\
-\Delta S_{0}
+\Delta S
 \end{bmatrix} \: ,
 \label{eq:parameter-vector}
 \end{equation}
@@ -393,7 +393,8 @@ where $\mathbf{t}^{Q}$ and $\mathbf{t}^{m}$ are $N \times 1$ vectors whose $i$-t
 elements $t^{Q}_{i}$ and $t^{m}_{i}$ represent the thickness of the
 prisms forming, respectively, the base of Layer 2 and the top of Layer 4.
 Notice that $t^{Q}_{i}$ and $t^{m}_{i}$, $i = 1, \dots, N$, approximate, respectively, the 
-geometries of basement and Moho.
+geometries of basement and Moho and $\Delta S$ defines the depth of the
+reference Moho (Figure~\ref{fig:interpretation-model}).
 In this case, the gravity disturbance produced by the interpretation model (the
 predicted gravity disturbance) at the position $(x_{i}, y_{i}, z_{i})$ can be written
 as the sum of the vertical component of the gravitational attraction exerted by the $L$
@@ -441,10 +442,10 @@ $\Phi(\mathbf{p})$ is the misfit function given by
 where $\| \cdot \|_{2}^{2}$ represents the squared Euclidean norm. 
 Notice that our method estimates the parameter vector $\mathbf{p}$ 
 (equation~\ref{eq:parameter-vector}), which contains the geometries of 
-basement and Moho, as well as the thickness $\Delta S$ defining the base of the 
-interpretation model.
+basement and Moho, as well as the thickness $\Delta S$ defining
+the depth of the reference Moho (Figure~\ref{fig:interpretation-model}).
 The geometries of Layer 1 and of the upper sub-layers forming Layer 2, as well as the 
-compensating depth $S_{0}$ (Figure~\ref{fig:interpretation-model}) are predefined by 
+compensation depth $S_{0}$ (Figure~\ref{fig:interpretation-model}) are predefined by 
 using the bathymetry and the available a priori information. 
 These predefined quantities remain fixed during the inversion.
 Details about the regularizing functions $\Psi_{\ell}(\mathbf{p})$, $\ell = 0, 1, 2, 3$ 
@@ -512,7 +513,7 @@ We impose this condition by varying both density and geometry of the crust along
 rifted margin.
 In this case, the lithostatic stress exerted by the interpretation model
 must be constant at the compensation depth $S_{0}$
-(Figures \ref{fig:rifted-margin-model} and \ref{fig:interpretation-model}).
+(Figure \ref{fig:interpretation-model}).
 Differently from previous approaches in literature, we impose isostatic equilibrium 
 by forcing the lithostatic stress to be smooth at $S_{0}$.
 We apply the first-order Tikhonov regularization
@@ -1126,8 +1127,7 @@ mantle and crust.
 	describing the lateral density variations within the crust.
 	Finally, Layer 4 represents a homogeneous mantle with constant density
 	$\rho^{(m)}$. Basement and Moho are represented by the dashed-white lines. 
-	The continuous black lines represent the compensation depth
-	at $S_{0}$ and the reference Moho at $S_{0} + \Delta S$.
+	The continuous black line represents the reference Moho.
 	The reference mass distribution is formed by an upper layer with constant density $\rho^{(r)}$
 	and base at the reference Moho. Below this layer, we presume a reference distribution with the
 	same constant density $\rho^{(m)}$ of the mantle.}
@@ -1142,10 +1142,9 @@ mantle and crust.
 	its corresponding density at the rifted margin model 
 	and the constant density $\rho^{(r)}$ of the shallowest layer forming
 	the reference density distribution (Figure~\ref{fig:rifted-margin-model-color}).
-	Basement and Moho are represented by the dashed-white lines. 
+	Basement, Moho and the reference Moho are represented by dashed-white lines. 
 	The continuous black line represents the compensation depth
-	at $S_{0}$. The base of the interpretation model coincides with the
-	reference Moho located at $S_{0} + \Delta S$.}
+	at $S_{0}$. The reference Moho is located at $S_{0} + \Delta S$.}
 	\label{fig:interpretation-model}
 }
 
