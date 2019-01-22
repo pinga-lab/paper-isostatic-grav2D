@@ -121,10 +121,10 @@ representing the Moho in the space domain
 sampietro2015, uieda-barbosa2017} and in the Fourier domain 
 % scale: regional | data: gravity | domain: Fourier
 \citep[e.g.,][]{braitenberg-etal1997, braitenberg-zadro1999, vandermeijde-etal2013}.
-Additionally, there are some global scale methods for estimating the Moho
-in the space domain
+Additionally, there are some global scale methods, in space domain, for estimating the Moho
 % scale: global | data: gravity | domain: space
-\citep[e.g.,][]{sunkel1985, sjoberg2009}.
+\citep[e.g.,][]{sunkel1985, sjoberg2009}, 
+and also the crustal thickness of the Moon \citep{zhang-etal2019}.
 
 The second group of methods is formed by those estimating multiple surfaces
 separating layers with constant or depth-dependent density distribution 
@@ -215,12 +215,14 @@ the model space is very large and the forward problem is slow.
 We present a new local scale method for estimating the geometries
 of basement and Moho along a profile crossing a rifted margin.
 We approximate the margin by an interpretation model formed by four adjacent layers.
-Layers 1 and 4 represent, respectively, water and mantle with constant density contrasts.
-Layer 2 can have an arbitrary number of sub-layers with constant density.
+Layers 1 represents water with constant density contrast.
+Layer 2 can have an arbitrary number of sub-layers with constant density
+to represent, for example, sediments, salt and volcanic rocks.
 These sub-layers are predefined by the interpreter according to
 the complexity of the study area and the available priori information.
-Finally, Layer 3 represents the crust with a predefined density distribution
+Layer 3 represents the crust with a predefined density distribution
 variating along the profile.
+Finally, Layer 4 represents the mantle with constant density contrast.
 Our method is formulated, in the space domain, as a nonlinear gravity inversion
 based on the Levenberg-Marquardt method \citep{silva-etal2001, aster-etal2005}, 
 by following a strategy similar to \citet{barbosa-etal1999}.
@@ -748,16 +750,10 @@ $w_{ii}$ in the interval $\left] 0, 1 \right]$. Additionally, this equation resu
 $w_{ii} \approx 1$ at regions where the residuals are close to zero and 
 $w_{ii} \approx 0$ at regions presenting large residuals.
 The positive constant $\sigma$ controls the deviation from isostatic equilibrium.
-
-CHECAR COM A MARCELA $\rightarrow$
-
-Small $\sigma$ values allow small deviations from isostatic equilibrium,
+Small $\sigma$ values allow large deviations from isostatic equilibrium,
 resulting in estimated models close to that obtained at Step 1.
 Large $\sigma$ values allow small deviations from isostatic equilibrium,
 resulting in estimated models close to that obtained at Step 2.
-
-$\leftarrow$ CHECAR COM A MARCELA
-
 This strategy to define the elements of matrix $\mathbf{W}$ 
 (equation\ref{eq:isostatic-constraint-function}) presumes that the isostatic constraint may
 produce large residuals at some regions along the profile. To counteract this problem,
@@ -847,8 +843,6 @@ $\sigma$ (set at Step 3).
 Based on our practical experience, we suggest
 some empirical procedures for setting these parameters at each step of our algorithm.
 
-CHECAR COM A MARCELA $\rightarrow$
-
 At Step 1, set $\tilde{\alpha}_{1} = 0$ and try different positive values for 
 $\tilde{\alpha}_{2}$ and $\tilde{\alpha}_{3}$. 
 These two parameters control the equality constraints
@@ -869,7 +863,7 @@ try different positive values for $\tilde{\alpha}_{1}$.
 This parameter controls the smoothness of basement and Moho surfaces
 (equation \ref{eq:smootheness-contraint}).
 A good guess is $10^{1}$.
-This parameter must be smallest positive number producing an estimated model
+This parameter must be the smallest positive number producing an estimated model
 satisfying the following criteria: (i) the data fit must be good along the entire profile
 and (ii) the pinnacles must be removed. 
 
@@ -887,14 +881,12 @@ profile, except at some isolated regions presenting relatively large residuals.
 Finally, at Step 3, try different positive values for $\sigma$ (equation \ref{eq:elements-wii}).
 This parameter controls the deviations of the interpretation model from the
 isostatic equilibrium at regions presenting large residuals.
-Small values produce estimated models close to that obtained at Step 1
+Small values produce estimated models close to that obtained at Step 1.
 On the other hand, large values produce estimated models close to that
 obtained at Step 2.
 This parameter must be set as the largest positive number producing a good data-fit
-along the entire profile. A good practice is generate a set of estimates by using different
-values for $\sigma$. 
-
-$\leftarrow$ CHECAR COM A MARCELA
+along the entire profile. A good practice is to generate a set of estimates by using 
+different values for $\sigma$. 
 
 
 \section{Applications to synthetic data}
