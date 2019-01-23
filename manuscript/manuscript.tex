@@ -51,8 +51,8 @@ as well as a constant thickness defining the maximum depth of our interpretation
 model.
 This maximum depth represents a planar reference Moho.
 To obtain stable solutions, we impose smoothness on the basement and Moho relief,
-force them to be close to known depths along the profile and also impose
-isostatic equilibrium according to the Airy-Heiskanen model.
+force them to be close to previously estimated depths along the profile and also 
+impose local isostatic equilibrium.
 Our method imposes isostatic equilibrium by constraining the lithostatic stress 
 exerted by the interpretation model at a given constant depth, 
 below which there are no lateral density variations.
@@ -954,20 +954,20 @@ by using the isostatic constraint is superior than that
 obtained at Step 1 (Figure~\ref{fig:volc-margem-step1}),
 without using the isostatic constraint.
 It is also possible to obtain a good estimated model without using the 
-isostatic constraint, but it requires a great number of known depths
+isostatic constraint, but it requires a great number of a priori information 
 along the profile. This can be verified by comparing the estimated models
 shown in Figures \ref{fig:volc-margem-step1-more-inf} and
 \ref{fig:volc-margem-step3-more-inf}. The first one shows an estimated model
 obtained in the same way as that shown in 
 Figure~\ref{fig:volc-margem-step1}, but by using a great number of additional 
-known depths at basement. As we can see, the additional known depths
+a priori information at basement. As we can see, the additional a priori information 
 improve the estimated basement relief.
 In practical situations, however, the amount of available a priori 
 information on the study area is limited.
 Figure~\ref{fig:volc-margem-step3-more-inf} shows an estimated model
 obtained in the same way as that shown in Figure~\ref{fig:volc-margem-step3},
-but by using a limited number of additional known depths at basement.
-Notice that the number of additional known depths is smaller than that
+but by using a limited number of additional a priori information at basement.
+Notice that the number of additional a priori information is smaller than that
 used in Figure~\ref{fig:volc-margem-step1-more-inf}.
 Notwithstanding the artifact shown at $\approx 150$ km,
 this result points that the isostatic constraint can be very effective in 
@@ -979,15 +979,18 @@ a priori information.
 
 We applied our method to interpret the gravity disturbance data 
 on a profile located over the Pelotas basin
-\citep{stica-etal2014}, southern of Brazil. This basin is 
+\citep{stica-etal2014}, southern of Brazil (Figure \ref{fig:pelotas-location}). This basin is 
 considered a classical example of volcanic margin \citep{geoffroy2005}.
 
 The gravity disturbance data are provided by the combined global gravity field model EIGEN-6C4
 \citep{forste2014}, one of the latest releases of the ``European Improved Gravity model of 
 the Earth by New techniques" series.
 
-We used data from ETOPO-1 to constraint the bathymetry along the profile
-(citar a ref do ETOPO-1)
+We have used data from ETOPO-1 to constraint the bathymetry along the profile
+(citar a ref do ETOPO-1).
+
+Additionally, we have used a priori information about the basement and Moho depths
+obtained from the seismic interpretation presented by \citet{zalan2015}.
 
 Figure~\ref{fig:pelotas-step3} shows the estimated model obtained at Step 3
 of our algorithm, by using $\sigma = 58$ (equation~\ref{eq:elements-wii}), 
@@ -1015,15 +1018,15 @@ using only gravity data.
 The estimated lithostatic stress curve contains abrupt variations
 at an isolated region close to $150$ km and is very smooth on the remaining parts
 of the profile. This result suggests that the margin is mostly in isostatic 
-equilibrium according to the Airy-Heiskanen model, except at the region $\approx 150$.
+equilibrium, except at the region $\approx 150$.
 
 Figure~\ref{fig:pelotas-step3-more-infs} shows an estimated model
 obtained in the same way as that shown in Figure~\ref{fig:pelotas-step3},
-but by using additional known depths at basement.
+but by using additional a priori information at basement.
 Similarly to that shown in Figure~\ref{fig:pelotas-step3},
 the new model (Figure~~\ref{fig:pelotas-step3-more-infs}) produces a very good data fit 
 and deviates from the isostatic equilibrium at the position $\approx 150$ km. 
-Notice that, by using the additional known depths, the differences between our model
+Notice that, by using the additional a priori information, the differences between our model
 and that obtained by \citet{zalan2015} decrease considerably without producing
 significant changes in the predicted data.
 It is worth stressing that our results were obtained by using gravity data
@@ -1035,7 +1038,8 @@ available to the petroleum industry.
 \section{Conclusions}
 
 We present a new gravity inversion method for simultaneously estimating the 
-geometries of basement and Moho on a profile crossing a passive rifted margin.
+geometries of basement and Moho, as well as the constant depth of the reference Moho 
+on a profile crossing a passive rifted margin.
 Our method approximates the subsurface by a set of adjacent columns, each one divided
 into four layers. The first one represents water; the second is formed by vertically
 stacked parts, according to the complexity of the study area; the third and fourth represent,
@@ -1062,7 +1066,7 @@ fourth layer, which defines the Moho, and the constant thickness of the deeper p
 the fourth layer, which defines the reference Moho.
 Because all parameters represent thickness, we force them to be positive.
 In order to obtain stable solutions, we enforces the estimated basement and Moho to be 
-smooth and close to some points having known depths along the profile.
+smooth and close to some points with hose depths were estimated independently along the profile.
 We also impose isostatic equilibrium according to the Airy-Heiskanen model.
 This information is introduced by constraining the lithostatic stress
 exerted by the model on a constant compensation depth. The constraint forces the
@@ -1176,13 +1180,13 @@ the mantle.
 	\label{fig:interpretation-model}
 }
 
-%% Results
+%% application to synthetic data
 
 \plot{volcanic-margin-step1}{width=0.6\textwidth}{
 	{Application to synthetic data. Results obtained in Step 1. 
 	(Bottom panel) Estimated and true surfaces,
-	initial basement and Moho used in the inversion (initial guess) and
-	known depths at basement and Moho.
+	initial basement and Moho used in the inversion (initial guess) and a 
+	priori information at some points on basement and Moho (known depths)
 	(Middle panel) True and estimated lithostatic stress curves computed
 	by using equation~\ref{eq:lithostatic-stress-densities}. The values are multiplied 
 	by a constant gravity value equal to $9.81$ m/s$^{2}$.
@@ -1212,7 +1216,7 @@ the mantle.
 
 \plot{volcanic-margin-step1-more-inf}{width=0.6\textwidth}{
 	{Application to synthetic data. Results obtained in Step 1 by using
-	additional known depths at basement (purple symbols).
+	additional a priori information at basement (purple symbols).
 	The remaining informations are the same shown in the caption of
 	Figure~\ref{fig:volc-margem-step1}.
 	\label{fig:volc-margem-step1-more-inf}}
@@ -1221,20 +1225,33 @@ the mantle.
 \plot{volcanic-margin-step3-more-inf}{width=0.6\textwidth}{
 	{Application to synthetic data. Results obtained in Step 3 by using 
 	$\sigma = 21$ (equation~\ref{eq:elements-wii}) and 
-	additional known depths at basement (purple symbols). 
+	additional a priori information at basement (purple symbols). 
 	The remaining informations are the same shown in the caption of
 	Figure~\ref{fig:volc-margem-step1}.
 	Notice that, in comparison with the estimated model shown in 
 	Figure~\ref{fig:volc-margem-step1-more-inf}, the number of additional
-	known depths is small.
+	a priori information is small.
 	\label{fig:volc-margem-step3-more-inf}}
 }
+
+%% application to real data
+
+%\plot{pelotas-location}{width=0.6\textwidth}{
+%	{Application to real data on Pelotas basin, Brazil. Gravity disturbance
+%	providade by the global gravity field model EIGEN-6C4 \citep{forste2014} at
+%	the study area. The black line indicates the gravity profile over the Pelotas
+%	basin. The end points of the profile have coordinates (geodetic latitude and longitude) 
+%	$(-27.72, -48.23)$ and $(-29.66, -44.94)$. The coordinates are referred to the 
+%	WGS84 datum.
+%	\label{fig:pelotas-location}}
+%}
 
 \plot{pelotas-step3}{width=0.6\textwidth}{
 	{Application to real data on Pelotas basin, Brazil. Results obtained in Step 3 by
 	using $\sigma = 58$ (equation~\ref{eq:elements-wii}).
 	(Bottom panel) Estimated surfaces, initial basement and Moho used in the
-	inversion (initial guess) and known depths at basement and Moho.
+	inversion (initial guess) and a priori information at some points on 
+	basement and Moho (known depths).
 	The dashed white lines represent an alternative interpretation obtained 
 	by \citet{zalan2015} at the same study area.
 	(Middle panel) Estimated lithostatic stress curve computed
@@ -1251,7 +1268,7 @@ the mantle.
 \plot{pelotas-step3-more-inf}{width=0.6\textwidth}{
 	{Application to real data on Pelotas basin, Brazil. Results obtained in Step 3 by
 	using $\sigma = 58$ (equation~\ref{eq:elements-wii}) and additional
-	known depths at basement. The remaining informations are the same shown in
+	a priori information at basement. The remaining informations are the same shown in
 	the caption of Figure \ref{fig:pelotas-step3}.
 	\label{fig:pelotas-step3-more-infs}}
 }
