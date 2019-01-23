@@ -212,8 +212,9 @@ Such techniques involve the systematic search for model parameters producing the
 and may be far from being practical in geophysical applications for the cases in which
 the model space is very large and the forward problem is slow.
 
-We present a new local scale method for estimating the geometries
-of basement and Moho along a profile crossing a rifted margin.
+We present a new local scale method for simultaneously estimating the geometries
+of basement and Moho surfaces, as well as a constant depth representing a reference Moho
+along a profile crossing a rifted margin.
 We approximate the margin by an interpretation model formed by four adjacent layers.
 Layers 1 represents water with constant density contrast.
 Layer 2 can have an arbitrary number of sub-layers with constant density
@@ -226,14 +227,15 @@ Finally, Layer 4 represents the mantle with constant density contrast.
 Our method is formulated, in the space domain, as a nonlinear gravity inversion
 based on the Levenberg-Marquardt method \citep{silva-etal2001, aster-etal2005}, 
 by following a strategy similar to \citet{barbosa-etal1999}.
-The parameters to be estimated by inversion define the geometries of 
+The parameters to be estimated by inversion define a constant depth representing the
+reference Moho, as well as the geometries of 
 basement, which separates Layers 2 and 3, and Moho, which separates Layers 3 and 4.
 The remaining surfaces are fixed.
 At each iteration, our method estimates corrections for the geometries of
 basement and Moho simultaneously. 
 In order to produce stable solutions,
 we use different constraints imposing smoothness on basement and Moho surfaces, 
-as well as force them to be close to some known depths along the profile. 
+as well as force them to be close to some depths along the profile. 
 
 Similarly to \citet{ferderer-etal2017}, we combine the Airy-Heiskanen and Pratt-Hayford
 models to impose local isostatic equilibrium.
@@ -250,7 +252,10 @@ At these regions, our method enables the estimated model to deviate from the
 isostatic equilibrium.
 As a consequence, our method does not estimate a model in perfect isostatic equilibrium, 
 but a model as close as possible to the local isostatic equilibrium. 
-
+Different models can be obtained by setting a scalar parameter that controls 
+how much the estimated models can deviate from the isostatic equilibrium.
+The interpreter can then obtain a set of candidate models that fit the observed data
+and present different degrees of isostatic equilibrium.
 Tests with synthetic data show the good performance of our method in simultaneously
 retrieving the geometry of basement and Moho of a simulated volcanic margin
 model. We also applied our method to invert 
@@ -264,7 +269,9 @@ GOCE-Mission.
 Our results are very consistent with a previous
 interpretation presented by \citet{zalan2015}, who used ultra-deep seismic data.
 These results show that, combined with a priori information, our method can be very effective in 
+estimating a set of candidate models having different degrees of isostatic equilibrium at
 areas with abrupt crustal thinning, which is typically the case along volcanic passive margins.
+
 
 \section{Methodology}
 
@@ -1070,9 +1077,31 @@ margin at the southern of Brazil, produced results in agreement with a previous
 interpretation obtained independently by using ultra-deep seismic data.
 These results show that our method can be a useful tool for interpreting
 gravity data on rifted margins.
+
+The problem of simultaneously estimating the geometries of basement and Moho surfaces
+is very ambiguous and some simplifications must be made. 
+One of these simplifications in our method consists in considering bulk density 
+values for each column forming the continental and oceanic crusts. 
+The interpreter must predefine the function describing the horizontal density
+variation of the crust along the profile, including the region 
+close the COT.
+In most practical situations, however, the interpreter will not have access to a detailed
+description of the density variations within the crust and a regional approximation
+will have to be used instead.
+As a consequence, local errors in the estimated basement and Moho surfaces are expected 
+at regions presenting local density variations in the deeper parts of continental crust 
+and in the oceanic crust.
+Another limitation of our method is that it requires a priori information about the
+upper layers located below the ocean bottom.
+This information can be obtained, for example, from seismic data and be used to set
+the densities of the layers located right below the ocean bottom.
+If no a priori information is available at the study area, the interpreter will have to use
+approximated values.
+Errors in this approximation may negatively impact the estimated model, especially in 
+the basement surface.
 Further research could be conducted to generalize our method to estimate
 three dimensional models and also include lateral density variations in 
-mantle and crust.
+the mantle.
 
 %%%%%%%%%%%%%%%%%% Tables %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
