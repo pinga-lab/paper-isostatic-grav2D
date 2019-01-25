@@ -27,10 +27,10 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="3.4037037"
-     inkscape:cx="195"
-     inkscape:cy="135"
+     inkscape:cx="151.22416"
+     inkscape:cy="111.49619"
      inkscape:document-units="px"
-     inkscape:current-layer="g5857"
+     inkscape:current-layer="layer1"
      showgrid="false"
      units="pc"
      inkscape:window-width="1855"
@@ -912,5 +912,10 @@
        id="path4715-3"
        d="m 363.86478,882.67718 -0.29196,136.09572"
        style="fill:#000000;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path4715-36"
+       d="m 22.464383,1018.1367 341.324377,0.2893"
+       style="fill:#ffffff;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.80000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:3.20000005, 3.20000005;stroke-dashoffset:0;stroke-opacity:1" />
   </g>
 </svg>
