@@ -77,14 +77,11 @@
 
 We tested the sensitivity to the isostatic compensation depth by keeping constant the true Moho reference thickness ($43.2$ km) and show the results of steps 2 and 3. Parameters defining the interpretation model are shown in Table~\ref{tab:volcanic-margin-model}.  We used the same parameters for inversion used in the synthetic applications of the paper.
 
-Figure~\ref{fig:volc-margem-step2} and Figure~\ref{fig:volc-margem-step3} shows the estimated model obtained at the Step 2 and Step 3 of our algorithm with isostatic compensation depth adopted in the applications of the paper ($41$ km). 
+Figure~\ref{fig:volc-margem-step2} and Figure~\ref{fig:volc-margem-step3} show the estimated model obtained at the Step 2 and Step 3 of our algorithm with isostatic compensation depth adopted in the applications of the paper ($41$ km). 
 
-Figure~\ref{fig:volc-margem-step2-test1} (test 1) and Figure~\ref{fig:volc-margem-step2-test2} (test 2) show the estimated model obtained at the end of Step 2 where the isostatic compensation depths was defined at $38.5$ km and $43.2$ km at the  true model, respectively.  These models presented basement and Moho reliefs closer to the estimated surfaces in the Figure~\ref{fig:volc-margem-step2}. In the same way, these results (Figures~\ref{fig:volc-margem-step2-test1} and ~\ref{fig:volc-margem-step2-test2}) show predicted gravity disturbance and lithostatic stress curves with the same behavior that presented in the Figure~\ref{fig:volc-margem-step2}. 
+Figure~\ref{fig:volc-margem-step2-test1} (First S0 guess) and Figure~\ref{fig:volc-margem-step2-test2} (Second S0 guess) show the estimated model obtained at the end of Step 2 where the isostatic compensation depths was defined at $39$ km and $43.2$ km at interpretive model, respectively.  These models presented basement and Moho reliefs closer to the estimated surfaces in the Figure~\ref{fig:volc-margem-step2}. In the same way, these results (Figures~\ref{fig:volc-margem-step2-test1} and ~\ref{fig:volc-margem-step2-test2}) show predicted gravity disturbance and lithostatic stress curves with the same behavior that presented in the Figure~\ref{fig:volc-margem-step2}. 
 
-Figure~\ref{fig:volc-margem-step3-test1} (test 1) and Figure~\ref{fig:volc-margem-step3-test2} (test 2) show the estimated model obtained at the end of Step 3.  These models presented basement and Moho reliefs closer to the estimated surfaces in the Figure~\ref{fig:volc-margem-step3}, except for a small basement uplift at the region between $150$ and $200$ km presented in the Figure~\ref{fig:volc-margem-step3-test1}. These results (Figures~\ref{fig:volc-margem-step3-test1} and ~\ref{fig:volc-margem-step3-test2}) show predicted gravity disturbance and lithostatic stress curves with the same behavior that presented in the Figure~\ref{fig:volc-margem-step3}. 
-
-
-
+Figure~\ref{fig:volc-margem-step3-test1} (First S0 guess) and Figure~\ref{fig:volc-margem-step3-test2} (Second S0 guess) show the estimated model obtained at the end of Step 3. We used different $\sigma$ constants for the tests. These models presented basement and Moho reliefs closer to the estimated surfaces in the Figure~\ref{fig:volc-margem-step3}. These results (Figures~\ref{fig:volc-margem-step3-test1} and ~\ref{fig:volc-margem-step3-test2}) show predicted gravity disturbance and lithostatic stress curves with the same behavior that presented in the Figure~\ref{fig:volc-margem-step3}. 
 
 
 %%%%%%%%%%%%%%%%%% Tables %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -142,44 +139,43 @@ Figure~\ref{fig:volc-margem-step3-test1} (test 1) and Figure~\ref{fig:volc-marge
 	\label{fig:volc-margem-step2}
 }
 
-\plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2-sgm_21}{width=0.6\textwidth}{
+\plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2-sgm_22}{width=0.6\textwidth}{
 	{Application to synthetic data. Results obtained in Step 3 by using 
-	$\sigma = 21$ (equation~\ref{eq:elements-wii}).
+	$\sigma = 22$ (equation~\ref{eq:elements-wii}).
 	The remaining informations are the same shown in the caption of
 	Figure~\ref{fig:volc-margem-step2}.
 	\label{fig:volc-margem-step3}}
 }
 
-\plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2-t1-S0min}{width=0.6\textwidth}{
-	{Application to synthetic data (test 1: $S0 = 38.5$ km). Results obtained in Step 2.
+\plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2-T3-S0_39000}{width=0.6\textwidth}{
+	{Application to synthetic data (First S0 guess: $S0 = 39$ km). Results obtained in Step 2.
 	The remaining informations are the same shown in the caption of
 	Figure~\ref{fig:volc-margem-step2}.
 	\label{fig:volc-margem-step2-test1}}
 }
 
-\plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2-t1-S0min-sgm_21}{width=0.6\textwidth}{
-	{Application to synthetic data (test 1: $S0 = 38.5$ km). Results obtained in Step 3 by using 
+\plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2-T3-S0_39000-sgm_21}{width=0.6\textwidth}{
+	{Application to synthetic data (First S0 guess: $S0 = 39$ km). Results obtained in Step 3 by using 
 	$\sigma = 21$ (equation~\ref{eq:elements-wii}).
 	The remaining informations are the same shown in the caption of
 	Figure~\ref{fig:volc-margem-step2}.
 	\label{fig:volc-margem-step3-test1}}
 }
 
-\plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2-t2-S0max}{width=0.6\textwidth}{
-	{Application to synthetic data (test 2: $S0 = 43.2$ km). Results obtained in Step 2.
+\plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2-T3-S0_43200}{width=0.6\textwidth}{
+	{Application to synthetic data (Second S0 guess: $S0 = 43.2$ km). Results obtained in Step 2.
 	The remaining informations are the same shown in the caption of
 	Figure~\ref{fig:volc-margem-step2}.
 	\label{fig:volc-margem-step2-test2}}
 }
 
-\plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2-t2-S0max-sgm_21}{width=0.6\textwidth}{
-	{Application to synthetic data (test 2: $S0 = 43.2$ km). Results obtained in Step 3 by using 
-	$\sigma = 21$ (equation~\ref{eq:elements-wii}).
+\plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2-T3-S0_43200-sgm_23}{width=0.6\textwidth}{
+	{Application to synthetic data (Second S0 guess: $S0 = 43.2$ km). Results obtained in Step 3 by using 
+	$\sigma = 23$ (equation~\ref{eq:elements-wii}).
 	The remaining informations are the same shown in the caption of
 	Figure~\ref{fig:volc-margem-step2}.
 	\label{fig:volc-margem-step3-test2}}
 }
-
 
 %%%%%%%%%%%%%%%%%% Figures %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
