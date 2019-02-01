@@ -88,8 +88,8 @@ To partially overcome this problem and obtain meaningful solutions, the interpre
 must commonly use a priori information obtained from seismic data and/or boreholes in
 order to constrain the range of possible models.
 Here, we consider methods that approximate the subsurface by a set of layers 
-that have constant or depth-dependent density contrast and are separated 
-by surfaces representing the geophysical discontinuities.
+that have constant or depth-dependent density contrasts and are separated 
+by surfaces. These surfaces represent the geophysical discontinuities.
 In such methods, the geometry of the discontinuities are directly 
 determined by estimating the geometrical parameters defining the surfaces.
 
@@ -136,11 +136,11 @@ It is known that these methods suffer from a greater ambiguity if compared with
 those estimating the geometry of a single surface.
 As a consequence, they require more a priori information to
 decrease the number of possible solutions. 
-To reduce this inherent ambiguity, these methods followed different approaches
-for combining gravity data with seismic and isostasy 
-to determine the geometries of basement and Moho surfaces, which are important 
+Some authors opted for combining gravity data with seismic and isostasy 
+to reduce this inherent ambiguity and determine the geometries of basement and Moho surfaces.
+The geometry of these surfaces are important 
 constraints on the amount of extension and heat flow at a margin during rifting
-\citep{watts-fairhead1999}.
+\citep{watts-fairhead1999, gradmann-etal2017}.
 
 \citet{condi-etal1999} proposed a nonlinear gravity inversion for estimating the
 offshore deep structures of a rifted margin.
@@ -167,7 +167,7 @@ The position of the vertices associated with basement are estimated
 by using an iterative approach similar to that
 presented by \citet{bott1960} and \citet{cordell-henderson1968}. 
 The difference is that, at each iteration, the Airy-Heiskanen model
-\citep{heiskanen-moritz1967} for local isostatic equilibrium is used 
+\citep[][$\,$ p. 135]{heiskanen-moritz1967} for local isostatic equilibrium is used 
 to subsequently update the Moho geometry, forcing the model to be in
 perfect isostatic equilibrium according to the Airy-Heiskanen model.
 Notice that their method does not estimate the geometries of basement and Moho 
@@ -227,9 +227,9 @@ Finally, Layer 4 represents the mantle with constant density contrast.
 Our method is formulated, in the space domain, as a nonlinear gravity inversion
 based on the Levenberg-Marquardt method \citep{silva-etal2001, aster-etal2005}, 
 by following a strategy similar to \citet{barbosa-etal1999}.
-The parameters to be estimated by inversion define a constant depth representing the
+The parameters to be estimated by inversion are a constant depth representing the
 reference Moho, as well as the geometries of 
-basement, which separates Layers 2 and 3, and Moho, which separates Layers 3 and 4.
+basement (surface separating Layers 2 and 3) and Moho (surface separating Layers 3 and 4).
 The remaining surfaces are fixed.
 At each iteration, our method estimates corrections for the geometries of
 basement and Moho simultaneously. 
@@ -904,6 +904,8 @@ We have simulated a simple volcanic margin model formed by four layers:
 water, sediments + seaward dipping reflectors, crust (continental and oceanic) 
 and mantle. 
 Parameters defining this model are shown in Table~\ref{tab:volcanic-margin-model}.
+The density values of our model are compatible with those commonly used in literature
+\citep[e.g., ][]{gradmann-etal2017}.
 By following the algorithm described in the previous section, we inverted the synthetic 
 gravity disturbance data produced by our volcanic margin model.
 
@@ -1150,9 +1152,9 @@ the mantle.
 	Transition (COT) is located at $y_{COT} = 350$ km and the reference 
 	Moho is located at $43 \, 200$ km (Figures~\ref{fig:rifted-margin-model} and 
 	\ref{fig:interpretation-model}).
-	The density contrasts $\Delta\rho^{(\alpha)}$ are defined with respect to the
-	reference value $\rho^{(r)} = 2870$ kg/m$^{3}$, which coincides with
-	the density $\rho^{(cc)}$ attributed to the continental crust.
+	The density contrasts $\Delta\rho^{(\alpha)} = \rho^{(\alpha)} - \rho^{(r)}$ 
+	were defined by using the reference value $\rho^{(r)} = 2870$ kg/m$^{3}$, 
+	which coincides with the density $\rho^{(cc)}$ attributed to the continental crust.
 	\label{tab:volcanic-margin-model}
 }{
 \begin{center}
@@ -1275,7 +1277,7 @@ the mantle.
 
 \plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2-T2-dsed-SDR-sgm_8}{width=0.6\textwidth}{
 	{Application to synthetic data. Results obtained at Step 3 by using 
-	density values in Layer 2 (sediment + SDR) different from the true
+	density values in Layer 2 ($\rho{(1)}$ and $\rho{(2)}$) different from the true
 	ones (Table~\ref{tab:volcanic-margin-model}).
 	This estimated model was obtained by using $\sigma = 8$ (equation~\ref{eq:elements-wii}).
 	The dashed blue lines (initial guess surfaces) represent the corresponding
@@ -1298,8 +1300,7 @@ the mantle.
 }
 
 \plot{pelotas-profile-grafics-estimated-model-alphas_2_1_1_2}{width=0.6\textwidth}{
-	{Application to real data on Pelotas basin, Brazil. Results obtained at Step 2 by
-	using $\sigma = 58$ (equation~\ref{eq:elements-wii}).
+	{Application to real data on Pelotas basin, Brazil. Results obtained at Step 2.
 	(Bottom panel) Estimated surfaces, initial basement and Moho used in the
 	inversion (initial guess) and a priori information at some points on 
 	basement and Moho (known depths).
@@ -1307,67 +1308,43 @@ the mantle.
 	by \citet{zalan2015} at the same study area.
 	(Middle panel) Estimated lithostatic stress curve computed
 	by using equation~\ref{eq:lithostatic-stress-densities}. The values are multiplied 
-	by a constant gravity value equal to $9.81$ m/s$^{2}$.
-	(Upper panel) Observed gravity disturbance data, data produced by the estimated
-	model (predicted data) and data produced the by model used as initial guess in the
-	inversion (initial guess data).
-	Parameters $\tilde{\alpha}_{0}$, $\tilde{\alpha}_{1}$, $\tilde{\alpha}_{2}$ and 
-	$\tilde{\alpha}_{3}$ (equation~\ref{eq:constraint-weights}) have values 
-	$10^{1}$, $10^{1}$ and $10^{2}$, respectively, $S_{0} = XX$ km and the density 
-	contrasts are those shown in Table~\ref{tab:volcanic-margin-model}. We used an initial
-	approximation for $\Delta S$ equal to XXX km.
+	by $9.81$ m/s$^{2}$.
+	(Upper panel) Observed gravity disturbance, data produced by the estimated
+	model (predicted data) and data produced the by the initial approximation (initial guess data).
+	We used 
+	$\left( \tilde{\alpha}_{0}, \tilde{\alpha}_{1}, \tilde{\alpha}_{2}, \tilde{\alpha}_{3} \right) = 
+	\left( 10^{2}, 10^{1}, 10^{1}, 10^{2} \right)$ (equation~\ref{eq:constraint-weights}),
+	$S_{0} = XX$ km, density contrasts equal to those shown in Table~\ref{tab:volcanic-margin-model}
+	and initial approximation for $\Delta S$ equal to $1$ km.
 	\label{fig:pelotas-step2}}
 }
 
-%\plot{pelotas-step3-more-inf}{width=0.6\textwidth}{
-%	{Application to real data on Pelotas basin, Brazil. Results obtained in Step 3 by
-%	using $\sigma = 58$ (equation~\ref{eq:elements-wii}) and additional
-%	a priori information at basement. The remaining informations are the same shown in
-%	the caption of Figure \ref{fig:pelotas-step3}.
-%	\label{fig:pelotas-step3-more-infs}}
-%}
+\plot{pelotas-profile-grafics-estimated-model-alphas_2_1_1_2-sgm_58}{width=0.6\textwidth}{
+	{Application to real data on Pelotas basin, Brazil. Results obtained at Step 3 by using 
+	the estimated model shown in Figure~\ref{fig:pelotas-step2} as initial approximation 
+	(dashed blue lines) and $\sigma = 58$ (equation~\ref{eq:elements-wii}).
+	The remaining informations are the same shown in the caption of
+	Figure~\ref{fig:pelotas-step2}.}
+	\label{fig:pelotas-step3-sgm58}
+}
 
-%\plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2-sgm_22}{width=0.6\textwidth}{
-%	{Application to synthetic data. Results obtained at Step 3 by using 
-%	the estimated model shown in Figure~\ref{fig:volc-margem-step2} 
-%	as initial approximation (dashed blue lines) and
-%	$\sigma = 22$ (equation~\ref{eq:elements-wii}).
-%	The remaining informations are the same shown in the caption of
-%	Figure~\ref{fig:volc-margem-step1}.}
-%	\label{fig:volc-margem-step3-sgm22}
-%}
-%
-%\plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2-sgm_10}{width=0.6\textwidth}{
-%	{Application to synthetic data. Results obtained at Step 3 by using 
-%	the estimated model shown in Figure~\ref{fig:volc-margem-step2} 
-%	as initial approximation (dashed blue lines) and
-%	$\sigma = 10$ (equation~\ref{eq:elements-wii}).
-%	The remaining informations are the same shown in the caption of
-%	Figure~\ref{fig:volc-margem-step1}.}
-%	\label{fig:volc-margem-step3-sgm10}
-%}
-%
-%\plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2-sgm_40}{width=0.6\textwidth}{
-%	{Application to synthetic data. Results obtained at Step 3 by using 
-%	the estimated model shown in Figure~\ref{fig:volc-margem-step2} 
-%	as initial approximation (dashed blue lines) and
-%	$\sigma = 40$ (equation~\ref{eq:elements-wii}).
-%	The remaining informations are the same shown in the caption of
-%	Figure~\ref{fig:volc-margem-step1}.}
-%	\label{fig:volc-margem-step3-sgm40}
-%}
-%
-%\plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2-T2-dsed-SDR-sgm_8}{width=0.6\textwidth}{
-%	{Application to synthetic data. Results obtained at Step 3 by using 
-%	density values in Layer 2 (sediment + SDR) different from the true
-%	ones (Table~\ref{tab:volcanic-margin-model}).
-%	This estimated model was obtained by using $\sigma = 8$ (equation~\ref{eq:elements-wii}).
-%	The dashed blue lines (initial guess surfaces) represent the corresponding
-%	model obtained at Step 2 (not shown).
-%	The remaining informations are the same shown in the caption of
-%	Figure~\ref{fig:volc-margem-step1}.}
-%	\label{fig:volc-margem-step3-alternative}
-%}
+\plot{pelotas-profile-grafics-estimated-model-alphas_2_1_1_2-sgm_40}{width=0.6\textwidth}{
+	{Application to real data on Pelotas basin, Brazil. Results obtained at Step 3 by using 
+	the estimated model shown in Figure~\ref{fig:pelotas-step2} as initial approximation 
+	(dashed blue lines) and $\sigma = 40$ (equation~\ref{eq:elements-wii}).
+	The remaining informations are the same shown in the caption of
+	Figure~\ref{fig:pelotas-step2}.}
+	\label{fig:pelotas-step3-sgm40}
+}
+
+\plot{pelotas-profile-grafics-estimated-model-alphas_2_1_1_2-sgm_63}{width=0.6\textwidth}{
+	{Application to real data on Pelotas basin, Brazil. Results obtained at Step 3 by using 
+	the estimated model shown in Figure~\ref{fig:pelotas-step2} as initial approximation 
+	(dashed blue lines) and $\sigma = 63$ (equation~\ref{eq:elements-wii}).
+	The remaining informations are the same shown in the caption of
+	Figure~\ref{fig:pelotas-step2}.}
+	\label{fig:pelotas-step3-sgm63}
+}
 
 %%%%%%%%%%%%%%%%%% Figures %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
