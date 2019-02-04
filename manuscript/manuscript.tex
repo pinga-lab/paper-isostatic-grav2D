@@ -845,8 +845,7 @@ characteristics of the interpretation model.
 Our algorithm depends on several parameters that significantly impact the estimated models
 and cannot be automatically set without the interpreter’s judgment.
 They are the parameters $\tilde{\alpha}_{1}$, $\tilde{\alpha}_{2}$ and $\tilde{\alpha}_{3}$
-(set at Step 1), $\tilde{\alpha}_{0}$ (set at Step 2) and 
-$\sigma$ (set at Step 3).
+(Step 1), $\tilde{\alpha}_{0}$ (Step 2) and $\sigma$ (Step 3).
 Based on our practical experience, we suggest
 some empirical procedures for setting these parameters at each step of our algorithm.
 
@@ -1277,7 +1276,7 @@ the mantle.
 
 \plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2-T2-dsed-SDR-sgm_8}{width=0.6\textwidth}{
 	{Application to synthetic data. Results obtained at Step 3 by using 
-	density values in Layer 2 ($\rho{(1)}$ and $\rho{(2)}$) different from the true
+	density values $\rho^{(1)}$ (sediment) and $\rho^{(2)}$ (SDR) different from the true
 	ones (Table~\ref{tab:volcanic-margin-model}).
 	This estimated model was obtained by using $\sigma = 8$ (equation~\ref{eq:elements-wii}).
 	The dashed blue lines (initial guess surfaces) represent the corresponding
@@ -1314,7 +1313,7 @@ the mantle.
 	We used 
 	$\left( \tilde{\alpha}_{0}, \tilde{\alpha}_{1}, \tilde{\alpha}_{2}, \tilde{\alpha}_{3} \right) = 
 	\left( 10^{2}, 10^{1}, 10^{1}, 10^{2} \right)$ (equation~\ref{eq:constraint-weights}),
-	$S_{0} = XX$ km, density contrasts equal to those shown in Table~\ref{tab:volcanic-margin-model}
+	$S_{0} = 41$ km, density contrasts equal to those shown in Table~\ref{tab:volcanic-margin-model}
 	and initial approximation for $\Delta S$ equal to $1$ km.
 	\label{fig:pelotas-step2}}
 }
@@ -1344,6 +1343,18 @@ the mantle.
 	The remaining informations are the same shown in the caption of
 	Figure~\ref{fig:pelotas-step2}.}
 	\label{fig:pelotas-step3-sgm63}
+}
+
+\plot{pelotas-profile-grafics-estimated-model-alphas_2_1_1_2-T5-dsed-SDR-sgm_17}{width=0.6\textwidth}{
+	{Application to real data on Pelotas basin, Brazil. Results obtained at Step 3 by using 
+	density values $\rho^{(1)}$ (sediment) and $\rho^{(2)}$ (SDR) different from those defined
+	in Table \ref{tab:volcanic-margin-model}.
+	This estimated model was obtained by using $\sigma = 17$ (equation~\ref{eq:elements-wii}).
+	The dashed blue lines (initial guess surfaces) represent the corresponding
+	model obtained at Step 2 (not shown).
+	The remaining informations are the same shown in the caption of
+	Figure~\ref{fig:pelotas-step2}.}
+	\label{fig:pelotas-step3-alternative}
 }
 
 %%%%%%%%%%%%%%%%%% Figures %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
