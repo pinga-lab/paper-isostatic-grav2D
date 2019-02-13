@@ -216,7 +216,7 @@ We present a new local scale method for simultaneously estimating the geometries
 of basement and Moho surfaces, as well as a constant depth representing a reference Moho
 along a profile crossing a rifted margin.
 We approximate the margin by an interpretation model formed by four adjacent layers.
-Layers 1 represents water with constant density contrast.
+Layer 1 represents water with constant density contrast.
 Layer 2 can have an arbitrary number of sub-layers with constant density
 to represent, for example, sediments, salt and volcanic rocks.
 These sub-layers are predefined by the interpreter according to
@@ -226,7 +226,8 @@ variating along the profile.
 Finally, Layer 4 represents the mantle with constant density contrast.
 Our method is formulated, in the space domain, as a nonlinear gravity inversion
 based on the Levenberg-Marquardt method \citep{silva-etal2001, aster-etal2005}, 
-by following a strategy similar to \citet{barbosa-etal1999}.
+by following the same strategy of \citet{barbosa-etal1999} to incorporate
+inequality constraints.
 The parameters to be estimated by inversion are a constant depth representing the
 reference Moho, as well as the geometries of 
 basement (surface separating Layers 2 and 3) and Moho (surface separating Layers 3 and 4).
@@ -304,7 +305,7 @@ Layer 2 is formed by $Q$ vertically adjacent sub-layers representing
 sediments, salt or volcanic rocks.
 In our example, this layer is formed by two sub-layers with constant densities
 $\rho^{(q)}$, $q = 1, 2$. Different models can be created by changing the number $Q$
-according to the complexity and available a priori information at the study area.
+according to the complexity of the study area and available a priori information.
 In many cases, seismic data can be used to constrain the geometry of these 
 shallow structures.
 Layer 3 represents the crust and we presume that its density $\rho^{c}$
