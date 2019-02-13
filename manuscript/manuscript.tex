@@ -281,15 +281,16 @@ areas with abrupt crustal thinning, which is typically the case along volcanic p
 
 
 Let $\mathbf{d}^{o}$ be the observed data vector, whose $i$-th element $d^{o}_{i}$, 
-$i = 1, \dots, N$, represents the observed gravity disturbance at the point 
-$(x_{i}, y_{i}, z_{i})$, on a profile located over a rifted passive margin. The
-coordinates are referred to a topocentric Cartesian system, with $z$ axis pointing
+$i = 1, \dots, N$, represents the observed gravity disturbance \citep{heiskanen-moritz1967} 
+at the point $(x_{i}, y_{i}, z_{i})$, on a profile located over a rifted passive margin. 
+The coordinates are referred to a topocentric Cartesian system, with $z$-axis pointing
 downward, $y$-axis along the profile and $x$-axis perpendicular to the profile. 
-In local- and regional-scale studies, the gravity disturbance \citep{heiskanen-moritz1967} 
+In local- and regional-scale studies, the gravity disturbance 
 represents the vertical component of the gravitational attraction exerted by the gravity 
-sources. It is more appropriated for geophysical applications 
-\citep{li2001, fairhead2003, hackney-featherstone2003, hinze2005, vajda-etal2006, vajda-etal2007}
-and is numerically similar to the classical free-air anomaly.
+sources. It is more appropriated for geophysical applications,
+numerically similar to the classical free-air anomaly and uses the height relative to the
+reference ellipsoid (geometric height) instead of the Geoid (orthometric height)
+\citep{li2001, fairhead2003, hackney-featherstone2003, hinze2005, vajda-etal2006, vajda-etal2007}.
 
 The density distribution in a rifted margin can be very complex.
 In volcanic margins, for example, the crust can be heavily intruded with
@@ -340,7 +341,7 @@ is conveniently called \textit{reference Moho} (Figures~\ref{fig:rifted-margin-m
 and \ref{fig:interpretation-model}).
 The reference model can be thought of as the outer layers of a concentric
 mass distribution producing the normal gravity field.
-In a local scale, this concentric mass distribution can be approximated by a 
+In a local scale, this concentric mass distribution is close to a 
 stack of two Bouguer slabs.
 
 We consider that the anomalous mass distribution producing the observed data
@@ -354,7 +355,7 @@ formed by $N$ columns of vertically stacked prisms
 For convenience, we presume that there is an observed gravity disturbance over the
 center of each column.
 We consider that the prisms in the extremities of the interpretation model extend to
-infinity along the $y$ axis in order to prevent edge effects in the forward 
+infinity along the $y$-axis in order to prevent edge effects in the forward 
 calculations. 
 The $i$-th column is formed by vertically stacked prisms having infinite length along 
 the $x$-axis and locally approximates the four layers of our rifted margin model
@@ -400,7 +401,8 @@ as follows:
 \label{eq:parameter-vector}
 \end{equation}
 where $\mathbf{t}^{Q}$ and $\mathbf{t}^{m}$ are $N \times 1$ vectors whose $i$-th
-elements $t^{Q}_{i}$ and $t^{m}_{i}$ represent the thickness of the
+elements $t^{Q}_{i}$ and $t^{m}_{i}$ (Figure~\ref{fig:interpretation-model})) 
+represent the thickness of the
 prisms forming, respectively, the base of Layer 2 and the top of Layer 4.
 Notice that $t^{Q}_{i}$ and $t^{m}_{i}$, $i = 1, \dots, N$, approximate, respectively, the 
 geometries of basement and Moho and $\Delta S$ defines the depth of the
@@ -1206,6 +1208,10 @@ the mantle.
 	{Interpretation model formed by $N$ columns of vertically stacked prisms. 
 	Each column is formed by four layers of prisms and locally approximates the 
 	rifted margin model shown in Figure~\ref{fig:rifted-margin-model-color}.
+	Layer 2 is formed by $Q$ sub-layers according to the complexity of the study area. 
+	In this example, $Q = 2$. 
+	The thickness $t^{Q}_{i}$ and $t^{m}_{i}$ of the prisms forming, respectively, 
+	the base of Layer 2 and the top of Layer 4 at the $i$-column are indicated.
 	Each prism has a constant density contrast defined as the difference between
 	its corresponding density at the rifted margin model 
 	and the constant density $\rho^{(r)}$ of the shallowest layer forming
