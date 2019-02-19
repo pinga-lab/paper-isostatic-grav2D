@@ -40,36 +40,31 @@
 
 \begin{abstract}
 
-We propose a new gravity inversion method for 
-%jointly estimating the basement and 
-%Moho geometries, as well as the depth of the reference Moho
-%along a profile crossing a passive rifted margin.
-%We approximate the subsurface by an interpretation model composed of 
-%adjacent columns, each one formed by vertically stacked prisms having constant 
-%and known density contrasts.
-%Our method consists in solving a nonlinear inverse problem to estimate the 
-%thickness of specific prisms defining the basement and Moho geometries, 
-%as well as a constant thickness defining the maximum depth of our interpretation 
-%model.
-%This maximum depth represents a planar reference Moho.
-%To obtain stable solutions, we impose smoothness on the basement and Moho relief,
-%force them to be close to previously estimated depths along the profile and also 
-%impose local isostatic equilibrium.
-%Our method imposes isostatic equilibrium by constraining the lithostatic stress 
-%exerted by the interpretation model at a given constant depth, 
-%below which there are no lateral density variations.
-%This isostatic constraint introduces the information that the lithostatic stress 
-%is mostly smooth, except at some isolated regions, where it can present abrupt 
-%variations. At these regions, our method enables the interpretation model to deviate
-%from the isostatic equilibrium.
-%Tests with synthetic data show the good performance of our method in
-%determining the basement and Moho geometries at regions with  
-%pronounced crustal thinning, which is typical of passive volcanic margins.
-%Results obtained by our method at the Pelotas basin, considered a classical example
-%of passive volcanic margin at the southern of Brazil, agree with a previous
-%interpretation obtained independently by using seismic data.
-%The applications to synthetic and real data show that our method is a
-%promising tool for interpreting gravity data on passive rifted margins.
+We propose a nonlinear gravity inversion for simultaneously estimating the 
+basement and Moho geometries, as well as the depth of the reference Moho 
+along a profile crossing a passive rifted margin. We approximate the subsurface 
+by an interpretation model composed of four layers. The shallowest represents 
+water and has constant density contrast. The second has a number of sub-layers 
+with constant density contrasts. The complexity of this layer depends on the 
+available a priori information at the study area. The third layer represents 
+the crust and has a predefined horizontal density variation along the profile. 
+Finally, the deepest layer represents the mantle, with constant density contrast. 
+Top and base of third layer represent the basement and Moho, respectively. 
+The constant depth defining the base of the interpretation model defines the 
+reference Moho. To obtain stable solutions, we impose smoothness on basement 
+and Moho, force them to be close to previously estimated depths along the 
+profile and also impose local isostatic equilibrium. Differently from previous 
+methods, we introduce the information of local isostatic equilibrium by imposing 
+smoothness on the lithostatic stress exerted at depth. Our method allows deviations 
+from isostatic equilibrium along the profile, so that the interpreter can obtain a 
+set of candidate models that fit the observed data and exhibit different degrees 
+of isostatic equilibrium. Tests with synthetic data show the good performance of 
+our method at regions with pronounced crustal thinning, which is typical of 
+passive volcanic margins. Results obtained at the Pelotas basin, an example of 
+passive volcanic margin at the southern of Brazil, agree with a previous 
+interpretation obtained independently by using seismic data. These results 
+show that, combined with a priori information, our method is a promising tool 
+for interpreting gravity data on passive rifted margins.
 
 
 \end{abstract}
@@ -217,7 +212,7 @@ the model space is very large and the forward problem is slow.
 We present a new local scale method for simultaneously estimating the geometries
 of basement and Moho surfaces, as well as a constant depth representing a reference Moho
 along a profile crossing a rifted margin.
-We approximate the margin by an interpretation model formed by four adjacent layers.
+We approximate the margin by an interpretation model formed by four layers.
 Layer 1 represents water with constant density contrast.
 Layer 2 can have an arbitrary number of sub-layers with constant density
 to represent, for example, sediments, salt and volcanic rocks.
@@ -255,10 +250,10 @@ At these regions, our method enables the estimated model to deviate from the
 isostatic equilibrium.
 As a consequence, our method does not estimate a model in perfect isostatic equilibrium, 
 but a model as close as possible to the local isostatic equilibrium. 
-Different models can be obtained by setting a scalar parameter that controls 
+Different models can be obtained by controlling 
 how much the estimated models can deviate from the isostatic equilibrium.
-The interpreter can then obtain a set of candidate models that fit the observed data
-and present different degrees of isostatic equilibrium.
+The interpreter can then obtain a set of candidate models that (i) fit the observed data
+and (ii) present different degrees of isostatic equilibrium.
 Tests with synthetic data show the good performance of our method in simultaneously
 retrieving the geometry of basement and Moho of a simulated volcanic margin
 model. We also applied our method to invert 
@@ -267,11 +262,9 @@ located at the offshore southern of Brazil and is considered a classical example
 of volcanic passive margin \citep{geoffroy2005}. 
 We inverted gravity data provided by the combined global gravity field model EIGEN-6C4
 \citep{forste2014}, one of the latest releases of the ``European Improved Gravity model of 
-the Earth by New techniques" series, containing the complete gravity gradient data of the 
-GOCE-Mission.
-Our results are very consistent with a previous
-interpretation presented by \citet{stica-etal2014} and
-\citet{zalan2015}, who used seismic data.
+the Earth by New techniques" series.
+Our results are consistent with previous interpretations presented by \citet{stica-etal2014} and
+\citet{zalan2015}, who combined seismic, gravity and magnetic data.
 These results show that, combined with a priori information, our method can be very effective in 
 estimating a set of candidate models having different degrees of isostatic equilibrium at
 areas with abrupt crustal thinning, which is typically the case along volcanic passive margins.
@@ -868,8 +861,8 @@ must be the smallest positive numbers resulting in an estimated model with
 basement and Moho surfaces close to the values provided by the a priori information
 at some isolated points. Notice that this estimated model must be obtained 
 by using only the equality constraints. Consequently, there must be some
-pinnacles around the points associated with the a priori information. This effect
-has already been observed by \citet{barbosa-etal1997}.
+pinnacles on the estimated models, around the points associated with the a priori information. 
+This effect has already been observed by \citet{barbosa-etal1997}.
 By using the chosen values for $\tilde{\alpha}_{2}$ and $\tilde{\alpha}_{3}$, 
 try different positive values for $\tilde{\alpha}_{1}$. 
 This parameter controls the smoothness of basement and Moho surfaces
@@ -888,7 +881,7 @@ $\tilde{\alpha}_{1}$. Large values produce a poor data fit along the profile.
 This parameter must be the largest positive number resulting in an estimated
 model satisfying two criteria: (i) the lithostatic stress curve must be smooth
 along the entire profile and (ii) there must be a good data fit along the entire
-profile, except at some isolated regions presenting relatively large residuals.
+profile, except at some isolated regions that can show relatively large residuals.
 
 Finally, at Step 3, try different positive values for $\sigma$ (equation~\ref{eq:elements-wii}).
 This parameter controls the deviations of the interpretation model from the
@@ -937,9 +930,8 @@ relative to the true one.
 Despite these large differences, 
 the predicted gravity disturbance and lithostatic stress 
 are very close to the simulated values.
-In this example, the good data fit can be explained by the small density contrast at basement
-relative to that at Moho.
-This small density contrast forces the Moho to play a dominant role in fitting the
+In this example, the small density contrast at basement relative to that at Moho
+forces the Moho to play a dominant role in fitting the
 lithostatic stress curve and the simulated gravity data.
 
 Figure~\ref{fig:volc-margem-step2} shows the estimated model obtained at the end
@@ -947,7 +939,7 @@ of Step 2, by using $\tilde{\alpha}_{0} = 10^{2}$ (equation~\ref{eq:constraint-w
 In comparison to the estimated model obtained at Step 1 (Figure~\ref{fig:volc-margem-step1}),
 this result shows a very smooth lithostatic stress curve as a consequence of the
 isostatic constraint. The use of the isostatic constraint has produced little effect on the
-estimated reference Moho and resulted in a worse estimated Moho.
+estimated reference Moho and resulted in a relatively worse estimated Moho.
 On the other hand, it reduced the large differences between the estimated and 
 true basement surfaces. The main improvement occurs along the 
 first $\approx 100$ km on the profile, where the true model exhibits a pronounced crustal
@@ -982,8 +974,8 @@ along the first $200$ km of the profile.
 According to the practical considerations explained in the previous section, 
 we consider that the estimated model shown in Figure~\ref{fig:volc-margem-step3-sgm22},
 with $\sigma = 22$, is the best. 
-This model presents a good data fit along the entire profile, estimated Moho and
-reference Moho very close to the true ones and an estimated basement intermediate
+Data fit is very good along the entire profile, the estimated Moho and
+reference Moho are very close to the true ones and the estimated basement is intermediate
 between those obtained at Steps 1 and 2 (Figures~\ref{fig:volc-margem-step1} and
 \ref{fig:volc-margem-step2}).
 Notice that the estimated model obtained with 
@@ -992,20 +984,20 @@ obtained at Step 1 (Figure~\ref{fig:volc-margem-step1}).
 In this case, the predicted lithostatic stress curve is less smooth than that
 produced by the best model.
 On the other hand, the estimated model obtained with 
-the largest $\sigma$ (Figure~\ref{fig:volc-margem-step3-sgm40}) is close the that 
+the largest $\sigma$ (Figure~\ref{fig:volc-margem-step3-sgm40}) is close that 
 obtained at Step 2 (Figure~\ref{fig:volc-margem-step2}).
 In this case, the predicted lithostatic stress curve is smoother than that
 produced by the best model.
 
 Figure~\ref{fig:volc-margem-step3-alternative} shows an alternative 
-estimated model obtained at Step 3.
+model obtained at Step 3.
 The density values in Layer 2 (sediment + SDR) used to obtain this model 
 are different from those of the true model (Table~\ref{tab:volcanic-margin-model}).
 The corresponding estimated model obtained at Step 1 is not shown and
 that obtained at Step 2 is represented by the dashed blue lines in
 Figure~\ref{fig:volc-margem-step3-alternative}.
-Notice that the absolute value of the density contrast associated to basement 
-in this alternative model is greater than that used to generate the estimated models shown in 
+Notice that, in this case, the absolute value of the absolute density contrast associated to basement 
+is greater than that used to generate the estimated models shown in 
 Figures~\ref{fig:volc-margem-step3-sgm22}, \ref{fig:volc-margem-step3-sgm10} and
 \ref{fig:volc-margem-step3-sgm40}. As we can see, the artifact shown in the estimated Moho,
 at the position $y \approx 150$ km, is considerably smaller in the alternative model than
@@ -1018,6 +1010,9 @@ Moho surfaces, even by using approximated values for the density contrasts at La
 Additional results illustrating the sensitivities of our method to different combinations 
 of constraints, different initial approximations and errors in the density of Layer 2 
 (sediment + SDR) are available as supplementary material at xxxxxxxxx.
+(\textbf{Note to reviewers: the online repository 
+will be made public upon
+publication})
 
 
 \section{Application to real data}
@@ -1032,16 +1027,16 @@ the Earth by New techniques" series.
 We have used data from ETOPO-1 to constraint the bathymetry along the profile
 \citep{amante-eakins2009}.
 Additionally, we have used a priori information about the basement and Moho depths
-obtained from the seismic interpretation presented by \citet{stica-etal2014} and
-\citet{zalan2015}.
+obtained from the seismic interpretations presented by \citet{stica-etal2014} and
+\citet{zalan2015} to define the equality constraints 
+(equations~\ref{eq:equality-constraint-basement} and \ref{eq:equality-constraint-moho})
+and the initial approximation used in the non-linear inversion. 
 
 Figure~\ref{fig:pelotas-step2} shows the estimated model obtained at Step 2,
 by using $(\tilde{\alpha}_{0}, \tilde{\alpha}_{1}, \tilde{\alpha}_{2}, \tilde{\alpha}_{3}) 
 = (10^{2}, 10^{1}, 10^{1}, 10^{2})$ (equation~\ref{eq:constraint-weights}).
 Parameters defining the interpretation model are the same used
-to define our volcanic margin model (Table~\ref{tab:volcanic-margin-model}).
-The initial approximations for basement and Moho (dashed blue lines) were obtained from
-the seismic section presented by \citet{stica-etal2014}.
+to define our synthetic volcanic margin (Table~\ref{tab:volcanic-margin-model}).
 As we can see, the estimated model produces a good data fit along the whole
 profile, except at region $\approx 150$ km.
 
@@ -1055,20 +1050,22 @@ The estimated lithostatic stress curves produced by these estimated models
 show abrupt variations at an isolated region close to $150$ km and is very smooth on the remaining parts
 of the profile. These results suggest that the margin is mostly in isostatic 
 equilibrium, except at the region $\approx 150$.
-Figure~\ref{fig:pelotas-step3-alternative} shows an alternative 
-estimated model obtained at Step 3.
-The density values in Layer 2 (sediment + SDR) used to obtain this model 
-are different from those of the true model (Table~\ref{tab:volcanic-margin-model}).
-The corresponding estimated model obtained at Step 1 is not shown and
-that obtained at Step 2 is represented by the dashed blue lines.
 Notice that the estimated models shown in Figures~\ref{fig:pelotas-step3-sgm58}, 
 \ref{fig:pelotas-step3-sgm40} and \ref{fig:pelotas-step3-sgm63} exhibit a feature
 very similar to that artifact obtained with synthetic data 
 (Figures~\ref{fig:volc-margem-step3-sgm22}, \ref{fig:volc-margem-step3-sgm10} and 
 \ref{fig:volc-margem-step3-sgm40}). Based on those results with synthetic data, 
-we consider that this feature is an artifact.
+we consider that this feature is an artifact produced by the small
+density contrast at basement.
+Figure~\ref{fig:pelotas-step3-alternative} shows an alternative 
+model obtained at Step 3.
+The density values in Layer 2 (sediment + SDR) used to obtain this model 
+are different from those of the true model (Table~\ref{tab:volcanic-margin-model}).
+The corresponding estimated model obtained at Step 1 is not shown and
+that obtained at Step 2 is represented by the dashed blue lines.
 
-The estimated models shown in Figures~\ref{fig:pelotas-step3-sgm58} and \ref{fig:pelotas-step3-alternative})) 
+
+The estimated models shown in Figures~\ref{fig:pelotas-step3-sgm58} and \ref{fig:pelotas-step3-alternative} 
 are close to that proposed independently by \citet{zalan2015} (continuous black lines), by
 interpreting seismic data.
 The larger differences ($\approx 10$ km) occur at the basement, along the first 
@@ -1082,10 +1079,13 @@ proposed by \citeauthor{zalan2015} in the basement relief cannot be determined b
 using only gravity data.
 It is worth stressing that our results were obtained by using gravity data
 provided by the global gravity model EIGEN6C4 \citep{forste2014}, whereas 
-\citet{zalan2015} obtained his result by interpreting seismic sections
+\citet{zalan2015} obtained his result by combining gravity, magnetic and seismic sections
 available to the petroleum industry. Despite these differences, our results are very 
 consistent with that presented independently by \citet{zalan2015}.
-Additional results for the Pelotas basin are available as suppçementary material at xxxxxxxx.
+Additional results for the Pelotas basin are available as supplementary material at xxxxxxxx.
+(\textbf{Note to reviewers: the online repository 
+will be made public upon
+publication})
 
 
 \section{Conclusions}
@@ -1139,13 +1139,15 @@ the estimated models at regions showing pronounced crustal thinning, which
 are typical of volcanic passive margins. 
 Applications to real data over the Pelotas basin, considered a classical volcanic
 margin at the southern of Brazil, produced results in agreement with a previous 
-interpretation obtained independently by using seismic data.
+interpretation obtained independently.
 These results show that, combined with priori information, our method can be a 
 useful tool for interpreting gravity data on rifted margins.
+Additional results with synthetic and real data are available as supplementary material at xxxxxxxx.
+(\textbf{Note to reviewers: the online repository will be made public upon publication})
 
 The problem of simultaneously estimating the geometries of basement and Moho surfaces
 is very ambiguous and some simplifications must be made. 
-One of these simplifications in our method consists in considering bulk density 
+One of these simplifications consists in considering bulk density 
 values for each column forming the continental and oceanic crusts. 
 The interpreter must predefine the function describing the horizontal density
 variation of the crust along the profile, including the region 
@@ -1157,11 +1159,11 @@ As a consequence, local errors in the estimated basement and Moho surfaces are e
 at regions presenting local density variations in the deeper parts of continental crust 
 and in the oceanic crust.
 Another limitation of our method is that it requires a priori information about the
-upper layers located below the ocean bottom.
+upper layers located below the water layer.
 This information can be obtained, for example, from seismic data and be used to set
 the densities of the layers located right below the ocean bottom.
 If no a priori information is available at the study area, the interpreter will have to use
-approximated values.
+approximated values and test different models.
 Errors in this approximation may negatively impact the estimated model, especially in 
 the basement surface.
 Further research could be conducted to generalize our method to estimate
