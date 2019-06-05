@@ -212,48 +212,46 @@ the model space is very large and the forward problem is slow.
 We present a new local scale method for simultaneously estimating the geometries
 of basement and Moho surfaces, as well as a constant depth representing a reference Moho
 along a profile crossing a rifted margin.
-We approximate the margin by an interpretation model formed by four layers.
-Layer 1 represents water with constant density contrast.
-Layer 2 can have an arbitrary number of sub-layers with constant density
-to represent, for example, sediments, salt and volcanic rocks.
-These sub-layers are predefined by the interpreter according to
-the complexity of the study area and the available priori information.
-Layer 3 represents the crust with a predefined density distribution
-variating along the profile.
-Finally, Layer 4 represents the mantle with constant density contrast.
+%We approximate the margin by an interpretation model formed by four layers.
+%Layer 1 represents water with constant density contrast.
+%Layer 2 can have an arbitrary number of sub-layers with constant density
+%to represent, for example, sediments, salt and volcanic rocks.
+%These sub-layers are predefined by the interpreter according to
+%the complexity of the study area and the available priori information.
+%Layer 3 represents the crust with a predefined density distribution
+%variating along the profile.
+%Finally, Layer 4 represents the mantle with constant density contrast.
 Our method is formulated, in the space domain, as a non-linear gravity inversion
 based on the Levenberg-Marquardt method \citep{silva-etal2001, aster-etal2005}, 
 by following the same strategy of \citet{barbosa-etal1999} to incorporate
 inequality constraints.
-The parameters to be estimated by inversion are a constant depth representing the
-reference Moho, as well as the geometries of 
-basement (surface separating Layers 2 and 3) and Moho (surface separating Layers 3 and 4).
-The remaining surfaces are fixed.
-At each iteration, our method estimates corrections for the geometries of
-basement and Moho simultaneously. 
-In order to produce stable solutions,
-we use different constraints imposing smoothness on basement and Moho surfaces, 
-as well as force them to be close to some depths along the profile. 
+The parameters to be estimated are the constant depth representing the
+reference Moho and the geometries of basement and Moho.
+At each iteration, our method simultaneously estimates corrections for the 
+reference Moho, as well as the geometries of basement and Moho. 
+In order to produce stable solutions, we use different constraints imposing 
+smoothness on basement and Moho surfaces. Additionally, we force them to be 
+close to some depths along the profile. 
 
 Similarly to \citet{ferderer-etal2017}, we combine the Airy-Heiskanen and Pratt-Hayford
-models to impose local isostatic equilibrium.
-Differently from previous methods, we do not use local isostasy to directly link
-the geometries of basement and Moho.
+models to impose local isostatic equilibrium. However, there two significant differences
+between our \textit{isostatic constraint} and those presented in earlier studies.
+The first one is the way we impose isostatic equilibrium. Differently from previous 
+methods, we do not use local isostasy to directly link the geometries of basement and Moho.
 Rather, we impose smoothness on the lithostatic stress exerted by the interpretation 
-model on a constant compensation depth, below which there is no lateral density variations.
+model on a constant compensation depth, below which there are no lateral density variations.
 This information is directionally consistent with the basic principle of 
 local isostatic equilibrium according to the Airy-Heiskanen and Pratt-Hayford models.
-Our constraint, which we conveniently call the \textit{isostatic constraint},
-introduces the information that the lithostatic stress must be mostly smooth along the 
-entire profile, except at some isolated regions, where it can present abrupt variations.
-At these regions, our method enables the estimated model to deviate from the 
+Our constraint introduces the information that the lithostatic stress must be mostly 
+smooth along the entire profile, except at some isolated regions, where it can present abrupt
+variations. At these regions, our method enables the estimated model to deviate from the 
 isostatic equilibrium.
-As a consequence, our method does not estimate a model in perfect isostatic equilibrium, 
-but a model as close as possible to the local isostatic equilibrium. 
-Different models can be obtained by controlling 
-how much the estimated models can deviate from the isostatic equilibrium.
-The interpreter can then obtain a set of candidate models that (i) fit the observed data
-and (ii) present different degrees of isostatic equilibrium.
+The second aspect by which our approach differs from those in the literature
+is that it allows the interpreter to control how much the 
+estimated models can deviate from the isostatic equilibrium.
+As a consequence, the interpreter can obtain a set of candidate models 
+that (i) fit the observed data and (ii) present different degrees of isostatic equilibrium.
+
 Tests with synthetic data show the good performance of our method in simultaneously
 retrieving the geometry of basement and Moho of a simulated volcanic margin
 model. We also applied our method to invert 
@@ -286,11 +284,12 @@ represents the vertical component of the gravitational attraction exerted by the
 sources. It is more appropriated for geophysical applications,
 numerically similar to the classical free-air anomaly and uses the height relative to the
 reference ellipsoid (geometric height) instead of the Geoid (orthometric height)
-\citep{li2001, fairhead2003, hackney-featherstone2003, hinze2005, vajda-etal2006, vajda-etal2007}.
+\citep{li2001, fairhead2003, hackney-featherstone2003, hinze2005, vajda-etal2006, 
+vajda-etal2007}.
 
 The density distribution in a rifted margin can be very complex.
 In volcanic margins, for example, the crust may consist partially or wholly of 
-ﬂood-basalts and tuffs, which are commonly imaged as Seaward Dipping Reflectors (SDR).
+food-basalts and tuffs, which are commonly imaged as Seaward Dipping Reflectors (SDR).
 Underneath this intruded crust, high-velocity seismic zones are usually interpreted 
 as bodies of underplated mafic to ultra-mafic magma \citep{geoffroy2005}.
 We assume that the actual mass distribution in a rifted passive margin can be 
@@ -397,7 +396,7 @@ as follows:
 \label{eq:parameter-vector}
 \end{equation}
 where $\mathbf{t}^{Q}$ and $\mathbf{t}^{m}$ are $N \times 1$ vectors whose $i$-th
-elements $t^{Q}_{i}$ and $t^{m}_{i}$ (Figure~\ref{fig:interpretation-model})) 
+elements $t^{Q}_{i}$ and $t^{m}_{i}$ (Figure~\ref{fig:interpretation-model}) 
 represent the thickness of the
 prisms forming, respectively, the base of Layer 2 and the top of Layer 4.
 Notice that $t^{Q}_{i}$ and $t^{m}_{i}$, $i = 1, \dots, N$, approximate, respectively, the 
@@ -428,7 +427,7 @@ We estimate a particular parameter vector producing a predicted data
 $\mathbf{d}(\mathbf{p})$ as close as possible to the observed data 
 $\mathbf{d}^{o}$ by minimizing the goal function
 \begin{equation}
-\Gamma (\mathbf{p}) = \Phi(\mathbf{p}) + \sum_{\ell = 0}^{3} \alpha_{\ell}
+\Gamma (\mathbf{p}) = \Phi(\mathbf{p}) + \sum_{\ell = 0}^{3} \mu_{\ell}
 \Psi_{\ell}(\mathbf{p}) \: ,
 \label{eq:goal-function}
 \end{equation}
@@ -439,7 +438,7 @@ p_{j}^{min} < p_{j} < p_{j}^{max} \: , \quad j = 1, \dots, M \: ,
 \end{equation}
 where $p_{j}^{min}$ and $p_{j}^{max}$ define, respectively, lower and upper bounds 
 for the $j$-th element of $\mathbf{p}$.
-In equation~\ref{eq:goal-function}, $\alpha_{\ell}$ is the weight assigned to the 
+In equation~\ref{eq:goal-function}, $\mu_{\ell}$ is the weight assigned to the 
 $\ell$-th regularizing function $\Psi_{\ell}(\mathbf{p})$, $\ell = 0, 1, 2, 3$, and
 $\Phi(\mathbf{p})$ is the misfit function given by
 \begin{equation}
@@ -679,27 +678,57 @@ in the same way as matrix $\mathbf{A}$ (equation~\ref{eq:equality-constraint-bas
 The parameter vector $\mathbf{p}$ (equation~\ref{eq:parameter-vector}) minimizing the
 goal function $\Gamma (\mathbf{p})$ (equation~\ref{eq:goal-function}), subjected to
 the inequality constraint (equation~\ref{eq:inequality-constraint}), is estimated 
-in three steps. At each step, the goal function is minimized by using the Levenberg-Marquardt 
+in three steps (Step 1, Step 2 and Step 3 described in the following subsections). 
+At each step, the goal function is minimized by using the Levenberg-Marquardt 
 method \citep{silva-etal2001, aster-etal2005} and the inequality constraint 
 (equation~\ref{eq:inequality-constraint}) is incorporated by using the same strategy 
 employed by \citet{barbosa-etal1999}.
 All derivatives of the misfit function $\Phi(\mathbf{p})$ (equation~\ref{eq:misfit-function})
 with respect to the parameters are computed by using a finite difference approximation.
 
-\subsubsection{General description of Step 1 (S1)}
+\subsubsection{Considerations about the weights $\mu_{0}$, $\mu_{1}$, $\mu_{2}$ and $\mu_{3}$}
 
-Step 1 consists in solving the inverse problem without imposing the isostatic
-constraint, by using $\alpha_{0} = 0$ (equation \ref{eq:goal-function}). For this step,
-the interpreter must set:
+An important aspect of our method is related to the values attributed to 
+the weights $\mu_{\ell}$ (equation~\ref{eq:goal-function}).
+Their values can be very dependent on the particular characteristics of the 
+interpretation model and there is no analytical rule to define them. 
+To overcome this problem, we normalize the $\mu_{\ell}$ values as follows:
+\begin{equation}
+	\mu_{\ell} = \tilde{\mu}_{\ell} \, \frac{E_{\Phi}}{E_{\ell}} \: 
+	, \quad \ell = 0, 1, 2, 3 \: ,
+	\label{eq:constraint-weights}
+\end{equation}
+where $\tilde{\mu}_{\ell}$ is a positive scalar and $E_{\Phi} / E_{\ell}$
+is a normalizing constant. In this equation, $E_{\ell}$ represents the median 
+of the elements forming the main diagonal of the Hessian matrix of the 
+$\ell$-th constraining function $\Psi_{\ell}(\mathbf{p})$ 
+(equations~\ref{eq:isostatic-constraint-function}, 
+\ref{eq:smootheness-contraint}, \ref{eq:equality-constraint-basement} and 
+\ref{eq:equality-constraint-moho}). The constant $E_{\Phi}$ is defined in 
+a similar way by using the Hessian matrix of the misfit function $\Phi(\mathbf{p})$ 
+(equation~\ref{eq:misfit-function}) computed with 
+the initial approximation $\mathbf{p}^{(0)}$ for the parameter vector $\mathbf{p}$ 
+(equation~\ref{eq:parameter-vector}) at the Step 1 (described in the following subsection).
+According to this empirical strategy, the weights $\mu_{\ell}$ are defined 
+by using the positive scalars $\tilde{\mu}_{\ell}$ 
+(equation \ref{eq:constraint-weights}), which are less dependent on the particular 
+characteristics of the interpretation model.
+
+\subsubsection{Step 1}
+
+This step consists in solving the inverse problem without imposing 
+the isostatic constraint, by using $\tilde{\mu}_{0} = 0$ 
+(equation~\ref{eq:constraint-weights}). 
+At this step, the interpreter must set:
 \begin{itemize}
 	\item \underline{Parameters defining the interpretation model
 	(Figure~\ref{fig:interpretation-model}):} density contrasts $\Delta \rho^{(\alpha)}$, 
-	$\alpha = w, 1, \dots, Q, cc, oc, m$, of the four layers, COT position $y_{COT}$ and
+	$\alpha = w, 1, \dots, Q, cc, oc, m$, COT position $y_{COT}$ and
 	isostatic compensation depth $S_{0}$. Figure \ref{fig:interpretation-model} illustrates 
 	the case in which the second layer is formed by $Q = 2$ parts. This number, however, 
 	can be changed according to the study area.
-	\item \underline{Parameters for the inversion:} weights $\alpha_{\ell}$,
-	$\ell = 1, 2, 3$ (equation~\ref{eq:goal-function}), associated to the 
+	\item \underline{Parameters for the inversion:} weights $\tilde{\mu}_{\ell}$,
+	$\ell = 1, 2, 3$ (equation~\ref{eq:constraint-weights}), associated to the 
 	smoothness and equality constraints (equations \ref{eq:smootheness-contraint},
 	\ref{eq:equality-constraint-basement} and \ref{eq:equality-constraint-moho}),
 	lower and upper bounds $p_{j}^{min}$ and $p_{j}^{max}$
@@ -711,30 +740,35 @@ the interpreter must set:
 	(equation~\ref{eq:parameter-vector}). The initial approximation $\mathbf{p}^{(0)}$
 	must satisfy the inequality constraints (equation~\ref{eq:inequality-constraint}).
 \end{itemize}
-The estimated parameter vector obtained at the end of this first step is conveniently called
+
+At the present step, the initial approximation $\mathbf{p}^{(0)}$ is used to compute the 
+Hessian matrix of the misfit function $\Phi(\mathbf{p})$ (equation~\ref{eq:misfit-function}),
+which is subsequently used to compute the constant $E_{\Phi}$ (equation~\ref{eq:constraint-weights}).
+The estimated parameter vector obtained at the end of Step 1 is conveniently called
 $\mathbf{p}^{(1)}$. The main goal in this step is finding suitable values for the parameters
 defining the interpretation model and those used for inversion. Several trials may be
 necessary to find suitable values for these parameters.
 
-\subsubsection{General description of Step 2 (S2)}
+\subsubsection{Step 2}
 
 Step 2 consists in obtaining an estimated parameter vector $\mathbf{p}^{(2)}$
 by imposing full isostatic equilibrium on the interpretation model along the entire profile.
 In this step, the interpreter must use the same initial approximation $\mathbf{p}^{(0)}$
-of the previous step. 
+of Step 1.
 Additionally, the interpreter must set the matrix $\mathbf{W}$
-equal to the identity and find a suitable value for the weight $\alpha_{0}$ 
-(equation \ref{eq:goal-function}) controlling the isostatic constraint 
+equal to the identity and find a suitable value for the weight $\tilde{\mu}_{0}$ 
+(equation \ref{eq:constraint-weights}) controlling the isostatic constraint 
 (equation~\ref{eq:isostatic-constraint-function}).
 We presume that, by imposing full isostatic equilibrium along the entire profile,
 the estimated parameter vector $\mathbf{p}^{(2)}$ will produce a mostly good data fit,
 except at some isolated regions. 
-We assume that, at these regions, the passive margin to deviate
-from the isostatic equilibrium described by the Airy-Heiskanen model.
+We assume that, at these regions, the passive margin deviates 
+from the local isostatic equilibrium.
 
-\subsubsection{General description of Step 3 (S3)}
+\subsubsection{Step 3}
 
-Step 3 consists in obtaining an estimated parameter vector $\mathbf{p}^{(3)}$
+Step 3 consists in using $\mathbf{p}^{(2)}$ as initial approximation to
+obtain an estimated parameter vector $\mathbf{p}^{(3)}$
 by imposing different amounts of isostatic equilibrium on the interpretation model along the
 profile. At this step, the interpreter must compute the diagonal elements 
 $w_{ii}$ of the matrix $\mathbf{W}$ (equation~\ref{eq:isostatic-constraint-function}) 
@@ -761,123 +795,53 @@ resulting in estimated models close to that obtained at Step 1.
 Large $\sigma$ values allow small deviations from isostatic equilibrium,
 resulting in estimated models close to that obtained at Step 2.
 This strategy to define the elements of matrix $\mathbf{W}$ 
-(equation\ref{eq:isostatic-constraint-function}) presumes that the isostatic constraint may
+(equation~\ref{eq:isostatic-constraint-function}) presumes that the isostatic constraint may
 produce large residuals at some regions along the profile. To counteract this problem,
 our method enables the interpretation model to deviate from isostatic equilibrium at these 
-regions. This idea is in agreement with the fact that the isostatic equilibrium at 
+regions. This idea is in agreement with the fact that isostatic equilibrium at 
 passive rifted margin cannot be totally explained by local models.
 
-\subsubsection{Considerations about the weights $\alpha_{0}$, $\alpha_{1}$, $\alpha_{2}$ and $\alpha_{3}$}
-
-Other important aspect of our method is related to the values attributed to 
-the weights $\alpha_{\ell}$ (equation~\ref{eq:goal-function}).
-Their values can be very dependent on the particular characteristics of the 
-interpretation model and there is no analytical rule to define them. 
-To overcome this problem, we normalize the $\alpha_{\ell}$ values as follows:
-\begin{equation}
-\alpha_{\ell} = \tilde{\alpha}_{\ell} \, \frac{E_{\Phi}}{E_{\ell}} \: 
-, \quad \ell = 0, 1, 2, 3 \: ,
-\label{eq:constraint-weights}
-\end{equation}
-where $\tilde{\alpha}_{\ell}$ is a positive scalar and $E_{\Phi} / E_{\ell}$
-is a normalizing constant. In this equation, $E_{\ell}$ represents the median 
-of the elements forming the main diagonal of the Hessian matrix of the 
-$\ell$-th constraining function $\Psi_{\ell}(\mathbf{p})$ 
-(equations~\ref{eq:isostatic-constraint-function}, 
-\ref{eq:smootheness-contraint}, \ref{eq:equality-constraint-basement} and 
-\ref{eq:equality-constraint-moho}). The constant $E_{\Phi}$ is defined in 
-a similar way by using the Hessian matrix of the misfit function $\Phi(\mathbf{p})$ 
-(equation~\ref{eq:misfit-function}) computed with 
-the initial approximation $\mathbf{p}^{(0)}$ for the parameter vector $\mathbf{p}$ 
-(equation~\ref{eq:parameter-vector}) at the first step.
-According to this empirical strategy, the weights $\alpha_{\ell}$ are defined 
-by using the positive scalars $\tilde{\alpha}_{\ell}$ 
-(equation \ref{eq:constraint-weights}), which are less dependent on the particular 
-characteristics of the interpretation model.
-
-\subsubsection{Summarized version of our algorithm}
-
-\begin{enumerate}
-	\item [\textbf{(S1)}] Use $\tilde{\alpha}_{0} = 0$ and set non-null values for 
-	$\tilde{\alpha}_{1}$, $\tilde{\alpha}_{2}$ and $\tilde{\alpha}_{3}$ 
-	(equation~\ref{eq:constraint-weights})
-	(see the subsection \textit{Practical considerations}).
-	Define $p_{j}^{min}$, $p_{j}^{max}$ (equation~\ref{eq:inequality-constraint}),
-	$\mathbf{a}$ (equation~\ref{eq:equality-constraint-basement}) and
-	$\mathbf{b}$ (equation~\ref{eq:equality-constraint-moho}).
-	Define an initial approximation $\mathbf{p}^{(0)}$ satisfying the inequality constraint
-	(equation~\ref{eq:inequality-constraint}). Use $\mathbf{p}^{(0)}$ to compute the 
-	Hessian matrix of the misfit function $\Phi(\mathbf{p})$ (equation~\ref{eq:misfit-function}).
-	Compute the Hessian matrices of the constraining functions $\Psi_{\ell}(\mathbf{p})$, 
-	$\ell = 1, 2, 3$ (equations \ref{eq:smootheness-contraint},
-	\ref{eq:equality-constraint-basement} and \ref{eq:equality-constraint-moho}). 
-	Compute $E_{\Phi}$, $E_{\ell}$ and $\alpha_{\ell}$
-	(equation~\ref{eq:constraint-weights}), $\ell = 1, 2, 3$. 
-	Estimate a parameter vector $\mathbf{p}^{(1)}$
-	minimizing $\Gamma(\mathbf{p})$ (equation~\ref{eq:goal-function}), 
-	subject to the inequality constraint (equation~\ref{eq:inequality-constraint}).
-	\item [\textbf{(S2)}] Use the same initial approximation $\mathbf{p}^{(0)}$
-	of the previous step. Set $\mathbf{W}$ (equation~\ref{eq:isostatic-constraint-function})
-	equal to identity. Set a non-null value for $\tilde{\alpha}_{0}$
-	(equation~\ref{eq:constraint-weights})
-	(see the subsection \textit{Practical considerations}).
-	Compute the Hessian matrix of the constraining function $\Psi_{0}(\mathbf{p})$
-	(equation~\ref{eq:isostatic-constraint-function}).
-	Compute $E_{0}$ and $\alpha_{0}$ (equation~\ref{eq:constraint-weights}).
-	Estimate a parameter vector $\mathbf{p}^{(2)}$ minimizing $\Gamma(\mathbf{p})$ 
-	(equation~\ref{eq:goal-function}), subject to the inequality constraint 
-	(equation~\ref{eq:inequality-constraint}).
-	\item [\textbf{(S3)}] Use $\mathbf{p}^{(2)}$ as initial approximation.
-	Set the positive constant $\sigma$ 
-	(see the subsection \textit{Practical considerations}) and compute the 
-	diagonal elements $w_{ii}$ (equation~\ref{eq:elements-wii}), $i = 1, \dots N-1$.
-	With the new $\mathbf{W}$, compute the Hessian matrix of the constraining function
-	$\Psi_{0}(\mathbf{p})$ (equation~\ref{eq:isostatic-constraint-function}).
-	Estimate a parameter vector $\mathbf{p}^{(3)}$ minimizing $\Gamma(\mathbf{p})$ 
-	(equation~\ref{eq:goal-function}), subject to the inequality constraint 
-	(equation~\ref{eq:inequality-constraint}).
-\end{enumerate}
-
+% Include a flow diagram of the algorithm
 
 \subsubsection*{Practical considerations}
 
 Our algorithm depends on several parameters that significantly impact the estimated models
 and cannot be automatically set without the interpreter’s judgment.
-They are the parameters $\tilde{\alpha}_{1}$, $\tilde{\alpha}_{2}$ and $\tilde{\alpha}_{3}$
-(Step 1), $\tilde{\alpha}_{0}$ (Step 2) and $\sigma$ (Step 3).
-Based on our practical experience, we suggest
-some empirical procedures for setting these parameters at each step of our algorithm.
+They are the parameters $\tilde{\mu}_{1}$, $\tilde{\mu}_{2}$ and $\tilde{\mu}_{3}$
+(Step 1), $\tilde{\mu}_{0}$ (Step 2) and $\sigma$ (Step 3).
+Based on our practical experience, we suggest some empirical procedures for setting these
+parameters at each step.
 
-At Step 1, set $\tilde{\alpha}_{1} = 0$ and try different positive values for 
-$\tilde{\alpha}_{2}$ and $\tilde{\alpha}_{3}$. 
+At Step 1, set $\tilde{\mu}_{1} = 0$ and try different positive values for 
+$\tilde{\mu}_{2}$ and $\tilde{\mu}_{3}$. 
 These two parameters control the equality constraints
 (equations~\ref{eq:equality-constraint-basement} and \ref{eq:equality-constraint-moho})
 imposing a priori information at isolated points on the basement and Moho surfaces.
 Good guesses are, respectively,
-$10^{1}$ and $10^{2}$. Normally, $\tilde{\alpha}_{3}$ is one order of magnitude greater
-than $\tilde{\alpha}_{2}$.
-The values of $\tilde{\alpha}_{2}$ and $\tilde{\alpha}_{3}$ 
+$10^{1}$ and $10^{2}$. Normally, $\tilde{\mu}_{3}$ is one order of magnitude greater
+than $\tilde{\mu}_{2}$.
+The values of $\tilde{\mu}_{2}$ and $\tilde{\mu}_{3}$ 
 must be the smallest positive numbers resulting in an estimated model with
 basement and Moho surfaces close to the values provided by the a priori information
 at some isolated points. Notice that this estimated model must be obtained 
 by using only the equality constraints. Consequently, there must be some
 pinnacles on the estimated models, around the points associated with the a priori information. 
 This effect has already been observed by \citet{barbosa-etal1997}.
-By using the chosen values for $\tilde{\alpha}_{2}$ and $\tilde{\alpha}_{3}$, 
-try different positive values for $\tilde{\alpha}_{1}$. 
+By using the chosen values for $\tilde{\mu}_{2}$ and $\tilde{\mu}_{3}$, 
+try different positive values for $\tilde{\mu}_{1}$. 
 This parameter controls the smoothness of basement and Moho surfaces
 (equation~\ref{eq:smootheness-contraint}).
 A good guess is $10^{1}$.
 This parameter must be the smallest positive number producing an estimated model
 satisfying the following criteria: (i) the data fit must be good along the entire profile
-and (ii) the pinnacles must be removed. 
+and (ii) the pinnacles must be completely removed or attenuated as much as possible.
 
-At Step 2, try different positive values for $\tilde{\alpha}_{0}$ 
+At Step 2, try different positive values for $\tilde{\mu}_{0}$ 
 (equation~\ref{eq:constraint-weights}). This parameter
 controls the smoothness of the lithostatic stress exerted by the interpretation model
 at the compensation depth $S_{0}$. A good guess is $10^{2}$.
-Generally, $\tilde{\alpha}_{0}$ is one order of magnitude greater than
-$\tilde{\alpha}_{1}$. Large values produce a poor data fit along the profile.
+Generally, $\tilde{\mu}_{0}$ is one order of magnitude greater than
+$\tilde{\mu}_{1}$. Large values produce a poor data fit along the profile.
 This parameter must be the largest positive number resulting in an estimated
 model satisfying two criteria: (i) the lithostatic stress curve must be smooth
 along the entire profile and (ii) there must be a good data fit along the entire
@@ -911,11 +875,11 @@ Figure~\ref{fig:volc-margem-step1} shows the results obtained at Step 1 of our
 algorithm.
 The interpretation model was defined by using the parameters shown in
 Table~\ref{tab:volcanic-margin-model}.
-The parameters $\tilde{\alpha}_{1}$, $\tilde{\alpha}_{2}$ and 
-$\tilde{\alpha}_{3}$ (equation~\ref{eq:constraint-weights}) used at Step 1 
+The parameters $\tilde{\mu}_{1}$, $\tilde{\mu}_{2}$ and 
+$\tilde{\mu}_{3}$ (equation~\ref{eq:constraint-weights}) used at Step 1 
 have values $10^{1}$, $10^{1}$ and $10^{2}$, respectively.
 Remember that this estimate was obtained without imposing the 
-isostatic constraint, by using $\tilde{\alpha}_{0} = 0$.
+isostatic constraint, by using $\tilde{\mu}_{0} = 0$.
 We assumed $S_{0} = 41$ km and chose an initial approximation for $\Delta S$
 equal to $8.5$ km, which corresponds to a reference Moho deeper 
 than the true one (Table~\ref{tab:volcanic-margin-model}).
@@ -935,7 +899,7 @@ forces the Moho to play a dominant role in fitting the
 lithostatic stress curve and the simulated gravity data.
 
 Figure~\ref{fig:volc-margem-step2} shows the estimated model obtained at the end
-of Step 2, by using $\tilde{\alpha}_{0} = 10^{2}$ (equation~\ref{eq:constraint-weights}).
+of Step 2, by using $\tilde{\mu}_{0} = 10^{2}$ (equation~\ref{eq:constraint-weights}).
 In comparison to the estimated model obtained at Step 1 (Figure~\ref{fig:volc-margem-step1}),
 this result shows a very smooth lithostatic stress curve as a consequence of the
 isostatic constraint. The use of the isostatic constraint has produced little effect on the
@@ -1033,7 +997,7 @@ obtained from the seismic interpretations presented by \citet{stica-etal2014} an
 and the initial approximation used in the non-linear inversion. 
 
 Figure~\ref{fig:pelotas-step2} shows the estimated model obtained at Step 2,
-by using $(\tilde{\alpha}_{0}, \tilde{\alpha}_{1}, \tilde{\alpha}_{2}, \tilde{\alpha}_{3}) 
+by using $(\tilde{\mu}_{0}, \tilde{\mu}_{1}, \tilde{\mu}_{2}, \tilde{\mu}_{3}) 
 = (10^{2}, 10^{1}, 10^{1}, 10^{2})$ (equation~\ref{eq:constraint-weights}).
 Parameters defining the interpretation model are the same used
 to define our synthetic volcanic margin (Table~\ref{tab:volcanic-margin-model}).
@@ -1260,8 +1224,8 @@ the mantle.
 	margin model (simulated data), by the estimated model 
 	(predicted data) and by the model used as initial guess in the 
 	inversion (initial guess data).
-	Parameters $\tilde{\alpha}_{1}$, $\tilde{\alpha}_{2}$ and 
-	$\tilde{\alpha}_{3}$ (equation~\ref{eq:constraint-weights}) have values 
+	Parameters $\tilde{\mu}_{1}$, $\tilde{\mu}_{2}$ and 
+	$\tilde{\mu}_{3}$ (equation~\ref{eq:constraint-weights}) have values 
 	$10^{1}$, $10^{1}$ and $10^{2}$, respectively, $S_{0} = 41$ km and the density 
 	contrasts are those shown in Table~\ref{tab:volcanic-margin-model}.}
 	\label{fig:volc-margem-step1}
@@ -1269,7 +1233,7 @@ the mantle.
 
 \plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2}{width=0.6\textwidth}{
 	{Application to synthetic data. Results obtained at Step 2
-	by using $\tilde{\alpha}_{0} = 10^{2}$ (equation~\ref{eq:constraint-weights}).
+	by using $\tilde{\mu}_{0} = 10^{2}$ (equation~\ref{eq:constraint-weights}).
 	The remaining informations are the same shown in the caption of
 	Figure~\ref{fig:volc-margem-step1}.}
 	\label{fig:volc-margem-step2}
@@ -1321,7 +1285,7 @@ the mantle.
 
 \plot{map-line-localization}{width=0.8\textwidth}{
 	{Application to real data on Pelotas basin, Brazil. Gravity disturbance
-	providade by the global gravity field model EIGEN-6C4 \citep{forste2014} at
+	provided by the global gravity field model EIGEN-6C4 \citep{forste2014} at
 	the study area. The black straight line indicates the gravity profile over the Pelotas
 	basin. The end points of the profile have coordinates (geodetic latitude and longitude) 
 	$(-27.72, -48.23)$ and $(-29.66, -44.94)$. The coordinates are referred to the 
@@ -1342,7 +1306,7 @@ the mantle.
 	(Upper panel) Observed gravity disturbance, data produced by the estimated
 	model (predicted data) and data produced the by the initial approximation (initial guess data).
 	We used 
-	$\left( \tilde{\alpha}_{0}, \tilde{\alpha}_{1}, \tilde{\alpha}_{2}, \tilde{\alpha}_{3} \right) = 
+	$\left( \tilde{\mu}_{0}, \tilde{\mu}_{1}, \tilde{\mu}_{2}, \tilde{\mu}_{3} \right) = 
 	\left( 10^{2}, 10^{1}, 10^{1}, 10^{2} \right)$ (equation~\ref{eq:constraint-weights}),
 	$S_{0} = 41$ km, density contrasts equal to those shown in Table~\ref{tab:volcanic-margin-model}
 	and initial approximation for $\Delta S$ equal to $1$ km.
