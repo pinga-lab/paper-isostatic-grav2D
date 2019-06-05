@@ -723,8 +723,10 @@ At this step, the interpreter must set:
 \begin{itemize}
 	\item \underline{Parameters defining the interpretation model
 	(Figure~\ref{fig:interpretation-model}):} density contrasts $\Delta \rho^{(\alpha)}$, 
-	$\alpha = w, 1, \dots, Q, cc, oc, m$, COT position $y_{COT}$ and
-	isostatic compensation depth $S_{0}$. Figure \ref{fig:interpretation-model} illustrates 
+	$\alpha = w, 1, \dots, Q, cc, oc, m$, COT position $y_{COT}$, thickness $t^{(w)}_{i}$ 
+	of the prisms defining Layer 1, thickness $t^{(q)}_{i}$, $i = 1 \dots, N$, of the prisms
+	forming the upper $Q-1$ sub-layers of Layer 2 and isostatic compensation depth $S_{0}$. 
+	Figure \ref{fig:interpretation-model} illustrates 
 	the case in which the second layer is formed by $Q = 2$ parts. This number, however, 
 	can be changed according to the study area.
 	\item \underline{Parameters for the inversion:} weights $\tilde{\mu}_{\ell}$,
@@ -810,7 +812,8 @@ and cannot be automatically set without the interpreter’s judgment.
 They are the parameters $\tilde{\mu}_{1}$, $\tilde{\mu}_{2}$ and $\tilde{\mu}_{3}$
 (Step 1), $\tilde{\mu}_{0}$ (Step 2) and $\sigma$ (Step 3).
 Based on our practical experience, we suggest some empirical procedures for setting these
-parameters at each step.
+parameters at each step. They are schematically represented at the flow diagram shown
+in Figure~\ref{fig:flow-diagram}.
 
 At Step 1, set $\tilde{\mu}_{1} = 0$ and try different positive values for 
 $\tilde{\mu}_{2}$ and $\tilde{\mu}_{3}$. 
@@ -819,14 +822,16 @@ These two parameters control the equality constraints
 imposing a priori information at isolated points on the basement and Moho surfaces.
 Good guesses are, respectively,
 $10^{1}$ and $10^{2}$. Normally, $\tilde{\mu}_{3}$ is one order of magnitude greater
-than $\tilde{\mu}_{2}$.
-The values of $\tilde{\mu}_{2}$ and $\tilde{\mu}_{3}$ 
+than $\tilde{\mu}_{2}$. 
+The parameters $\tilde{\mu}_{2}$ and $\tilde{\mu}_{3}$ 
 must be the smallest positive numbers resulting in an estimated model with
 basement and Moho surfaces close to the values provided by the a priori information
 at some isolated points. Notice that this estimated model must be obtained 
 by using only the equality constraints. Consequently, there must be some
-pinnacles on the estimated models, around the points associated with the a priori information. 
-This effect has already been observed by \citet{barbosa-etal1997}.
+pinnacles on the estimated models, around the points associated with the a priori 
+information. This effect has already been observed by \citet{barbosa-etal1997}.
+This criteria used to define the values of $\tilde{\mu}_{2}$ and $\tilde{\mu}_{3}$ 
+is represented as C1 at the flow diagram (Figure~\ref{fig:flow-diagram}).
 By using the chosen values for $\tilde{\mu}_{2}$ and $\tilde{\mu}_{3}$, 
 try different positive values for $\tilde{\mu}_{1}$. 
 This parameter controls the smoothness of basement and Moho surfaces
