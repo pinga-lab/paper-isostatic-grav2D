@@ -20,7 +20,7 @@
 
 \begin{document}
 
-\title{Isostatic constraint for 2D gravity inversion on passive rifted margins}
+\title{Isostatic constraint for 2D non-linear gravity inversion on rifted margins}
 
 \renewcommand{\thefootnote}{\fnsymbol{footnote}} 
 
@@ -40,7 +40,7 @@
 
 \begin{abstract}
 
-We propose a nonlinear gravity inversion for simultaneously estimating the 
+We propose a non-linear gravity inversion for simultaneously estimating the 
 basement and Moho geometries, as well as the depth of the reference Moho 
 along a profile crossing a passive rifted margin. We approximate the subsurface 
 by an interpretation model composed of four layers. The shallowest represents 
@@ -139,7 +139,7 @@ The geometry of these surfaces are important
 constraints on the amount of extension and heat flow at a margin during rifting
 \citep{watts-fairhead1999, gradmann-etal2017}.
 
-\citet{condi-etal1999} proposed a nonlinear gravity inversion for estimating the
+\citet{condi-etal1999} proposed a non-linear gravity inversion for estimating the
 offshore deep structures of a rifted margin.
 They approximate the margin by using multiple irregular polygons, each having a 
 uniform density and fixed horizontal position of their vertices.
@@ -152,7 +152,7 @@ Their method uses local isostasy and uniform extension for directly constraining
 geometries of the shallow and deeper parts of their model, without necessarily
 forcing it to be in a perfect isostatic equilibrium.
 
-\citet{salem-etal2014} presented a nonlinear gravity inversion for estimating the 
+\citet{salem-etal2014} presented a non-linear gravity inversion for estimating the 
 surfaces representing basement and Moho on an onshore rifted basin. 
 They approximate the rifted basin by using three homogeneous layers: sediments, crust and mantle.
 The layers are also described in terms of irregular polygons having constant density
@@ -181,7 +181,7 @@ geometries of basement and Moho on the Montage Basin, located between Mexico and
 He uses an approach based on flexural isostasy to estimate the Moho and compute 
 a regional gravity field, which is subsequently subtracted from the observed gravity 
 data to obtain a residual gravity field. 
-His method consists in solving a nonlinear inverse problem for estimating the
+His method consists in solving a non-linear inverse problem for estimating the
 basement geometry explaining the residual gravity field.
 
 \citet{salem2017} presents a general framework for estimating the surfaces associated with
@@ -202,9 +202,9 @@ so that the crust density and geometry
 may vary laterally in order to maintain the local isostatic equilibrium on a profile crossing
 a rifted margin. Their approach also uses local isostasy to directly link the geometries
 of shallow and deeper structures with the purpose of reducing the range of possible solutions.
-They approximate the margin by using a set irregular polygons and propose a method 
-for estimating their shapes and density contrasts by using a 
-grid-search technique \citep{sen-stoffa2013}.
+They approximate the margin by using a set stacked vertical prisms extending great distances in
+and out of the profile and propose a method for estimating their shapes and density contrasts by
+using a grid-search technique \citep{sen-stoffa2013}.
 Such techniques involve the systematic search for model parameters producing the best data fit
 and may be far from being practical in geophysical applications for the cases in which
 the model space is very large and the forward problem is slow.
@@ -221,7 +221,7 @@ the complexity of the study area and the available priori information.
 Layer 3 represents the crust with a predefined density distribution
 variating along the profile.
 Finally, Layer 4 represents the mantle with constant density contrast.
-Our method is formulated, in the space domain, as a nonlinear gravity inversion
+Our method is formulated, in the space domain, as a non-linear gravity inversion
 based on the Levenberg-Marquardt method \citep{silva-etal2001, aster-etal2005}, 
 by following the same strategy of \citet{barbosa-etal1999} to incorporate
 inequality constraints.
@@ -289,8 +289,8 @@ reference ellipsoid (geometric height) instead of the Geoid (orthometric height)
 \citep{li2001, fairhead2003, hackney-featherstone2003, hinze2005, vajda-etal2006, vajda-etal2007}.
 
 The density distribution in a rifted margin can be very complex.
-In volcanic margins, for example, the crust can be heavily intruded with
-flood-basalts and tuffs, which are commonly imaged as Seaward Dipping Reflectors (SDR).
+In volcanic margins, for example, the crust may consist partially or wholly of 
+ﬂood-basalts and tuffs, which are commonly imaged as Seaward Dipping Reflectors (SDR).
 Underneath this intruded crust, high-velocity seismic zones are usually interpreted 
 as bodies of underplated mafic to ultra-mafic magma \citep{geoffroy2005}.
 We assume that the actual mass distribution in a rifted passive margin can be 
@@ -457,7 +457,7 @@ compensation depth $S_{0}$ (Figure~\ref{fig:interpretation-model}) are predefine
 using the bathymetry and the available a priori information. 
 These predefined quantities remain fixed during the inversion.
 Details about the regularizing functions $\Psi_{\ell}(\mathbf{p})$, $\ell = 0, 1, 2, 3$ 
-and the numerical procedure to solve this nonlinear inverse problem are given in the 
+and the numerical procedure to solve this non-linear inverse problem are given in the 
 following sections.
 
 
@@ -1102,12 +1102,12 @@ the basement and Moho.
 Our method presumes the knowledge of the COT position, lateral density variations in the crust,
 all density contrasts and the geometry of all layers above the basement.
 In practical situations, seismic data commonly constrain the geometry of these shallow layers.
-The method is formulated as a nonlinear inverse problem by imposing local
+The method is formulated as a non-linear inverse problem by imposing local
 isostatic equilibrium.
 The parameters to be estimated by inversion define the geometries of basement and Moho, as well as 
 the depth of the reference Moho.
 We use a computational procedure based on three steps.
-At each step, we solve a nonlinear inverse problem by using the Levenberg-Marquardt
+At each step, we solve a non-linear inverse problem by using the Levenberg-Marquardt
 method.
 In the first one, our method estimates a model without imposing the isostatic constraint.
 Then estimates a new model by imposing the same amount of isostatic equilibrium along the
@@ -1117,7 +1117,7 @@ At these isolated regions, our method enables the estimated model to deviate fro
 isostatic equilibrium.
 
 There are two main differences between our method and those in the literature.
-The first is that, at each iteration of the nonlinear inversion at each step, 
+The first is that, at each iteration of the non-linear inversion at each step, 
 our method estimates corrections for the geometries of basement and Moho simultaneously. 
 It means that we do not estimate the Moho, use it to compute a residual gravity anomaly
 and then invert these residual data to obtain the basement.
@@ -1133,7 +1133,7 @@ solutions with different ``degrees of isostatic equilibrium".
 The interpreter must choose the ``best estimated model" based on the available priori 
 information and its knowledge about the study area.
 Our results show the robustness of our method to the initial approximation
-used in the nonlinear inversion. Besides, show that 
+used in the non-linear inversion. Besides, show that 
 the isostatic constraint can considerably improve 
 the estimated models at regions showing pronounced crustal thinning, which 
 are typical of volcanic passive margins. 
