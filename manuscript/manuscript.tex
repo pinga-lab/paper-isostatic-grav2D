@@ -845,7 +845,7 @@ This parameter must be the smallest positive number producing an estimated model
 satisfying the following conditions: (i) the data fit must be good along the entire profile
 and (ii) the pinnacles must be completely removed or attenuated as much as possible.
 This acceptability criterion to define the value of $\tilde{\mu}_{1}$ is
-is represented by the decision point $D(\tilde{\mu}_{1})$ 
+represented by the decision point $D(\tilde{\mu}_{1})$ 
 at the flow diagram (Figure~\ref{fig:flow-diagram}).
 
 At Step 2, try different positive values for $\tilde{\mu}_{0}$ 
@@ -859,7 +859,7 @@ model satisfying two conditions: (i) the lithostatic stress curve must be smooth
 along the entire profile and (ii) there must be a good data fit along the entire
 profile, except at some isolated regions that can show relatively large residuals.
 This acceptability criterion for the value of $\tilde{\mu}_{0}$ is
-is represented by the decision point $D(\tilde{\mu}_{0})$ 
+represented by the decision point $D(\tilde{\mu}_{0})$ 
 at the flow diagram (Figure~\ref{fig:flow-diagram}).
 
 Finally, at Step 3, try different positive values for $\sigma$ (equation~\ref{eq:elements-wii}).
@@ -872,7 +872,7 @@ This parameter must be set as the largest positive number producing (i) a good d
 along the entire profile and (ii) an estimated model different from those obtained
 at Steps 1 and 2.
 This acceptability criterion to define the value of $\sigma$ is
-is represented by the decision point $D(\sigma)$ 
+represented by the decision point $D(\sigma)$ 
 at the flow diagram (Figure~\ref{fig:flow-diagram}).
 A good practice is to generate a set of estimates by using different 
 values for $\sigma$. 
@@ -1241,7 +1241,7 @@ the mantle.
 
 %% application to synthetic data
 
-\plot{volcanic-margin-grafics-estimated-model-alphas_X_1_1_2}{width=0.6\textwidth}{
+\plot{B-model-rifted-margin-grafics-estimated-model-alphas_X_1_1_2}{width=0.6\textwidth}{
 	{Application to synthetic data. Results obtained at Step 1. 
 	(Bottom panel) Estimated and true surfaces,
 	initial basement and Moho used in the inversion (initial guess) and a 
@@ -1257,58 +1257,95 @@ the mantle.
 	$\tilde{\mu}_{3}$ (equation~\ref{eq:constraint-weights}) have values 
 	$10^{1}$, $10^{1}$ and $10^{2}$, respectively, $S_{0} = 41$ km and the density 
 	contrasts are those shown in Table~\ref{tab:volcanic-margin-model}.}
-	\label{fig:volc-margem-step1}
+	\label{fig:volc-margem-step1-2112}
 }
 
-\plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2}{width=0.6\textwidth}{
+\plot{B-model-rifted-margin-grafics-estimated-model-alphas_2_1_1_2}{width=0.6\textwidth}{
 	{Application to synthetic data. Results obtained at Step 2
 	by using $\tilde{\mu}_{0} = 10^{2}$ (equation~\ref{eq:constraint-weights}).
 	The remaining informations are the same shown in the caption of
 	Figure~\ref{fig:volc-margem-step1}.}
-	\label{fig:volc-margem-step2}
+	\label{fig:volc-margem-step2-2112}
 }
 
-\plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2-sgm_22}{width=0.6\textwidth}{
+\plot{B-model-rifted-margin-grafics-estimated-model-alphas_2_1_1_2-sgm_1}{width=0.6\textwidth}{
 	{Application to synthetic data. Results obtained at Step 3 by using 
 	the estimated model shown in Figure~\ref{fig:volc-margem-step2} 
 	as initial approximation (dashed blue lines) and
 	$\sigma = 22$ (equation~\ref{eq:elements-wii}).
 	The remaining informations are the same shown in the caption of
 	Figure~\ref{fig:volc-margem-step1}.}
-	\label{fig:volc-margem-step3-sgm22}
+	\label{fig:volc-margem-step3-2112}
 }
 
-\plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2-sgm_10}{width=0.6\textwidth}{
-	{Application to synthetic data. Results obtained at Step 3 by using 
-	the estimated model shown in Figure~\ref{fig:volc-margem-step2} 
-	as initial approximation (dashed blue lines) and
-	$\sigma = 10$ (equation~\ref{eq:elements-wii}).
-	The remaining informations are the same shown in the caption of
-	Figure~\ref{fig:volc-margem-step1}.}
-	\label{fig:volc-margem-step3-sgm10}
+\plot{B-model-rifted-margin-grafics-estimated-model-alphas_X_2_1_2}{width=0.6\textwidth}{
+	{Application to synthetic data. Results obtained at Step 1. 
+		(Bottom panel) Estimated and true surfaces,
+		initial basement and Moho used in the inversion (initial guess) and a 
+		priori information at some points on basement and Moho (known depths).
+		(Middle panel) True and estimated lithostatic stress curves computed
+		by using equation~\ref{eq:lithostatic-stress-densities}. The values are multiplied 
+		by a constant gravity value equal to $9.81$ m/s$^{2}$.
+		(Upper panel) Gravity disturbance data produced by the volcanic 
+		margin model (simulated data), by the estimated model 
+		(predicted data) and by the model used as initial guess in the 
+		inversion (initial guess data).
+		Parameters $\tilde{\mu}_{1}$, $\tilde{\mu}_{2}$ and 
+		$\tilde{\mu}_{3}$ (equation~\ref{eq:constraint-weights}) have values 
+		$10^{1}$, $10^{1}$ and $10^{2}$, respectively, $S_{0} = 41$ km and the density 
+		contrasts are those shown in Table~\ref{tab:volcanic-margin-model}.}
+	\label{fig:volc-margem-step1-3212}
 }
 
-\plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2-sgm_40}{width=0.6\textwidth}{
-	{Application to synthetic data. Results obtained at Step 3 by using 
-	the estimated model shown in Figure~\ref{fig:volc-margem-step2} 
-	as initial approximation (dashed blue lines) and
-	$\sigma = 40$ (equation~\ref{eq:elements-wii}).
-	The remaining informations are the same shown in the caption of
-	Figure~\ref{fig:volc-margem-step1}.}
-	\label{fig:volc-margem-step3-sgm40}
+\plot{B-model-rifted-margin-grafics-estimated-model-alphas_3_2_1_2}{width=0.6\textwidth}{
+	{Application to synthetic data. Results obtained at Step 2
+		by using $\tilde{\mu}_{0} = 10^{2}$ (equation~\ref{eq:constraint-weights}).
+		The remaining informations are the same shown in the caption of
+		Figure~\ref{fig:volc-margem-step1}.}
+	\label{fig:volc-margem-step2-3212}
 }
 
-\plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2-T2-dsed-SDR-sgm_8}{width=0.6\textwidth}{
+\plot{B-model-rifted-margin-grafics-estimated-model-alphas_3_2_1_2-sgm_30}{width=0.6\textwidth}{
 	{Application to synthetic data. Results obtained at Step 3 by using 
-	density values $\rho^{(1)}$ (sediment) and $\rho^{(2)}$ (SDR) different from the true
-	ones (Table~\ref{tab:volcanic-margin-model}).
-	This estimated model was obtained by using $\sigma = 8$ (equation~\ref{eq:elements-wii}).
-	The dashed blue lines (initial guess surfaces) represent the corresponding
-	model obtained at Step 2 (not shown).
-	The remaining informations are the same shown in the caption of
-	Figure~\ref{fig:volc-margem-step1}.}
-	\label{fig:volc-margem-step3-alternative}
+		the estimated model shown in Figure~\ref{fig:volc-margem-step2} 
+		as initial approximation (dashed blue lines) and
+		$\sigma = 22$ (equation~\ref{eq:elements-wii}).
+		The remaining informations are the same shown in the caption of
+		Figure~\ref{fig:volc-margem-step1}.}
+	\label{fig:volc-margem-step3-3212}
 }
+
+%\plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2-sgm_10}{width=0.6\textwidth}{
+%	{Application to synthetic data. Results obtained at Step 3 by using 
+%	the estimated model shown in Figure~\ref{fig:volc-margem-step2} 
+%	as initial approximation (dashed blue lines) and
+%	$\sigma = 10$ (equation~\ref{eq:elements-wii}).
+%	The remaining informations are the same shown in the caption of
+%	Figure~\ref{fig:volc-margem-step1}.}
+%	\label{fig:volc-margem-step3-sgm10}
+%}
+
+%\plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2-sgm_40}{width=0.6\textwidth}{
+%	{Application to synthetic data. Results obtained at Step 3 by using 
+%	the estimated model shown in Figure~\ref{fig:volc-margem-step2} 
+%	as initial approximation (dashed blue lines) and
+%	$\sigma = 40$ (equation~\ref{eq:elements-wii}).
+%	The remaining informations are the same shown in the caption of
+%	Figure~\ref{fig:volc-margem-step1}.}
+%	\label{fig:volc-margem-step3-sgm40}
+%}
+
+%\plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2-T2-dsed-SDR-sgm_8}{width=0.6\textwidth}{
+%	{Application to synthetic data. Results obtained at Step 3 by using 
+%	density values $\rho^{(1)}$ (sediment) and $\rho^{(2)}$ (SDR) different from the true
+%	ones (Table~\ref{tab:volcanic-margin-model}).
+%	This estimated model was obtained by using $\sigma = 8$ (equation~\ref{eq:elements-wii}).
+%	The dashed blue lines (initial guess surfaces) represent the corresponding
+%	model obtained at Step 2 (not shown).
+%	The remaining informations are the same shown in the caption of
+%	Figure~\ref{fig:volc-margem-step1}.}
+%	\label{fig:volc-margem-step3-alternative}
+%}
 
 %% application to real data
 
