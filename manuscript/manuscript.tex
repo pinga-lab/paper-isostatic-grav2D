@@ -716,7 +716,9 @@ characteristics of the interpretation model.
 
 \subsubsection{Step 1}
 
-This step consists in solving the inverse problem without imposing 
+This step is represented in blue at the flow diagram shown in 
+Figure~\ref{fig:flow-diagram}.
+It consists in solving the inverse problem without imposing 
 the isostatic constraint, by using $\tilde{\mu}_{0} = 0$ 
 (equation~\ref{eq:constraint-weights}). 
 At this step, the interpreter must set:
@@ -743,7 +745,7 @@ At this step, the interpreter must set:
 	must satisfy the inequality constraints (equation~\ref{eq:inequality-constraint}).
 \end{itemize}
 
-At the present step, the initial approximation $\mathbf{p}^{(0)}$ is used to compute the 
+The initial approximation $\mathbf{p}^{(0)}$ is used to compute the 
 Hessian matrix of the misfit function $\Phi(\mathbf{p})$ (equation~\ref{eq:misfit-function}),
 which is subsequently used to compute the constant $E_{\Phi}$ (equation~\ref{eq:constraint-weights}).
 The estimated parameter vector obtained at the end of Step 1 is conveniently called
@@ -753,7 +755,8 @@ necessary to find suitable values for these parameters.
 
 \subsubsection{Step 2}
 
-Step 2 consists in obtaining an estimated parameter vector $\mathbf{p}^{(2)}$
+Step 2 is represented in red at the flow diagram (Figure~\ref{fig:flow-diagram})
+and consists in obtaining an estimated parameter vector $\mathbf{p}^{(2)}$
 by imposing full isostatic equilibrium on the interpretation model along the entire profile.
 In this step, the interpreter must use the same initial approximation $\mathbf{p}^{(0)}$
 of Step 1.
@@ -769,8 +772,9 @@ from the local isostatic equilibrium.
 
 \subsubsection{Step 3}
 
-Step 3 consists in using $\mathbf{p}^{(2)}$ as initial approximation to
-obtain an estimated parameter vector $\mathbf{p}^{(3)}$
+Step 3 represented in green at the flow diagram (Figure~\ref{fig:flow-diagram}). 
+It consists in using $\mathbf{p}^{(2)}$ as initial 
+approximation to obtain an estimated parameter vector $\mathbf{p}^{(3)}$
 by imposing different amounts of isostatic equilibrium on the interpretation model along the
 profile. At this step, the interpreter must compute the diagonal elements 
 $w_{ii}$ of the matrix $\mathbf{W}$ (equation~\ref{eq:isostatic-constraint-function}) 
@@ -803,8 +807,6 @@ our method enables the interpretation model to deviate from isostatic equilibriu
 regions. This idea is in agreement with the fact that isostatic equilibrium at 
 passive rifted margin cannot be totally explained by local models.
 
-% Include a flow diagram of the algorithm
-
 \subsubsection*{Practical considerations}
 
 Our algorithm depends on several parameters that significantly impact the estimated models
@@ -812,8 +814,8 @@ and cannot be automatically set without the interpreter’s judgment.
 They are the parameters $\tilde{\mu}_{1}$, $\tilde{\mu}_{2}$ and $\tilde{\mu}_{3}$
 (Step 1), $\tilde{\mu}_{0}$ (Step 2) and $\sigma$ (Step 3).
 Based on our practical experience, we suggest some empirical procedures for setting these
-parameters at each step. They are schematically represented at the flow diagram shown
-in Figure~\ref{fig:flow-diagram}.
+parameters at each step. They are schematically represented at the flow diagram 
+(Figure~\ref{fig:flow-diagram}).
 
 At Step 1, set $\tilde{\mu}_{1} = 0$ and try different positive values for 
 $\tilde{\mu}_{2}$ and $\tilde{\mu}_{3}$. 
@@ -824,22 +826,27 @@ Good guesses are, respectively,
 $10^{1}$ and $10^{2}$. Normally, $\tilde{\mu}_{3}$ is one order of magnitude greater
 than $\tilde{\mu}_{2}$. 
 The parameters $\tilde{\mu}_{2}$ and $\tilde{\mu}_{3}$ 
-must be the smallest positive numbers resulting in an estimated model with
-basement and Moho surfaces close to the values provided by the a priori information
-at some isolated points. Notice that this estimated model must be obtained 
-by using only the equality constraints. Consequently, there must be some
-pinnacles on the estimated models, around the points associated with the a priori 
+must be the smallest positive numbers resulting in an estimated model $\mathbf{p}^{\prime}$ 
+with basement and Moho surfaces close to the values provided by the a priori information
+at some isolated points. Notice that $\mathbf{p}^{\prime}$ is an intermediate model 
+obtained by using only the equality constraints. Consequently, there must be some
+pinnacles in the estimated models, around the points associated with the a priori 
 information. This effect has already been observed by \citet{barbosa-etal1997}.
-This criteria used to define the values of $\tilde{\mu}_{2}$ and $\tilde{\mu}_{3}$ 
-is represented as C1 at the flow diagram (Figure~\ref{fig:flow-diagram}).
+The acceptability criterion described above to define the values of $\tilde{\mu}_{2}$ and 
+$\tilde{\mu}_{3}$ is represented by the decision point $D(\tilde{\mu}_{2}, \tilde{\mu}_{3})$ 
+at the flow diagram (Figure~\ref{fig:flow-diagram}).
+
 By using the chosen values for $\tilde{\mu}_{2}$ and $\tilde{\mu}_{3}$, 
 try different positive values for $\tilde{\mu}_{1}$. 
 This parameter controls the smoothness of basement and Moho surfaces
 (equation~\ref{eq:smootheness-contraint}).
 A good guess is $10^{1}$.
 This parameter must be the smallest positive number producing an estimated model
-satisfying the following criteria: (i) the data fit must be good along the entire profile
+satisfying the following conditions: (i) the data fit must be good along the entire profile
 and (ii) the pinnacles must be completely removed or attenuated as much as possible.
+This acceptability criterion to define the value of $\tilde{\mu}_{1}$ is
+is represented by the decision point $D(\tilde{\mu}_{1})$ 
+at the flow diagram (Figure~\ref{fig:flow-diagram}).
 
 At Step 2, try different positive values for $\tilde{\mu}_{0}$ 
 (equation~\ref{eq:constraint-weights}). This parameter
@@ -848,9 +855,12 @@ at the compensation depth $S_{0}$. A good guess is $10^{2}$.
 Generally, $\tilde{\mu}_{0}$ is one order of magnitude greater than
 $\tilde{\mu}_{1}$. Large values produce a poor data fit along the profile.
 This parameter must be the largest positive number resulting in an estimated
-model satisfying two criteria: (i) the lithostatic stress curve must be smooth
+model satisfying two conditions: (i) the lithostatic stress curve must be smooth
 along the entire profile and (ii) there must be a good data fit along the entire
 profile, except at some isolated regions that can show relatively large residuals.
+This acceptability criterion for the value of $\tilde{\mu}_{0}$ is
+is represented by the decision point $D(\tilde{\mu}_{0})$ 
+at the flow diagram (Figure~\ref{fig:flow-diagram}).
 
 Finally, at Step 3, try different positive values for $\sigma$ (equation~\ref{eq:elements-wii}).
 This parameter controls the deviations of the interpretation model from the
@@ -861,7 +871,11 @@ obtained at Step 2.
 This parameter must be set as the largest positive number producing (i) a good data-fit
 along the entire profile and (ii) an estimated model different from those obtained
 at Steps 1 and 2.
-A good practice is to generate a set of estimates by using different values for $\sigma$. 
+This acceptability criterion to define the value of $\sigma$ is
+is represented by the decision point $D(\sigma)$ 
+at the flow diagram (Figure~\ref{fig:flow-diagram}).
+A good practice is to generate a set of estimates by using different 
+values for $\sigma$. 
 
 
 \section{Applications to synthetic data}
@@ -1213,6 +1227,16 @@ the mantle.
 	The continuous black line represents the compensation depth
 	at $S_{0}$. The reference Moho is located at $S_{0} + \Delta S$.}
 	\label{fig:interpretation-model}
+}
+
+\plot{flow_diagram}{width=0.5\textwidth}{
+	{Flow diagram of the algorithm. Steps 1, 2 and 3 are represented in blue, red and green,
+	respectively. Decision points are represented by diamonds. The parallelograms represent
+	input parameters. The remaining processes of the algorithm are represented by rectangles. 
+	For convenience, we omitted some input parameters related to the interpretation model 
+	and the inversion (see the subsection \textit{Step 1}). Details about this flow diagram are
+	explained at subsection \textbf{Computational procedures for solving of the inverse problem}.}
+	\label{fig:flow-diagram}
 }
 
 %% application to synthetic data
