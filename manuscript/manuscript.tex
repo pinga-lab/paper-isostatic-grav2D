@@ -212,15 +212,6 @@ the model space is very large and the forward problem is slow.
 We present a new local scale method for simultaneously estimating the geometries
 of basement and Moho surfaces, as well as a constant depth representing a reference Moho
 along a profile crossing a rifted margin.
-%We approximate the margin by an interpretation model formed by four layers.
-%Layer 1 represents water with constant density contrast.
-%Layer 2 can have an arbitrary number of sub-layers with constant density
-%to represent, for example, sediments, salt and volcanic rocks.
-%These sub-layers are predefined by the interpreter according to
-%the complexity of the study area and the available priori information.
-%Layer 3 represents the crust with a predefined density distribution
-%variating along the profile.
-%Finally, Layer 4 represents the mantle with constant density contrast.
 Our method is formulated, in the space domain, as a non-linear gravity inversion
 based on the Levenberg-Marquardt method \citep{silva-etal2001, aster-etal2005}, 
 by following the same strategy of \citet{barbosa-etal1999} to incorporate
@@ -427,7 +418,7 @@ We estimate a particular parameter vector producing a predicted data
 $\mathbf{d}(\mathbf{p})$ as close as possible to the observed data 
 $\mathbf{d}^{o}$ by minimizing the goal function
 \begin{equation}
-\Gamma (\mathbf{p}) = \Phi(\mathbf{p}) + \sum_{\ell = 0}^{3} \mu_{\ell}
+\Gamma (\mathbf{p}) = \Phi(\mathbf{p}) + \sum_{\ell = 0}^{4} \mu_{\ell}
 \Psi_{\ell}(\mathbf{p}) \: ,
 \label{eq:goal-function}
 \end{equation}
@@ -439,7 +430,7 @@ p_{j}^{min} < p_{j} < p_{j}^{max} \: , \quad j = 1, \dots, M \: ,
 where $p_{j}^{min}$ and $p_{j}^{max}$ define, respectively, lower and upper bounds 
 for the $j$-th element of $\mathbf{p}$.
 In equation~\ref{eq:goal-function}, $\mu_{\ell}$ is the weight assigned to the 
-$\ell$-th regularizing function $\Psi_{\ell}(\mathbf{p})$, $\ell = 0, 1, 2, 3$, and
+$\ell$-th regularizing function $\Psi_{\ell}(\mathbf{p})$, $\ell = 0, \dots, 4$, and
 $\Phi(\mathbf{p})$ is the misfit function given by
 \begin{equation}
 \Phi(\mathbf{p}) = \frac{1}{N} \| \mathbf{d}^{o} - \mathbf{d}(\mathbf{p}) \|_{2}^{2} 
@@ -455,7 +446,7 @@ The geometries of Layer 1 and of the upper sub-layers forming Layer 2, as well a
 compensation depth $S_{0}$ (Figure~\ref{fig:interpretation-model}) are predefined by 
 using the bathymetry and the available a priori information. 
 These predefined quantities remain fixed during the inversion.
-Details about the regularizing functions $\Psi_{\ell}(\mathbf{p})$, $\ell = 0, 1, 2, 3$ 
+Details about the regularizing functions $\Psi_{\ell}(\mathbf{p})$, $\ell = 0, \dots, 4$ 
 and the numerical procedure to solve this non-linear inverse problem are given in the 
 following sections.
 
@@ -597,30 +588,41 @@ presented in the specific section describing the computational procedures
 for solving the inverse problem.
 
 
-\subsection{Smoothness constraint}
+\subsection{Smoothness constraints}
 
 
-This constraint imposes smoothness on the adjacent thickness of the prisms forming the
-base of Layer 2 and the top of Layer 4. 
+These constraints impose smoothness on the adjacent thickness of the prisms defining
+the geometries of basement (base of Layer 2) and Moho (top of Layer 4). 
 This information is introduced by applying the first-order Tikhonov regularization
 \citep{aster-etal2005} to the vectors $\mathbf{t}^{(Q)}$ and $\mathbf{t}^{(m)}$ 
 (equation~\ref{eq:parameter-vector}). 
-Mathematically, this constraint is represented by the regularizing function
-$\Psi_{1}(\mathbf{p})$ (equation~\ref{eq:goal-function}):
+Mathematically, these constraints are represented by the regularizing functions
+$\Psi_{1}(\mathbf{p})$ and $\Psi_{2}(\mathbf{p})$ (equation~\ref{eq:goal-function}):
 \begin{equation}
-\Psi_{1}(\mathbf{p}) = \| \mathbf{S}\mathbf{p} \|_{2}^{2} \: ,
-\label{eq:smootheness-contraint}
+\Psi_{1}(\mathbf{p}) = \| \mathbf{S}\mathbf{p} \|_{2}^{2}
+\label{eq:smootheness-contraint-basement}
 \end{equation}
-where $\mathbf{S}$ is an $2 \left( N-1 \right) \times M$ matrix given by:
+and 
+\begin{equation}
+\Psi_{2}(\mathbf{p}) = \| \mathbf{T}\mathbf{p} \|_{2}^{2} \: ,
+\label{eq:smootheness-contraint-moho}
+\end{equation}
+where $\mathbf{S}$ and $\mathbf{T}$ are matrices given by:
 \begin{equation}
 \mathbf{S} = \begin{bmatrix}
-\mathbf{R} & \mathbf{0} & \mathbf{0} \\
-\mathbf{0} & \mathbf{R} & \mathbf{0}
-\end{bmatrix} \: ,
+\mathbf{R} & \mathbf{0} & \mathbf{0}
+\end{bmatrix}_{\left( N-1 \right) \times M}
 \label{eq:matrix-S}
 \end{equation}
-where $\mathbf{R}$ is defined by equation~\ref{eq:matrix-R} and $\mathbf{0}$
-are matrices with all elements equal to zero.
+and
+\begin{equation}
+\mathbf{T} = \begin{bmatrix}
+\mathbf{0} & \mathbf{R} & \mathbf{0}
+\end{bmatrix}_{\left( N-1 \right) \times M} \: .
+\label{eq:matrix-T}
+\end{equation}
+In these equations, $\mathbf{R}$ is defined by equation~\ref{eq:matrix-R} 
+and $\mathbf{0}$ are matrices with all elements equal to zero.
 
 
 \subsection{Equality constraints}
@@ -686,7 +688,7 @@ employed by \citet{barbosa-etal1999}.
 All derivatives of the misfit function $\Phi(\mathbf{p})$ (equation~\ref{eq:misfit-function})
 with respect to the parameters are computed by using a finite difference approximation.
 
-\subsubsection{Considerations about the weights $\mu_{0}$, $\mu_{1}$, $\mu_{2}$ and $\mu_{3}$}
+\subsubsection{Considerations about the weights $\mu_{0}$, $\mu_{1}$, $\mu_{2}$, $\mu_{3}$ and $\mu_{4}$}
 
 An important aspect of our method is related to the values attributed to 
 the weights $\mu_{\ell}$ (equation~\ref{eq:goal-function}).
@@ -695,7 +697,7 @@ interpretation model and there is no analytical rule to define them.
 To overcome this problem, we normalize the $\mu_{\ell}$ values as follows:
 \begin{equation}
 	\mu_{\ell} = \tilde{\mu}_{\ell} \, \frac{E_{\Phi}}{E_{\ell}} \: 
-	, \quad \ell = 0, 1, 2, 3 \: ,
+	, \quad \ell = 0, \dots, 4 \: ,
 	\label{eq:constraint-weights}
 \end{equation}
 where $\tilde{\mu}_{\ell}$ is a positive scalar and $E_{\Phi} / E_{\ell}$
@@ -703,7 +705,8 @@ is a normalizing constant. In this equation, $E_{\ell}$ represents the median
 of the elements forming the main diagonal of the Hessian matrix of the 
 $\ell$-th constraining function $\Psi_{\ell}(\mathbf{p})$ 
 (equations~\ref{eq:isostatic-constraint-function}, 
-\ref{eq:smootheness-contraint}, \ref{eq:equality-constraint-basement} and 
+\ref{eq:smootheness-contraint-basement}, \ref{eq:smootheness-contraint-moho}, 
+\ref{eq:equality-constraint-basement} and 
 \ref{eq:equality-constraint-moho}). The constant $E_{\Phi}$ is defined in 
 a similar way by using the Hessian matrix of the misfit function $\Phi(\mathbf{p})$ 
 (equation~\ref{eq:misfit-function}) computed with 
@@ -732,8 +735,9 @@ At this step, the interpreter must set:
 	the case in which the second layer is formed by $Q = 2$ parts. This number, however, 
 	can be changed according to the study area.
 	\item \underline{Parameters for the inversion:} weights $\tilde{\mu}_{\ell}$,
-	$\ell = 1, 2, 3$ (equation~\ref{eq:constraint-weights}), associated to the 
-	smoothness and equality constraints (equations \ref{eq:smootheness-contraint},
+	$\ell = 1, \dots, 4$ (equation~\ref{eq:constraint-weights}), associated to the 
+	smoothness and equality constraints (equations 
+	\ref{eq:smootheness-contraint-basement}, \ref{eq:smootheness-contraint-moho},
 	\ref{eq:equality-constraint-basement} and \ref{eq:equality-constraint-moho}),
 	lower and upper bounds $p_{j}^{min}$ and $p_{j}^{max}$
 	(equation~\ref{eq:inequality-constraint}), $j = 1, \dots, M$,
@@ -811,49 +815,51 @@ passive rifted margin cannot be totally explained by local models.
 
 Our algorithm depends on several parameters that significantly impact the estimated models
 and cannot be automatically set without the interpreter’s judgment.
-They are the parameters $\tilde{\mu}_{1}$, $\tilde{\mu}_{2}$ and $\tilde{\mu}_{3}$
-(Step 1), $\tilde{\mu}_{0}$ (Step 2) and $\sigma$ (Step 3).
+They are the parameters $\tilde{\mu}_{1}$, $\tilde{\mu}_{2}$, $\tilde{\mu}_{3}$ 
+and $\tilde{\mu}_{4}$ (Step 1), $\tilde{\mu}_{0}$ (Step 2) and $\sigma$ (Step 3).
 Based on our practical experience, we suggest some empirical procedures for setting these
 parameters at each step. They are schematically represented at the flow diagram 
 (Figure~\ref{fig:flow-diagram}).
 
-At Step 1, set $\tilde{\mu}_{1} = 0$ and try different positive values for 
-$\tilde{\mu}_{2}$ and $\tilde{\mu}_{3}$. 
+At Step 1, set $\tilde{\mu}_{1} = \tilde{\mu}_{2} = 0$ and try different positive 
+values for $\tilde{\mu}_{3}$ and $\tilde{\mu}_{4}$. 
 These two parameters control the equality constraints
 (equations~\ref{eq:equality-constraint-basement} and \ref{eq:equality-constraint-moho})
 imposing a priori information at isolated points on the basement and Moho surfaces.
 Good guesses are, respectively,
-$10^{1}$ and $10^{2}$. Normally, $\tilde{\mu}_{3}$ is one order of magnitude greater
-than $\tilde{\mu}_{2}$. 
-The parameters $\tilde{\mu}_{2}$ and $\tilde{\mu}_{3}$ 
+$10^{1}$ and $10^{2}$. Normally, $\tilde{\mu}_{4}$ is one order of magnitude greater
+than $\tilde{\mu}_{3}$. 
+The parameters $\tilde{\mu}_{3}$ and $\tilde{\mu}_{4}$ 
 must be the smallest positive numbers resulting in an estimated model $\mathbf{p}^{\prime}$ 
 with basement and Moho surfaces close to the values provided by the a priori information
 at some isolated points. Notice that $\mathbf{p}^{\prime}$ is an intermediate model 
 obtained by using only the equality constraints. Consequently, there must be some
 pinnacles in the estimated models, around the points associated with the a priori 
 information. This effect has already been observed by \citet{barbosa-etal1997}.
-The acceptability criterion described above to define the values of $\tilde{\mu}_{2}$ and 
-$\tilde{\mu}_{3}$ is represented by the decision point $D(\tilde{\mu}_{2}, \tilde{\mu}_{3})$ 
+The acceptability criterion described above to define the values of $\tilde{\mu}_{3}$ and 
+$\tilde{\mu}_{4}$ is represented by the decision point $D(\tilde{\mu}_{3}, \tilde{\mu}_{4})$ 
 at the flow diagram (Figure~\ref{fig:flow-diagram}).
 
-By using the chosen values for $\tilde{\mu}_{2}$ and $\tilde{\mu}_{3}$, 
-try different positive values for $\tilde{\mu}_{1}$. 
-This parameter controls the smoothness of basement and Moho surfaces
-(equation~\ref{eq:smootheness-contraint}).
-A good guess is $10^{1}$.
-This parameter must be the smallest positive number producing an estimated model
+By using the chosen values for $\tilde{\mu}_{3}$ and $\tilde{\mu}_{4}$, 
+try different positive values for $\tilde{\mu}_{1}$ and $\tilde{\mu}_{2}$.
+These parameters control the smoothness of basement and Moho surfaces
+(equations~\ref{eq:smootheness-contraint-basement} and \ref{eq:smootheness-contraint-moho}).
+Usually, $\tilde{\mu}_{2}$ is one order of magnitude greater than $\tilde{\mu}_{1}$.
+Good guesses are $10^{1}$ and $10^{2}$.
+These parameters must be the smallest positive numbers producing an estimated model
 satisfying the following conditions: (i) the data fit must be good along the entire profile
 and (ii) the pinnacles must be completely removed or attenuated as much as possible.
-This acceptability criterion to define the value of $\tilde{\mu}_{1}$ is
-represented by the decision point $D(\tilde{\mu}_{1})$ 
+This acceptability criterion to define the values of $\tilde{\mu}_{1}$ and 
+$\tilde{\mu}_{1}$ is represented by the decision point $D(\tilde{\mu}_{1}, \tilde{\mu}_{2})$ 
 at the flow diagram (Figure~\ref{fig:flow-diagram}).
 
 At Step 2, try different positive values for $\tilde{\mu}_{0}$ 
 (equation~\ref{eq:constraint-weights}). This parameter
 controls the smoothness of the lithostatic stress exerted by the interpretation model
-at the compensation depth $S_{0}$. A good guess is $10^{2}$.
-Generally, $\tilde{\mu}_{0}$ is one order of magnitude greater than
-$\tilde{\mu}_{1}$. Large values produce a poor data fit along the profile.
+at the compensation depth $S_{0}$. Generally, $\tilde{\mu}_{0}$ is one or two 
+orders of magnitude greater than $\tilde{\mu}_{1}$. 
+Good guesses are $10^{2}$ or $10^{3}$.
+Large values produce a poor data fit along the profile.
 This parameter must be the largest positive number resulting in an estimated
 model satisfying two conditions: (i) the lithostatic stress curve must be smooth
 along the entire profile and (ii) there must be a good data fit along the entire
@@ -1074,30 +1080,12 @@ publication})
 \section{Conclusions}
 
 We present a new gravity inversion method for simultaneously estimating the 
-geometries of basement and Moho, as well as the constant depth of the reference Moho 
-on a profile crossing a passive rifted margin.
-Our method approximates the subsurface by a set of four layers. 
-Layer 1 represents water; Layer 2 is formed by 
-sub-layers previously defined according to the complexity of the study area; Layers 3 and 4 
-represent, respectively, the crust and mantle.
-The surfaces defining the base of Layer 2 and top of Layer 4 represent, respectively, 
-the basement and Moho.
-Our method presumes the knowledge of the COT position, lateral density variations in the crust,
-all density contrasts and the geometry of all layers above the basement.
-In practical situations, seismic data commonly constrain the geometry of these shallow layers.
+geometries of basement and Moho, as well as the constant depth of the reference 
+Moho on a profile crossing a passive rifted margin.
 The method is formulated as a non-linear inverse problem by imposing local
 isostatic equilibrium.
-The parameters to be estimated by inversion define the geometries of basement and Moho, as well as 
-the depth of the reference Moho.
-We use a computational procedure based on three steps.
-At each step, we solve a non-linear inverse problem by using the Levenberg-Marquardt
-method.
-In the first one, our method estimates a model without imposing the isostatic constraint.
-Then estimates a new model by imposing the same amount of isostatic equilibrium along the
-entire profile at the step 2 and, finally, estimates a model by relaxing the importance of
-the isostatic constraint at isolated regions along the profile.
-At these isolated regions, our method enables the estimated model to deviate from the 
-isostatic equilibrium.
+The parameters to be estimated by inversion define the geometries of basement and Moho, 
+as well as a constant depth defining the reference Moho.
 
 There are two main differences between our method and those in the literature.
 The first is that, at each iteration of the non-linear inversion at each step, 
@@ -1108,8 +1096,6 @@ Another difference is that we do not use local isostasy to directly link
 the geometries of basement and Moho.
 Rather, we impose smoothness on the lithostatic stress exerted by the interpretation 
 model on a constant compensation depth, below which there is no lateral density variations.
-This information is directionally consistent with the basic principle of 
-local isostatic equilibrium according to the Airy-Heiskanen and Pratt-Hayford models.
 
 Tests with synthetic data show that our method can be used to generate a set o possible 
 solutions with different ``degrees of isostatic equilibrium". 
@@ -1156,13 +1142,13 @@ the mantle.
 
 %%%%%%%%%%%%%%%%%% Tables %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\tabl{volcanic-margin-model}{Properties of the volcanic margin model. 
-	The model extends from $y = 0$ km to $y = 383$ km, the Continent-Ocean 
-	Transition (COT) is located at $y_{COT} = 350$ km and the reference 
-	Moho is located at $43 \, 200$ km (Figures~\ref{fig:rifted-margin-model} and 
+\tabl{volcanic-margin-model}{Properties of the synthetic margin model. 
+	The model extends from $y = 0$ km to $y = 380$ km, the Continent-Ocean 
+	Transition (COT) is located at $y_{COT} = 165$ km and the reference 
+	Moho is located at $53$ km (Figures~\ref{fig:rifted-margin-model} and 
 	\ref{fig:interpretation-model}).
 	The density contrasts $\Delta\rho^{(\alpha)} = \rho^{(\alpha)} - \rho^{(r)}$ 
-	were defined by using the reference value $\rho^{(r)} = 2870$ kg/m$^{3}$, 
+	were defined by using the reference value $\rho^{(r)} = 2850$ kg/m$^{3}$, 
 	which coincides with the density $\rho^{(cc)}$ attributed to the continental crust.
 	\label{tab:volcanic-margin-model}
 }{
@@ -1171,18 +1157,47 @@ the mantle.
 		\hline
 		\textbf{Geological meaning} & $\rho^{(\alpha)}$ (kg/m$^{3}$) & $\Delta\rho^{(\alpha)}$ (kg/m$^{3}$) & $\alpha$ \\
 		\hline
-		water & $1030$ & $-1840$ & $w$ \\
+		water & $1030$ & $-1820$ & $w$ \\
 		\hline
-		sediments & $2350$ & $-520$ & $1$ \\
-		SDR & $2855$ & $-15$ & $2$ \\
+		sediments & $2600$ & $-250$ & $1$ \\
 		\hline 
-		continental crust & $2870$ & $0$ & $cc$ \\
-		oceanic crust & $2885$ & $15$ & $oc$ \\
+		continental crust & $2850$ & $0$ & $cc$ \\
+		oceanic crust & $2885$ & $35$ & $oc$ \\
 		\hline
-		mantle & $3240$ & $370$ & $m$ \\
+		mantle & $3250$ & $400$ & $m$ \\
 		\hline
 	\end{tabular}
 \end{center}
+}
+
+
+\tabl{pelotas-model}{Properties attributed for the Pelotas volcanic margin. 
+	The interpretation model extends from $y = 0$ km to $y = 383$ km, the 
+	Continent-Ocean Transition (COT) is located at $y_{COT} = 350$ km and the 
+	reference Moho is located at $43 \, 200$ km (Figures~\ref{fig:rifted-margin-model} 
+	and \ref{fig:interpretation-model}).
+	The density contrasts $\Delta\rho^{(\alpha)} = \rho^{(\alpha)} - \rho^{(r)}$ 
+	were defined by using the reference value $\rho^{(r)} = 2870$ kg/m$^{3}$, 
+	which coincides with the density $\rho^{(cc)}$ attributed to the continental crust.
+	\label{tab:pelotas-model}
+}{
+	\begin{center}
+		\begin{tabular}[]{lccc}
+			\hline
+			\textbf{Geological meaning} & $\rho^{(\alpha)}$ (kg/m$^{3}$) & $\Delta\rho^{(\alpha)}$ (kg/m$^{3}$) & $\alpha$ \\
+			\hline
+			water & $1030$ & $-1840$ & $w$ \\
+			\hline
+			sediments & $2350$ & $-520$ & $1$ \\
+			SDR & $2855$ & $-15$ & $2$ \\
+			\hline 
+			continental crust & $2870$ & $0$ & $cc$ \\
+			oceanic crust & $2885$ & $15$ & $oc$ \\
+			\hline
+			mantle & $3240$ & $370$ & $m$ \\
+			\hline
+		\end{tabular}
+	\end{center}
 }
 
 
@@ -1241,111 +1256,61 @@ the mantle.
 
 %% application to synthetic data
 
-\plot{B-model-rifted-margin-grafics-estimated-model-alphas_X_1_1_2}{width=0.6\textwidth}{
+\plot{B-model-rifted-margin-grafics-estimated-model-alphas_X_1_2_1_2}{width=0.6\textwidth}{
 	{Application to synthetic data. Results obtained at Step 1. 
-	(Bottom panel) Estimated and true surfaces,
+	(Bottom panel) True and estimated surfaces,
 	initial basement and Moho used in the inversion (initial guess) and a 
 	priori information at some points on basement and Moho (known depths).
-	(Middle panel) True and estimated lithostatic stress curves computed
+	(Middle panel) True and predicted lithostatic stress curves computed
 	by using equation~\ref{eq:lithostatic-stress-densities}. The values are multiplied 
 	by a constant gravity value equal to $9.81$ m/s$^{2}$.
 	(Upper panel) Gravity disturbance data produced by the volcanic 
 	margin model (simulated data), by the estimated model 
-	(predicted data) and by the model used as initial guess in the 
-	inversion (initial guess data).
+	(predicted data) and by the initial guess (initial guess data).
 	Parameters $\tilde{\mu}_{1}$, $\tilde{\mu}_{2}$ and 
 	$\tilde{\mu}_{3}$ (equation~\ref{eq:constraint-weights}) have values 
-	$10^{1}$, $10^{1}$ and $10^{2}$, respectively, $S_{0} = 41$ km and the density 
+	$10^{1}$, $10^{1}$ and $10^{2}$, respectively, $S_{0} = 48$ km and the density 
 	contrasts are those shown in Table~\ref{tab:volcanic-margin-model}.}
-	\label{fig:volc-margem-step1-2112}
+	\label{fig:volc-margem-step1}
 }
 
-\plot{B-model-rifted-margin-grafics-estimated-model-alphas_2_1_1_2}{width=0.6\textwidth}{
+\plot{B-model-rifted-margin-grafics-estimated-model-alphas_3_1_2_1_2}{width=0.6\textwidth}{
 	{Application to synthetic data. Results obtained at Step 2
-	by using $\tilde{\mu}_{0} = 10^{2}$ (equation~\ref{eq:constraint-weights}).
+	by using $\tilde{\mu}_{0} = 10^{3}$ (equation~\ref{eq:constraint-weights}).
 	The remaining informations are the same shown in the caption of
 	Figure~\ref{fig:volc-margem-step1}.}
-	\label{fig:volc-margem-step2-2112}
+	\label{fig:volc-margem-step2}
 }
 
-\plot{B-model-rifted-margin-grafics-estimated-model-alphas_2_1_1_2-sgm_1}{width=0.6\textwidth}{
+\plot{B-model-rifted-margin-grafics-estimated-model-alphas_3_1_2_1_2-sgm_11}{width=0.6\textwidth}{
 	{Application to synthetic data. Results obtained at Step 3 by using 
 	the estimated model shown in Figure~\ref{fig:volc-margem-step2} 
 	as initial approximation (dashed blue lines) and
-	$\sigma = 22$ (equation~\ref{eq:elements-wii}).
+	$\sigma = 11$ (equation~\ref{eq:elements-wii}).
 	The remaining informations are the same shown in the caption of
 	Figure~\ref{fig:volc-margem-step1}.}
-	\label{fig:volc-margem-step3-2112}
+	\label{fig:volc-margem-step3-sgm11}
 }
 
-\plot{B-model-rifted-margin-grafics-estimated-model-alphas_X_2_1_2}{width=0.6\textwidth}{
-	{Application to synthetic data. Results obtained at Step 1. 
-		(Bottom panel) Estimated and true surfaces,
-		initial basement and Moho used in the inversion (initial guess) and a 
-		priori information at some points on basement and Moho (known depths).
-		(Middle panel) True and estimated lithostatic stress curves computed
-		by using equation~\ref{eq:lithostatic-stress-densities}. The values are multiplied 
-		by a constant gravity value equal to $9.81$ m/s$^{2}$.
-		(Upper panel) Gravity disturbance data produced by the volcanic 
-		margin model (simulated data), by the estimated model 
-		(predicted data) and by the model used as initial guess in the 
-		inversion (initial guess data).
-		Parameters $\tilde{\mu}_{1}$, $\tilde{\mu}_{2}$ and 
-		$\tilde{\mu}_{3}$ (equation~\ref{eq:constraint-weights}) have values 
-		$10^{1}$, $10^{1}$ and $10^{2}$, respectively, $S_{0} = 41$ km and the density 
-		contrasts are those shown in Table~\ref{tab:volcanic-margin-model}.}
-	\label{fig:volc-margem-step1-3212}
-}
-
-\plot{B-model-rifted-margin-grafics-estimated-model-alphas_3_2_1_2}{width=0.6\textwidth}{
-	{Application to synthetic data. Results obtained at Step 2
-		by using $\tilde{\mu}_{0} = 10^{2}$ (equation~\ref{eq:constraint-weights}).
-		The remaining informations are the same shown in the caption of
-		Figure~\ref{fig:volc-margem-step1}.}
-	\label{fig:volc-margem-step2-3212}
-}
-
-\plot{B-model-rifted-margin-grafics-estimated-model-alphas_3_2_1_2-sgm_30}{width=0.6\textwidth}{
+\plot{B-model-rifted-margin-grafics-estimated-model-alphas_3_1_2_1_2-sgm_1}{width=0.6\textwidth}{
 	{Application to synthetic data. Results obtained at Step 3 by using 
 		the estimated model shown in Figure~\ref{fig:volc-margem-step2} 
 		as initial approximation (dashed blue lines) and
-		$\sigma = 22$ (equation~\ref{eq:elements-wii}).
+		$\sigma = 1$ (equation~\ref{eq:elements-wii}).
 		The remaining informations are the same shown in the caption of
 		Figure~\ref{fig:volc-margem-step1}.}
-	\label{fig:volc-margem-step3-3212}
+	\label{fig:volc-margem-step3-sgm1}
 }
 
-%\plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2-sgm_10}{width=0.6\textwidth}{
-%	{Application to synthetic data. Results obtained at Step 3 by using 
-%	the estimated model shown in Figure~\ref{fig:volc-margem-step2} 
-%	as initial approximation (dashed blue lines) and
-%	$\sigma = 10$ (equation~\ref{eq:elements-wii}).
-%	The remaining informations are the same shown in the caption of
-%	Figure~\ref{fig:volc-margem-step1}.}
-%	\label{fig:volc-margem-step3-sgm10}
-%}
-
-%\plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2-sgm_40}{width=0.6\textwidth}{
-%	{Application to synthetic data. Results obtained at Step 3 by using 
-%	the estimated model shown in Figure~\ref{fig:volc-margem-step2} 
-%	as initial approximation (dashed blue lines) and
-%	$\sigma = 40$ (equation~\ref{eq:elements-wii}).
-%	The remaining informations are the same shown in the caption of
-%	Figure~\ref{fig:volc-margem-step1}.}
-%	\label{fig:volc-margem-step3-sgm40}
-%}
-
-%\plot{volcanic-margin-grafics-estimated-model-alphas_2_1_1_2-T2-dsed-SDR-sgm_8}{width=0.6\textwidth}{
-%	{Application to synthetic data. Results obtained at Step 3 by using 
-%	density values $\rho^{(1)}$ (sediment) and $\rho^{(2)}$ (SDR) different from the true
-%	ones (Table~\ref{tab:volcanic-margin-model}).
-%	This estimated model was obtained by using $\sigma = 8$ (equation~\ref{eq:elements-wii}).
-%	The dashed blue lines (initial guess surfaces) represent the corresponding
-%	model obtained at Step 2 (not shown).
-%	The remaining informations are the same shown in the caption of
-%	Figure~\ref{fig:volc-margem-step1}.}
-%	\label{fig:volc-margem-step3-alternative}
-%}
+\plot{B-model-rifted-margin-grafics-estimated-model-alphas_3_1_2_1_2-sgm_18}{width=0.6\textwidth}{
+	{Application to synthetic data. Results obtained at Step 3 by using 
+		the estimated model shown in Figure~\ref{fig:volc-margem-step2} 
+		as initial approximation (dashed blue lines) and
+		$\sigma = 18$ (equation~\ref{eq:elements-wii}).
+		The remaining informations are the same shown in the caption of
+		Figure~\ref{fig:volc-margem-step1}.}
+	\label{fig:volc-margem-step3-sgm18}
+}
 
 %% application to real data
 
