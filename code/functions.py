@@ -810,9 +810,9 @@ def W_matrix_function(sgm,gobs,g):
     
     return W
 
-def R_matrix_function(n, isostatic=False):
+def R_matrix_function(n):
     '''
-    Compute the finite differences matrix.
+    Compute the finite differences matrix to isostatic constraint.
         
     Input
     n: integer - used to define the matrix dimension.
@@ -821,30 +821,60 @@ def R_matrix_function(n, isostatic=False):
     R: numpy array 2D - finite differences matrix.
         
     '''
-    if isostatic:
-        #initialization of variables
-        R = np.zeros(((n-1),n))
+
+    #initialization of variables
+    R = np.zeros(((n-1),n))
     
-        #function implementation
-        ones = np.hstack((np.ones((n-1)), 0))
-        minus_ones = np.hstack((0, (-1)*np.ones((n-1))))
-        P1 = np.diag(ones) + np.diag((-1)*np.ones((n-1)), k=1)
+    #function implementation
+    ones = np.hstack((np.ones((n-1)), 0))
+    minus_ones = np.hstack((0, (-1)*np.ones((n-1))))
+    P1 = np.diag(ones) + np.diag((-1)*np.ones((n-1)), k=1)
     
-        R[:,:] = P1[:n-1,:]
-    else:
-        #initialization of variables
-        R = np.zeros((2*(n-1),2*n+1))
-    
-        #function implementation
-        ones = np.hstack((np.ones((n-1)), 0))
-        minus_ones = np.hstack((0, (-1)*np.ones((n-1))))
-        P1 = np.diag(ones) + np.diag((-1)*np.ones((n-1)), k=1)
-        P2 = np.diag(minus_ones) + np.diag(np.ones((n-1)), k=-1)
-    
-        R[:n,:n] = P1
-        R[n-2:2*n,n:2*n] = P2
+    R[:,:] = P1[:n-1,:]
     
     return R
+
+def Sa_matrix_function(n):
+    '''
+        Compute the finite differences matrix to first order Tikhonov regularization function applied
+        to basement surface.
+        
+        Input
+        n: integer - used to define the matrix dimension.
+        
+        Output
+        Sa: numpy array 2D - finite differences matrix.
+        
+        '''
+    
+    #initialization of variables
+    R = R_matrix_function(n)
+    
+    #function implementation
+    Sa = np.hstack((R, np.zeros((n-1,n)), np.zeros((n-1,1))))
+    
+    return Sa
+
+def Sb_matrix_function(n):
+    '''
+        Compute the finite differences matrix to first order Tikhonov regularization function applied
+        to Moho surface.
+        
+        Input
+        n: integer - used to define the matrix dimension.
+        
+        Output
+        Sb: numpy array 2D - finite differences matrix.
+        
+        '''
+    
+    #initialization of variables
+    R = R_matrix_function(n)
+    
+    #function implementation
+    Sb = np.hstack((np.zeros((n-1,n)), R, np.zeros((n-1,1))))
+    
+    return Sb
 
 def A_matrix_function(n,r,index_r):
     '''
@@ -898,7 +928,7 @@ def B_matrix_function(n,r,index_r):
     
     return B
 
-def grad_ps0_function(S0,tw,p,W,R0,C,D,ts0=None,ts1=None,two_layers=False,three_layers=False):
+def grad_psi_iso_function(S0,tw,p,W,R,C,D,ts0=None,ts1=None,two_layers=False,three_layers=False):
     '''
     Compute the gradient of the Airy constraint function.
         
@@ -907,7 +937,7 @@ def grad_ps0_function(S0,tw,p,W,R0,C,D,ts0=None,ts1=None,two_layers=False,three_
     tw: numpy array 1D - thickness of the water layer along the profile.
     p: numpy array 1D - vector parameters of the model.
     W: numpy array 2D - identity matrix formed by weight of data residue used in the isostatic regularization.
-    R0: numpy array 2D - finite differences matrix used in the isostatic regularization.
+    R: numpy array 2D - finite differences matrix used in the isostatic regularization.
     C: numpy array 2D - diagonal matrix of mantle and unknown sediment layer density contrasts.
     D: numpy array 2D - diagonal matrix of water and known sediments layers density.
     ts0: numpy array 1D - if not None, thickness of the first sediment layer along
@@ -941,36 +971,36 @@ def grad_ps0_function(S0,tw,p,W,R0,C,D,ts0=None,ts1=None,two_layers=False,three_
         t = np.vstack((tw, S0))
     
     #function implementation
-    grad_psi = 2.*(((((C.T.dot(R0.T)).dot(W.T)).dot(W)).dot(R0)).dot((D.dot(t) + C.dot(p))))
+    grad_psi = 2.*(((((C.T.dot(R.T)).dot(W.T)).dot(W)).dot(R)).dot((D.dot(t) + C.dot(p))))
     
     return grad_psi
 
-def grad_psi1_function(p,R):
+def grad_psi_tk1_function(p,Matrix):
     '''
-    Compute gradient of the first order Tikhonov regularization function.
+        Compute gradient of the first order Tikhonov regularization function.
         
-    Input
-    p: numpy array 1D - vector parameters of the model.
-    R: numpy array 2D - finite differences matrix used in the first order Tikhonov regularization.
+        Input
+        p: numpy array 1D - vector parameters of the model.
+        Matrix: numpy array 2D - finite differences matrix used in the first order Tikhonov regularization.
         
-    Output    
-    grad_psi: numpy array 1D - gradient of the first order Tikhonov regularization function.
+        Output
+        grad_psi: numpy array 1D - gradient of the first order Tikhonov regularization.
         
-    '''
+        '''
     
     #error messages
-    assert R.shape[0] == 2*(int((len(p)-1)*0.5)-1), \
-       'R 1st dimention must be the same that 2*(n-1)'
-    assert R.shape[1] == p.size, \
-       'R 2nd dimention must be the same of number of parameter vector elements'
-    
-    
+    assert Matrix.shape[0] == int((len(p)-1)*0.5)-1, \
+        'Sa or Sb 1st dimention must be the same that (n-1)'
+    assert Matrix.shape[1] == p.size, \
+        'Sa or Sb 2nd dimention must be the same of number of parameter vector elements'
+
+
     #function implementation
-    grad_psi = 2.*(R.T.dot(R)).dot(p)
-    
+    grad_psi = 2.*(Matrix.T.dot(Matrix)).dot(p)
+
     return grad_psi
 
-def grad_psi2_function(p,r,Matrix):
+def grad_psi_eq_function(p,r,Matrix):
     '''
     Compute gradient of the equality constraint function.
         
@@ -986,25 +1016,26 @@ def grad_psi2_function(p,r,Matrix):
     
     #error messages
     assert Matrix.shape[0] == r.size, \
-        'Matrix 1nd dimention must be the same of number of moho known values vector elements'
+        'A or B 1nd dimention must be the same of number of moho known values vector elements'
     assert Matrix.shape[1] == p.size, \
-        'Matrix 2nd dimention must be the same of number of parameter vector elements'
+        'A or B 2nd dimention must be the same of number of parameter vector elements'
 
     #function implementation
     grad_psi = 2.*Matrix.T.dot(Matrix.dot(p)-r)
 
     return grad_psi
 
-def gama_function(alpha0,alpha1,alpha2,alpha3,lamb,S0,tw,gobs,g,p,rs,rm,W,R0,C,D,R,A,B,ts0=None,ts1=None,two_layers=False,three_layers=False):
+def gama_function(alpha0,alpha1,alpha2,alpha3,alpha4,lamb,S0,tw,gobs,g,p,rs,rm,W,R,C,D,Sa,Sb,A,B,ts0=None,ts1=None,two_layers=False,three_layers=False):
     
     '''
     Compute sum of residue and constraint functions.
         
     Input
     alpha0: float - weight of parameter of regularization (isostatic constrain).
-    alpha1: float - weight of parameter of regularization (TK1 constrain).
-    alpha2: float - weight of parameter of regularization (equality constrain).
-    alpha3: float - weight of parameter of regularization (equality constrain).
+    alpha1: float - weight of parameter of regularization (TK1 constrain applied to basement surface).
+    alpha2: float - weight of parameter of regularization (TK1 constrain applied to Moho surface).
+    alpha3: float - weight of parameter of regularization (equality constrain applied to basement surface).
+    alpha4: float - weight of parameter of regularization (equality constrain applied to Moho surface).
     lamb: float - parameter of regularization
     S0: numpy array 1D - isostatic compensation surface.
     tw: numpy array 1D - thickness of the water layer along the profile.
@@ -1014,10 +1045,11 @@ def gama_function(alpha0,alpha1,alpha2,alpha3,lamb,S0,tw,gobs,g,p,rs,rm,W,R0,C,D
     rs: numpy array 1D - vector of the known values parameters of the model (top of basement known depths).
     rm: numpy array 1D - vector of the known values parameters of the model (Moho known depths).
     W: numpy array 2D - identity matrix formed by weight of data residue used in the isostatic regularization.
-    R0: numpy array 2D - finite differences matrix used in the isostatic regularization.
+    R: numpy array 2D - finite differences matrix used in the isostatic regularization.
     C: numpy array 2D - diagonal matrix of mantle and unknown sediment layer density contrasts.
     D: numpy array 2D - diagonal matrix of water and known sediments layers density.
-    R: numpy array 2D - finite differences matrix used in the first order Tikhonov regularization.
+    Sa: numpy array 2D - finite differences matrix used in the first order Tikhonov regularization applied to basement surface.
+    Sb: numpy array 2D - finite differences matrix used in the first order Tikhonov regularization applied to Moho surface.
     A: numpy array 2D - matrix used in the equality regularization function (top of basement known depths).
     B: numpy array 2D - matrix used in the equality regularization function (Moho known depths).
     ts0: numpy array 1D - if not None, thickness of the first sediment layer along
@@ -1050,10 +1082,14 @@ def gama_function(alpha0,alpha1,alpha2,alpha3,lamb,S0,tw,gobs,g,p,rs,rm,W,R0,C,D
         'B 1nd dimention must be the same of number of moho known values vector elements'
     assert B.shape[1] == p.size, \
         'B 2nd dimention must be the same of number of parameter vector elements'
-    assert R.shape[0] == 2*(int((len(p)-1)*0.5)-1), \
-        'R 1st dimention must be the same that 2*(n-1)'
-    assert R.shape[1] == p.size, \
-        'R 2nd dimention must be the same of number of parameter vector elements'
+    assert Sa.shape[0] == int((len(p)-1)*0.5)-1, \
+        'Sa 1st dimention must be the same that (n-1)'
+    assert Sa.shape[1] == p.size, \
+        'Sa 2nd dimention must be the same of number of parameter vector elements'
+    assert Sb.shape[0] == int((len(p)-1)*0.5)-1, \
+        'Sb 1st dimention must be the same that (n-1)'
+    assert Sb.shape[1] == p.size, \
+        'Sb 2nd dimention must be the same of number of parameter vector elements'
     
     #function implementation
     if two_layers:
@@ -1064,12 +1100,13 @@ def gama_function(alpha0,alpha1,alpha2,alpha3,lamb,S0,tw,gobs,g,p,rs,rm,W,R0,C,D
         t = np.vstack((tw, S0))
     
     phi = (1./n)*((gobs - g).T.dot(gobs - g))[0,0]
-    psi0 = ((W.dot(R0.dot(D.dot(t))) + W.dot(R0.dot(C.dot(p)))).T.dot(W.dot(R0.dot(D.dot(t))) + W.dot(R0.dot(C.dot(p)))))[0,0]
-    psi1 = ((R.dot(p)).T.dot(R.dot(p)))[0,0]
-    psi2 = ((A.dot(p) - rs).T.dot((A.dot(p) - rs)))[0,0]
-    psi3 = ((B.dot(p) - rm).T.dot((B.dot(p) - rm)))[0,0]
+    psi0 = ((W.dot(R.dot(D.dot(t))) + W.dot(R.dot(C.dot(p)))).T.dot(W.dot(R.dot(D.dot(t))) + W.dot(R.dot(C.dot(p)))))[0,0]
+    psi1 = ((Sa.dot(p)).T.dot(Sa.dot(p)))[0,0]
+    psi2 = ((Sb.dot(p)).T.dot(Sb.dot(p)))[0,0]
+    psi3 = ((A.dot(p) - rs).T.dot((A.dot(p) - rs)))[0,0]
+    psi4 = ((B.dot(p) - rm).T.dot((B.dot(p) - rm)))[0,0]
     
-    gama = phi + lamb*(alpha0*psi0 + alpha1*psi1 + alpha2*psi2 + alpha3*psi3)
+    gama = phi + lamb*(alpha0*psi0 + alpha1*psi1 + alpha2*psi2 + alpha3*psi3 + alpha4*psi4)
 
     return gama
 
