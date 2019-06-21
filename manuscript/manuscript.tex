@@ -889,120 +889,96 @@ values for $\sigma$.
 
 
 We have simulated a simple volcanic margin model formed by four layers: 
-water, sediments + seaward dipping reflectors, crust (continental and oceanic) 
-and mantle. 
+water, sediments, crust (continental and oceanic) and mantle. 
 Parameters defining this model are shown in Table~\ref{tab:volcanic-margin-model}.
 The density values of our model are compatible with those commonly used in literature
 \citep[e.g., ][]{gradmann-etal2017}.
 By following the algorithm described in the previous section, we inverted the synthetic 
 gravity disturbance data produced by our volcanic margin model.
 
-Figure~\ref{fig:volc-margem-step1} shows the results obtained at Step 1 of our
-algorithm.
+Figure~\ref{fig:volc-margem-p-prime} shows the intermediate model 
+$\mathbf{p}^{\prime}$ obtained at Step 1 (Figure~\ref{fig:flow-diagram})
+by using only the equality constraints with parameters
+$\tilde{\mu}_{3} = 10^{1}$ and $\tilde{\mu}_{4} = 10^{2}$.
+The remaining parameters $\tilde{\mu}_{0}$, $\tilde{\mu}_{1}$ and
+$\tilde{\mu}_{2}$ are equal to zero.
 The interpretation model was defined by using the parameters shown in
 Table~\ref{tab:volcanic-margin-model}.
-The parameters $\tilde{\mu}_{1}$, $\tilde{\mu}_{2}$ and 
-$\tilde{\mu}_{3}$ (equation~\ref{eq:constraint-weights}) used at Step 1 
-have values $10^{1}$, $10^{1}$ and $10^{2}$, respectively.
-Remember that this estimate was obtained without imposing the 
-isostatic constraint, by using $\tilde{\mu}_{0} = 0$.
-We assumed $S_{0} = 41$ km and chose an initial approximation for $\Delta S$
-equal to $8.5$ km, which corresponds to a reference Moho deeper 
+We assumed $S_{0} = 48$ km and chose an initial approximation for $\Delta S$
+equal to $7$ km, which corresponds to a reference Moho deeper 
 than the true one (Table~\ref{tab:volcanic-margin-model}).
 Notice that, not only the initial approximation for the reference Moho,
-but also those used for basement and Moho surfaces 
+but also those for basement and Moho surfaces 
 (dashed blue lines) are very different from
 the true model (continuous black lines).
-As we can see in Figure~\ref{fig:volc-margem-step1}, the estimated Moho and reference 
-Moho are very close to the true ones.
-On the other hand, the estimated basement is very smooth and present large differences
-relative to the true one.
+As we can see, there are pinnacles around the a priori information at the 
+basement and Moho.
+Despite the good data fit, the estimated model does not retrieve the true geometries 
+of basement and Moho.
+
+Figure~\ref{fig:volc-margem-step1} shows the estimated model $\mathbf{p}^{(1)}$ 
+obtained at the end of Step 1 (Figure~\ref{fig:flow-diagram}) with
+$\tilde{\mu}_{1} = 10^{1}$ and $\tilde{\mu}_{2} = 10^{2}$.
+By using these values, the method was able to remove the pinnacles observed in
+the intermediate model.
+As we can see, the estimated Moho and reference Moho are very close to the true ones.
+On the other hand, the estimated basement is smooth and present large differences
+($\approx 5$ km) relative to the true one at the region between $100$ and $150$ km,
+where the model shows a pronounced crustal thinning.
 Despite these large differences, 
 the predicted gravity disturbance and lithostatic stress 
 are very close to the simulated values.
-In this example, the small density contrast at basement relative to that at Moho
-forces the Moho to play a dominant role in fitting the
-lithostatic stress curve and the simulated gravity data.
 
-Figure~\ref{fig:volc-margem-step2} shows the estimated model obtained at the end
-of Step 2, by using $\tilde{\mu}_{0} = 10^{2}$ (equation~\ref{eq:constraint-weights}).
-In comparison to the estimated model obtained at Step 1 (Figure~\ref{fig:volc-margem-step1}),
-this result shows a very smooth lithostatic stress curve as a consequence of the
-isostatic constraint. The use of the isostatic constraint has produced little effect on the
-estimated reference Moho and resulted in a relatively worse estimated Moho.
+Figure~\ref{fig:volc-margem-step2} shows the estimated model $\mathbf{p}^{(2)}$ 
+obtained at the end of Step 2 (Figure~\ref{fig:flow-diagram}), 
+by using $\tilde{\mu}_{0} = 10^{3}$ (equation~\ref{eq:constraint-weights}).
+In comparison to the estimated model $\mathbf{p}^{(1)}$ (Figure~\ref{fig:volc-margem-step1}),
+this model shows a very smooth lithostatic stress curve as a consequence of the
+isostatic constraint. This constraint has produced little effect on the
+estimated reference Moho, resulted in a relatively worse estimated Moho and
+impaired the data fit at the regions $\approx 100$ and $\approx 200$ km.
 On the other hand, it reduced the large differences between the estimated and 
-true basement surfaces. The main improvement occurs along the 
-first $\approx 100$ km on the profile, where the true model exhibits a pronounced crustal
-thinning. The region between $100$ and $200$ km, however, shows large 
-differences between the estimated and true basement. At this region, we can also
-notice the presence of large differences between the simulated and predicted gravity
-disturbances.
+true basement surfaces. The main improvement occurs at the region between  
+$100$ and $150$ km, where the true model exhibits a 
+pronounced crustal thinning.
 
-Figures~\ref{fig:volc-margem-step3-sgm22}, \ref{fig:volc-margem-step3-sgm10} and 
-\ref{fig:volc-margem-step3-sgm40} show estimated models obtained at
-the Step 3 of our algorithm by using different values for the parameter $\sigma$
-(equation~\ref{eq:elements-wii}).
-In comparison with the estimated model obtained at Step 2 
+Figures~\ref{fig:volc-margem-step3-sgm1}, \ref{fig:volc-margem-step3-sgm11} and 
+\ref{fig:volc-margem-step3-sgm18} show estimated models $\mathbf{p}^{(3)}$ obtained at
+the Step 3 (Figure~\ref{fig:flow-diagram}) by using different values for the parameter 
+$\sigma$ (equation~\ref{eq:elements-wii}).
+By comparing with estimated model $\mathbf{p}^{(2)}$
 (Figure~\ref{fig:volc-margem-step2}), the new models 
 show better data fits and improved estimates for Moho and reference Moho.
-All models show a small artifact at the estimated Moho at the position
-$y \approx 150$ km, which shows the large residuals between the predicted
-and simulated gravity data in Figure~\ref{fig:volc-margem-step2}. 
-This artifact is a consequence of the small density contrast associated 
-to basement. This small density contrast forces the Moho to play a dominant role in the inversion.
-Notice that the lithostatic stress curves in all these new models reflect, predominantly, 
-the geometry of the estimated Moho and are less sensitive to the geometry of basement.
-In this case, the small density contrast associated to basement causes our method to concentrate
-changes in the Moho surface at the region located between $100$ and $200$ km to improve the data fit.
-It is worth noting that, at this region, the new lithostatic stress curves contain abrupt variations
-and the estimated models deviate from the isostatic equilibrium.
+The main differences are concentrated at the regions coinciding with
+large residuals at Figure~\ref{fig:volc-margem-step2}.
+Notice that, at these regions, the new lithostatic stress curves contain abrupt
+variations and the estimated models deviate from the isostatic equilibrium.
 
-The main differences between the models shown in 
-Figures \ref{fig:volc-margem-step3-sgm22}, \ref{fig:volc-margem-step3-sgm10} and 
-\ref{fig:volc-margem-step3-sgm40} occur at basement,
-along the first $200$ km of the profile.
-According to the practical considerations explained in the previous section, 
-we consider that the estimated model shown in Figure~\ref{fig:volc-margem-step3-sgm22},
-with $\sigma = 22$, is the best. 
-Data fit is very good along the entire profile, the estimated Moho and
-reference Moho are very close to the true ones and the estimated basement is intermediate
-between those obtained at Steps 1 and 2 (Figures~\ref{fig:volc-margem-step1} and
-\ref{fig:volc-margem-step2}).
-Notice that the estimated model obtained with 
-the smallest $\sigma$ (Figure~\ref{fig:volc-margem-step3-sgm10}) is close the that 
+The estimated model obtained with 
+the smallest $\sigma$ (Figure~\ref{fig:volc-margem-step3-sgm1}) is close to that 
 obtained at Step 1 (Figure~\ref{fig:volc-margem-step1}).
-In this case, the predicted lithostatic stress curve is less smooth than that
-produced by the best model.
+In this case, the predicted lithostatic stress curve shows large variations 
+and the estimated model is far from the isostatic equilibrium.
 On the other hand, the estimated model obtained with 
-the largest $\sigma$ (Figure~\ref{fig:volc-margem-step3-sgm40}) is close that 
+the largest $\sigma$ (Figure~\ref{fig:volc-margem-step3-sgm18}) is close to that 
 obtained at Step 2 (Figure~\ref{fig:volc-margem-step2}).
-In this case, the predicted lithostatic stress curve is smoother than that
-produced by the best model.
+In this case, the predicted lithostatic stress curve is very smooth and the 
+estimated model is close to the isostatic equilibrium.
+In comparison to these two models, that shown in Figure 
+\ref{fig:volc-margem-step3-sgm11} exhibits an intermediate isostatic equilibrium.
+Despite these differences, all of them produce a very good data fit along the entire profile,
+as well as have estimated Moho and reference Moho very close to the true ones. 
 
-Figure~\ref{fig:volc-margem-step3-alternative} shows an alternative 
-model obtained at Step 3.
-The density values in Layer 2 (sediment + SDR) used to obtain this model 
-are different from those of the true model (Table~\ref{tab:volcanic-margin-model}).
-The corresponding estimated model obtained at Step 1 is not shown and
-that obtained at Step 2 is represented by the dashed blue lines in
-Figure~\ref{fig:volc-margem-step3-alternative}.
-Notice that, in this case, the absolute value of the absolute density contrast associated to basement 
-is greater than that used to generate the estimated models shown in 
-Figures~\ref{fig:volc-margem-step3-sgm22}, \ref{fig:volc-margem-step3-sgm10} and
-\ref{fig:volc-margem-step3-sgm40}. As we can see, the artifact shown in the estimated Moho,
-at the position $y \approx 150$ km, is considerably smaller in the alternative model than
-in the previous ones (Figures~\ref{fig:volc-margem-step3-sgm22}, \ref{fig:volc-margem-step3-sgm10} and
-\ref{fig:volc-margem-step3-sgm40}). This result confirms that the artifact shown in the
-estimated Moho of the previous models is a consequence of the small density contrast
-associated to basement.
-Besides, this result shows that our method can produce good estimates of the basement and
-Moho surfaces, even by using approximated values for the density contrasts at Layer 2.
-Additional results illustrating the sensitivities of our method to different combinations 
-of constraints, different initial approximations and errors in the density of Layer 2 
-(sediment + SDR) are available as supplementary material at xxxxxxxxx.
-(\textbf{Note to reviewers: the online repository 
-will be made public upon
-publication})
+These results obtained with different $\sigma$ values (equation~\ref{eq:elements-wii})
+show that the isostatic constraint is not able to completely
+remove the ambiguity of the inverse problem. They show that, by properly
+combining all the constraints, our method is able to
+produce a set of estimated models exhibiting different 
+amounts of isostatic equilibrium, but practically the same data fit. 
+The differences are concentrated at the central part of the profile, where the
+true lithostatic curve contains large variations. At the extremities, these models
+are very similar to each other, the lithostatic curves are almost flat 
+and the models are close to the isostatic equilibrium.
 
 
 \section{Application to real data}
@@ -1257,59 +1233,72 @@ the mantle.
 
 %% application to synthetic data
 
+\plot{B-model-rifted-margin-grafics-estimated-model-alphas_X_X_X_1_2}{width=0.6\textwidth}{
+	{Application to synthetic data. Intermediate model $\mathbf{p}^{\prime}$ 
+		obtained at Step 1 (Figure~\ref{fig:flow-diagram}) by using
+		$\tilde{\mu}_{3} = 10^{1}$ and $\tilde{\mu}_{4} = 10^{2}$.
+		(Bottom panel) True and estimated surfaces,
+		initial basement and Moho (initial guess) and a 
+		priori information at points on basement and Moho (known depths).
+		(Middle panel) True and predicted lithostatic stress curves computed
+		by using equation~\ref{eq:lithostatic-stress-densities}. The values are multiplied 
+		by a constant gravity value equal to $9.81$ m/s$^{2}$.
+		(Upper panel) Gravity disturbance data produced by the volcanic 
+		margin model (simulated data), by the estimated model 
+		(predicted data) and by the initial guess (initial guess data). 
+		The density contrasts are those shown in 
+		Table~\ref{tab:volcanic-margin-model} and $S_{0} = 48$ km.}
+	\label{fig:volc-margem-p-prime}
+}
+
 \plot{B-model-rifted-margin-grafics-estimated-model-alphas_X_1_2_1_2}{width=0.6\textwidth}{
-	{Application to synthetic data. Results obtained at Step 1. 
-	(Bottom panel) True and estimated surfaces,
-	initial basement and Moho used in the inversion (initial guess) and a 
-	priori information at some points on basement and Moho (known depths).
-	(Middle panel) True and predicted lithostatic stress curves computed
-	by using equation~\ref{eq:lithostatic-stress-densities}. The values are multiplied 
-	by a constant gravity value equal to $9.81$ m/s$^{2}$.
-	(Upper panel) Gravity disturbance data produced by the volcanic 
-	margin model (simulated data), by the estimated model 
-	(predicted data) and by the initial guess (initial guess data).
-	Parameters $\tilde{\mu}_{1}$, $\tilde{\mu}_{2}$ and 
-	$\tilde{\mu}_{3}$ (equation~\ref{eq:constraint-weights}) have values 
-	$10^{1}$, $10^{1}$ and $10^{2}$, respectively, $S_{0} = 48$ km and the density 
-	contrasts are those shown in Table~\ref{tab:volcanic-margin-model}.}
+	{Application to synthetic data. Estimated model $\mathbf{p}^{(1)}$ 
+	obtained at the end of Step 1 (Figure~\ref{fig:flow-diagram}) by
+	using $\tilde{\mu}_{1} = 10^{1}$ and $\tilde{\mu}_{2} = 10^{2}$.
+	The remaining information is the same shown in the caption of
+	Figure~\ref{fig:volc-margem-p-prime}.}
 	\label{fig:volc-margem-step1}
 }
 
 \plot{B-model-rifted-margin-grafics-estimated-model-alphas_3_1_2_1_2}{width=0.6\textwidth}{
-	{Application to synthetic data. Results obtained at Step 2
-	by using $\tilde{\mu}_{0} = 10^{3}$ (equation~\ref{eq:constraint-weights}).
-	The remaining informations are the same shown in the caption of
-	Figure~\ref{fig:volc-margem-step1}.}
+	{Application to synthetic data. Estimated model $\mathbf{p}^{(2)}$ 
+	obtained at the end of Step 2 (Figure~\ref{fig:flow-diagram}) by
+	using $\tilde{\mu}_{0} = 10^{3}$.
+	The remaining information is the same shown in the caption of
+	Figure~\ref{fig:volc-margem-p-prime}.}
 	\label{fig:volc-margem-step2}
 }
 
-\plot{B-model-rifted-margin-grafics-estimated-model-alphas_3_1_2_1_2-sgm_11}{width=0.6\textwidth}{
-	{Application to synthetic data. Results obtained at Step 3 by using 
-	the estimated model shown in Figure~\ref{fig:volc-margem-step2} 
-	as initial approximation (dashed blue lines) and
-	$\sigma = 11$ (equation~\ref{eq:elements-wii}).
-	The remaining informations are the same shown in the caption of
-	Figure~\ref{fig:volc-margem-step1}.}
-	\label{fig:volc-margem-step3-sgm11}
-}
-
 \plot{B-model-rifted-margin-grafics-estimated-model-alphas_3_1_2_1_2-sgm_1}{width=0.6\textwidth}{
-	{Application to synthetic data. Results obtained at Step 3 by using 
-		the estimated model shown in Figure~\ref{fig:volc-margem-step2} 
-		as initial approximation (dashed blue lines) and
-		$\sigma = 1$ (equation~\ref{eq:elements-wii}).
-		The remaining informations are the same shown in the caption of
-		Figure~\ref{fig:volc-margem-step1}.}
+	{Application to synthetic data. Estimated model $\mathbf{p}^{(3)}$ 
+	obtained at the end of Step 3 (Figure~\ref{fig:flow-diagram}) by
+	using $\mathbf{p}^{(2)}$ (Figure~\ref{fig:volc-margem-step2}) as
+	initial approximation (dashed blue lines) and
+	$\sigma = 1$ (equation~\ref{eq:elements-wii}).
+	The remaining information is the same shown in the caption of
+	Figure~\ref{fig:volc-margem-p-prime}.}
 	\label{fig:volc-margem-step3-sgm1}
 }
 
+\plot{B-model-rifted-margin-grafics-estimated-model-alphas_3_1_2_1_2-sgm_11}{width=0.6\textwidth}{
+	{Application to synthetic data. Estimated model $\mathbf{p}^{(3)}$ 
+	obtained at the end of Step 3 (Figure~\ref{fig:flow-diagram}) by
+	using $\mathbf{p}^{(2)}$ (Figure~\ref{fig:volc-margem-step2}) as
+	initial approximation (dashed blue lines) and
+	$\sigma = 11$ (equation~\ref{eq:elements-wii}).
+	The remaining information is the same shown in the caption of
+	Figure~\ref{fig:volc-margem-p-prime}.}
+	\label{fig:volc-margem-step3-sgm11}
+}
+
 \plot{B-model-rifted-margin-grafics-estimated-model-alphas_3_1_2_1_2-sgm_18}{width=0.6\textwidth}{
-	{Application to synthetic data. Results obtained at Step 3 by using 
-		the estimated model shown in Figure~\ref{fig:volc-margem-step2} 
-		as initial approximation (dashed blue lines) and
-		$\sigma = 18$ (equation~\ref{eq:elements-wii}).
-		The remaining informations are the same shown in the caption of
-		Figure~\ref{fig:volc-margem-step1}.}
+	{Application to synthetic data. Estimated model $\mathbf{p}^{(3)}$ 
+	obtained at the end of Step 3 (Figure~\ref{fig:flow-diagram}) by
+	using $\mathbf{p}^{(2)}$ (Figure~\ref{fig:volc-margem-step2}) as
+	initial approximation (dashed blue lines) and
+	$\sigma = 18$ (equation~\ref{eq:elements-wii}).
+	The remaining information is the same shown in the caption of
+	Figure~\ref{fig:volc-margem-p-prime}.}
 	\label{fig:volc-margem-step3-sgm18}
 }
 
