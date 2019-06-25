@@ -296,7 +296,7 @@ according to the complexity of the study area and available a priori information
 In many cases, seismic data can be used to constrain the geometry of these 
 shallow structures.
 Layer 3 represents the crust and we presume that its density $\rho^{(c)}$
-varies horizontally along the profile, according to a predefine function.
+varies horizontally along the profile, according to a predefined function.
 In Figure \ref{fig:rifted-margin-model}, we consider that crust density assumes 
 two possible values. It can be equal to $\rho^{(cc)}$, which
 represents the continental crust, or equal to $\rho^{(oc)}$, which represents the
@@ -360,7 +360,7 @@ with $\rho^{(c)}_{i}$ being the crust density at the coordinate
 $y_{i}$, $i = 1, \dots, N$, along the profile.
 According to Figure~\ref{fig:interpretation-model}, the crust density contrast
 $\Delta \rho^{(c)}_{i}$ may assume two possible values, depending on its position
-with respect to the $y_{COT}$.
+with respect to the coordinate $y_{COT}$ of the Crust-Ocean Transition (COT).
 More complex models can be set by the interpreter according to the available
 a priori information at the study area.
 The top and bottom of this layer define, respectively, the basement and Moho. 
@@ -442,9 +442,10 @@ Notice that our method estimates the parameter vector $\mathbf{p}$
 (equation~\ref{eq:parameter-vector}), which contains the geometries of 
 basement and Moho, as well as the thickness $\Delta S$ defining
 the depth of the reference Moho (Figure~\ref{fig:interpretation-model}).
-The geometries of Layer 1 and of the upper sub-layers forming Layer 2, as well as the 
-compensation depth $S_{0}$ (Figure~\ref{fig:interpretation-model}) are predefined by 
-using the bathymetry and the available a priori information. 
+The bottom of Layer 1 is defined by the available bathymetry. The geometry of the 
+upper sub-layers forming Layer 2 and the constant compensation depth $S_{0}$ 
+(Figure~\ref{fig:interpretation-model}) are defined by using the available a 
+priori information.
 These predefined quantities remain fixed during the inversion.
 Details about the regularizing functions $\Psi_{\ell}(\mathbf{p})$, $\ell = 0, \dots, 4$ 
 and the numerical procedure to solve this non-linear inverse problem are given in the 
@@ -455,16 +456,17 @@ following sections.
 
 Consider that no vertical forces are acting on the lateral surfaces of 
 each column forming the model (Figure \ref{fig:interpretation-model}). In this case, 
-the lithostatic stress (pressure) exerted by the $i$-th column at the surface $S_{0}$
-can be computed according to the Archimedes' principle as follows:
+the lithostatic stress (pressure) $\tau_{i}$ (in MPa) exerted by the $i$-th column at 
+the surface $S_{0}$ can be computed according to the Archimedes' principle as follows
+\citep[][ p. 129]{turcotte-schubert2002}:
 \begin{equation}
 t^{(w)}_{i} \rho^{(w)} + t^{(1)}_{i} \rho^{(1)}_{i} + \dots + 
 t^{(Q)}_{i} \rho^{(Q)}_{i} + t^{(c)}_{i} \rho^{(c)}_{i} + t^{(m)}_{i} \rho^{(m)} 
-= \tau_{i} \: ,
+= \tau_{i} \: g_{m}^{-1} \: ,
 \label{eq:lithostatic-stress-densities}
 \end{equation}
-where $\tau_{i}$ is the ratio of lithostatic stress to the mean gravity 
-value on the study area.
+where $g_{m}$ is the mean gravity value on the study area. 
+We consider this mean value equal to $9.81$ m/s$^{2}$ along the profile.
 By rearranging terms in equation~\ref{eq:lithostatic-stress-densities} 
 and using the relation
 \begin{equation}
@@ -479,7 +481,7 @@ it is possible to show that:
 \Delta \tilde{\rho}^{(1)}_{i} \, t^{(1)}_{i} +
 \dots + 
 \Delta \tilde{\rho}^{(Q-1)}_{i} \, t^{(Q-1)}_{i} +
-\rho^{(c)}_{i} \, S_{0} = \tau_{i} \: ,
+\rho^{(c)}_{i} \, S_{0} = \tau_{i} \: g_{m}^{-1} \: ,
 \label{eq:lithostatic-stress-density-contrasts}
 \end{equation}
 where $\Delta \tilde{\rho}^{(\alpha)}_{i} = \rho^{(\alpha)}_{i} - \rho^{(c)}_{i}$, 
@@ -491,7 +493,7 @@ can be written as follows:
 \begin{equation}
 \mathbf{M}^{(Q)} \mathbf{t}^{(Q)} + \mathbf{M}^{(m)} \mathbf{t}^{(m)} + \mathbf{M}^{(w)}
 \mathbf{t}^{(w)} + \mathbf{M}^{(1)} \mathbf{t}^{(1)} + \dots + \mathbf{M}^{(Q-1)}
-\mathbf{t}^{(Q-1)} + \boldsymbol{\rho}^{(c)} S_{0} = \boldsymbol{\tau} \: ,
+\mathbf{t}^{(Q-1)} + \boldsymbol{\rho}^{(c)} S_{0} = g_{m}^{-1} \: \boldsymbol{\tau} \: ,
 \label{eq:lithostatic-stress-matrix}
 \end{equation}
 where $\boldsymbol{\tau}$ is an $N \times 1$ vector whose $i$-th element is
@@ -502,7 +504,9 @@ $t^{(\alpha)}_{i}$ of a prism in the $i$-th column; $\mathbf{M}^{(\alpha)}$ is a
 matrix whose elements are defined by the density contrasts 
 $\Delta \tilde{\rho}^{(\alpha)}_{i}$, $i = 1, \dots, N$, of the prisms in a layer and
 $\boldsymbol{\rho}^{(c)}$ is an $N \times 1$ vector containing the densities of the prisms
-representing the crust. 
+representing the crust. The term $g_{m}^{-1} \: \boldsymbol{\tau}$ describing the
+lithostatic stress exerted by all prisms on $S_{0}$ is conveniently called
+\textit{lithostatic stress curve}.
 
 Let us now use an approach similar to that presented by \citet{ferderer-etal2017}
 to combine the Airy-Heiskanen and Pratt-Hayford models \citep{heiskanen-moritz1967} 
@@ -515,7 +519,7 @@ must be constant at the compensation depth $S_{0}$
 Differently from previous approaches in literature, we impose isostatic equilibrium 
 by forcing the lithostatic stress to be smooth at $S_{0}$.
 We apply the first-order Tikhonov regularization
-\citep{aster-etal2005} to the vector $\boldsymbol{\tau}$
+\citep{aster-etal2005} to the lithostatic stress curve $g_{m}^{-1} \: \boldsymbol{\tau}$
 (equation~\ref{eq:lithostatic-stress-matrix}), obtaining the
 following expression:
 \begin{equation}
@@ -893,8 +897,8 @@ water, sediments, crust (continental and oceanic) and mantle.
 Parameters defining this model are shown in Table~\ref{tab:volcanic-margin-model}.
 The density values of our model are compatible with those commonly used in literature
 \citep[e.g., ][]{gradmann-etal2017}.
-By following the algorithm described in the previous section, we inverted the synthetic 
-gravity disturbance data produced by our volcanic margin model.
+By following the algorithm described in the previous section, we inverted the simulated 
+gravity disturbance produced by our volcanic margin model.
 
 Figure~\ref{fig:volc-margem-p-prime} shows the intermediate model 
 $\mathbf{p}^{\prime}$ obtained at Step 1 (Figure~\ref{fig:flow-diagram})
@@ -987,6 +991,7 @@ and the models are close to the isostatic equilibrium.
 
 \section{Application to real data}
 
+
 We applied our method to invert the gravity disturbance data 
 on a profile located over the Pelotas basin
 \citep{stica-etal2014}, southern of Brazil (Figure \ref{fig:pelotas-location}). This basin is 
@@ -1031,8 +1036,16 @@ The larger differences ($\approx 10$ km) occur at the basement, along the first
 $100$ km of the profile.
 At this region, \citeauthor{zalan2015} proposes a steep variation in basement
 relief, which shows a maximum depth $\approx 30$ km. 
-Despite these large differences,
-our estimated models produce a very good data fit
+
+These differences may be associated with underplated mafic to ultra-mafic 
+magma at the base of the crust. They would represent positive anomalous
+masses and produce a gravity high. In order to compensate this high, the 
+inversion would estimate a deeper basement, which would be closer to 
+\citeauthor{zalan2015}'s model.
+
+PAREI AQUI
+
+Despite these differences, our estimated models produce a very good data fit
 at this region. It means that, the steep variation 
 proposed by \citeauthor{zalan2015} in the basement relief cannot be determined by 
 using only gravity data.
@@ -1081,8 +1094,8 @@ margin at the southern of Brazil, produced results in agreement with a previous
 interpretation obtained independently.
 These results show that, combined with priori information, our method can be a 
 useful tool for interpreting gravity data on rifted margins.
-Additional results with synthetic and real data are available as supplementary material at xxxxxxxx.
-(\textbf{Note to reviewers: the online repository will be made public upon publication})
+%Additional results with synthetic and real data are available as supplementary material at xxxxxxxx.
+%(\textbf{Note to reviewers: the online repository will be made public upon publication})
 
 The problem of simultaneously estimating the geometries of basement and Moho surfaces
 is very ambiguous and some simplifications must be made. 
@@ -1228,19 +1241,18 @@ the mantle.
 
 \plot{B-model-rifted-margin-grafics-estimated-model-alphas_X_X_X_1_2}{width=0.6\textwidth}{
 	{Application to synthetic data. Intermediate model $\mathbf{p}^{\prime}$ 
-		obtained at Step 1 (Figure~\ref{fig:flow-diagram}) by using
-		$\tilde{\mu}_{3} = 10^{1}$ and $\tilde{\mu}_{4} = 10^{2}$.
-		(Bottom panel) True and estimated surfaces,
-		initial basement and Moho (initial guess) and a 
-		priori information at points on basement and Moho (known depths).
-		(Middle panel) True and predicted lithostatic stress curves computed
-		by using equation~\ref{eq:lithostatic-stress-densities}. The values are multiplied 
-		by a constant gravity value equal to $9.81$ m/s$^{2}$.
-		(Upper panel) Gravity disturbance data produced by the volcanic 
-		margin model (simulated data), by the estimated model 
-		(predicted data) and by the initial guess (initial guess data). 
-		The density contrasts are those shown in 
-		Table~\ref{tab:volcanic-margin-model} and $S_{0} = 48$ km.}
+	obtained at Step 1 (Figure~\ref{fig:flow-diagram}) by using
+	$\tilde{\mu}_{3} = 10^{1}$ and $\tilde{\mu}_{4} = 10^{2}$.
+	(Bottom panel) True and estimated surfaces,
+	initial basement and Moho (initial guess) and a 
+	priori information at points on basement and Moho (known depths).
+	(Middle panel) True and predicted lithostatic stress curves 
+	(equation~\ref{eq:lithostatic-stress-matrix}).
+	(Upper panel) Gravity disturbance produced by the true 
+	model (simulated data), estimated model (predicted data) and 
+	by the initial guess (initial guess data). 
+	The density contrasts are those shown in 
+	Table~\ref{tab:volcanic-margin-model} and $S_{0} = 48$ km.}
 	\label{fig:volc-margem-p-prime}
 }
 
@@ -1315,9 +1327,9 @@ the mantle.
 	(Bottom panel) Estimated surfaces, initial basement and Moho (initial guess) 
 	and a priori information at basement and Moho (known depths).
 	The continuous black lines represent a previous interpretation presented 
-	by \citet{zalan2015} at the same study area.
-	(Middle panel) Estimated lithostatic stress curve 
-	(equation~\ref{eq:lithostatic-stress-densities}) multiplied by $9.81$ m/s$^{2}$.
+	by \citet{zalan2015}.
+	(Middle panel) True and predicted lithostatic stress curves 
+	(equation~\ref{eq:lithostatic-stress-matrix}).
 	(Upper panel) Observed gravity disturbance, data produced by the estimated
 	model (predicted data) and data produced the by the initial approximation (initial guess data).
 	We used $S_{0} = 41$ km, density contrasts equal to those shown in Table~\ref{tab:pelotas-model}
