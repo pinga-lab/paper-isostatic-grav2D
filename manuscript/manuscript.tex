@@ -71,62 +71,38 @@ for interpreting gravity data on passive rifted margins.
 
 \section{Introduction}
 
-Several methods have been proposed for using gravity data
-to estimate the boundaries of juxtaposed sedimentary layers, 
-the relief of basement and the Mohorovicic discontinuity (or simply Moho).
-These geophysical discontinuities represent, in such methods, 
-surfaces having density contrasts in subsurface.
+
+The basement relief and Mohorovicic discontinuity (or simply Moho) at rifted 
+continental margins are important constraints on the amount of extension and 
+heat flow at a margin during rifting \citep{watts-fairhead1999}.
+
+Few methods have been proposed to estimate the geometry of basement relief
+and the Mohorovicic discontinuity (or simply Moho) by using gravity data.
+
 All these methods suffer from the inherent ambiguity \citep{skeels1947, roy1962} in
 determining the true physical property distribution that produces a discrete set of
 observed gravity data. 
+
 It is well known that, by using different density contrasts, 
 it is possible to find different surfaces producing the same gravity data. 
+
 To partially overcome this problem and obtain meaningful solutions, the interpreter
 must commonly use a priori information obtained from seismic data and/or boreholes in
-order to constrain the range of possible models.
+order to constrain the shallow regions and decrease the range of possible models.
+
 Here, we consider methods that approximate the subsurface by a set of layers 
-that have constant or depth-dependent density contrasts and are separated 
-by surfaces. These surfaces represent the geophysical discontinuities.
+with known constant or depth-dependent density contrasts. 
+
+
+
 In such methods, the geometry of the discontinuities are directly 
 determined by estimating the geometrical parameters defining the surfaces.
 
-Different criteria can be used to classify the methods that directly estimate
-the geometry of geophysical discontinuities.
-Those applied over a sedimentary basin, for example, can be considered local scale methods,
-whereas those applied over a continent or country can be considered regional scale methods
-and those applied over the whole globe can be considered global scale methods.
-They can also be classified according to the number of geophysical surfaces
-to be estimated.
-By using these criteria, it is possible to define a first group of methods
-estimating the geometry of a single surface.
-In this group, there are local scale methods in the space domain
-% scale: local | data: gravity | domain: space
-\citep[e.g.,][]{bott1960, tanner1967, cordell-henderson1968, dyrelius-vogel1972, 
-pedersen1977, richardson-macinnes1989, barbosa-etal1997, condi-etal1999, 
-barbosa-etal1999, barbosa-etal1999b, silva-etal2006,  
-chakravarthi-sundararajan2007, martins-etal2010, silva-etal2010, lima-etal2011, 
-martins-etal2011, barnes-barraud2012, silva-etal2014, silva-santos2017},
-and the Fourier domain
-% scale: local | data: gravity | domain: Fourier
-\citep[e.g.,][]{oldenburg1974, granser1987, reamer-ferguson1989, guspi1993}.
-Most of these methods were applied to estimate the relief of basement under
-a sedimentary basin.
-There are also regional scale methods for estimating a single surface 
-representing the Moho in the space domain 
-% scale: regional | data: gravity | domain: space
-\citep[e.g.,][]{shin-etal2009, bagherbandi-eshagh2012, barzaghi-biagi2014, 
-sampietro2015, uieda-barbosa2017} and in the Fourier domain 
-% scale: regional | data: gravity | domain: Fourier
-\citep[e.g.,][]{braitenberg-etal1997, braitenberg-zadro1999, vandermeijde-etal2013}.
-Additionally, there are some global scale methods, in space domain, for estimating the Moho
-% scale: global | data: gravity | domain: space
-\citep[e.g.,][]{sunkel1985, sjoberg2009}, 
-and also the crustal thickness of the Moon \citep{zhang-etal2019}.
+Among the aforementioned methods, we consider those estimating the geometries of
+two surfaces representing the basement and Moho.
 
-The second group of methods is formed by those estimating multiple surfaces
-separating layers with constant or depth-dependent density distribution 
-\citep[e.g.,][]{condi-etal1999, camacho-etal2011, salem-etal2014, 
-ferderer-etal2017, garcia-abdeslem2017, salem2017}.
+surfaces to be estimated. Our focus is in those methods estimating multiple surfaces
+separating layers with constant or depth-dependent density distribution.
 All these methods have been applied at local scale, to characterize a single 
 sedimentary basin.
 It is known that these methods suffer from a greater ambiguity if compared with 
@@ -135,9 +111,7 @@ As a consequence, they require more a priori information to
 decrease the number of possible solutions. 
 Some authors opted for combining gravity data with seismic and isostasy 
 to reduce this inherent ambiguity and determine the geometries of basement and Moho surfaces.
-The geometry of these surfaces are important 
-constraints on the amount of extension and heat flow at a margin during rifting
-\citep{watts-fairhead1999, gradmann-etal2017}.
+
 
 \citet{condi-etal1999} proposed a non-linear gravity inversion for estimating the
 offshore deep structures of a rifted margin.
@@ -252,11 +226,10 @@ of volcanic passive margin \citep{geoffroy2005}.
 We inverted gravity data provided by the combined global gravity field model EIGEN-6C4
 \citep{forste2014}, one of the latest releases of the ``European Improved Gravity model of 
 the Earth by New techniques" series.
-Our results are consistent with previous interpretations presented by \citet{stica-etal2014} and
+Our results are consistent with the models presented by \citet{stica-etal2014} and
 \citet{zalan2015}, who combined seismic, gravity and magnetic data.
-These results show that, combined with a priori information, our method can be very effective in 
-estimating a set of candidate models having different degrees of isostatic equilibrium at
-areas with abrupt crustal thinning, which is typically the case along volcanic passive margins.
+These results show that, combined with a priori information, our method can be a helpful tool 
+for investigating continental margins, specially at regions presenting pronounced crustal thinning.
 
 
 \section{Methodology}
@@ -892,13 +865,15 @@ values for $\sigma$.
 \section{Applications to synthetic data}
 
 
-We have simulated a simple volcanic margin model formed by four layers: 
-water, sediments, crust (continental and oceanic) and mantle. 
+We have simulated a simple continental margin formed by four layers: 
+water, sediments, crust (continental and oceanic) and mantle.
+This model is based on a seismic profile crossing the East Greenland margin,
+over the Jameson Land basin \citep{peron-etal2013}, and shows an extreme crustal thinning.
 Parameters defining this model are shown in Table~\ref{tab:volcanic-margin-model}.
 The density values of our model are compatible with those commonly used in literature
 \citep[e.g., ][]{gradmann-etal2017}.
 By following the algorithm described in the previous section, we inverted the simulated 
-gravity disturbance produced by our volcanic margin model.
+gravity disturbance produced by our synthetic margin.
 
 Figure~\ref{fig:volc-margem-p-prime} shows the intermediate model 
 $\mathbf{p}^{\prime}$ obtained at Step 1 (Figure~\ref{fig:flow-diagram})
@@ -940,7 +915,7 @@ In comparison to the estimated model $\mathbf{p}^{(1)}$ (Figure~\ref{fig:volc-ma
 this model shows a very smooth lithostatic stress curve as a consequence of the
 isostatic constraint. This constraint has produced little effect on the
 estimated reference Moho, resulted in a relatively worse estimated Moho and
-impaired the data fit at the regions $\approx 100$ and $\approx 200$ km.
+also produced large residuals at the regions close to $120$ and $200$ km.
 On the other hand, it reduced the large differences between the estimated and 
 true basement surfaces. The main improvement occurs at the region between  
 $100$ and $150$ km, where the true model exhibits a 
@@ -1154,7 +1129,7 @@ the mantle.
 }
 
 
-\tabl{pelotas-model}{Properties attributed for the Pelotas volcanic margin. 
+\tabl{pelotas-model}{Properties used in the Pelotas volcanic margin. 
 	The interpretation model extends from $y = 0$ km to $y = 383$ km, the 
 	Continent-Ocean Transition (COT) is located at $y_{COT} = 350$ km and the 
 	reference Moho is located at $43 \, 200$ km (Figures~\ref{fig:rifted-margin-model} 
@@ -1319,10 +1294,10 @@ the mantle.
 	\label{fig:pelotas-location}
 }
 
-\plot{pelotas-profile-grafics-estimated-model-alphas_2_1_2_1_2}{width=0.6\textwidth}{
-	{Application to real data on Pelotas basin, Brazil. Estimated model $\mathbf{p}^{(2)}$ 
-	obtained at the end of Step 2 (Figure~\ref{fig:flow-diagram}) by
-	using $\tilde{\mu}_{0} = 10^{2}$, $\tilde{\mu}_{1} = 10^{1}$, $\tilde{\mu}_{2} = 10^{2}$,
+\plot{pelotas-profile-grafics-estimated-model-alphas_X_1_2_1_2}{width=0.6\textwidth}{
+	{Application to real data on Pelotas basin, Brazil. Estimated model $\mathbf{p}^{(1)}$ 
+	obtained at the end of Step 1 (Figure~\ref{fig:flow-diagram}) by
+	using $\tilde{\mu}_{1} = 10^{1}$, $\tilde{\mu}_{2} = 10^{2}$,
 	$\tilde{\mu}_{3} = 10^{1}$ and $\tilde{\mu}_{4} = 10^{2}$.
 	(Bottom panel) Estimated surfaces, initial basement and Moho (initial guess) 
 	and a priori information at basement and Moho (known depths).
@@ -1333,8 +1308,17 @@ the mantle.
 	(Upper panel) Observed gravity disturbance, data produced by the estimated
 	model (predicted data) and data produced the by the initial approximation (initial guess data).
 	We used $S_{0} = 41$ km, density contrasts equal to those shown in Table~\ref{tab:pelotas-model}
-	and initial approximation for $\Delta S$ equal to $1$ km.
-	\label{fig:pelotas-step2}}
+	and initial approximation for $\Delta S$ equal to $1$ km.}
+	\label{fig:pelotas-step1}
+}
+
+\plot{pelotas-profile-grafics-estimated-model-alphas_2_1_2_1_2}{width=0.6\textwidth}{
+	{Application to real data on Pelotas basin, Brazil. Estimated model $\mathbf{p}^{(2)}$ 
+	obtained at the end of Step 2 (Figure~\ref{fig:flow-diagram}) by
+	using $\tilde{\mu}_{0} = 10^{2}$.
+	The remaining information is the same shown in the caption of
+	Figure~\ref{fig:pelotas-step1}.}
+	\label{fig:pelotas-step2}
 }
 
 \plot{pelotas-profile-grafics-estimated-model-alphas_2_1_2_1_2-sgm_7}{width=0.6\textwidth}{
@@ -1344,7 +1328,7 @@ the mantle.
 	initial approximation (dashed blue lines) and
 	$\sigma = 7$ (equation~\ref{eq:elements-wii}).
 	The remaining information is the same shown in the caption of
-	Figure~\ref{fig:pelotas-step2}.}
+	Figure~\ref{fig:pelotas-step1}.}
 	\label{fig:pelotas-step3-sgm7}
 }
 
@@ -1355,7 +1339,7 @@ the mantle.
 	initial approximation (dashed blue lines) and
 	$\sigma = 17.6$ (equation~\ref{eq:elements-wii}).
 	The remaining information is the same shown in the caption of
-	Figure~\ref{fig:pelotas-step2}.}
+	Figure~\ref{fig:pelotas-step1}.}
 	\label{fig:pelotas-step3-sgm17dot6}
 }
 
@@ -1366,7 +1350,7 @@ the mantle.
 	initial approximation (dashed blue lines) and
 	$\sigma = 19$ (equation~\ref{eq:elements-wii}).
 	The remaining information is the same shown in the caption of
-	Figure~\ref{fig:pelotas-step2}.}
+	Figure~\ref{fig:pelotas-step1}.}
 	\label{fig:pelotas-step3-sgm19}
 }
 
