@@ -72,70 +72,65 @@ for interpreting gravity data on passive rifted margins.
 \section{Introduction}
 
 
-The basement relief and Mohorovicic discontinuity (or simply Moho) at rifted 
-continental margins are important constraints on the amount of extension and 
-heat flow at a margin during rifting \citep{watts-fairhead1999}.
-
-Few methods have been proposed to estimate the geometry of basement relief
-and the Mohorovicic discontinuity (or simply Moho) by using gravity data.
+Gravity methods have long been used to investigate the crustal structure
+in local studies.
+A common approach is approximate the crust by a set of juxtaposed layers
+with constant or depth-dependent density distributions.
+The boundaries of these juxtaposed layers are defined by surfaces 
+that generally represent sedimentary layers, bathymetry, relief of basement or 
+the Mohorovicic discontinuity (or simply Moho).
+Here, we consider methods that estimate the geometry of these surfaces.
+There is a large group of methods estimating the geometry of a single surface 
+representing the basement relief in the space domain
+% scale: local | data: gravity | domain: space
+\citep[e.g.,][]{bott1960, tanner1967, cordell-henderson1968, 
+barbosa-etal1997, barbosa-etal1999, barbosa-etal1999b, condi-etal1999, silva-etal2006,  
+chakravarthi-sundararajan2007, martins-etal2010, silva-etal2010, lima-etal2011, 
+martins-etal2011, barnes-barraud2012, silva-etal2014, silva-santos2017},
+and the Fourier domain
+% scale: local | data: gravity | domain: Fourier
+\citep[e.g.,][]{oldenburg1974, granser1987, reamer-ferguson1989, guspi1993}.
+Another group of methods estimate a single surface representing the Moho in 
+the space domain 
+% scale: regional | data: gravity | domain: space
+\citep[e.g.,][]{shin-etal2009, bagherbandi-eshagh2012, barzaghi-biagi2014, 
+sampietro2015, uieda-barbosa2017} and in the Fourier domain 
+% scale: regional | data: gravity | domain: Fourier
+\citep[e.g.,][]{braitenberg-etal1997, braitenberg-zadro1999, vandermeijde-etal2013}.
+Finally, there is a small group of methods estimating the geometry of multiple surfaces 
+\citep[e.g.,][]{braitenberg-etal2003, camacho-etal2011, salem-etal2014, ferderer-etal2017, 
+garcia-abdeslem2017, salem2017}.
 
 All these methods suffer from the inherent ambiguity \citep{skeels1947, roy1962} in
 determining the true physical property distribution that produces a discrete set of
 observed gravity data. 
-
-It is well known that, by using different density contrasts, 
+It is well known that, by presuming a fixed density distribution for each layer,
 it is possible to find different surfaces producing the same gravity data. 
-
-To partially overcome this problem and obtain meaningful solutions, the interpreter
-must commonly use a priori information obtained from seismic data and/or boreholes in
-order to constrain the shallow regions and decrease the range of possible models.
-
-Here, we consider methods that approximate the subsurface by a set of layers 
-with known constant or depth-dependent density contrasts. 
-
-
-
-In such methods, the geometry of the discontinuities are directly 
-determined by estimating the geometrical parameters defining the surfaces.
-
-Among the aforementioned methods, we consider those estimating the geometries of
-two surfaces representing the basement and Moho.
-
-surfaces to be estimated. Our focus is in those methods estimating multiple surfaces
-separating layers with constant or depth-dependent density distribution.
-All these methods have been applied at local scale, to characterize a single 
-sedimentary basin.
-It is known that these methods suffer from a greater ambiguity if compared with 
-those estimating the geometry of a single surface.
-As a consequence, they require more a priori information to
-decrease the number of possible solutions. 
+It is known that methods estimating multiple surfaces suffer from a 
+greater ambiguity if compared with those estimating the geometry of a single surface.
+This inherent ambiguity is drastically increased for the cases in which, besides the
+geometry of the surfaces, the density distribution of the layers are also estimated.
+To partially overcome the ambiguity and generate meaningful solutions, the interpreter
+must use a priori information obtained from seismic data and/or boreholes in
+order to constrain the range of possible models.
 Some authors opted for combining gravity data with seismic and isostasy 
-to reduce this inherent ambiguity and determine the geometries of basement and Moho surfaces.
+to reduce this inherent ambiguity.
+As properly pointed out by \citet{gradmann-etal2017}, isostasy is equally 
+sensitive to shallow and deep structures. This characteristic makes it a
+powerful tool to validate interpretations of deep seismic data and gravity models.
 
-
-\citet{condi-etal1999} proposed a non-linear gravity inversion for estimating the
+\citet{condi-etal1999} proposed a nonlinear gravity inversion for estimating the
 offshore deep structures of a rifted margin.
-They approximate the margin by using multiple irregular polygons, each having a 
-uniform density and fixed horizontal position of their vertices.
-The polygons represent four homogeneous layers: water, sediments, crust and mantle.
-The parameters to be estimated are the constant densities of each polygon and 
-the vertical positions of the vertices separating adjacent layers.
-The parameters are estimated by using a globally convergent Newton method
-together with an algorithm for solving sparse linear systems.
-Their method uses local isostasy and uniform extension for directly constraining the 
+Their method uses local isostasy for directly constraining the 
 geometries of the shallow and deeper parts of their model, without necessarily
 forcing it to be in a perfect isostatic equilibrium.
-
+\citet{braitenberg-etal2003} proposed a method for estimating the 
+bathymetry and Moho geometries from gravity data by imposing regional isostatic
+equilibrium in the frame of the thin-plate isostatic flexure model over an
+oceanic basin.
 \citet{salem-etal2014} presented a non-linear gravity inversion for estimating the 
 surfaces representing basement and Moho on an onshore rifted basin. 
-They approximate the rifted basin by using three homogeneous layers: sediments, crust and mantle.
-The layers are also described in terms of irregular polygons having constant density
-contrasts.
-The horizontal positions of the polygon vertices are fixed and the vertical positions
-of the vertices associated with basement and Moho are the parameters to be estimated by 
-inversion.
-The position of the vertices associated with basement are estimated 
-by using an iterative approach similar to that
+The basement relief is by using an iterative approach similar to that
 presented by \citet{bott1960} and \citet{cordell-henderson1968}. 
 The difference is that, at each iteration, the Airy-Heiskanen model
 \citep[][$\,$ p. 135]{heiskanen-moritz1967} for local isostatic equilibrium is used 
@@ -149,43 +144,34 @@ does not impose constraints for obtaining stable solutions, nor use
 an objective stopping criterion. 
 Consequently, the method presented by \citet{salem-etal2014} is also susceptible 
 to these limitations.
-
-\citet{garcia-abdeslem2017} presented a method for estimating the 
-geometries of basement and Moho on the Montage Basin, located between Mexico and USA.
-He uses an approach based on flexural isostasy to estimate the Moho and compute 
-a regional gravity field, which is subsequently subtracted from the observed gravity 
-data to obtain a residual gravity field. 
+\citet{garcia-abdeslem2017} uses an approach based on flexural isostasy 
+to estimate the Moho and compute a regional gravity field, which is subsequently 
+subtracted from the observed gravity data to obtain a residual gravity field. 
 His method consists in solving a non-linear inverse problem for estimating the
 basement geometry explaining the residual gravity field.
-
-\citet{salem2017} presents a general framework for estimating the surfaces associated with
-basement and Moho on a rifted continental margin.
-He also approximates the margin by using a set of irregular polygons
-representing water, sediments, crust and mantle.
-The density contrasts of these layers are considered to be known functions
-of the horizontal position along the profile.
-His method is based on an empirical logistic function that acts as a gain control of the 
-Moho uplift.
+\citet{salem2017} presents a general framework for estimating the surfaces 
+associated with basement and Moho on a rifted continental margin.
+His method is based on an empirical logistic function that acts as a gain 
+control of the Moho uplift and introduces information about isostatic equilibrium 
+by correlating the gravity data produced by the basement and Moho.
 Similarly to \citet{salem-etal2014} and \citet{garcia-abdeslem2017}, the method presented
 by \citet{salem2017} does not estimate the surfaces of basement and Moho simultaneously.
 The Moho surface is estimated in a first step and then used to estimate the basement surface.
-
 \citet{ferderer-etal2017} proposed a ``general local isostasy" approach, which consists
 in combining the Airy-Heiskanen and Pratt-Hayford models \citep{heiskanen-moritz1967} 
-so that the crust density and geometry 
-may vary laterally in order to maintain the local isostatic equilibrium on a profile crossing
-a rifted margin. Their approach also uses local isostasy to directly link the geometries
-of shallow and deeper structures with the purpose of reducing the range of possible solutions.
-They approximate the margin by using a set stacked vertical prisms extending great distances in
-and out of the profile and propose a method for estimating their shapes and density contrasts by
+so that the crust density and geometry may vary laterally in order to maintain the local 
+isostatic equilibrium on a profile crossing a rifted margin. Their approach also uses local isostasy 
+to directly link the geometries of shallow and deeper structures with the purpose of reducing the 
+range of possible solutions.
+They propose a method for estimating the geometries of basement and Moho and density contrasts by
 using a grid-search technique \citep{sen-stoffa2013}.
 Such techniques involve the systematic search for model parameters producing the best data fit
 and may be far from being practical in geophysical applications for the cases in which
 the model space is very large and the forward problem is slow.
 
-We present a new local scale method for simultaneously estimating the geometries
-of basement and Moho surfaces, as well as a constant depth representing a reference Moho
-along a profile crossing a rifted margin.
+We present a non-linear gravity inversion method for simultaneously estimating the 
+geometries of basement and Moho, as well as a constant depth representing a reference 
+Moho along a profile crossing a rifted margin.
 Our method is formulated, in the space domain, as a non-linear gravity inversion
 based on the Levenberg-Marquardt method \citep{silva-etal2001, aster-etal2005}, 
 by following the same strategy of \citet{barbosa-etal1999} to incorporate
@@ -199,8 +185,8 @@ smoothness on basement and Moho surfaces. Additionally, we force them to be
 close to some depths along the profile. 
 
 Similarly to \citet{ferderer-etal2017}, we combine the Airy-Heiskanen and Pratt-Hayford
-models to impose local isostatic equilibrium. However, there two significant differences
-between our \textit{isostatic constraint} and those presented in earlier studies.
+models to impose local isostatic equilibrium. However, there three significant differences
+between our approach and those presented in earlier studies.
 The first one is the way we impose isostatic equilibrium. Differently from previous 
 methods, we do not use local isostasy to directly link the geometries of basement and Moho.
 Rather, we impose smoothness on the lithostatic stress exerted by the interpretation 
@@ -210,26 +196,33 @@ local isostatic equilibrium according to the Airy-Heiskanen and Pratt-Hayford mo
 Our constraint introduces the information that the lithostatic stress must be mostly 
 smooth along the entire profile, except at some isolated regions, where it can present abrupt
 variations. At these regions, our method enables the estimated model to deviate from the 
-isostatic equilibrium.
+local isostatic equilibrium.
+This is particularly useful at margins showing pronounced crustal thinning.
 The second aspect by which our approach differs from those in the literature
 is that it allows the interpreter to control how much the 
 estimated models can deviate from the isostatic equilibrium.
 As a consequence, the interpreter can obtain a set of candidate models 
-that (i) fit the observed data and (ii) present different degrees of isostatic equilibrium.
+that (i) fit the observed data and (ii) present different degrees of isostatic 
+equilibrium.
+Finally, it is worth noting that, in contrast to most of earlier studies, our method 
+attempts to use isostasy for exploring (and not necessarily reducing) the inherent 
+ambiguity of gravity methods.
 
 Tests with synthetic data show the good performance of our method in simultaneously
-retrieving the geometry of basement and Moho of a simulated volcanic margin
-model. We also applied our method to invert 
-gravity data on a profile over the Pelotas basin \citep{stica-etal2014}. This basin is
-located at the offshore southern of Brazil and is considered a classical example 
-of volcanic passive margin \citep{geoffroy2005}. 
+retrieving the geometry of basement and Moho of a realistic margin model,
+which is based on a seismic profile crossing the East Greenland margin,
+over the Jameson Land basin \citep{peron-etal2013}, and shows an extreme crustal thinning.
+We also applied our method to invert gravity data on a profile over the Pelotas basin 
+\citep{stica-etal2014}. This basin is located at the offshore southern of Brazil and is 
+considered a classical example of volcanic passive margin \citep{geoffroy2005}. 
 We inverted gravity data provided by the combined global gravity field model EIGEN-6C4
 \citep{forste2014}, one of the latest releases of the ``European Improved Gravity model of 
 the Earth by New techniques" series.
 Our results are consistent with the models presented by \citet{stica-etal2014} and
 \citet{zalan2015}, who combined seismic, gravity and magnetic data.
-These results show that, combined with a priori information, our method can be a helpful tool 
-for investigating continental margins, specially at regions presenting pronounced crustal thinning.
+These results show that, combined with a priori information, simple isostatic models 
+can be helpful in investigating continental margins, specially at regions presenting pronounced 
+crustal thinning.
 
 
 \section{Methodology}
@@ -997,56 +990,48 @@ The estimated lithostatic stress curves produced by these estimated models
 show abrupt variations close to $150$ km and are practically flat on the remaining parts
 of the profile. These results suggest that the margin is mostly in isostatic 
 equilibrium, except at the region $\approx 150$.
-%Figure~\ref{fig:pelotas-step3-alternative} shows an alternative 
-%model obtained at Step 3.
-%The density values in Layer 2 (sediment + SDR) used to obtain this model 
-%are different from those of the true model (Table~\ref{tab:volcanic-margin-model}).
-%The corresponding estimated model obtained at Step 1 is not shown and
-%that obtained at Step 2 is represented by the dashed blue lines.
+Figure~\ref{fig:pelotas-step3-alternative} shows an alternative 
+model obtained at Step 3. 
+Besides the parameter $\sigma$ (equation~\ref{eq:elements-wii}),
+the density values in Layer 2 (sediment + SDR) are different from 
+those used to obtain the models shown in Figures \ref{fig:pelotas-step3-sgm7},
+\ref{fig:pelotas-step3-sgm17dot6} and \ref{fig:pelotas-step3-sgm19}.
+The corresponding estimated model obtained at Step 1 is not shown and
+that obtained at Step 2 is represented by the dashed blue lines.
 
-The estimated models shown in Figures~\ref{fig:pelotas-step3-sgm58} and \ref{fig:pelotas-step3-alternative} 
-are close to that proposed independently by \citet{zalan2015} (continuous black lines), by
-interpreting seismic data.
+The estimated models shown in Figures~\ref{fig:pelotas-step3-sgm17dot6} and 
+\ref{fig:pelotas-step3-alternative} are close to those proposed by 
+\citet{stica-etal2014} and \citet{zalan2015} (continuous black lines).
 The larger differences ($\approx 10$ km) occur at the basement, along the first 
 $100$ km of the profile.
 At this region, \citeauthor{zalan2015} proposes a steep variation in basement
-relief, which shows a maximum depth $\approx 30$ km. 
-
-These differences may be associated with underplated mafic to ultra-mafic 
-magma at the base of the crust. They would represent positive anomalous
+relief, which shows a maximum depth $\approx 30$ km.
+These differences may be associated to the data we used to obtain our model.
+We used satellite gravity data, whereas \citet{stica-etal2014} and \citet{zalan2015} used
+gravity, magnetic and seismic sections available to the petroleum industry.
+These differences may also be associated to lateral density variations which had 
+not been included in our model, located in the sediment, SDR, crust or mantle. 
+Alternatively, they might represent underplated mafic to ultra-mafic 
+magma at the base of the crust, which would represent positive anomalous
 masses and produce a gravity high. In order to compensate this high, the 
 inversion would estimate a deeper basement, which would be closer to 
 \citeauthor{zalan2015}'s model.
-
-PAREI AQUI
-
-Despite these differences, our estimated models produce a very good data fit
-at this region. It means that, the steep variation 
-proposed by \citeauthor{zalan2015} in the basement relief cannot be determined by 
-using only gravity data.
-It is worth stressing that our results were obtained by using gravity data
-provided by the global gravity model EIGEN6C4 \citep{forste2014}, whereas 
-\citet{zalan2015} obtained his result by combining gravity, magnetic and seismic sections
-available to the petroleum industry. Despite these differences, our results are very 
-consistent with that presented independently by \citet{zalan2015}.
-Additional results for the Pelotas basin are available as supplementary material at xxxxxxxx.
-%(\textbf{Note to reviewers: the online repository 
-%will be made public upon
-%publication})
+We do not attempt to propose a new model for the Pelotas basin, but show
+how simple isostatic considerations can be combined with a priori information 
+to explore the range of acceptable models.
 
 
 \section{Conclusions}
 
-We present a new gravity inversion method for simultaneously estimating the 
+We present a new gravity method for simultaneously estimating the 
 geometries of basement and Moho, as well as the constant depth of the reference 
 Moho on a profile crossing a passive rifted margin.
 The method is formulated as a non-linear inverse problem by imposing local
 isostatic equilibrium.
-The parameters to be estimated by inversion define the geometries of basement and Moho, 
+The parameters to be estimated define the geometries of basement and Moho, 
 as well as a constant depth defining the reference Moho.
-
-There are two main differences between our method and those in the literature.
-The first is that, at each iteration of the non-linear inversion at each step, 
+There are three main differences between our method and those in the literature.
+The first is that, at each iteration of the non-linear inversion, 
 our method estimates corrections for the geometries of basement and Moho simultaneously. 
 It means that we do not estimate the Moho, use it to compute a residual gravity anomaly
 and then invert these residual data to obtain the basement.
@@ -1054,31 +1039,29 @@ Another difference is that we do not use local isostasy to directly link
 the geometries of basement and Moho.
 Rather, we impose smoothness on the lithostatic stress exerted by the interpretation 
 model on a constant compensation depth, below which there is no lateral density variations.
+Finally, our method also differs from those in the literature because it 
+attempts to use isostasy for exploring (and not necessarily reducing) the inherent ambiguity of 
+gravity methods.
 
-Tests with synthetic data show that our method can be used to generate a set o possible 
-solutions with different ``degrees of isostatic equilibrium". 
-The interpreter must choose the ``best estimated model" based on the available priori 
-information and its knowledge about the study area.
-Our results show the robustness of our method to the initial approximation
-used in the non-linear inversion. Besides, show that 
-the isostatic constraint can considerably improve 
-the estimated models at regions showing pronounced crustal thinning, which 
-are typical of volcanic passive margins. 
+Tests with synthetic data produced by a realistic model show that our method can 
+be used to generate a set of possible solutions that have different ``degrees of isostatic 
+equilibrium" and produced an equally good data fit. 
+The interpreter must choose the ``best estimated model" based on the 
+available priori information and its knowledge about the study area.
+Besides, these results show that the isostatic constraint can considerably improve 
+the estimated models at rifted margins showing pronounced crustal thinning. 
 Applications to real data over the Pelotas basin, considered a classical volcanic
 margin at the southern of Brazil, produced results in agreement with a previous 
 interpretation obtained independently.
 These results show that, combined with priori information, our method can be a 
 useful tool for interpreting gravity data on rifted margins.
-%Additional results with synthetic and real data are available as supplementary material at xxxxxxxx.
-%(\textbf{Note to reviewers: the online repository will be made public upon publication})
 
 The problem of simultaneously estimating the geometries of basement and Moho surfaces
 is very ambiguous and some simplifications must be made. 
 One of these simplifications consists in considering bulk density 
 values for each column forming the continental and oceanic crusts. 
 The interpreter must predefine the function describing the horizontal density
-variation of the crust along the profile, including the region 
-close the COT.
+variation of the crust along the profile, including the region close the COT.
 In most practical situations, however, the interpreter will not have access to a detailed
 description of the density variations within the crust and a regional approximation
 will have to be used instead.
@@ -1094,8 +1077,8 @@ approximated values and test different models.
 Errors in this approximation may negatively impact the estimated model, especially in 
 the basement surface.
 Further research could be conducted to generalize our method to estimate
-three dimensional models and also include lateral density variations in 
-the mantle.
+three dimensional models, include lateral density variations in the upper mantle
+and depth-dependent density distributions at the layers representing sediments.
 
 
 %%%%%%%%%%%%%%%%%% Tables %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1354,17 +1337,20 @@ the mantle.
 	\label{fig:pelotas-step3-sgm19}
 }
 
-%\plot{pelotas-profile-grafics-estimated-model-alphas_2_1_1_2-T5-dsed-SDR-sgm_17}{width=0.6\textwidth}{
-%	{Application to real data on Pelotas basin, Brazil. Results obtained at Step 3 by using 
-%	density values $\rho^{(1)}$ (sediment) and $\rho^{(2)}$ (SDR) different from those defined
-%	in Table \ref{tab:volcanic-margin-model}.
-%	This estimated model was obtained by using $\sigma = 17$ (equation~\ref{eq:elements-wii}).
-%	The dashed blue lines (initial guess surfaces) represent the corresponding
-%	model obtained at Step 2 (not shown).
-%	The remaining informations are the same shown in the caption of
-%	Figure~\ref{fig:pelotas-step2}.}
-%	\label{fig:pelotas-step3-alternative}
-%}
+\plot{pelotas-profile-grafics-estimated-model-alphas_2_1_2_1_2-sgm_17-T07}{width=0.6\textwidth}{
+	{Application to real data on Pelotas basin, Brazil. Alternative estimated model $\mathbf{p}^{(3)}$ 
+	obtained at the end of Step 3 (Figure~\ref{fig:flow-diagram}). 
+	The differences between this model and those shown in Figures \ref{fig:pelotas-step3-sgm7},
+	\ref{fig:pelotas-step3-sgm17dot6} and \ref{fig:pelotas-step3-sgm19} are the
+	densities $\rho^{(1)}$ and $\rho^{(2)}$ attributed to the sediments
+	and SDR (Table~\ref{tab:pelotas-model}), as well as the parameter 
+	$\sigma$ (equation~\ref{eq:elements-wii}).
+	In this alternative model, $\rho^{(1)} = 2425$ kg/m$^{3}$,
+	$\rho^{(2)} = 2835$ kg/m$^{3}$ and $\sigma = 17$.
+	The remaining information is the same shown in the caption of
+	Figure~\ref{fig:pelotas-step1}.}
+	\label{fig:pelotas-step3-alternative}
+}
 
 %%%%%%%%%%%%%%%%%% Figures %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
