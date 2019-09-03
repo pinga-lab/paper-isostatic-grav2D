@@ -48,11 +48,12 @@ we impose smoothness on basement and Moho, force them to be close to previously
 estimated depths along the profile and also impose local isostatic equilibrium. 
 Differently from previous methods, we introduce the information of local isostatic 
 equilibrium by imposing smoothness on the lithostatic stress exerted at depth. 
-Our method allows deviations from isostatic equilibrium along the profile, so that 
-the interpreter can obtain a set of candidate models that fit the observed data 
-and exhibit different degrees of isostatic equilibrium. 
-Our method also differs from earlier studies because it attempts to use 
-isostasy for exploring (and not necessarily reducing) the inherent 
+Our method delimits regions that deviates and those that can be considered in local 
+isostatic equilibrium along the profile. Besides, it allows controlling the 
+degree of equilibrium along the profile, so that the interpreter can obtain a set of 
+candidate models that fit the observed data and exhibit different degrees of 
+isostatic equilibrium. Our method also differs from earlier studies because it 
+attempts to use isostasy for exploring (and not necessarily reducing) the inherent 
 ambiguity of gravity methods.
 Tests with synthetic data produced by a realistic model show the good performance 
 of our method at regions with pronounced crustal thinning, which is typical of 
@@ -192,10 +193,10 @@ This information is directionally consistent with the basic principle of
 local isostatic equilibrium according to the Airy-Heiskanen and Pratt-Hayford models.
 Our constraint introduces the information that the lithostatic stress must be mostly 
 smooth along the entire profile, except at some regions, where it can present abrupt
-variations. At these regions, our method enables the estimated model to deviate from the 
+variations. At these locations, our method enables the estimated model to deviate from the 
 local isostatic equilibrium. 
-This is particularly useful for delimiting regions that are more close or distant from the 
-local isostatic equilibrium.
+This is particularly useful for delimiting regions that conform to and deviate
+from the isostatic equilibrium along the profile.
 The second aspect by which our approach differs from those in the literature
 is that it allows the interpreter to control how much the 
 estimated models can deviate from the isostatic equilibrium.
@@ -1042,18 +1043,27 @@ and then invert these residual data to obtain the basement.
 Another difference is that we do not use local isostasy to directly link
 the geometries of basement and Moho.
 Rather, we impose smoothness on the lithostatic stress exerted by the interpretation 
-model on a constant compensation depth, below which there is no lateral density variations.
+model on a constant compensation depth, below which there are no lateral density variations.
 Finally, our method also differs from those in the literature because it 
 attempts to use isostasy for exploring (and not necessarily reducing) the inherent ambiguity of 
 gravity methods.
 
 Tests with synthetic data produced by a realistic model show that our method can 
-be used to generate a set of possible solutions that have different ``degrees of isostatic 
-equilibrium" and produced an equally good data fit. 
+be used to successfully delimiting regions conforming to and deviating from the local 
+isostatic equilibrium, as well as to generate a set of possible solutions that have 
+different ``degrees of isostatic equilibrium" and produce equally good data fits.
 The interpreter must choose the ``best estimated model" based on the 
 available priori information and its knowledge about the study area.
-Besides, these results show that the isostatic constraint can considerably improve 
-the estimated models at rifted margins showing pronounced crustal thinning. 
+Besides, these results show that the isostatic constraint can improve 
+the estimated models at rifted margins showing pronounced crustal thinning.
+The large variations in the basement and Moho reliefs at these margins induce
+large variations in the lithostatic stress. 
+This is a good scenario for obtaining 
+
+As a consequence, it is possible to
+use our method for obtaining a set of candidate models presenting different degrees of
+isostatic equilibrium
+
 Applications to real data over the Pelotas basin, considered a classical volcanic
 margin at the southern of Brazil, produced results in agreement with a previous 
 interpretation obtained independently.
