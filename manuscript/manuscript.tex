@@ -49,20 +49,22 @@ estimated depths along the profile and also impose local isostatic equilibrium.
 Differently from previous methods, we introduce the information of local isostatic 
 equilibrium by imposing smoothness on the lithostatic stress exerted at depth. 
 Our method delimits regions that deviates and those that can be considered in local 
-isostatic equilibrium along the profile. Besides, it allows controlling the 
+isostatic equilibrium by varying the weight of the isostatic constraint along the profile. 
+Besides, it allows controlling the 
 degree of equilibrium along the profile, so that the interpreter can obtain a set of 
 candidate models that fit the observed data and exhibit different degrees of 
 isostatic equilibrium. Our method also differs from earlier studies because it 
 attempts to use isostasy for exploring (and not necessarily reducing) the inherent 
 ambiguity of gravity methods.
-Tests with synthetic data produced by a realistic model show the good performance 
-of our method at regions with pronounced crustal thinning, which is typical of 
-passive volcanic margins. Results obtained by inverting satellite data over the 
+Tests with synthetic data illustrate the effect of our isostatic constraint on the
+estimated basement and Moho reliefs, specially at regions with pronounced crustal 
+thinning, which are typical of passive volcanic margins. Results obtained by 
+inverting satellite data over the 
 Pelotas basin, an example of passive volcanic margin at the southern of Brazil, 
 agree with previous interpretations obtained independently by combining gravity, 
 magnetic and seismic data available to the petroleum industry. These results 
-show that, combined with a priori information, simple isostatic models can be
-a useful tool for interpreting gravity data on passive rifted margins.
+show that, combined with a priori information, simple isostatic assumptions can be
+very useful for interpreting gravity data on passive rifted margins.
 
 
 \end{abstract}
@@ -128,7 +130,7 @@ equilibrium in the frame of the thin-plate isostatic flexure model over an
 oceanic basin.
 \citet{salem-etal2014} presented a non-linear gravity inversion for estimating the 
 surfaces representing basement and Moho on an onshore rifted basin. 
-The basement relief is by using an iterative approach similar to that
+The basement relief is estimated by using an iterative approach similar to that
 presented by \citet{bott1960} and \citet{cordell-henderson1968}. 
 The difference is that, at each iteration, the Airy-Heiskanen model
 \citep[][$\,$ p. 135]{heiskanen-moritz1967} for local isostatic equilibrium is used 
@@ -281,15 +283,13 @@ represented as dashed-white lines in Figure~\ref{fig:rifted-margin-model}.
 In order to define the anomalous mass distribution producing the observed gravity
 disturbance, we presume a reference mass distribution formed by two 
 layers. The shallowest represents a homogeneous crust with constant
-density $\rho^{(r)}$. Its thickness is schematically represented in
-Figure~\ref{fig:rifted-margin-model}.
+density $\rho^{(r)}$. Its thickness is defined by a surface conveniently 
+called \textit{reference Moho} (Figures~\ref{fig:rifted-margin-model} 
+and \ref{fig:interpretation-model}).
 The deepest layer in the reference mass distribution represents a homogeneous mantle
 with constant density $\rho^{(m)}$. Notice that the mantle in the reference mass 
 distribution has the same density as the mantle in our rifted margin model
 (Figure~\ref{fig:rifted-margin-model}).
-The surface separating the crust and mantle in the reference mass distribution 
-is conveniently called \textit{reference Moho} (Figures~\ref{fig:rifted-margin-model} 
-and \ref{fig:interpretation-model}).
 The reference model can be thought of as the outer layers of a concentric
 mass distribution producing the normal gravity field.
 In a local scale, this concentric mass distribution is close to a 
@@ -872,7 +872,7 @@ values for $\sigma$.
 \section{Applications to synthetic data}
 
 
-We have simulated a simple continental margin formed by four layers: 
+We have simulated a continental margin formed by four layers: 
 water, sediments, crust (continental and oceanic) and mantle.
 This model is based on a seismic profile crossing the East Greenland margin,
 over the Jameson Land basin \citep{peron-etal2013}, and shows an extreme crustal thinning.
@@ -940,9 +940,9 @@ the Step 3 (Figure~\ref{fig:flow-diagram}) by using different values for the par
 $\sigma$ (equation~\ref{eq:elements-wii}).
 By comparing with estimated model $\mathbf{p}^{(2)}$
 (Figure~\ref{fig:synt-margin-step2}), the new models 
-show better data fits and improved estimates for Moho and reference Moho.
+show better data fits and improved estimates for Moho.
 The main differences are concentrated at the regions coinciding with
-large residuals and large variation in the lithostatic stress curve shown in 
+large residuals and large variations in the lithostatic stress curve shown in 
 Figure~\ref{fig:synt-margin-step2}.
 
 The estimated model obtained with the smallest $\sigma$ 
@@ -951,9 +951,9 @@ obtained at Step 1 (Figure~\ref{fig:synt-margin-step1}).
 In this case, the predicted lithostatic stress curve shows large variations 
 and the estimated model is far from the isostatic equilibrium.
 On the other hand, the estimated model obtained with 
-the largest $\sigma$ (Figure~\ref{fig:synt-margin-step3-sgm18}) is more close to 
+the largest $\sigma$ (Figure~\ref{fig:synt-margin-step3-sgm18}) is closer to 
 that obtained at Step 2 (Figure~\ref{fig:synt-margin-step2}).
-In this case, the predicted lithostatic stress curve is smoother that that obtained
+In this case, the predicted lithostatic stress curve is smoother than that obtained
 with $\sigma = 1$ (Figure~\ref{fig:synt-margin-step3-sgm1}).
 In comparison to these two models, that shown in Figure 
 \ref{fig:synt-margin-step3-sgm11} exhibits an intermediate isostatic equilibrium.
@@ -962,7 +962,7 @@ entire profile, as well as have estimated Moho and reference Moho very close to 
 true ones. 
 It is important to stress that the most significant variations produced by the 
 isostatic constraint in the estimated basement and Moho are concentrated at the
-central part of the profile, where the model present large deviations from the
+central part of the profile, where the model presents large deviations from the
 isostatic equilibrium. 
 
 These results obtained with different $\sigma$ values (equation~\ref{eq:elements-wii})
@@ -981,8 +981,8 @@ the case in which our method is applied to a margin presenting large deviations 
 the local isostatic equilibrium. Figures 
 \ref{fig:simple-model-step1}, \ref{fig:simple-model-step2-u0-2} and 
 \ref{fig:simple-model-step2-u0-3} show results obtained with
-a simple model (Table \ref{tab:simple-model}).
-This model shows small variations in the lithostatic stress curve and can
+a simple model (Table \ref{tab:simple-model}) that 
+shows small variations in the lithostatic stress curve and can
 be considered in local isostatic equilibrium along the entire profile, except at
 the COT, located at $y_{COT} = 170$.
 As we can see, the result obtained at the Step 1 (Figure \ref{fig:simple-model-step1}), 
@@ -1011,7 +1011,7 @@ They also show that the proposed constraints are not able to retrieve the true b
 and Moho if they are used individually. 
 Instead, the additional results show that our method is able to produce estimated models 
 close to the true one by properly combining all the constraints.
-Finally, the additional tests show that our method is not strongly dependent on the the 
+Finally, they show that our method is not strongly dependent on the 
 quantity of a priori information at the basement and Moho. This is an important issue 
 because in real-world situations it can be very difficult to obtain such control points.
 
@@ -1034,11 +1034,12 @@ obtained from the seismic interpretations presented by \citet{stica-etal2014} an
 (equations~\ref{eq:equality-constraint-basement} and \ref{eq:equality-constraint-moho})
 and the initial approximation used in the non-linear inversion. 
 
-Figure~\ref{fig:pelotas-step2} shows the estimated model obtained at Step 2.
+Figures \ref{fig:pelotas-step1} and \ref{fig:pelotas-step2} show the estimated models 
+obtained at Steps 1 and 2, respectively.
 Parameters defining the interpretation model are shown in 
 (Table~\ref{tab:pelotas-model}).
-As we can see, the estimated model produces a good data fit along the whole
-profile, except at region $\approx 150$ km.
+As we can see, the estimated model obtained at Step 2 produces a good data fit along 
+the whole profile, except at region $\approx 150$ km.
 Figures~\ref{fig:pelotas-step3-sgm7}, \ref{fig:pelotas-step3-sgm17dot6} and 
 \ref{fig:pelotas-step3-sgm19} show estimated models obtained at
 Step 3 by using different values for the parameter $\sigma$
@@ -1055,8 +1056,6 @@ In this model, the parameter $\sigma$ (equation~\ref{eq:elements-wii}) and
 the density values in Layer 2 (sediment + SDR) are different from 
 those used to obtain the models shown in Figures \ref{fig:pelotas-step3-sgm7},
 \ref{fig:pelotas-step3-sgm17dot6} and \ref{fig:pelotas-step3-sgm19}.
-The corresponding estimated model obtained at Step 1 is not shown and
-that obtained at Step 2 is represented by the dashed blue lines.
 
 The estimated models shown in Figures~\ref{fig:pelotas-step3-sgm17dot6} and 
 \ref{fig:pelotas-step3-alternative} are close to those proposed by 
@@ -1082,14 +1081,12 @@ to explore the range of acceptable models.
 
 \section{Conclusions}
 
-We present a new gravity method for simultaneously estimating the 
+We present a gravity inversion method for simultaneously estimating the 
 geometries of basement and Moho, as well as the constant depth of the reference 
 Moho on a profile crossing a passive rifted margin.
 The method is formulated as a non-linear inverse problem by imposing local
 isostatic equilibrium.
-The parameters to be estimated define the geometries of basement and Moho, 
-as well as a constant depth defining the reference Moho.
-There are three main differences between our method and those in the literature.
+There are four main differences between our method and those in the literature.
 The first is that, at each iteration of the non-linear inversion, 
 our method estimates corrections for the geometries of basement and Moho simultaneously. 
 It means that we do not estimate the Moho, use it to compute a residual gravity anomaly
@@ -1098,12 +1095,14 @@ Another difference is that we do not use local isostasy to directly link
 the geometries of basement and Moho.
 Rather, we impose smoothness on the lithostatic stress exerted by the interpretation 
 model on a constant compensation depth, below which there are no lateral density variations.
+Our method also varies the weight of the isostatic constraint along the profile,
+which is particularly useful for delimiting regions that deviate from the isostatic equilibrium.
 Finally, our method also differs from those in the literature because it 
 attempts to use isostasy for exploring (and not necessarily reducing) the inherent ambiguity of 
 gravity methods.
 
 Tests with synthetic data produced by a realistic model based on the East Greenland margin
-show that our method can be used to successfully delimiting regions conforming to and deviating
+show that our method can be used to successfully delimit regions conforming to and deviating
 from the local isostatic equilibrium, as well as to generate a set of possible solutions that 
 have different ``degrees of isostatic equilibrium" and produce equally good data fits.
 The interpreter must choose the ``best estimated model" based on the 
@@ -1112,27 +1111,19 @@ Besides, these results show that the isostatic constraint can improve
 the estimated models at rifted margins showing pronounced crustal thinning.
 The large variations in the basement and Moho reliefs at these margins induce
 large variations in the lithostatic stress. 
-This is a good scenario for using our isostatic constraint for exploring different
+This is a good scenario for using our isostatic constraint to explore different
 models.
 We also present results obtained with a simple model simulating a margin
 close to the local isostatic equilibrium along the entire profile.
-In this case, the isostatic constraint does not improve the estimated
-model significantly.
+The basement and Moho surfaces in this simple model are relatively smooth.
+As a consequence, the isostatic constraint does not improve the estimated
+model significantly if compared to that obtained by using the smoothness
+constraint.
 Applications to real data over the Pelotas basin, considered a classical volcanic
 margin at the southern of Brazil, produced results in agreement with a previous 
 interpretation obtained independently.
-Our results are also useful for delimiting regions that can and cannot be considered 
-in local equilibrium along the profile.
-
-The results with synthetic data show that forcing the local isostatic equilibrium
-not necessarily produce good results, even in the case where the margin does
-not exhibit large deviations from the local isostatic equilibrium.
-These results show that, combined with priori information, our method can be a 
-useful tool for interpreting gravity data on rifted margins.
-Specially for the cases in which the margin presents large deviations from the
-local isostatic equilibrium along the profile.
-In this case, our method is particularly useful for delimiting regions that
-can and cannot be considered in local isostatic equilibrium.
+Our results also delimit regions that can and cannot be considered 
+in local isostatic equilibrium along the profile.
 
 The problem of simultaneously estimating the geometries of basement and Moho surfaces
 is very ambiguous and some simplifications must be made. 
