@@ -210,9 +210,8 @@ attempts to use isostasy for exploring (and not necessarily reducing) the inhere
 ambiguity of gravity methods.
 
 Tests with synthetic data show the good performance of our method in simultaneously
-retrieving the geometry of basement and Moho of a realistic margin model,
-which is based on a seismic profile crossing the East Greenland margin,
-over the Jameson Land basin \citep{peron-etal2013}, and shows an extreme crustal thinning.
+retrieving the geometry of basement and Moho of a realistic margin model presenting 
+an extreme crustal thinning.
 We also applied our method to invert gravity data on a profile over the Pelotas basin 
 \citep{stica-etal2014}. This basin is located at the offshore southern of Brazil and is 
 considered a classical example of volcanic passive margin \citep{geoffroy2005}. 
@@ -874,7 +873,7 @@ values for $\sigma$.
 
 We have simulated a continental margin formed by four layers: 
 water, sediments, crust (continental and oceanic) and mantle.
-This model is based on a seismic profile crossing the East Greenland margin,
+The geometry of this model is based on a seismic profile crossing the East Greenland margin,
 over the Jameson Land basin \citep{peron-etal2013}, and shows an extreme crustal thinning.
 Parameters defining this model are shown in Table~\ref{tab:volcanic-margin-model}.
 The density values of our model are compatible with those commonly used in literature
@@ -976,7 +975,7 @@ true lithostatic curve contains large variations. At the extremities, these mode
 are very similar to each other, the lithostatic curves are almost flat 
 and the models are close to the isostatic equilibrium.
 
-The results obtained with the model simulating the East Greenland margin illustrate
+The results obtained with the model based on the East Greenland margin illustrate
 the case in which our method is applied to a margin presenting large deviations from
 the local isostatic equilibrium. Figures 
 \ref{fig:simple-model-step1}, \ref{fig:simple-model-step2-u0-2} and 
@@ -990,7 +989,7 @@ without the isostatic constraint, is very good and shows estimated basement
 and Moho very close to the true ones.
 Figure \ref{fig:simple-model-step2-u0-2} shows that, by using the isostatic constraint,
 the estimated model is better than that obtained at Step 1, but the differences are small.
-Notice that, differently for the result obtained with the model simulating the East Greenland 
+Notice that, differently for the result obtained with the model based on the East Greenland 
 margin (Figure \ref{fig:synt-margin-step2}), the use of the isostatic constraint does
 not produce large residuals between the observed and predicted data. 
 This is also the case for the result obtained by increasing the importance of the 
@@ -1152,8 +1151,8 @@ and depth-dependent density distributions at the layers representing sediments.
 
 %%%%%%%%%%%%%%%%%% Tables %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\tabl{synt-margin-model}{Properties of the synthetic margin model simulating the
-	East Greenland margin. 
+\tabl{synt-margin-model}{Properties of the synthetic margin model with geometry 
+	based on the East Greenland margin. 
 	The model extends from $y = 0$ km to $y = 380$ km, the Continent-Ocean 
 	Transition (COT) is located at $y_{COT} = 165$ km and the reference 
 	Moho is located at $53$ km (Figures~\ref{fig:rifted-margin-model} and 
@@ -1292,27 +1291,8 @@ and depth-dependent density distributions at the layers representing sediments.
 	\label{fig:flow-diagram}
 }
 
-%% application to synthetic data
-
-%\plot{B-model-rifted-margin-grafics-estimated-model-alphas_X_X_X_1_2}{width=0.6\textwidth}{
-%	{Application to synthetic data. Intermediate model $\mathbf{p}^{\prime}$ 
-%	obtained at Step 1 (Figure~\ref{fig:flow-diagram}) by using
-%	$\tilde{\mu}_{3} = 10^{1}$ and $\tilde{\mu}_{4} = 10^{2}$.
-%	(Bottom panel) True and estimated surfaces,
-%	initial basement and Moho (initial guess) and a 
-%	priori information at points on basement and Moho (known depths).
-%	(Middle panel) True and predicted lithostatic stress curves 
-%	(equation~\ref{eq:lithostatic-stress-matrix}).
-%	(Upper panel) Gravity disturbance produced by the true 
-%	model (simulated data), estimated model (predicted data) and 
-%	by the initial guess (initial guess data). 
-%	The density contrasts are those shown in 
-%	Table~\ref{tab:volcanic-margin-model} and $S_{0} = 48$ km.}
-%	\label{fig:synt-margin-p-prime}
-%}
-
 \plot{B-model-rifted-margin-grafics-estimated-model-alphas_X_1_2_1_2-2pts}{width=0.6\textwidth}{
-	{Application to synthetic data produced by the model simulating the
+	{Application to synthetic data produced by the model based on the
 	East Greenland margin. 
 	Estimated model $\mathbf{p}^{(1)}$ 
 	obtained at the end of Step 1 (Figure~\ref{fig:flow-diagram}) by
@@ -1331,7 +1311,7 @@ and depth-dependent density distributions at the layers representing sediments.
 }
 
 \plot{B-model-rifted-margin-grafics-estimated-model-alphas_3_1_2_1_2-2pts}{width=0.6\textwidth}{
-	{Application to synthetic data produced by the model simulating the
+	{Application to synthetic data produced by the model based on the
 	East Greenland margin. Estimated model $\mathbf{p}^{(2)}$ 
 	obtained at the end of Step 2 (Figure~\ref{fig:flow-diagram}) by
 	using $\tilde{\mu}_{0} = 10^{3}$.
@@ -1341,7 +1321,7 @@ and depth-dependent density distributions at the layers representing sediments.
 }
 
 \plot{B-model-rifted-margin-grafics-estimated-model-alphas_3_1_2_1_2-sgm_1-2pts}{width=0.6\textwidth}{
-	{Application to synthetic data produced by the model simulating the
+	{Application to synthetic data produced by the model based on the
 	East Greenland margin. Estimated model $\mathbf{p}^{(3)}$ 
 	obtained at the end of Step 3 (Figure~\ref{fig:flow-diagram}) by
 	using $\mathbf{p}^{(2)}$ (Figure~\ref{fig:synt-margin-step2}) as
@@ -1353,7 +1333,7 @@ and depth-dependent density distributions at the layers representing sediments.
 }
 
 \plot{B-model-rifted-margin-grafics-estimated-model-alphas_3_1_2_1_2-sgm_11-2pts}{width=0.6\textwidth}{
-	{Application to synthetic data produced by the model simulating the
+	{Application to synthetic data produced by the model based on the
 	East Greenland margin. Estimated model $\mathbf{p}^{(3)}$ 
 	obtained at the end of Step 3 (Figure~\ref{fig:flow-diagram}) by
 	using $\mathbf{p}^{(2)}$ (Figure~\ref{fig:synt-margin-step2}) as
@@ -1365,7 +1345,7 @@ and depth-dependent density distributions at the layers representing sediments.
 }
 
 \plot{B-model-rifted-margin-grafics-estimated-model-alphas_3_1_2_1_2-sgm_18-2pts}{width=0.6\textwidth}{
-	{Application to synthetic data produced by the model simulating the
+	{Application to synthetic data produced by the model based on the
 	East Greenland margin. Estimated model $\mathbf{p}^{(3)}$ 
 	obtained at the end of Step 3 (Figure~\ref{fig:flow-diagram}) by
 	using $\mathbf{p}^{(2)}$ (Figure~\ref{fig:synt-margin-step2}) as
