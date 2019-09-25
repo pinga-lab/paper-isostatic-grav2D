@@ -62,14 +62,19 @@
 \setboolean{@repr}{false}
 \DeclareOption{reproduce}{\setboolean{@repr}{true}}
 \DeclareOption{nonreprod}{\setboolean{@repr}{false}}
+\newboolean{@blind}
+\setboolean{@blind}{true}
+\DeclareOption{blind}{\setboolean{@blind}{true}}
+\DeclareOption{noblind}{\setboolean{@blind}{false}}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
-\ExecuteOptions{paper,onecolumn,long,noendfloat,new,nonreprod}
+\ExecuteOptions{paper,onecolumn,long,noendfloat,new,nonreprod,blind}
 \ProcessOptions*
 \ifthenelse{\boolean{@twoc}}{%
   \LoadClass[9pt]{article}}{%
   \LoadClass[11pt]{article}}
 \RequirePackage{seg}
 \ifthenelse{\boolean{@repr}}{\RequirePackage{attachfile2}}{}
+\RequirePackage{rotating}
 \ifthenelse{\boolean{@eflt}}{
   \ifthenelse{\boolean{@manu}}{\RequirePackage{endfloat}}{}
 }{
@@ -256,6 +261,16 @@
       \end{table}\clearpage
     }
   }
+  \providecommand{\sidewaystabl}[4][X]{
+    \stepcounter{@tabls}
+    \AtEndDocument{
+      \begin{sidewaystable}[p]
+        #4
+        \caption{#3}
+        \label{tbl:#2}
+      \end{sidewaystable}\clearpage
+    }
+  }
 }{
   \providecommand{\seg@sidetabl}[4][htbp]{
     \begin{table}[#1]
@@ -270,6 +285,13 @@
       \caption{#3}
       \label{tbl:#2}
     \end{table*}
+  }
+  \providecommand{\sidewaystabl}[4][htbp]{
+    \begin{sidewaystable}[#1]
+      #4
+      \caption{#3}
+      \label{tbl:#2}
+    \end{sidewaystable}
   }
   \def\tabl{\@ifstar{\seg@fulltabl}{\seg@sidetabl}}
 }
@@ -431,8 +453,9 @@
       \seg@title
       \begin{center}
         \ifthenelse{\boolean{@manu}}{%
+          \ifthenelse{\boolean{@blind}}{}{
           \textbf{#1} \\
-          \emph{\seg@address}\ \\
+          \emph{\seg@address}\ \\}
           (\today) \\
   \ifthenelse{\equal{\ms@number}{Manuscript}}{}{\ms@number \\}
   Running head: \textbf{\seg@rhead} \\
