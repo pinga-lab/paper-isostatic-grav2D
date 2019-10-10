@@ -15,7 +15,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   sodipodi:docname="rifted-margin-model-color.svg"
+   sodipodi:docname="Figure1.svg"
    inkscape:export-filename="/home/vanderlei/Documents/paper-isostatic-grav2D/manuscript/figures/rifted-margin-model-color.png"
    inkscape:export-xdpi="600"
    inkscape:export-ydpi="600">
@@ -24,9 +24,9 @@
      pagecolor="#ffffff"
      bordercolor="#666666"
      borderopacity="1.0"
-     inkscape:pageopacity="0.0"
+     inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.8341346"
+     inkscape:zoom="1.8389423"
      inkscape:cx="208"
      inkscape:cy="144"
      inkscape:document-units="px"
@@ -292,7 +292,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>

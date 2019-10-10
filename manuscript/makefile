@@ -18,6 +18,9 @@ manuscript:
 
 # Convert and rename figures
 figs:
+	convert figures/Figure1.png -colorspace CMYK -units PixelsPerInch -resample 400 -resize 1732 figures/Figure1.tiff
+	convert figures/Figure2.png -colorspace CMYK -units PixelsPerInch -resample 400 -resize 1732 figures/Figure2.tiff
+	convert figures/Figure3.png -colorspace CMYK -units PixelsPerInch -resample 400 -resize 1732 figures/Figure3.tiff
 	convert figures/B-model-rifted-margin-grafics-estimated-model-alphas_X_1_2_1_2-2pts-dpi300.png -colorspace CMYK -units PixelsPerInch -resample 400 -resize 1732 figures/Figure4.tiff
 	convert figures/B-model-rifted-margin-grafics-estimated-model-alphas_3_1_2_1_2-2pts-dpi300.png -colorspace CMYK -units PixelsPerInch -resample 400 -resize 1732 figures/Figure5.tiff
 	convert figures/B-model-rifted-margin-grafics-estimated-model-alphas_3_1_2_1_2-sgm_1-2pts-dpi300.png -colorspace CMYK -units PixelsPerInch -resample 400 -resize 1732 figures/Figure6.tiff
